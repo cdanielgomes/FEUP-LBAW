@@ -1,6 +1,6 @@
- # GROUP1813
+#GROUP1813
 
-3. Online Shop
+##3. Online Shop
 
 Carlos Daniel Coelho Ferreira Gomes<br>
 * E-Mail: up201603404@fe.up.pt
