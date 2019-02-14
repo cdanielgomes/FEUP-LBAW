@@ -1,11 +1,6 @@
-# A1: Online Shop
+GROUP1813
 
-> 
-
-## Revision history
-
-***
-GROUP1813, 14/02/2019
+3. Online Shop
 
 Carlos Daniel Coelho Ferreira Gomes<br>
 * E-Mail: up201603404@fe.up.pt
