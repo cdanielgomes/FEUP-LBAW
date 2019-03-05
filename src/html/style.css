@@ -1,0 +1,27 @@
+body{
+    --color1: #f6fffb;
+    --color2: #9effd5;
+    --color3: #a8c1b6;
+    --color4: #40544b;
+    --color5: #151e1a;
+    font-family: 'Open Sans', 'Quicksand', sans-serif
+
+}
+
+.mt-navbar  {
+    background-color: var(--color1);
+}
+
+.mt-navbar > a{
+    font-family: 'Open Sans', sans-serif;
+    color: var(--color4);    
+}
+
+
+li.nav-item.dropdown:hover div.dropdown-menu{
+    display: block;
+}
+
+.navbar.navbar-expand-lg{
+    background-color: var(--color1);
+}
