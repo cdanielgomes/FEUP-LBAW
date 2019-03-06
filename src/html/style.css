@@ -21,7 +21,17 @@ body{
 li.nav-item.dropdown:hover div.dropdown-menu{
     display: block;
 }
+li.nav-item.dropdown:hover{
+    background-color: var(--color3);
+}
+
+a.nav-link.dropdown{
+    color: var(--color4);
+}
 
 .navbar.navbar-expand-lg{
     background-color: var(--color1);
+}
+div.collapse.navbar-collapse.justify-content-right a{
+    color: var(--color4);
 }
