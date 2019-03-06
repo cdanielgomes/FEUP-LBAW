@@ -30,101 +30,110 @@
   <header>
 
     <nav class="navbar navbar-expand-md pb-5">
-
       <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#control" aria-controls="control"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <a class="navbar-brand" href="#">aurora</a>
+        <a class="navbar-brand" href="#">
+          <h1>aurora</h1>
+        </a>
 
-        <ul class="collapse navbar-nav d-flex flex-row">
+        <ul class="collapse navbar-nav d-flex flex-row" id="#pila">
           <li class="nav-item">
-            <form class="form-inline search-container d-none d-md-flex">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button hidden class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
+            <div class="container h-100">
+              <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                  <input class="search_input" type="text" name="" placeholder="Search...">
+                  <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                </div>
+              </div>
+            </div>
+
           </li>
         </ul>
         <ul class="collapse navbar-nav d-flex flex-row" id="control">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <i class="fas fa-shopping-cart"></i>
+              <h5><i class="fas fa-shopping-cart"></i> </h5>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Sign In
+            <a class="nav-link" href="login.html">
+              <h5>Sign In </h5>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Register
+            <a class="nav-link" href="register.html">
+              <h5>Register </h5>
             </a>
           </li>
         </ul>
       </div>
       </div>
     </nav>
-    
-    <div class="mt-navbar pt-5">
-      <div class="container" id="collections">
-        <div class="row justify-content-center">
-          <div class="col-12 col-sm-auto">
-            <ul class="nav nav-pills nav-fill" id="mama">
-              <li class="nav-item dropdown px-2" id="lmao">
-                <a class="nav-link dropdown" href="#">Clothing</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Jackets</a>
-                  <a class="dropdown-item" href="#">Trousers</a>
-                  <a class="dropdown-item" href="#">Shirts</a>
-                  <a class="dropdown-item" href="#">Accessories</a>
-                  <a class="dropdown-item" href="#">Footwear</a>
-                </div>
-              </li>
 
-              <li class="nav-item dropdown  px-2">
-                <a class="nav-link dropdown" href="#">House-Decor</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Jackets</a>
-                  <a class="dropdown-item" href="#">Trousers</a>
-                  <a class="dropdown-item" href="#">Shirts</a>
-                  <a class="dropdown-item" href="#">Accessories</a>
-                  <a class="dropdown-item" href="#">Footwear</a>
-                </div>
-              </li>
+    <!--- MENU FOR SHOP-->
 
-              <li class="nav-item dropdown px-2">
-                <a class="nav-link dropdown" href="#">Activities</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Jackets</a>
-                  <a class="dropdown-item" href="#">Trousers</a>
-                  <a class="dropdown-item" href="#">Shirts</a>
-                  <a class="dropdown-item" href="#">Accessories</a>
-                  <a class="dropdown-item" href="#">Footwear</a>
-                </div>
-              </li>
+    <div class="mt-navbar">
+      <ul class="nav nav-fill">
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link dropdown" href="#">Clothing</a>
+          <div class="dropdown-menu w-100">
+            <div class="row">
+              <ul class="list-unstyled col">
+                <a href="#" class="title">Women</a>
+                <li><a href="#">pilinha</a></li>
+                <li><a href="#">LOL</a></li>
+                <li><a href="#">XD</a></li>
+              </ul>
 
-              <li class="nav-item dropdown px-2">
-                <a class="nav-link dropdown" href="#">Sales</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Jackets</a>
-                  <a class="dropdown-item" href="#">Trousers</a>
-                  <a class="dropdown-item" href="#">Shirts</a>
-                  <a class="dropdown-item" href="#">Accessories</a>
-                  <a class="dropdown-item" href="#">Footwear</a>
-                </div>
-              </li>
-
-            </ul>
-
+              <ul class="list-unstyled col">
+                <a href="#" class="title">Men</a>
+                <li><a href="#">oi</a></li>
+                <li><a href="#">chinelo</a></li>
+                <li><a href="#">galocha</a></li>
+              </ul>
+            </div>
           </div>
+        </li>
 
-        </div>
 
-      </div>
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link dropdown" href="#">House-Decor</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Jackets</a>
+            <a class="dropdown-item" href="#">Trousers</a>
+            <a class="dropdown-item" href="#">Shirts</a>
+            <a class="dropdown-item" href="#">Accessories</a>
+            <a class="dropdown-item" href="#">Footwear</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link dropdown" href="#">Activities</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Jackets</a>
+            <a class="dropdown-item" href="#">Trousers</a>
+            <a class="dropdown-item" href="#">Shirts</a>
+            <a class="dropdown-item" href="#">Accessories</a>
+            <a class="dropdown-item" href="#">Footwear</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown px-2">
+          <a class="nav-link dropdown" href="#">Sales</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Jackets</a>
+            <a class="dropdown-item" href="#">Trousers</a>
+            <a class="dropdown-item" href="#">Shirts</a>
+            <a class="dropdown-item" href="#">Accessories</a>
+            <a class="dropdown-item" href="#">Footwear</a>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
 
     </div>
 
