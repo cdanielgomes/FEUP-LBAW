@@ -1,0 +1,129 @@
+body {
+    background-color: #f6fffb;
+}
+
+.breadcrumb {
+    background-color: #f6fffb;
+}
+
+.breadcrumb-item.active {
+    color: #151e1a;
+    font-family: 'Quicksand', sans-serif;
+}
+
+li>a {
+    font-family: 'Quicksand', sans-serif;
+    color: #a8c1b6;
+}
+
+a:hover {
+    color: #40544b;
+    text-decoration: none;
+}
+
+h3.mt-0 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#product-images {
+    width: 40%
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23151e1a' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23151e1a' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel-indicators li {
+    background-color: #151e1a
+}
+
+.carousel-indicators .active {
+    background-color: #9effd5;
+}
+
+.carousel-inner img {
+    margin: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.media-body>h3 {
+    border-bottom: 1px solid #151e1a;
+    padding-bottom: 15px;
+    color: #a8c1b6;
+}
+
+p#product-price {
+    font-size: 20px;
+    color: #a8c1b6;
+}
+
+input#quantity {
+    height: 46.5px;
+    line-height: 47px;
+    font-family: 'Quicksand', sans-serif;
+    border: 1px solid #40544b;
+    text-align: center;
+    text-decoration: none;
+    min-width: 55px;
+    width: 55px;
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
+input.AddtoCart {
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    border: 2px solid  #a8c1b6;
+    color: #a8c1b6;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 80px;
+    border-radius: 15px;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: 10px;
+    transition-duration: 0.4s;
+}
+
+input.AddtoCart:hover {
+    background-color: #40544b;
+    border: 2px solid #40544b;
+    color: white;
+}
+
+.product-add label {
+    font-size: 15px;
+    color: #a8c1b6;
+}
+
+form#AddToCartForm.product_form {
+    border-bottom: 1px solid #151e1a;
+    padding-bottom: 15px;
+}
+
+div.btn-group {
+    display: block;
+}
+
+button.btn.btn-secondary {
+    background-color: #40544b;
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+    color: #a8c1b6;
+    text-align: center;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
