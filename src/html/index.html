@@ -25,101 +25,102 @@
   <title>aurora</title>
 </head>
 
+
 <body>
+  <header>
 
-  <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-md pb-5">
 
-    <a class="navbar-brand" href="#">aurora</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#control" aria-controls="control"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse justify-content-center">
-      <form class="form-inline my-2 my-lg-0">
-        <i class="fas fa-search"></i>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="border-radius: 33px">
-        <button hidden class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
+        <a class="navbar-brand" href="#">aurora</a>
 
-    <div class="collapse navbar-collapse justify-content-right" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <div class="col">
+        <ul class="collapse navbar-nav d-flex flex-row">
           <li class="nav-item">
-            <a href="#">
+            <form class="form-inline search-container d-none d-md-flex">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button hidden class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </li>
+        </ul>
+        <ul class="collapse navbar-nav d-flex flex-row" id="control">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
               <i class="fas fa-shopping-cart"></i>
             </a>
           </li>
-        </div>
-        <div class="col">
+
           <li class="nav-item">
-            <a href="#"> Sign </a>
+            <a class="nav-link" href="#">
+              Sign In
+            </a>
           </li>
-        </div>
-        <div class="col">
           <li class="nav-item">
-            <a href="#"> Register </a>
+            <a class="nav-link" href="#">
+              Register
+            </a>
           </li>
-        </div>
-      </ul>
-    </div>
-  </nav>
+        </ul>
+      </div>
+      </div>
+    </nav>
+    
+    <div class="mt-navbar pt-5">
+      <div class="container" id="collections">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-auto">
+            <ul class="nav nav-pills nav-fill" id="mama">
+              <li class="nav-item dropdown px-2" id="lmao">
+                <a class="nav-link dropdown" href="#">Clothing</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Jackets</a>
+                  <a class="dropdown-item" href="#">Trousers</a>
+                  <a class="dropdown-item" href="#">Shirts</a>
+                  <a class="dropdown-item" href="#">Accessories</a>
+                  <a class="dropdown-item" href="#">Footwear</a>
+                </div>
+              </li>
 
-  <div class="mt-navbar">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#colection"
-      aria-controls="collections" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse show container" id="collections">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto">
-          <ul class="nav nav-pills nav-fill" id="mama">
-            <li class="nav-item dropdown" id="lmao">
-              <a class="nav-link dropdown" href="#">Clothing</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Trousers</a>
-                <a class="dropdown-item" href="#">Shirts</a>
-                <a class="dropdown-item" href="#">Accessories</a>
-                <a class="dropdown-item" href="#">Footwear</a>
-              </div>
-            </li>
+              <li class="nav-item dropdown  px-2">
+                <a class="nav-link dropdown" href="#">House-Decor</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Jackets</a>
+                  <a class="dropdown-item" href="#">Trousers</a>
+                  <a class="dropdown-item" href="#">Shirts</a>
+                  <a class="dropdown-item" href="#">Accessories</a>
+                  <a class="dropdown-item" href="#">Footwear</a>
+                </div>
+              </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown" href="#">House-Decor</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Trousers</a>
-                <a class="dropdown-item" href="#">Shirts</a>
-                <a class="dropdown-item" href="#">Accessories</a>
-                <a class="dropdown-item" href="#">Footwear</a>
-              </div>
-            </li>
+              <li class="nav-item dropdown px-2">
+                <a class="nav-link dropdown" href="#">Activities</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Jackets</a>
+                  <a class="dropdown-item" href="#">Trousers</a>
+                  <a class="dropdown-item" href="#">Shirts</a>
+                  <a class="dropdown-item" href="#">Accessories</a>
+                  <a class="dropdown-item" href="#">Footwear</a>
+                </div>
+              </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown" href="#">Activities</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Trousers</a>
-                <a class="dropdown-item" href="#">Shirts</a>
-                <a class="dropdown-item" href="#">Accessories</a>
-                <a class="dropdown-item" href="#">Footwear</a>
-              </div>
-            </li>
+              <li class="nav-item dropdown px-2">
+                <a class="nav-link dropdown" href="#">Sales</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Jackets</a>
+                  <a class="dropdown-item" href="#">Trousers</a>
+                  <a class="dropdown-item" href="#">Shirts</a>
+                  <a class="dropdown-item" href="#">Accessories</a>
+                  <a class="dropdown-item" href="#">Footwear</a>
+                </div>
+              </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown" href="#">Sales</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Jackets</a>
-                <a class="dropdown-item" href="#">Trousers</a>
-                <a class="dropdown-item" href="#">Shirts</a>
-                <a class="dropdown-item" href="#">Accessories</a>
-                <a class="dropdown-item" href="#">Footwear</a>
-              </div>
-            </li>
+            </ul>
 
-          </ul>
+          </div>
 
         </div>
 
@@ -127,7 +128,7 @@
 
     </div>
 
-  </div>
+  </header>
 
 </body>
 

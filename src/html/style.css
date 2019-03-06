@@ -30,9 +30,10 @@ a.nav-link.dropdown{
     text-transform: uppercase;
 }
 
-.navbar.navbar-expand-lg{
+nav.navbar.navbar-expand-md{
     background-color: var(--color1);
 }
-div.collapse.navbar-collapse.justify-content-right a{
+ul a{
     color: var(--color4);
 }
+
