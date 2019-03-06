@@ -27,6 +27,7 @@ li.nav-item.dropdown:hover{
 
 a.nav-link.dropdown{
     color: var(--color4);
+    text-transform: uppercase;
 }
 
 .navbar.navbar-expand-lg{
