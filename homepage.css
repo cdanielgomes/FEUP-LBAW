@@ -1,16 +1,39 @@
-body{
-    background-color: #f6fffb;
+
+.video1 .btn, .video2 .btn{
+  border-color: #9effd5;
+} 
+div.saleproducts, div.featuredproducts, div.companybreak{
+  font-family: 'QuickSand', sans-serif;
+}
+
+div.saleproducts h5, div.featuredproducts h5{ text-align: center;
+}
+.slide{
+  margin-top: 5em;
+}
+.AddToCard{
+letter-spacing: 2px;
+transition-duration: 0.4s;
+}
+
+.AddToCard:hover {
+background-color: #40544b;
+border: 2px solid #40544b;
+color: white;
 }
 
 
+
+
 .carousel-item {
-  height: 10vh;
-  min-height: 100px;
-  background: no-repeat center center scroll;
+  height: 12vh;
+  background: no-repeat center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+  font-family: 'QuickSand', sans-serif;
 }
 
 .video1{
@@ -20,7 +43,7 @@ body{
 }
  
  .video1  .video-block{
-     height: 30vh;
+     height: 50vh;
      overflow: hidden;
  }
  .video1 .container{
@@ -31,23 +54,20 @@ body{
  .video1  video{
     position: absolute;
     height: auto;
-    margin-top: 90px;
     width: 100%;
     z-index: -1;
  }
 
 .video1 .overlay {
-  margin-top: 90px;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.5;
   z-index: 1;
 }
- 
 .video2{
     position: relative;
     width: 100%;
@@ -55,7 +75,7 @@ body{
   }
    
    .video2  .video-block{
-       height: 40vh;
+       height: 50vh;
        overflow: hidden;
    }
    .video2 .container{
