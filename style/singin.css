@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Quicksand');
 
 html,body{
-background-image: url('forest.jpg');
+background-image: url('../assets/forest.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
