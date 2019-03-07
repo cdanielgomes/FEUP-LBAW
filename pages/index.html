@@ -12,8 +12,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="src/html/style.css">
-  <!-- Optional JavaScript -->
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -22,6 +21,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
   <title>aurora</title>
 </head>
 
@@ -29,13 +30,13 @@
 <body>
   <header>
 
-    <nav class="navbar navbar-expand-md pb-1">
+    <nav class="navbar navbar-expand-md pb-2">
 
       <div class="container">
-        <img src="logo.svg" style="width: 80px;" alt="">
+        <img src="../assets/logo.svg" alt="">
         <div class="float-left">
-          <a class="navbar-brand" href="#">
-            <h2>aurora</h2>
+          <a class="navbar-brand" href="homepage.html">
+            <h1>aurora</h1>
           </a>
         </div>
         <ul class="collapse navbar-nav d-flex flex-row">
@@ -60,12 +61,12 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="src/html/login.html">
+            <a class="nav-link" href="login.html">
               <h5>Sign In </h5>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="src/html/register.html">
+            <a class="nav-link" href="register.html">
               <h5>Register </h5>
             </a>
           </li>
@@ -84,16 +85,16 @@
             <div class="row">
               <ul class="list-unstyled col">
                 <a href="#" class="title">Women</a>
-                <li><a href="#">pilinha</a></li>
-                <li><a href="#">LOL</a></li>
-                <li><a href="#">XD</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Pants</a></li>
+                <li><a href="#">T-Shirts</a></li>
               </ul>
 
               <ul class="list-unstyled col">
                 <a href="#" class="title">Men</a>
-                <li><a href="#">oi</a></li>
-                <li><a href="#">chinelo</a></li>
-                <li><a href="#">galocha</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">Pants</a></li>
+                <li><a href="#">Shirts</a></li>
               </ul>
             </div>
           </div>
@@ -103,48 +104,42 @@
         <li class="nav-item dropdown px-2">
           <a class="nav-link dropdown" href="#">House-Decor</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Jackets</a>
-            <a class="dropdown-item" href="#">Trousers</a>
-            <a class="dropdown-item" href="#">Shirts</a>
-            <a class="dropdown-item" href="#">Accessories</a>
-            <a class="dropdown-item" href="#">Footwear</a>
+            <a class="dropdown-item" href="#">Sofas</a>
+            <a class="dropdown-item" href="#">Tables</a>
+            <a class="dropdown-item" href="#">Chairs</a>
+            <a class="dropdown-item" href="#">Carpets</a>
+            <a class="dropdown-item" href="#">Curtains</a>
           </div>
         </li>
 
         <li class="nav-item dropdown px-2">
           <a class="nav-link dropdown" href="#">Activities</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Jackets</a>
-            <a class="dropdown-item" href="#">Trousers</a>
-            <a class="dropdown-item" href="#">Shirts</a>
+            <a class="dropdown-item" href="#">Fishing</a>
+            <a class="dropdown-item" href="#">Hicking</a>
+            <a class="dropdown-item" href="#">Hunting</a>
             <a class="dropdown-item" href="#">Accessories</a>
-            <a class="dropdown-item" href="#">Footwear</a>
+            <a class="dropdown-item" href="#">Boats</a>
           </div>
         </li>
 
         <li class="nav-item dropdown px-2">
           <a class="nav-link dropdown" href="#">Sales</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Jackets</a>
-            <a class="dropdown-item" href="#">Trousers</a>
-            <a class="dropdown-item" href="#">Shirts</a>
-            <a class="dropdown-item" href="#">Accessories</a>
-            <a class="dropdown-item" href="#">Footwear</a>
+            <a class="dropdown-item" href="#">Men</a>
+            <a class="dropdown-item" href="#">Women</a>
+            <a class="dropdown-item" href="#">Activities</a>
+            <a class="dropdown-item" href="#">House-Decor</a>
+            <a class="dropdown-item" href="#">Super Sales</a>
           </div>
         </li>
-
       </ul>
-
     </div>
-
     </div>
-
   </header>
   
 
- 
-
-  <footer class="footer pt-4">
+  <footer class="footer pt-4 mt-5">
     <div class="container">
       <div class="row text-center">
         <div class="col">
@@ -154,31 +149,25 @@
             <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i><a href="#"> Contacts </a></span></li>
           </ul>
         </div>
-
         <div class="col">
-          <h5 class="header">Atendimento</h5>
-            <ul class="list-group links">
-              <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i> <a href="#"> faq's </a></span></li>
-            </ul>
+          <h5 class="header">Services</h5>
+          <ul class="list-group links">
+            <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i> <a href="#"> FAQ </a></span></li>
+          </ul>
         </div>
-
       </div>
       <div class="row ">
         <div class="col">
-          lmao
-        </div>
 
+        </div>
         <div class="col">
-           <span class=""><i class="fab fa-paypal"></i> </span> 
+          <span class=""><i class="fab fa-paypal"></i> </span>
         </div>
         <div class="col text-center">
-            <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora</span>  <br>
-          <span> All rigths reserved </span>
+          <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
         </div>
-
       </div>
     </div>
-
   </footer>
 </body>
 

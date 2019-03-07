@@ -9,6 +9,16 @@ height: 100%;
 font-family: 'Numans', sans-serif;
 }
 
+header {
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px #999;
+  }
+  
+  footer {
+    border-radius: 2px;
+    box-shadow: 1px 0px 6px #999;
+  }
+
 .container{
 height: 100%;
 align-content: center;
