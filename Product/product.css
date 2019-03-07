@@ -1,9 +1,5 @@
-body {
-    background-color: #f6fffb;
-}
-
 .breadcrumb {
-    background-color: #f6fffb;
+    background-color: white;
 }
 
 .breadcrumb-item.active {
@@ -83,7 +79,7 @@ input#quantity {
 }
 
 input.AddtoCart {
-    background-color: white;
+    background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
     border: 2px solid #a8c1b6;
     color: #a8c1b6;
@@ -146,14 +142,12 @@ div#informations {
     margin-top: 30px;
 }
 
-ul.list-group.list-group-flush>li.list-group-item {
-    background-color: #f6fffb;
-}
-
 li.list-group-item>h6 {
     font-family: 'Quicksand', sans-serif;
+    text-align: center;
     color: #a8c1b6;
-    font-size: 20px;
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
 li.list-group-item p {
@@ -166,8 +160,26 @@ li.list-group-item p {
     border: 1px solid #151e1a;
 }
 
+.list-group-item form#makeReview {
+    padding-bottom: 15px;
+    font-family: 'Quicksand', sans-serif;
+    color: #a8c1b6;
+}
+
+.list-group-item form#makeReview div {
+    padding: 7.5px;
+}
+
+.list-group-item form#makeReview h6 {
+    font-size: 18px;
+}
+
+.list-group-item form#makeReview .custom-range {
+    width: 139vh;
+}
+
 .list-group-item form#makeReview input[name="Submit"] {
-    background-color: white;
+    background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
     border: 2px solid #a8c1b6;
     color: #a8c1b6;
@@ -185,4 +197,31 @@ li.list-group-item p {
     background-color: #40544b;
     border: 2px solid #40544b;
     color: white;
+}
+
+.list-group-item .pontuation,
+.list-group-item h5 {
+    font-family: 'Open Sans', sans-serif;
+    display: inline;
+    color: #151e1a;
+}
+
+.list-group-item .pontuation {
+    padding-left: 10px;
+}
+
+.list-group-item .pontuation label {
+    font-family: 'Quicksand', sans-serif;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.list-group-item .pontuation img {
+    width: 2.5vh;
+    height: auto;
+    vertical-align: unset;
+}
+
+.list-group-item h5.author {
+    float: right;
 }
