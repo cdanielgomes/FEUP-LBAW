@@ -20,7 +20,7 @@ footer {
 
 li>a {
     font-family: 'Quicksand', sans-serif;
-    color: #a8c1b6;
+    color: #40544b;
 }
 
 .breadcrumb a:hover {
@@ -67,13 +67,13 @@ p {
     font-size: 35px;
     border-bottom: 1px solid #151e1a;
     padding-bottom: 15px;
-    color: #a8c1b6;
+    color: #40544b;
 }
 
 p#product-price {
     font-size: 25px;
     margin-top: 15px;
-    color: #a8c1b6;
+    color: #40544b;
 }
 
 input#quantity {
@@ -177,7 +177,7 @@ div#informations {
 li.list-group-item>h6 {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    color: #a8c1b6;
+    color: #40544b;
     font-size: 22px;
     margin-bottom: 20px;
 }
@@ -195,7 +195,7 @@ li.list-group-item p {
 .list-group-item form#makeReview {
     padding-bottom: 15px;
     font-family: 'Quicksand', sans-serif;
-    color: #a8c1b6;
+    color: #40544b;
 }
 
 .list-group-item form#makeReview div {
@@ -261,20 +261,20 @@ li.list-group-item p {
 .mt-3.container h6 {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    color: #a8c1b6;
+    color: #40544b;
     font-size: 22px;
 }
 
 .mt-3.container h5 {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    color: #a8c1b6;
+    color: #40544b;
     font-size: 18px;
 } 
 
 .mt-3.container span {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    color: #a8c1b6;
+    color: #40544b;
     font-size: 16px;
 }
