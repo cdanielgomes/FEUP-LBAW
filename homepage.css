@@ -11,19 +11,24 @@ div.saleproducts h5, div.featuredproducts h5{ text-align: center;
 .slide{
   margin-top: 5em;
 }
-.AddToCard{
-letter-spacing: 2px;
-transition-duration: 0.4s;
+
+input.AddToCart{
+  background-color: #f6fffb;
+  font-family: 'Quicksand', sans-serif;
+  border: 2px solid #a8c1b6;
+  color: #a8c1b6;
+  padding: 15px 35px;
+  border-radius: 15px;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  transition-duration: 0.4s;
 }
 
-.AddToCard:hover {
-background-color: #40544b;
-border: 2px solid #40544b;
-color: white;
+input.AddToCart:hover {
+  background-color: #40544b;
+  border: 2px solid #40544b;
+  color: white;
 }
-
-
-
 
 .carousel-item {
   height: 12vh;
