@@ -92,3 +92,42 @@ div.searchbar {
     border-radius: 50%;
     color: white;
 }
+
+.footer{
+    background-color: var(--color1);
+}
+.footer .row li {
+    background-color: inherit;
+    border: none;
+    text-decoration: none;
+}
+
+
+.footer a {
+    color: var(--color4);
+    text-decoration: none;
+}
+.footer .row li{
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+
+.footer ul.links li > span{
+	padding: 3px 0;
+	-webkit-transition: .5s all ease;
+	-moz-transition: .5s all ease;
+	transition: .5s all ease;
+}
+.footer ul.links li > span:hover{
+	padding: 3px 0;
+	margin-left:5px;
+	font-weight:700;
+}
+.footer ul.links li a i{
+	margin-right: 5px;
+}
+.footer ul.links li:hover a i {
+    font-weight: 700;
+}
