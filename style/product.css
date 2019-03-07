@@ -132,8 +132,9 @@ input.AddToCart:hover {
 }
 
 .product-add label {
-    font-size: 15px;
+    font-size: 20px;
     color: #a8c1b6;
+    font-weight: bold;
 }
 
 form#AddToCartForm.product_form {
@@ -153,10 +154,20 @@ button.btn.btn-secondary {
     color: #a8c1b6;
     text-align: center;
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 3px 8px;
     border-radius: 3px;
     letter-spacing: 2px;
     margin-top: 10px;
+
+}
+
+#color button.btn.btn-secondary {
+    opacity: 0.8;
+    margin-left: 10px; 
+}
+
+#dropdownMenuButton {
+    opacity: 0.5;
 }
 
 div.product-add {
