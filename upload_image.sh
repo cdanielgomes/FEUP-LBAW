@@ -4,7 +4,7 @@
 set -e
 
 DOCKER_USERNAME=carlosdgomes # Replace by your docker hub username
-IMAGE_NAME=lbaw1813
+IMAGE_NAME=lbaw1813-piu
 
 docker build -t $DOCKER_USERNAME/$IMAGE_NAME .
 docker push $DOCKER_USERNAME/$IMAGE_NAME
