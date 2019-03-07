@@ -1,8 +1,8 @@
 header {
     border-radius: 2px;
     box-shadow: 0px 1px 6px #999;
-  }
-  
+}
+
 footer {
     border-radius: 2px;
     box-shadow: 1px 0px 3px #999;
@@ -64,6 +64,7 @@ p {
 }
 
 .media-body>h3 {
+    width: 75%;
     font-size: 35px;
     border-bottom: 1px solid #151e1a;
     padding-bottom: 15px;
@@ -90,14 +91,14 @@ input#quantity {
 }
 
 input.AddtoCart {
-    background-color: #f6fffb;
+    background-color: #40544b;
     font-family: 'Quicksand', sans-serif;
-    border: 2px solid #a8c1b6;
-    color: #a8c1b6;
+    border: 1.5px solid #40544b;
+    color: white;
     text-align: center;
     text-decoration: none;
-    padding: 30px 100px;
-    border-radius: 15px;
+    padding: 10px 25px;
+    border-radius: 5px;
     letter-spacing: 2px;
     display: block;
     margin-top: 25px;
@@ -105,20 +106,22 @@ input.AddtoCart {
 }
 
 input.AddtoCart:hover {
-    background-color: #40544b;
-    border: 2px solid #40544b;
-    color: white;
+    background-color: #f6fffb;
+    font-weight: 700;
+    border: 1.5px solid #40544b;
+    color: #40544b;
 }
 
 input.AddToCart {
     background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
-    border: 2px solid #a8c1b6;
-    color: #a8c1b6;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+    font-weight: 700;
     text-align: center;
     text-decoration: none;
     padding: 10px 25px;
-    border-radius: 15px;
+    border-radius: 5px;
     letter-spacing: 2px;
     display: block;
     margin-top: 25px;
@@ -127,17 +130,20 @@ input.AddToCart {
 
 input.AddToCart:hover {
     background-color: #40544b;
+    font-weight: normal;
     border: 2px solid #40544b;
     color: white;
 }
 
+
 .product-add label {
+    font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     color: #a8c1b6;
-    font-weight: bold;
 }
 
 form#AddToCartForm.product_form {
+    width: 75%;
     border-bottom: 1px solid #151e1a;
     padding-bottom: 25px;
 }
@@ -163,7 +169,7 @@ button.btn.btn-secondary {
 
 #color button.btn.btn-secondary {
     opacity: 0.8;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
 #dropdownMenuButton {
@@ -185,12 +191,24 @@ div#informations {
     margin-top: 30px;
 }
 
+.list-group-flush .list-group-item {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 li.list-group-item>h6 {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
     color: #40544b;
     font-size: 22px;
     margin-bottom: 20px;
+}
+
+.list-group-item.pt-4 p:first-of-type {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 li.list-group-item p {
@@ -218,18 +236,21 @@ li.list-group-item p {
 }
 
 .list-group-item form#makeReview .custom-range {
-    width: 139vh;
+    width: 50vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .list-group-item form#makeReview input[name="Submit"] {
     background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
-    border: 2px solid #a8c1b6;
-    color: #a8c1b6;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+    font-weight: 700;
     text-align: center;
     text-decoration: none;
     padding: 10px 33px;
-    border-radius: 15px;
+    border-radius: 5px;
     letter-spacing: 2px;
     display: block;
     margin-top: 25px;
@@ -238,8 +259,9 @@ li.list-group-item p {
 
 .list-group-item form#makeReview input[name="Submit"]:hover {
     background-color: #40544b;
-    border: 2px solid #40544b;
+    border: 1.5px solid #40544b;
     color: white;
+    font-weight: normal;
 }
 
 .list-group-item .pontuation,
@@ -278,10 +300,13 @@ li.list-group-item p {
 
 .mt-3.container h5 {
     font-family: 'Quicksand', sans-serif;
+    padding-top: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
     text-align: center;
     color: #40544b;
     font-size: 18px;
-} 
+}
 
 .mt-3.container span {
     font-family: 'Quicksand', sans-serif;
