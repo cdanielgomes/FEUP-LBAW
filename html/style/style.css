@@ -149,3 +149,9 @@ div.searchbar {
 .footer ul.links li:hover a i {
     font-weight: 700;
 }
+
+img.center-block {
+    max-width: 900px;
+    max-height: auto;
+}
+
