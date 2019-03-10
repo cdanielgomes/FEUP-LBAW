@@ -177,11 +177,16 @@
                     <div class="product-add">
                         <label for="quantity">Quantity</label>
                         <input min="1" type="number" id="quantity" name="quantity" value="1">
-                        <div class="btn-group" id="color" role="group" aria-label="Color">
-                            <label for="color">Color</label>
-                            <button type="button" class="btn btn-secondary">Dark Brown</button>
-                            <button type="button" class="btn btn-secondary">Black</button>
-                            <button type="button" class="btn btn-secondary">Navy</button>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Color
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Dark Brown <span class="px-2 ml-2" id="option1"></span></a>
+                                <a class="dropdown-item" href="#">Black <span class="px-2 ml-2" id="option2"></span></a>
+                                <a class="dropdown-item" href="#">Navy <span class="px-2 ml-2" id="option3"></span></a>
+                            </div>
                         </div>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -221,7 +226,7 @@
                                 <input type="text" id="data" name="data" class="form-control" />
                             </div>
                             <div>Rating<br />
-                                <div class="getValue">
+                                <div class="getValue d-flex justify-content-center">
                                     <span class="value">1</span>
                                     <input type="range" class="custom-range" id="formControlRange" min=1 max=5>
                                     <span class="value">5</span>

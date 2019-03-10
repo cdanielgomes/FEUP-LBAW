@@ -139,7 +139,7 @@ input.AddToCart:hover {
 .product-add label {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    color: #a8c1b6;
+    color: #40544b;
 }
 
 form#AddToCartForm.product_form {
@@ -172,8 +172,16 @@ button.btn.btn-secondary {
     margin-left: 10px;
 }
 
-#dropdownMenuButton {
-    opacity: 0.5;
+.dropdown-item #option1 {
+    background-color:#654321;
+}
+
+.dropdown-item #option2 {
+    background-color:#000000;
+}
+
+.dropdown-item #option3 {
+    background-color:#000080;
 }
 
 div.product-add {
@@ -236,9 +244,15 @@ li.list-group-item p {
 }
 
 .list-group-item form#makeReview .custom-range {
-    width: 50vh;
-    margin-left: auto;
-    margin-right: auto;
+    width: 30vh;
+}
+
+.list-group-item form#makeReview .custom-range::-webkit-slider-thumb {
+    background-color: #40544b;
+}
+
+.list-group-item form#makeReview .custom-range::-moz-range-thumb {
+    background-color: #40544b;
 }
 
 .list-group-item form#makeReview input[name="Submit"] {
