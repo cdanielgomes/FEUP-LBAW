@@ -18,7 +18,7 @@ paymentButton.addEventListener("click", function (event) {
     event.preventDefault();
     let current = document.querySelector("#cart li:nth-child(2) a")
     let next = document.querySelector("#cart li:nth-child(3) a")
-    let currentContent = document.querySelector("payment")
+    let currentContent = document.querySelector("#payment")
     let nextContent = document.querySelector("#review")
 
     current.className = "nav-link"
@@ -27,3 +27,19 @@ paymentButton.addEventListener("click", function (event) {
     nextContent.className = "tab-pane fade show active"
 
 })
+
+
+let prices = document.getElementsByClassName("price");
+let qts = document.getElementsByClassName("quantity");
+let unitPrices = document.getElementsByClassName("subtotal");
+let total = document.getElementsByClassName("total");
+let t = 0;
+
+
+for (let i = 0; i < prices.length; i++) {
+    let price = parseFloat(prices[i].innerHTML.slice(0, prices[i].innerHTML.length - 1)) * parseFloat(qts[i].innerHTML)
+    unitPrices[i].innerHTML = price.toFixed(2) + "€";
+    console.log(price)
+    t += price;
+}
+total[0].innerHTML = t.toFixed(2) + "€";

@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
 
 
-    <title>Profile Page</title>
+    <title>Cart</title>
 </head>
 
 <body>
@@ -134,7 +134,9 @@
 
     <main class="cart">
         <section class="container">
-            <h1> Checkout </h1>
+            <div class="row">
+                <h1 class="my-2"> Checkout </h1>
+            </div>
             <ul class="nav nav-tabs" id="cart">
                 <li class="nav-item">
                     <a class="nav-link active" id="address-tab" data-toggle="tab" href="#address" role="tab"
@@ -271,6 +273,28 @@
                         <div>
                             <input id="creditCard" type="radio" name="payment">
                             <label for="creditCard"> Credit Card</label>
+
+                            <div class="col-6 justify-content-center offset-md-2">
+
+                                <div class="form-group">
+                                    <label for="firstNameCard"> First Name </label>
+                                    <input class="form-control" type="text" id="firstNameCard">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="cardNumber"> Card Number </label>
+                                    <input class="form-control" type="text" id="cardNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expDate"> Expiration Date </label>
+                                    <input class="form-control" type="text" id="cardNumber">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ccv"> CCV </label>
+                                    <input class="form-control" type="text" id="cardNumber">
+                                </div>
+                            </div>
                         </div>
                         <input id="paypal" type="radio" name="payment">
                         <label for="paypal"> Paypal</label>
@@ -284,12 +308,49 @@
                             <a href="#">Back</a>
                         </button>
                         <button id="paymentBtn" type="button" class="btn btn-outline-success col-2 offset-md-4">
-                            <a class="nav-link" href="#">Delivery Method</a>
+                            <a class="nav-link" href="#">Order Review</a>
                         </button>
                     </div>
                 </div>
+
                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                    oi
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="pants"></th>
+                                <td class="price">32.00€</td>
+                                <td class="quantity">2</td>
+                                <td class="subtotal">64.00€</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><img class="img-fluid w-25 h-20" src="assets/jacket.jpg" alt="jacket"></th>
+                                <td class="price">26.00€</td>
+                                <td class="quantity">1</td>
+                                <td class="subtotal">26.00€</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="justify-content-left"> Total</th>
+                                <td class="justify-content-right total"> Total2</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                            <button type="button" class="btn btn-outline-success col-2 offset-md-2">
+                                <a href="#">Back</a>
+                            </button>
+                            <button id="checkoutBtn" type="button" class="btn btn-outline-success col-2 offset-md-4">
+                                <a class="nav-link" href="#">Complete Pucrchise</a>
+                            </button>
+                        </div>
                 </div>
             </div>
 
@@ -298,32 +359,33 @@
     </main>
     <script src="script.js" defer></script>
     <footer class="footer pt-4 mt-5">
-        <div class="constainer">
+        <div class="container">
             <div class="row text-center">
                 <div class="col">
                     <h5 class="header">Information</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i> <a href="#"> About us</a>
+                        <li class="list-group-item"> <span><a href="#"> About us</a>
                             </span></li>
-                        <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i><a href="#"> Contacts </a></span></li>
+                        <li class="list-group-item"> <span><a href="#"> Contacts </a></span></li>
                     </ul>
                 </div>
                 <div class="col">
                     <h5 class="header">Services</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span> <i class="fas fa-caret-right"></i> <a href="#"> FAQ </a></span></li>
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
                     </ul>
                 </div>
             </div>
 
             <div class="row ">
-                <div class="col">
+                <div class="col-4">
 
                 </div>
-                <div class="col">
-                    <span class=""><i class="fab fa-paypal"></i> </span>
+                <div class="col-4 text-center">
+                    <span class="mx-1"><i class="fab fa-paypal"></i> </span>
+                    <span class="mx-1"><i class="far fa-credit-card"></i></span>
                 </div>
-                <div class="col text-center">
+                <div class="col-4 text-center">
                     <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
                 </div>
             </div>
