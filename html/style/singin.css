@@ -2,10 +2,12 @@
 
 html, body {
   background-image: url('../assets/forest.jpg');
-  background-size: auto;
+  background-size: cover;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   width: auto;
   height: auto;
+
 }
 
 header {
@@ -25,14 +27,14 @@ footer {
 
 .card {
   position: center;
-  height: 370px;
+  height: auto;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.card-header h3 {
+.card-header h3
   color: white;
 }
 
