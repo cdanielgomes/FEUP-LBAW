@@ -1,0 +1,56 @@
+.breadcrumb {
+    background-color: white;
+}
+
+.breadcrumb-item.active {
+    color: #151e1a;
+    font-family: 'Quicksand', sans-serif;
+}
+
+li>a {
+    font-family: 'Quicksand', sans-serif;
+    color: #40544b;
+}
+
+.breadcrumb a:hover {
+    color: #40544b;
+    text-decoration: none;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.row a {
+    font-family: 'Quicksand', sans-serif;
+    color: #40544b;
+}
+
+main {
+    width: 120vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#profile-section label {
+    font-size: 25px;
+    padding-left: 15px;
+}
+
+#profile-section h5 {
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+.information.mt-4.pt-3 {
+    border-top: 1px solid #151e1a;
+}
+
+#profile_title, #addresses_title {
+    border-bottom: 1px solid #151e1a;
+    width: 40vh;
+}
+
+#profile .mt-4.col-md-6.col-lg-3 {
+    border-top: 1px solid #151e1a;
+}
