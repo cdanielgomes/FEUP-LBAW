@@ -35,6 +35,7 @@ main {
 #profile-section label {
     font-size: 25px;
     padding-left: 15px;
+    color: #40544b;
 }
 
 #profile-section h5 {
@@ -76,4 +77,22 @@ main {
     font-weight: normal;
     border: 2px solid #40544b;
     color: white;
+}
+
+button.btn.btn-secondary {
+    background-color: #f6fffb;
+    font-family: 'Quicksand', sans-serif;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    overflow: visible;
+    border-radius: 3px;
+    letter-spacing: 2px;
+
+}
+
+.dropdown-menu {
+    width: 100%;
 }

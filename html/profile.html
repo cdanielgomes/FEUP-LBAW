@@ -246,32 +246,32 @@
                 <div class="cards row">
                     <div class="mt-4 col-md-6 col-lg-3">
                         <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
                                 <i class="fas fa-home pr-1"></i>
                                 <h6>Home</h6>
                             </div>
                             <h6>2020 South Street Sunshine, CA 90000</h6>
-                            <i class="fas fa-trash-alt ml-auto"></i>
                         </div>
                     </div>
                     <div class="mt-4 col-md-6 col-lg-3">
                         <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
                                 <i class="fas fa-briefcase pr-1"></i>
                                 <h6>Work</h6>
                             </div>
                             <h6>R. Dr. Roberto Frias, 4200-465 Porto, Portugal</h6>
-                            <i class="fas fa-trash-alt ml-auto"></i>
                         </div>
                     </div>
                     <div class="mt-4 col-md-6 col-lg-3">
                         <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
                                 <i class="fab fa-bandcamp pr-1"></i>
                                 <h6>Other</h6>
                             </div>
                             <h6>Rua do Hospital 206, 4535-466 Aveiro, Portugal</h6>
-                            <i class="fas fa-trash-alt ml-auto"></i>
                         </div>
                     </div>
                     <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
@@ -296,8 +296,18 @@
                     <div class="modal-body section-container mt-0">
                         <form>
                             <div class="form-group">
-                                <label for="review_title">Name</label>
-                                <input type="text" class="form-control" placeholder="Address Name">
+                                <div class="dropdown">
+                                        <label for="review_title">Name</label>
+                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Type
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</a>
+                                        <a class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Street</label>
@@ -336,22 +346,22 @@
                 <div class="cards row">
                     <div class="mt-4 col-md-6 col-lg-3">
                         <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
                                 <i class="fa fa-cc-mastercard pr-1"></i>
                                 <h6>Mastercard</h6>
                             </div>
                             <h6>Debit *****1234</h6>
-                            <i class="fas fa-trash-alt ml-auto"></i>
                         </div>
                     </div>
                     <div class="mt-4 col-md-6 col-lg-3">
                         <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
                                 <i class="fa fa-cc-visa pr-1"></i>
                                 <h6>Visa</h6>
                             </div>
                             <h6>Credit *****0000</h6>
-                            <i class="fas fa-trash-alt ml-auto"></i>
                         </div>
                     </div>
                     <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
@@ -380,15 +390,17 @@
                             </div>
                             <div class="form-group">
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Type of card
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Visa <i class="fa fa-cc-visa"></i></a>
-                                        <a class="dropdown-item" href="#">Mastercard <i class="fa fa-cc-mastercard"></i></a>
-                                        <a class="dropdown-item" href="#">American Express <i class="fa fa-cc-amex"></i></a>
-                                        <a class="dropdown-item" href="#">Discover <i class="fa fa-cc-discover"></i></a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-visa"></i> Visa</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-mastercard"></i>
+                                            Mastercard</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-amex"></i> American
+                                            Express</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-discover"></i> Discover</a>
                                     </div>
                                 </div>
                             </div>
@@ -560,7 +572,7 @@
                 <div class="col">
                     <h5 class="header">Information</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> About us</a>
+                        <li class="list-group-item"> <span> <a href="#"> About us</a>
                             </span></li>
                         <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
                     </ul>
@@ -568,7 +580,7 @@
                 <div class="col">
                     <h5 class="header">Services</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> FAQ </a></span></li>
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
                     </ul>
                 </div>
             </div>
