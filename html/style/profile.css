@@ -46,7 +46,7 @@ main {
     border-top: 1px solid #151e1a;
 }
 
-#profile_title, #addresses_title {
+#profile_title, #addresses_title, #payment_title {
     border-bottom: 1px solid #151e1a;
     width: 40vh;
 }
