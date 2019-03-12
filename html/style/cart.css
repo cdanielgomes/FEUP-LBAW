@@ -1,0 +1,32 @@
+button.btn {
+    background-color: #40544b;
+    font-family: 'Quicksand', sans-serif;
+    border: 1.5px solid #40544b;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: 25px;
+    transition-duration: 0.4s;
+}
+
+button.btn:hover {
+    background-color: #f6fffb;
+    font-weight: 700;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+}
+
+button.btn a{
+    color: white;
+    text-decoration: none;
+}
+
+button.btn:hover a {
+    color: #40544b;
+    text-decoration: none;
+
+}

@@ -11,8 +11,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="style/product.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/cart.css">
+
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
 
 
@@ -277,17 +278,12 @@
                             <div class="col-6 justify-content-center offset-md-2">
 
                                 <div class="form-group">
-                                    <label for="firstNameCard"> First Name </label>
-                                    <input class="form-control" type="text" id="firstNameCard">
-                                </div>
-
-                                <div class="form-group">
                                     <label class="form-label" for="cardNumber"> Card Number </label>
                                     <input class="form-control" type="text" id="cardNumber">
                                 </div>
                                 <div class="form-group">
                                     <label for="expDate"> Expiration Date </label>
-                                    <input class="form-control" type="text" id="cardNumber">
+                                    <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
                                 </div>
 
                                 <div class="form-group">
@@ -296,6 +292,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <input id="paypal" type="radio" name="payment">
                         <label for="paypal"> Paypal</label>
 
@@ -318,6 +315,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Total</th>
@@ -326,31 +324,35 @@
                         <tbody>
                             <tr>
                                 <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="pants"></th>
+                                <td class="name">Pants</td>
+
                                 <td class="price">32.00€</td>
                                 <td class="quantity">2</td>
                                 <td class="subtotal">64.00€</td>
                             </tr>
                             <tr>
                                 <th scope="row"><img class="img-fluid w-25 h-20" src="assets/jacket.jpg" alt="jacket"></th>
+                                <td class="name">Jacket</td>
+
                                 <td class="price">26.00€</td>
                                 <td class="quantity">1</td>
                                 <td class="subtotal">26.00€</td>
                             </tr>
                             <tr>
-                                <td colspan="3" class="justify-content-left"> Total</th>
+                                <td colspan="4" class="justify-content-left"> Total</th>
                                 <td class="justify-content-right total"> Total2</th>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="row">
-                            <button type="button" class="btn btn-outline-success col-2 offset-md-2">
-                                <a href="#">Back</a>
-                            </button>
-                            <button id="checkoutBtn" type="button" class="btn btn-outline-success col-2 offset-md-4">
-                                <a class="nav-link" href="#">Complete Pucrchise</a>
-                            </button>
-                        </div>
+                        <button type="button" class="btn btn-outline-success col-2 offset-md-2">
+                            <a href="#">Back</a>
+                        </button>
+                        <button id="checkoutBtn" type="button" class="btn btn-outline-success col-2 offset-md-4 justify-content-center">
+                            Complete Pucrchise
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -364,7 +366,7 @@
                 <div class="col">
                     <h5 class="header">Information</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> About us</a>
+                        <li class="list-group-item"> <span> <a href="#"> About us</a>
                             </span></li>
                         <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
                     </ul>
@@ -372,7 +374,7 @@
                 <div class="col">
                     <h5 class="header">Services</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> FAQ </a></span></li>
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
                     </ul>
                 </div>
             </div>
