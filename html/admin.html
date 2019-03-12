@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style/profile.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Administrator Page</title>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-md pb-2">
+
+            <div class="container">
+                <img src="assets/logo.svg" alt="">
+                <div class="float-left">
+                    <a class="navbar-brand" href="homepage.html">
+                        <h1>aurora</h1>
+                    </a>
+                </div>
+                <ul class="collapse navbar-nav d-flex flex-row">
+                    <li class="nav-item">
+
+                        <div class="container h-100">
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="searchbar">
+                                    <input class="search_input" type="text" name="" placeholder="Search...">
+                                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+                <ul class="collapse navbar-nav d-flex flex-row" id="control">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <h5><i class="fas fa-shopping-cart"></i> </h5>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            <h5>Sign In </h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">
+                            <h5>Register </h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+        <!--- MENU FOR SHOP-->
+
+        <div class="mt-navbar">
+            <ul class="nav nav-fill">
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Clothing</a>
+                    <div class="dropdown-menu w-100">
+                        <div class="row">
+                            <ul class="list-unstyled col">
+                                <a href="#" class="title">Women</a>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Pants</a></li>
+                                <li><a href="#">T-Shirts</a></li>
+                            </ul>
+
+                            <ul class="list-unstyled col">
+                                <a href="#" class="title">Men</a>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Pants</a></li>
+                                <li><a href="#">Shirts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">House-Decor</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sofas</a>
+                        <a class="dropdown-item" href="#">Tables</a>
+                        <a class="dropdown-item" href="#">Chairs</a>
+                        <a class="dropdown-item" href="#">Carpets</a>
+                        <a class="dropdown-item" href="#">Curtains</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Activities</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Fishing</a>
+                        <a class="dropdown-item" href="#">Hicking</a>
+                        <a class="dropdown-item" href="#">Hunting</a>
+                        <a class="dropdown-item" href="#">Accessories</a>
+                        <a class="dropdown-item" href="#">Boats</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Sales</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Men</a>
+                        <a class="dropdown-item" href="#">Women</a>
+                        <a class="dropdown-item" href="#">Activities</a>
+                        <a class="dropdown-item" href="#">House-Decor</a>
+                        <a class="dropdown-item" href="#">Super Sales</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </header>
+
+    <div class="mt-1">
+        <nav aria-label="breadcrumb" id="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="homepage.html">Homepage</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Administrator</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="container scroll_nav">
+            <div class="row">
+                <h1 class="col-lg col-md col-sm-12">
+                    Administer
+                </h1>
+                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Manage Employees
+                </a>
+                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Manage Users
+                </a>
+                <a href="#reports_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Reports
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+
+            <section class="mt-4" id="profile-section">
+
+                <div id="employees_title" class="jumptarget pb-3">
+                    <h2>Manage Employees</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-user-tie pr-1"></i>
+                                <h6>Joe Doe</h6>
+                            </div>
+                            <h6>Store Manager</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
+                        <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#addManagerModal">
+                            &#10010; Add Employees
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="modal fade" id="addManagerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Manager</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body section-container mt-0">
+                            <div class="form-group">
+                                <label for="review_title">Name</label>
+                                <input type="text" class="form-control" placeholder="Employee Name">
+                            </div>
+                            <div class="dropdown">
+                                <label for="review_title">Role</label>
+                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Type
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#"><i class="fas fa-user-tie pr-1"></i></i>Store</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-user-tie pr-1"></i>User</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Password</label>
+                                <input type="password" class="form-control" placeholder="Your password" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <section class="mt-4" id="profile-section">
+
+                <div id="employees_title" class="jumptarget pb-3">
+                    <h2>Manage Users</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-user-tie pr-1"></i>
+                                <h6>Jane Doe</h6>
+                            </div>
+                            <h6>Regular User</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-user pr-1"></i>
+                                <h6>João Carlos Lopes</h6>
+                            </div>
+                            <h6>Premium User</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="container">
+            <section class="mt-5">
+
+                <div id="reports_title" class="jumptarget pb-3">
+                    <h2>Reports</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-newspaper pr-1"></i>
+                                <h6>Review</h6>
+                                <h6>Jane Doe</h6>
+                            </div>
+                            <h6>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                                architecto beatae vitae dicta sunt explicabo.</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-comment pr-1"></i>
+                                <h6>Comment</h6>
+                                <h6>Jane Doe</h6>
+                            </div>
+                            <h6>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.</h6>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+
+        <div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body section-container mt-0">
+                            <div class="form-group">
+                                <div class="dropdown">
+                                    <label for="review_title">Name</label>
+                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Type
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</a>
+                                        <a class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Street</label>
+                                <input type="text" class="form-control" placeholder="Your street" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Postal Code</label>
+                                <input type="text" class="form-control" placeholder="Your postal code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">City</label>
+                                <input type="text" class="form-control" placeholder="Your city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Country</label>
+                                <input type="text" class="form-control" placeholder="Your country" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer pt-4 mt-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h5 class="header">Information</h5>
+                    <ul class="list-group links">
+                        <li class="list-group-item"> <span> <a href="#"> About us</a>
+                            </span></li>
+                        <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5 class="header">Services</h5>
+                    <ul class="list-group links">
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <span class=""><i class="fab fa-paypal"></i> </span>
+                </div>
+                <div class="col text-center">
+                    <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
