@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style/profile.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Premium Page</title>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-md pb-2">
+
+            <div class="container">
+                <img src="assets/logo.svg" alt="">
+                <div class="float-left">
+                    <a class="navbar-brand" href="homepage.html">
+                        <h1>aurora</h1>
+                    </a>
+                </div>
+                <ul class="collapse navbar-nav d-flex flex-row">
+                    <li class="nav-item">
+
+                        <div class="container h-100">
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="searchbar">
+                                    <input class="search_input" type="text" name="" placeholder="Search...">
+                                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+                <ul class="collapse navbar-nav d-flex flex-row" id="control">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <h5><i class="fas fa-shopping-cart"></i> </h5>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            <h5>Sign In </h5>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">
+                            <h5>Register </h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+        <!--- MENU FOR SHOP-->
+
+        <div class="mt-navbar">
+            <ul class="nav nav-fill">
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Clothing</a>
+                    <div class="dropdown-menu w-100">
+                        <div class="row">
+                            <ul class="list-unstyled col">
+                                <a href="#" class="title">Women</a>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Pants</a></li>
+                                <li><a href="#">T-Shirts</a></li>
+                            </ul>
+
+                            <ul class="list-unstyled col">
+                                <a href="#" class="title">Men</a>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Pants</a></li>
+                                <li><a href="#">Shirts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">House-Decor</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Sofas</a>
+                        <a class="dropdown-item" href="#">Tables</a>
+                        <a class="dropdown-item" href="#">Chairs</a>
+                        <a class="dropdown-item" href="#">Carpets</a>
+                        <a class="dropdown-item" href="#">Curtains</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Activities</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Fishing</a>
+                        <a class="dropdown-item" href="#">Hicking</a>
+                        <a class="dropdown-item" href="#">Hunting</a>
+                        <a class="dropdown-item" href="#">Accessories</a>
+                        <a class="dropdown-item" href="#">Boats</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown px-2">
+                    <a class="nav-link dropdown" href="#">Sales</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Men</a>
+                        <a class="dropdown-item" href="#">Women</a>
+                        <a class="dropdown-item" href="#">Activities</a>
+                        <a class="dropdown-item" href="#">House-Decor</a>
+                        <a class="dropdown-item" href="#">Super Sales</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </header>
+
+    <div class="mt-1">
+        <nav aria-label="breadcrumb" id="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="homepage.html">Homepage</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="container scroll_nav">
+            <div class="row">
+                <h1 class="col-lg col-md col-sm-12">
+                    My Area <span class="badge badge-secondary">Premium</span>
+                </h1>
+                <a href="#profile_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Profile
+                </a>
+                <a href="#addresses_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Addresses
+                </a>
+                <a href="#payment_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Payment
+                </a>
+                <a href="#onhold_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    On Hold
+                </a>
+                <a href="#history_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    History
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+
+            <section class="mt-4" id="profile-section">
+
+                <div id="profile_title" class="jumptarget pb-3">
+                    <h2>Profile</h2>
+                </div>
+
+                <div class="section-container">
+                    <div class="information mt-4">
+                        <label for="profile_name">Name</label>
+                        <h5 id="profile_name">Jane Doe</h5>
+                    </div>
+                    <div class="information mt-4 pt-3">
+                        <label for="profile_username">Username</label>
+                        <h5 id="profile_username">janedoe</h5>
+                    </div>
+                    <div class="information mt-4 pt-3">
+                        <label for="profile_email">Email</label>
+                        <h5 id="profile_email">janedoe@email.com</h5>
+                    </div>
+                    <div class="information mt-4 pt-3 ml-auto d-flex align-items-end justify-content-end">
+                        <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alterInformationModal">
+                            &#9998; Alter information
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="modal fade" id="alterInformationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Alter Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body section-container mt-0">
+                            <div class="form-group">
+                                <label for="review_title">Name</label>
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Username</label>
+                                <input type="text" class="form-control" placeholder="Your Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Password</label>
+                                <input type="password" class="form-control" placeholder="Your password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">New Password</label>
+                                <input type="password" class="form-control" placeholder="Your new password">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <section class="mt-5">
+
+                <div id="addresses_title" class="jumptarget pb-3">
+                    <h2>Addresses</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-home pr-1"></i>
+                                <h6>Home</h6>
+                            </div>
+                            <h6>2020 South Street Sunshine, CA 90000</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-briefcase pr-1"></i>
+                                <h6>Work</h6>
+                            </div>
+                            <h6>R. Dr. Roberto Frias, 4200-465 Porto, Portugal</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fab fa-bandcamp pr-1"></i>
+                                <h6>Other</h6>
+                            </div>
+                            <h6>Rua do Hospital 206, 4535-466 Aveiro, Portugal</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
+                        <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#addAddressModal">
+                            &#10010; Add Address
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body section-container mt-0">
+                            <div class="form-group">
+                                <div class="dropdown">
+                                    <label for="review_title">Name</label>
+                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Type
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</a>
+                                        <a class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Street</label>
+                                <input type="text" class="form-control" placeholder="Your street" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Postal Code</label>
+                                <input type="text" class="form-control" placeholder="Your postal code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">City</label>
+                                <input type="text" class="form-control" placeholder="Your city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="review_title">Country</label>
+                                <input type="text" class="form-control" placeholder="Your country" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <section class="mt-5">
+
+                <div id="payment_title" class="jumptarget pb-3">
+                    <h2>Payment</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fa fa-cc-mastercard pr-1"></i>
+                                <h6>Mastercard</h6>
+                            </div>
+                            <h6>Debit *****1234</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fa fa-cc-visa pr-1"></i>
+                                <h6>Visa</h6>
+                            </div>
+                            <h6>Credit *****0000</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
+                        <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#addCardModal">
+                            &#10010; Add Card
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Add Card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body section-container mt-0">
+                            <div class="form-group">
+                                <input type="text" class="form-control" maxlength="19" placeholder="Number of credit/debit card"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Type of card
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-visa"></i> Visa</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-mastercard"></i>
+                                            Mastercard</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-amex"></i> American
+                                            Express</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cc-discover"></i> Discover</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Your expiration date">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" maxlength="3" placeholder="Your security number">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Your billing address">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Associate Card"></input>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <section class="mt-5" id="discounts-section">
+
+                <div id="discounts_title" class="jumptarget pb-3">
+                    <h2>My Discounts</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-tag pr-1"></i>
+                                <h6>-20%</h6>
+                            </div>
+                            <h6>In purchases higher than 50€</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-tag pr-1"></i>
+                                <h6>-35€</h6>
+                            </div>
+                            <h6>In purchases higher than 100€</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="container">
+            <section class="mt-5">
+
+                <div id="onhold_title" class="jumptarget">
+                    <h2>On Hold</h2>
+                </div>
+
+                <div class="section-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-toggle="collapse" data-target="#purchase-1" class="clickable unbold" onclick="boldUnboldLine(this)">
+                                <td>11/03/19</td>
+                                <td>Processing</td>
+                                <td>32,00€</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="collapse-line">
+                                    <div id="purchase-1" class="collapse-div collapse">
+                                        <p class="accordion_list_title">Products</p>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <p class="accordion_list_title mt-3">Address</p>
+                                        <p>2020 South Street Sunshine, CA 90000 </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-toggle="collapse" data-target="#purchase-2" class="clickable unbold" onclick="boldUnboldLine(this)">
+                                <td>28/02/19</td>
+                                <td>Shipped</td>
+                                <td>86,00€</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="collapse-line">
+                                    <div id="purchase-2" class="collapse-div collapse">
+                                        <p class="accordion_list_title">Products</p>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <p class="accordion_list_title mt-3">Address</p>
+                                        <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </div>
+
+        <div class="container">
+            <section class="mt-5">
+
+                <div id="history_title" class="jumptarget">
+                    <h2>History</h2>
+                </div>
+
+                <div class="section-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-toggle="collapse" data-target="#purchase-3" class="clickable unbold" onclick="boldUnboldLine(this)">
+                                <td>15/02/19</td>
+                                <td>Delivered</td>
+                                <td>64,00€</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="collapse-line">
+                                    <div id="purchase-3" class="collapse-div collapse">
+                                        <p class="accordion_list_title">Products</p>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <div class="product_list container">
+                                            <div class="row" onclick="window.location='product.html'">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
+                                                    Pants</p>
+                                                <hr class="col">
+                                                <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            </div>
+                                        </div>
+                                        <p class="accordion_list_title mt-3">Address</p>
+                                        <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="footer pt-4 mt-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h5 class="header">Information</h5>
+                    <ul class="list-group links">
+                        <li class="list-group-item"> <span> <a href="#"> About us</a>
+                            </span></li>
+                        <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5 class="header">Services</h5>
+                    <ul class="list-group links">
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <span class=""><i class="fab fa-paypal"></i> </span>
+                </div>
+                <div class="col text-center">
+                    <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

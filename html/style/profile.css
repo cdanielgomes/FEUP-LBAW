@@ -47,7 +47,12 @@ main {
     border-top: 1px solid #151e1a;
 }
 
-#profile_title, #addresses_title, #payment_title, #employees_title {
+#profile_title,
+#addresses_title,
+#payment_title,
+#employees_title,
+#products_title,
+#discounts_title {
     border-bottom: 1px solid #151e1a;
     width: 50vh;
 }
@@ -59,6 +64,11 @@ main {
 h5#productName {
     width: 50vh;
     text-align: center;
+}
+
+.badge-secondary {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #40544b;
 }
 
 .modal-footer input {
