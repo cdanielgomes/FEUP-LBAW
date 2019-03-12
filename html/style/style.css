@@ -7,6 +7,10 @@ body {
     font-family: 'Quicksand', 'Open Sans', sans-serif
 }
 
+.img-fluid{
+   max-width: 5rem; 
+}
+
 header {
     border-radius: 2px;
     box-shadow: 0px 1px 6px #999;
@@ -35,6 +39,7 @@ header {
     color: var(--color4);
 
 }
+
 div.dropdown-menu:hover {
 transition-duration: 0.2s linear;
 }
