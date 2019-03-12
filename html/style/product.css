@@ -328,3 +328,7 @@ li.list-group-item p {
     color: #40544b;
     font-size: 16px;
 }
+
+.footer{
+    bottom: 0;
+}

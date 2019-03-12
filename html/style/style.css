@@ -160,3 +160,7 @@ img.center-block {
     max-height: 350px;
     padding: 10px;
 }
+
+.footer{
+    bottom: 0;
+}
