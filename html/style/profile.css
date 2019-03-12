@@ -56,6 +56,11 @@ main {
     border-top: 1px solid #151e1a;
 }
 
+h5#productName {
+    width: 50vh;
+    text-align: center;
+}
+
 .modal-footer input {
     background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
