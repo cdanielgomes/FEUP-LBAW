@@ -207,8 +207,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body section-container mt-0">
-                        <form>
+                    <form>
+                        <div class="modal-body section-container mt-0">
                             <div class="form-group">
                                 <label for="review_title">Name</label>
                                 <input type="text" class="form-control" placeholder="Your Name">
@@ -219,18 +219,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Password</label>
-                                <input type="password" class="form-control" placeholder="Your password">
+                                <input type="password" class="form-control" placeholder="Your password" required>
                             </div>
                             <div class="form-group">
                                 <label for="review_title">New Password</label>
                                 <input type="password" class="form-control" placeholder="Your new password">
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" data-dismiss="modal" value="Close"></input>
-                        <input type="button" class="black-button" value="Save"></input>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -293,8 +293,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body section-container mt-0">
-                        <form>
+                    <form>
+                        <div class="modal-body section-container mt-0">
                             <div class="form-group">
                                 <div class="dropdown">
                                     <label for="review_title">Name</label>
@@ -311,27 +311,26 @@
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Street</label>
-                                <input type="text" class="form-control" placeholder="Your street">
+                                <input type="text" class="form-control" placeholder="Your street" required>
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Postal Code</label>
-                                <input type="text" class="form-control" placeholder="Your postal code">
+                                <input type="text" class="form-control" placeholder="Your postal code" required>
                             </div>
                             <div class="form-group">
                                 <label for="review_title">City</label>
-                                <input type="text" class="form-control" placeholder="Your city">
+                                <input type="text" class="form-control" placeholder="Your city" required>
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Country</label>
-                                <input type="text" class="form-control" placeholder="Your country">
+                                <input type="text" class="form-control" placeholder="Your country" required>
                             </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" data-dismiss="modal" value="Close"></input>
-                        <input type="button" class="black-button" value="Save"></input>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Save"></input>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -383,10 +382,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body section-container mt-0">
-                        <form>
+                    <form>
+                        <div class="modal-body section-container mt-0">
                             <div class="form-group">
-                                <input type="text" class="form-control" maxlength="19" placeholder="Number of credit/debit card">
+                                <input type="text" class="form-control" maxlength="19" placeholder="Number of credit/debit card" required>
                             </div>
                             <div class="form-group">
                                 <div class="dropdown">
@@ -413,13 +412,13 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Your billing address">
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" data-dismiss="modal" value="Close"></input>
+                            <input type="submit" class="black-button" value="Associate Card"></input>
+                        </div>
 
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" data-dismiss="modal" value="Close"></input>
-                        <input type="button" class="black-button" value="Associate Card"></input>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
