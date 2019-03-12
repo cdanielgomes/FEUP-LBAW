@@ -86,3 +86,7 @@ input.AddToCart:hover {
     font-weight: 700;
     color: #40544b;
 }
+
+.footer{
+    bottom: 0;
+}
