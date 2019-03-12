@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Administrator Page</title>
 </head>
@@ -144,7 +145,7 @@
         <div class="container scroll_nav">
             <div class="row">
                 <h1 class="col-lg col-md col-sm-12">
-                    Administer
+                    Administer Area
                 </h1>
                 <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
                     Manage Employees
@@ -205,16 +206,9 @@
                                 <label for="review_title">Name</label>
                                 <input type="text" class="form-control" placeholder="Employee Name">
                             </div>
-                            <div class="dropdown">
+                            <div class="form-group">
                                 <label for="review_title">Role</label>
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Type
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-user-tie pr-1"></i></i>Store</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-user-tie pr-1"></i>User</a>
-                                </div>
+                                <input type="text" class="form-control" placeholder="Employee Role">
                             </div>
                             <div class="form-group">
                                 <label for="review_title">Password</label>
@@ -271,91 +265,95 @@
                     <h2>Reports</h2>
                 </div>
 
-                <div class="cards row">
-                    <div class="mt-4 col-md-6 col-lg-3">
-                        <div class="box d-flex flex-column">
-                            <i class="fas fa-trash-alt ml-auto"></i>
-                            <div class="d-flex flex-row address-header">
-                                <i class="fas fa-newspaper pr-1"></i>
-                                <h6>Review</h6>
-                                <h6>Jane Doe</h6>
-                            </div>
-                            <h6>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                                architecto beatae vitae dicta sunt explicabo.</h6>
-                        </div>
-                    </div>
-                    <div class="mt-4 col-md-6 col-lg-3">
-                        <div class="box d-flex flex-column">
-                            <i class="fas fa-trash-alt ml-auto"></i>
-                            <div class="d-flex flex-row address-header">
-                                <i class="fas fa-comment pr-1"></i>
-                                <h6>Comment</h6>
-                                <h6>Jane Doe</h6>
-                            </div>
-                            <h6>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.</h6>
-                        </div>
-                    </div>
+                <div class="section-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-toggle="collapse" data-target="#report-1" class="clickable unbold" onclick="boldUnboldLine(this)">
+                                <td>12/03/19</td>
+                                <td>Review</td>
+                                <td>janedoe</td>
+                                <td>
+                                    <i class="fas fa-exclamation-triangle p-1"></i>
+                                    <i class="fas fa-check-circle p-1"></i>
+                                    <i class="fas fa-user-lock p-1"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="collapse-line">
+                                    <div id="report-1" class="collapse-div collapse">
+                                        <div class="information_list container">
+                                            <div class="row" onclick="window.location='product.html#review-1'">
+                                                <h6>Zombie ipsum reversus ab viral inferno, nam rick grimes malum
+                                                    cerebro. De carne lumbering animata corpora quaeritis. Summus
+                                                    brains sit​​, morbo vel maleficia? De apocalypsi gorger omero
+                                                    undead survivor dictum mauris. Hi mindless mortuis soulless
+                                                    creaturas, imo evil stalking monstra adventus resi dentevil vultus
+                                                    comedat cerebella viventium.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-toggle="collapse" data-target="#report-2" class="clickable unbold" onclick="boldUnboldLine(this)">
+                                <td>25/02/19</td>
+                                <td>Review</td>
+                                <td>jonedoe</td>
+                                <td>
+                                    <i class="fas fa-exclamation-triangle p-1"></i>
+                                    <i class="fas fa-check-circle p-1"></i>
+                                    <i class="fas fa-user-lock p-1"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="collapse-line">
+                                    <div id="report-2" class="collapse-div collapse">
+                                        <div class="information_list container">
+                                            <div class="row" onclick="window.location='product.html#review-2'">
+                                                <h6>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle
+                                                    waistcoat tbh semiotics artisan synth stumptown gastropub cornhole
+                                                    celiac swag. Brunch raclette vexillologist post-ironic glossier
+                                                    ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue
+                                                    bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle
+                                                    ennui tbh succulents.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-
             </section>
         </div>
-
-        <div class="modal fade" id="addAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Add Address</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form>
-                        <div class="modal-body section-container mt-0">
-                            <div class="form-group">
-                                <div class="dropdown">
-                                    <label for="review_title">Name</label>
-                                    <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Type
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</a>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</a>
-                                        <a class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="review_title">Street</label>
-                                <input type="text" class="form-control" placeholder="Your street" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="review_title">Postal Code</label>
-                                <input type="text" class="form-control" placeholder="Your postal code" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="review_title">City</label>
-                                <input type="text" class="form-control" placeholder="Your city" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="review_title">Country</label>
-                                <input type="text" class="form-control" placeholder="Your country" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" data-dismiss="modal" value="Close"></input>
-                            <input type="submit" class="black-button" value="Save"></input>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
     </main>
+
+    <script>
+        $(document).ready(function () {
+            $('.fa-exclamation-triangle').popover({
+                content: "Warning User",
+                trigger: "hover",
+                placement: "top"
+            });
+            $('.fa-check-circle').popover({
+                content: "Marks as resolved",
+                trigger: "hover",
+                placement: "top"
+            });
+            $('.fa-user-lock').popover({
+                content: "Block User",
+                trigger: "hover",
+                placement: "top"
+            });
+        });
+    </script>
 
     <footer class="footer pt-4 mt-5">
         <div class="container">
