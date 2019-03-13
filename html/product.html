@@ -175,6 +175,8 @@
                     <p id="product-price">
                         <span class="price">32,00€</span>
                     </p>
+                    <p class="favorites" data-toggle="modal" data-target="#alertFavorite"><i class="fas fa-heart pr-1"></i>Add
+                        to favorites</p>
                     <div class="product-add">
                         <label for="quantity">Quantity</label>
                         <input min="1" type="number" id="quantity" name="quantity" value="1">
@@ -208,6 +210,21 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="alertFavorite" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Added to favorites!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="informations">
         <ul class="list-group list-group-flush">
             <li class="list-group-item pt-4">
