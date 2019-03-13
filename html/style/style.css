@@ -21,9 +21,8 @@ header {
     box-shadow: 1px 0px 3px #999;
 
 }
-.mt-navbar {
+.navbar {
     background-color: var(--color1);
-    margin-bottom: 0;
     transition-duration: 0.6s;
 }
 
@@ -34,39 +33,50 @@ header {
     color: var(--color5);
 }
 
-.mt-navbar>a {
+/*
+SHOP MENU
+*/
+
+.shop-menu > a {
     font-family: 'Quicksand', sans-serif;
     color: var(--color4);
 
 }
 
+.mega-dropdown {
+    position: static !important;
+}
+
+.mega-dropdown-menu{
+    width: 100%;
+    margin-top: 0;
+}
+
 div.dropdown-menu:hover {
 transition-duration: 0.2s linear;
 }
+
 li.nav-item.dropdown:hover div.dropdown-menu {
     display: block;
 }
 
 li.nav-item.dropdown:hover {
     background-color: var(--color3);
-    transition-duration: 0.6s;
+    transition-duration: 1.5s;
 }
 
 a.nav-link.dropdown {
     color: var(--color5);
     text-transform: uppercase;
     font-size: 1.2rem;
-
-
-}
-
-nav.navbar.navbar-expand-md {
-    background-color: var(--color1);
 }
 
 ul a {
     color: var(--color5);
 }
+
+
+
 
 div.searchbar {
     margin-bottom: auto;
@@ -136,6 +146,7 @@ div.searchbar {
 	-moz-transition: .5s all ease;
 	transition: .5s all ease;
 }
+
 
 .footer ul.links li > span{
 	padding: 3px 0;
