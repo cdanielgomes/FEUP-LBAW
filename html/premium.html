@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Profile Page</title>
+    <title>Premium Page</title>
 </head>
 
 <body>
@@ -144,7 +144,7 @@
         <div class="container scroll_nav">
             <div class="row">
                 <h1 class="col-lg col-md col-sm-12">
-                    My Area
+                    My Area <span class="badge badge-secondary">Premium</span>
                 </h1>
                 <a href="#profile_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
                     Profile
@@ -155,8 +155,11 @@
                 <a href="#payment_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
                     Payment
                 </a>
-                <a href="#favorite_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                <a href="#favorites_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
                     Favorites
+                </a>
+                <a href="#discounts_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                    Discounts
                 </a>
                 <a href="#onhold_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
                     On Hold
@@ -430,7 +433,7 @@
         <div class="container">
             <section class="mt-5">
 
-                <div id="favorite_title" class="jumptarget pb-3">
+                <div id="favorites_title" class="jumptarget pb-3">
                     <h2>Favorites</h2>
                 </div>
 
@@ -459,9 +462,43 @@
             </section>
         </div>
 
+
+        <div class="container">
+
+            <section class="mt-5" id="discounts-section">
+
+                <div id="discounts_title" class="jumptarget pb-3">
+                    <h2>Discounts</h2>
+                </div>
+
+                <div class="cards row">
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-tag pr-1"></i>
+                                <h6>-20%</h6>
+                            </div>
+                            <h6>In purchases higher than 50€</h6>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-md-6 col-lg-3">
+                        <div class="box d-flex flex-column">
+                            <i class="fas fa-trash-alt ml-auto"></i>
+                            <div class="d-flex flex-row address-header">
+                                <i class="fas fa-tag pr-1"></i>
+                                <h6>-35€</h6>
+                            </div>
+                            <h6>In purchases higher than 100€</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
         <div class="container">
             <section class="mt-5">
-
 
                 <div id="onhold_title" class="jumptarget">
                     <h2>On Hold</h2>
@@ -547,7 +584,6 @@
         <div class="container">
             <section class="mt-5">
 
-
                 <div id="history_title" class="jumptarget">
                     <h2>History</h2>
                 </div>
@@ -600,14 +636,14 @@
         </div>
 
         <div class="container p-2">
-            <div class="container scroll_nav">
-                <div class="row float-right">
-                    <a href="homepage.html" class="col-lg-auto col-md-auto col-sm-12 text-sm-right">
-                        <i class="fas fa-user-times"></i> Delete Account
-                    </a>
+                <div class="container scroll_nav">
+                    <div class="row float-right">
+                        <a href="homepage.html" class="col-lg-auto col-md-auto col-sm-12 text-sm-right">
+                            <i class="fas fa-user-times"></i> Delete Account
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
 
     </main>
 

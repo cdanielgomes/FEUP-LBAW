@@ -32,47 +32,26 @@ main {
     margin-right: auto;
 }
 
-#profile-section label {
-    font-size: 25px;
-    padding-left: 15px;
-    color: #40544b;
-}
-
-#profile-section h5 {
-    font-size: 20px;
-    padding-left: 30px;
-}
-
-.information.mt-4.pt-3 {
-    border-top: 1px solid #151e1a;
-}
-
-#profile_title,
-#addresses_title,
-#payment_title,
-#employees_title,
-#products_title,
-#discounts_title {
+#team_title,
+#information_title {
     border-bottom: 1px solid #151e1a;
     width: 50vh;
 }
 
-#profile .mt-4.col-md-6.col-lg-3 {
-    border-top: 1px solid #151e1a;
-}
-
-h5#productName {
-    width: 50vh;
-    text-align: center;
-}
-
-.badge {
-    font-weight: 400;
+.col-md-3{
+    background: #40544b;
     font-family: 'Quicksand', sans-serif;
-    background-color: #40544b;
+    color: white;
+    border-radius: 5px;
 }
 
-.modal-footer input {
+.col-md-9{
+    background: #fff;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form button {
     background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
     border: 1.5px solid #40544b;
@@ -88,27 +67,9 @@ h5#productName {
     transition-duration: 0.4s;
 }
 
-.modal-footer input:hover {
+.contact-form button:hover {
     background-color: #40544b;
     font-weight: normal;
     border: 2px solid #40544b;
     color: white;
-}
-
-button.btn.btn-secondary {
-    background-color: #f6fffb;
-    font-family: 'Quicksand', sans-serif;
-    border: 1.5px solid #40544b;
-    color: #40544b;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none;
-    overflow: visible;
-    border-radius: 3px;
-    letter-spacing: 2px;
-
-}
-
-.dropdown-menu {
-    width: 100%;
 }

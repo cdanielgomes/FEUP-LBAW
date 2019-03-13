@@ -36,6 +36,10 @@ p {
     font-family: 'Open Sans', sans-serif;
 }
 
+#favorites {
+    color: #40544b;
+}
+
 #product-images {
     width: 40%
 }

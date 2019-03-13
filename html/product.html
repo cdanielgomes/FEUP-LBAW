@@ -140,7 +140,7 @@
             </ol>
         </nav>
     </div>
-    <div class="media">
+    <div class="media pl-5">
         <div id="product-images" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#product-images" data-slide-to="0" class="active"></li>
@@ -168,13 +168,15 @@
             </a>
         </div>
 
-        <div class="media-body">
+        <div class="media-body pl-3">
             <h3 class="mt-0">Men's Sprag 5-pocket Pants</h3>
             <div id="cart">
                 <form method="post" action="" id="AddToCartForm" class="product_form">
                     <p id="product-price">
                         <span class="price">32,00€</span>
                     </p>
+                    <p class="favorites" data-toggle="modal" data-target="#alertFavorite"><i class="fas fa-heart pr-1"></i>Add
+                        to favorites</p>
                     <div class="product-add">
                         <label for="quantity">Quantity</label>
                         <input min="1" type="number" id="quantity" name="quantity" value="1">
@@ -208,6 +210,21 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="alertFavorite" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Added to favorites!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="informations">
         <ul class="list-group list-group-flush">
             <li class="list-group-item pt-4">
@@ -218,53 +235,91 @@
                     cillum dolore eu fugiat nulla pariatur.</p>
             </li>
             <li class="list-group-item pt-4">
-                <h6>Reviews</h6>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item pt-4">
-                        <form method="post" action="" id="makeReview">
-                            <h6>Make your review</h6>
-                            <div>Title<br />
-                                <input type="text" id="data" name="data" class="form-control" />
+                <div id="reviews" class="jumptarget">
+                    <h6>Reviews</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item pt-4">
+                            <form method="post" action="" id="makeReview">
+                                <h6>Make your review</h6>
+                                <div>Title<br />
+                                    <input type="text" id="data" name="data" class="form-control" />
+                                </div>
+                                <div>Rating<br />
+                                    <div class="getValue d-flex justify-content-center">
+                                        <span class="value">1</span>
+                                        <input type="range" class="custom-range" id="formControlRange" min=1 max=5>
+                                        <span class="value">5</span>
+                                    </div>
+                                </div>
+                                <div>Review<br />
+                                    <textarea id="data_8" false name="data_8" rows="5" maxlength="250" class="form-control">Maximum 250 characters...</textarea>
+                                </div>
+                                <div><input name="Submit" value="Submit" type="submit" /></div>
+                            </form>
+                        </li>
+                        <li class="list-group-item pt-4">
+                            <div id="review-1" class="jumptarget">
+                                <h5>Zombie Ipsum</h5>
+                                <div class="pontuation">
+                                    <label>4/5</label>
+                                    <img src="assets\star.png" alt="star">
+                                </div>
+                                <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne
+                                    lumbering
+                                    animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi
+                                    gorger
+                                    omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo
+                                    evil
+                                    stalking monstra adventus resi dentevil vultus comedat cerebella viventium.</p>
+                                <h5 class="author">Jane Doe</h5>
                             </div>
-                            <div>Rating<br />
-                                <div class="getValue d-flex justify-content-center">
-                                    <span class="value">1</span>
-                                    <input type="range" class="custom-range" id="formControlRange" min=1 max=5>
-                                    <span class="value">5</span>
+                            <div class="report mt-4 pt-5 ml-auto d-flex align-items-end justify-content-end">
+                                <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertReview">
+                                    Report Review
                                 </div>
                             </div>
-                            <div>Review<br />
-                                <textarea id="data_8" false name="data_8" rows="5" maxlength="250" class="form-control">Maximum 250 characters...</textarea>
+                        </li>
+                        <li class="list-group-item pt-4">
+                            <div id="review-2" class="jumptarget">
+                                <h5>Hipster Ipsum</h5>
+                                <div class="pontuation">
+                                    <label>5/5</label>
+                                    <img src="assets\star.png" alt="star">
+                                </div>
+                                <p>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics
+                                    artisan
+                                    synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist
+                                    post-ironic
+                                    glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put
+                                    a
+                                    bird
+                                    on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.</p>
+                                <h5 class="author">Jone Doe</h5>
                             </div>
-                            <div><input name="Submit" value="Submit" type="submit" /></div>
-                        </form>
-                    </li>
-                    <li class="list-group-item pt-4">
-                        <h5>Zombie Ipsum</h5>
-                        <div class="pontuation">
-                            <label>4/5</label>
-                            <img src="assets\star.png" alt="star">
-                        </div>
-                        <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering
-                            animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger
-                            omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil
-                            stalking monstra adventus resi dentevil vultus comedat cerebella viventium.</p>
-                        <h5 class="author">Jane Doe</h5>
-                    </li>
-                    <li class="list-group-item pt-4">
-                        <h5>Hipster Ipsum</h5>
-                        <div class="pontuation">
-                            <label>5/5</label>
-                            <img src="assets\star.png" alt="star">
-                        </div>
-                        <p>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan
-                            synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic
-                            glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird
-                            on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.</p>
-                        <h5 class="author">Jone Doe</h5>
-                    </li>
-                </ul>
+                            <div class="report mt-4 pt-5 ml-auto d-flex align-items-end justify-content-end">
+                                <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertReview">
+                                    Report Review
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
+            <div class="modal fade" id="alertReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Review Reported!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <li class="list-group-item">
                 <div class="featuredproducts">
                     <div class="mt-3 container">
@@ -312,7 +367,7 @@
                 <div class="col">
                     <h5 class="header">Information</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> About us</a>
+                        <li class="list-group-item"> <span> <a href="#"> About us</a>
                             </span></li>
                         <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
                     </ul>
@@ -320,7 +375,7 @@
                 <div class="col">
                     <h5 class="header">Services</h5>
                     <ul class="list-group links">
-                        <li class="list-group-item"> <span>  <a href="#"> FAQ </a></span></li>
+                        <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
                     </ul>
                 </div>
             </div>
