@@ -7,20 +7,21 @@ body {
     font-family: 'Quicksand', 'Open Sans', sans-serif
 }
 
-.img-fluid{
-   max-width: 5rem; 
+.img-fluid {
+    max-width: 5rem;
 }
 
 header {
     border-radius: 2px;
     box-shadow: 0px 1px 6px #999;
-  }
+}
 
-  footer {
+footer {
     border-radius: 2px;
     box-shadow: 1px 0px 3px #999;
 
 }
+
 .navbar {
     background-color: var(--color1);
     transition-duration: 0.6s;
@@ -28,7 +29,7 @@ header {
 
 
 
-.navbar-brand> * {
+.navbar-brand>* {
     font-family: 'Quicksand', 'Open Sans', 'sans-serif';
     color: var(--color5);
 }
@@ -37,7 +38,7 @@ header {
 SHOP MENU
 */
 
-.shop-menu > a {
+.shop-menu>a {
     font-family: 'Quicksand', sans-serif;
     color: var(--color4);
 
@@ -47,13 +48,13 @@ SHOP MENU
     position: static !important;
 }
 
-.mega-dropdown-menu{
+.mega-dropdown-menu {
     width: 100%;
     margin-top: 0;
 }
 
 div.dropdown-menu:hover {
-transition-duration: 0.2s linear;
+    transition-duration: 0.2s linear;
 }
 
 li.nav-item.dropdown:hover div.dropdown-menu {
@@ -65,10 +66,28 @@ li.nav-item.dropdown:hover {
     transition-duration: 1.5s;
 }
 
+.dropdown-item {
+    font-size: 1.2rem;
+}
+
+a.list-header {
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+a.list-header:hover {
+    color: var(--color5)
+}
+
+
+li.py-1{
+text-align: left;
+}
 a.nav-link.dropdown {
     color: var(--color5);
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 ul a {
@@ -76,7 +95,14 @@ ul a {
 }
 
 
+a.text-menu {
+    font-size: 1rem;
+    text-decoration: none;
+}
 
+a.text-menu:hover {
+    color: var(--color5);
+}
 
 div.searchbar {
     margin-bottom: auto;
@@ -126,9 +152,10 @@ div.searchbar {
     color: white;
 }
 
-.footer{
+.footer {
     background-color: var(--color1);
 }
+
 .footer .row li {
     background-color: inherit;
     border: none;
@@ -140,28 +167,32 @@ div.searchbar {
     color: var(--color4);
     text-decoration: none;
 }
-.footer .row li{
-	padding: 3px 0;
-	-webkit-transition: .5s all ease;
-	-moz-transition: .5s all ease;
-	transition: .5s all ease;
+
+.footer .row li {
+    padding: 3px 0;
+    -webkit-transition: .5s all ease;
+    -moz-transition: .5s all ease;
+    transition: .5s all ease;
 }
 
 
-.footer ul.links li > span{
-	padding: 3px 0;
-	-webkit-transition: .5s all ease;
-	-moz-transition: .5s all ease;
-	transition: .5s all ease;
+.footer ul.links li>span {
+    padding: 3px 0;
+    -webkit-transition: .5s all ease;
+    -moz-transition: .5s all ease;
+    transition: .5s all ease;
 }
-.footer ul.links li > span:hover{
-	padding: 3px 0;
-	margin-left:5px;
-	font-weight:700;
+
+.footer ul.links li>span:hover {
+    padding: 3px 0;
+    margin-left: 5px;
+    font-weight: 700;
 }
-.footer ul.links li a i{
-	margin-right: 5px;
+
+.footer ul.links li a i {
+    margin-right: 5px;
 }
+
 .footer ul.links li:hover a i {
     font-weight: 700;
 }
