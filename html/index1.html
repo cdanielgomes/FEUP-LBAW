@@ -1,9 +1,9 @@
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +12,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -19,21 +20,21 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="style/singin.css">
-  <link rel="stylesheet" type="text/css" href="style/style.css">
 
-  <title>Register Page</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+  <link rel="icon" type="image/png" href="assets/logo.png" sizes="32x32" />
+  <title>aurora</title>
 </head>
 
-<body>
 
+<body>
   <header>
 
     <nav class="navbar navbar-expand-md pb-2">
 
       <div class="container">
-        <img class="img-fluid" src="assets/logo.svg" alt="" style="max-width: 20; max-height: 25%">
+          <img class="img-fluid" src="assets/logo.svg" alt="" style="max-width: 20; max-height: 25%">
 
         <div class="float-left">
           <a class="navbar-brand" href="homepage.html">
@@ -79,10 +80,10 @@
     <!--- MENU FOR SHOP-->
     <div class="navbar navbar-expand-md sticky-position shop-menu">
       <!-- <div class="container"> -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".ant" aria-controls="ant"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"> </span>
-      </button>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".ant" aria-controls="ant"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"> </span>
+        </button>
       <div class="collapse navbar-collapse ant" id="navbar">
         <ul class="navbar-nav mx-auto">
 
@@ -94,10 +95,10 @@
                 <ul class="list-unstyled col-6 pr-4 text-center">
                   <h5><a href="#" class="list-header ">Women</a> </h5>
                   <span class="dropdown-divider"></span>
-
-                  <li class=""><a class="text-menu" href="#">Shoes</a></li>
-                  <li class=""><a class="text-menu" href="#">Pants</a></li>
-                  <li class=""><a class="text-menu" href="#">T-Shirts</a></li>
+                 
+                    <li class=""><a class="text-menu" href="#">Shoes</a></li>
+                    <li class=""><a class="text-menu" href="#">Pants</a></li>
+                    <li class=""><a class="text-menu" href="#">T-Shirts</a></li>
                 </ul>
 
                 <ul class="list-unstyled col-6 pr-4 text-center">
@@ -106,7 +107,7 @@
                   <li class="pl-1"><a class="text-menu" href="#">Pants</a></li>
                   <li class=""><a class="text-menu" href="#">Shirts</a></li>
                 </ul>
-
+                
               </div>
             </div>
           </li>
@@ -149,78 +150,10 @@
     </div>
 
     <!-- 
-        </div> -->
+    </div> -->
 
   </header>
 
-  <div class="container">
-    <div class="d-flex justify-content-center h-100">
-      <div class="card">
-        <div class="card-header">
-          <h3>Register</h3>
-          <div class="d-flex justify-content-end social_icon">
-          </div>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-              <input type="text" class="form-control" placeholder="name">
-            </div>
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-              </div>
-              <input type="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="email">
-            </div>
-
-
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input type="password" class="form-control" id="inputPassword" placeholder="password">
-              <div class="help-block"></div>
-            </div>
-
-            <div class="input-group form-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-key"></i></span>
-              </div>
-              <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="confirm password">
-              <div class="help-block with-errors"></div>
-            </div>
-
-            <script>
-              var password = document.getElementById("inputPassword"),
-                confirm_password = document.getElementById("inputPasswordConfirm");
-
-              function validatePassword() {
-                if (inputPassword.value != inputPasswordConfirm.value) {
-                  inputPasswordConfirm.setCustomValidity("Passwords Don't Match");
-                } else {
-                  inputPasswordConfirm.setCustomValidity('');
-                }
-              }
-
-              inputPassword.onchange = validatePassword;
-              inputPasswordConfirm.onkeyup = validatePassword;
-              </script>
-
-            <div class="row align-items-center remember">
-            </div>
-            <div class="form-group">
-              <input type="submit" value="Submit" class="btn float-right login_btn">
-            </div>
-          </form>
-        </div>
-        <div class="card-footer">
-        </div>
-      </div>
-    </div>
-  </div>
 
   <footer class="footer pt-4 mt-5">
     <div class="container">

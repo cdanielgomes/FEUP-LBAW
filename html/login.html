@@ -35,7 +35,8 @@
 		<nav class="navbar navbar-expand-md pb-2">
 
 			<div class="container">
-				<img src="assets/logo.svg" alt="">
+				<img class="img-fluid" src="assets/logo.svg" alt="" style="max-width: 20; max-height: 25%">
+
 				<div class="float-left">
 					<a class="navbar-brand" href="homepage.html">
 						<h1>aurora</h1>
@@ -78,67 +79,82 @@
 		</nav>
 
 		<!--- MENU FOR SHOP-->
+		<div class="navbar navbar-expand-md sticky-position shop-menu">
+			<!-- <div class="container"> -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".ant" aria-controls="ant"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"> </span>
+			</button>
+			<div class="collapse navbar-collapse ant" id="navbar">
+				<ul class="navbar-nav mx-auto">
 
-		<div class="mt-navbar">
-			<ul class="nav nav-fill">
-				<li class="nav-item dropdown px-2">
-					<a class="nav-link dropdown" href="#">Clothing</a>
-					<div class="dropdown-menu w-100">
-						<div class="row">
-							<ul class="list-unstyled col">
-								<a href="#" class="title">Women</a>
-								<li><a href="#">Shoes</a></li>
-								<li><a href="#">Pants</a></li>
-								<li><a href="#">T-Shirts</a></li>
-							</ul>
+					<li class="nav-item dropdown mega-dropdown">
+						<a class="nav-link dropdown" href="#">Clothing</a>
+						<div class="dropdown-menu mega-dropdown-menu">
 
-							<ul class="list-unstyled col">
-								<a href="#" class="title">Men</a>
-								<li><a href="#">Shoes</a></li>
-								<li><a href="#">Pants</a></li>
-								<li><a href="#">Shirts</a></li>
-							</ul>
+							<div class="row">
+								<ul class="list-unstyled col-6 pr-4 text-center">
+									<h5><a href="#" class="list-header ">Women</a> </h5>
+									<span class="dropdown-divider"></span>
+
+									<li class=""><a class="text-menu" href="#">Shoes</a></li>
+									<li class=""><a class="text-menu" href="#">Pants</a></li>
+									<li class=""><a class="text-menu" href="#">T-Shirts</a></li>
+								</ul>
+
+								<ul class="list-unstyled col-6 pr-4 text-center">
+									<h5> <a href="#" class="list-header">Men</a> </h5>
+									<li class=""><a class="text-menu" href="#">Shoes</a></li>
+									<li class="pl-1"><a class="text-menu" href="#">Pants</a></li>
+									<li class=""><a class="text-menu" href="#">Shirts</a></li>
+								</ul>
+
+							</div>
 						</div>
-					</div>
-				</li>
+					</li>
 
 
-				<li class="nav-item dropdown px-2">
-					<a class="nav-link dropdown" href="#">House-Decor</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Sofas</a>
-						<a class="dropdown-item" href="#">Tables</a>
-						<a class="dropdown-item" href="#">Chairs</a>
-						<a class="dropdown-item" href="#">Carpets</a>
-						<a class="dropdown-item" href="#">Curtains</a>
-					</div>
-				</li>
+					<li class="nav-item dropdown mega-dropdown">
+						<h5><a class="nav-link dropdown" href="#">House-Decor</a> </h5>
+						<div class="dropdown-menu mega-dropdown-menu text-center">
+							<a class="dropdown-item" href="#">Sofas</a>
+							<a class="dropdown-item" href="#">Tables</a>
+							<a class="dropdown-item" href="#">Chairs</a>
+							<a class="dropdown-item" href="#">Carpets</a>
+							<a class="dropdown-item" href="#">Curtains</a>
+						</div>
+					</li>
 
-				<li class="nav-item dropdown px-2">
-					<a class="nav-link dropdown" href="#">Activities</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Fishing</a>
-						<a class="dropdown-item" href="#">Hicking</a>
-						<a class="dropdown-item" href="#">Hunting</a>
-						<a class="dropdown-item" href="#">Accessories</a>
-						<a class="dropdown-item" href="#">Boats</a>
-					</div>
-				</li>
+					<li class="nav-item dropdown mega-dropdown">
+						<h5> <a class="nav-link dropdown" href="#">Activities</a> </h5>
+						<div class="dropdown-menu mega-dropdown-menu text-center">
+							<a class="dropdown-item" href="#">Fishing</a>
+							<a class="dropdown-item" href="#">Hicking</a>
+							<a class="dropdown-item" href="#">Hunting</a>
+							<a class="dropdown-item" href="#">Accessories</a>
+							<a class="dropdown-item" href="#">Boats</a>
+						</div>
+					</li>
 
-				<li class="nav-item dropdown px-2">
-					<a class="nav-link dropdown" href="#">Sales</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Men</a>
-						<a class="dropdown-item" href="#">Women</a>
-						<a class="dropdown-item" href="#">Activities</a>
-						<a class="dropdown-item" href="#">House-Decor</a>
-						<a class="dropdown-item" href="#">Super Sales</a>
-					</div>
-				</li>
-			</ul>
+					<li class="nav-item dropdown mega-dropdown">
+						<a class="nav-link dropdown" href="#">Sales</a>
+						<div class="dropdown-menu mega-dropdown-menu text-center">
+							<a class="dropdown-item" href="#">Men</a>
+							<a class="dropdown-item" href="#">Women</a>
+							<a class="dropdown-item" href="#">Activities</a>
+							<a class="dropdown-item" href="#">House-Decor</a>
+							<a class="dropdown-item" href="#">Super Sales</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
-		</div>
+
+		<!-- 
+				</div> -->
+
 	</header>
+
 
 	<div class="container">
 		<div class="d-flex justify-content-center h-100 vertical-center">
@@ -183,34 +199,34 @@
 		</div>
 	</div>
 	<footer class="footer pt-4 mt-5">
-	  <div class="container">
-		<div class="row text-center">
-		  <div class="col">
-			<h5 class="header">Information</h5>
-			<ul class="list-group links">
-			  <li class="list-group-item"> <span>  <a href="#"> About us</a> </span></li>
-			  <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
-			</ul>
-		  </div>
-		  <div class="col">
-			<h5 class="header">Services</h5>
-			<ul class="list-group links">
-			  <li class="list-group-item"> <span>  <a href="#"> FAQ </a></span></li>
-			</ul>
-		  </div>
-		</div>
-		<div class="row ">
-		  <div class="col">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col">
+					<h5 class="header">Information</h5>
+					<ul class="list-group links">
+						<li class="list-group-item"> <span> <a href="#"> About us</a> </span></li>
+						<li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5 class="header">Services</h5>
+					<ul class="list-group links">
+						<li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col">
 
-		  </div>
-		  <div class="col">
-			<span class=""><i class="fab fa-paypal"></i> </span>
-		  </div>
-		  <div class="col text-center">
-			<i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
-		  </div>
+				</div>
+				<div class="col">
+					<span class=""><i class="fab fa-paypal"></i> </span>
+				</div>
+				<div class="col text-center">
+					<i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
+				</div>
+			</div>
 		</div>
-	  </div>
 	</footer>
 </body>
 

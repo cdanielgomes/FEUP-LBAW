@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+<head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,11 +21,10 @@
     crossorigin="anonymous"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style/homepage.css">
   <link rel="stylesheet" type="text/css" href="style/style.css">
-  <link rel="icon" type="image/png" href="assets/logo.png" sizes="32x32" />
-  <title>aurora</title>
+  <title>Homepage</title>
 </head>
-
 
 <body>
   <header>
@@ -34,7 +32,7 @@
     <nav class="navbar navbar-expand-md pb-2">
 
       <div class="container">
-          <img class="img-fluid" src="assets/logo.svg" alt="" style="max-width: 20; max-height: 25%">
+        <img class="img-fluid" src="assets/logo.svg" alt="" style="max-width: 20; max-height: 25%">
 
         <div class="float-left">
           <a class="navbar-brand" href="homepage.html">
@@ -80,8 +78,11 @@
     <!--- MENU FOR SHOP-->
     <div class="navbar navbar-expand-md sticky-position shop-menu">
       <!-- <div class="container"> -->
-
-      <div class="collapse navbar-collapse">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".ant" aria-controls="ant"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"> </span>
+      </button>
+      <div class="collapse navbar-collapse ant" id="navbar">
         <ul class="navbar-nav mx-auto">
 
           <li class="nav-item dropdown mega-dropdown">
@@ -92,10 +93,10 @@
                 <ul class="list-unstyled col-6 pr-4 text-center">
                   <h5><a href="#" class="list-header ">Women</a> </h5>
                   <span class="dropdown-divider"></span>
-                 
-                    <li class=""><a class="text-menu" href="#">Shoes</a></li>
-                    <li class=""><a class="text-menu" href="#">Pants</a></li>
-                    <li class=""><a class="text-menu" href="#">T-Shirts</a></li>
+
+                  <li class=""><a class="text-menu" href="#">Shoes</a></li>
+                  <li class=""><a class="text-menu" href="#">Pants</a></li>
+                  <li class=""><a class="text-menu" href="#">T-Shirts</a></li>
                 </ul>
 
                 <ul class="list-unstyled col-6 pr-4 text-center">
@@ -104,7 +105,7 @@
                   <li class="pl-1"><a class="text-menu" href="#">Pants</a></li>
                   <li class=""><a class="text-menu" href="#">Shirts</a></li>
                 </ul>
-                
+
               </div>
             </div>
           </li>
@@ -147,25 +148,162 @@
     </div>
 
     <!-- 
-    </div> -->
+        </div> -->
 
   </header>
 
 
+  <div>
+
+    <div class="video1">
+      <div class="overlay"></div>
+      <div class="video-block block">
+        <video src="assets/promovidANIMALS.mp4" autoplay muted loop></video>
+      </div>
+
+      <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+          <div class="w-100 text-white">
+            <h1 class="display-3">WILDLIFE FANATIC ?</h1>
+            <a class="btn btn-outline-light">SHOP NOW</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="featuredproducts">
+    <div class="mt-5 container">
+      <h2>Featured Products</h2>
+      <div class="row">
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active w-100" style="background-image: url('assets/slide1.jpg')">
+        <div class="carousel-caption d-md-block">
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('assets/slide2.jpg')">
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('assets/slide3.png')">
+        <div class="carousel-caption d-none d-md-block">
+          <p class="lead">Any questions? Let us know!</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="video2">
+    <div class="overlay"></div>
+    <div class="video-block block">
+      <video src="assets/promovidOUTDOORS.mp4" autoplay muted loop></video>
+    </div>
+
+    <div class="container h-100">
+      <div class="d-flex h-100 text-center align-items-center">
+        <div class="w-100 text-white">
+          <h1 class="display-3">OUTDOORS EXPERTISE</h1>
+
+          <a class="btn btn-outline-light">LEARN MORE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="saleproducts">
+    <div class="mt-5 container">
+      <h2>Products on Sale</h2>
+      <div class="row">
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+        <div class="mt-3 col-md-5 col-lg-4">
+          <div class="box d-flex flex-column align-items-center">
+            <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+              style="cursor:pointer;">
+            <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+            <span>32,00 €</span>
+            <input type="button" class="AddToCart" value="Add to Cart">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="footer pt-4 mt-5">
     <div class="container">
       <div class="row text-center">
         <div class="col">
           <h5 class="header">Information</h5>
           <ul class="list-group links">
-            <li class="list-group-item"> <span> <a href="#"> About us</a> </span></li>
-            <li class="list-group-item"> <span> <a href="#"> Contacts </a></span></li>
+            <li class="list-group-item"> <span><a href="#"> About us</a> </span></li>
+            <li class="list-group-item"> <span><a href="#"> Contacts </a></span></li>
           </ul>
         </div>
         <div class="col">
           <h5 class="header">Services</h5>
           <ul class="list-group links">
-            <li class="list-group-item"> <span> <a href="#"> FAQ </a></span></li>
+            <li class="list-group-item"> <span></i> <a href="#"> FAQ </a></span></li>
           </ul>
         </div>
       </div>
