@@ -38,14 +38,14 @@ main {
     width: 50vh;
 }
 
-.col-md-3{
+.col-md-3 {
     background: #40544b;
     font-family: 'Quicksand', sans-serif;
     color: white;
     border-radius: 5px;
 }
 
-.col-md-9{
+.col-md-9 {
     background: #fff;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
@@ -72,4 +72,20 @@ main {
     font-weight: normal;
     border: 2px solid #40544b;
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        max-width: 30vh;
+    }
+
+    #team_title,
+    #information_title {
+        border-bottom: 1px solid #151e1a;
+        width: 20vh;
+    }
+
+    body {
+        width: 120%;
+    }
 }
