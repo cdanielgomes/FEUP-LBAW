@@ -43,17 +43,15 @@ main {
     padding-left: 15px;
 }
 
-.information.mt-4.pt-3 {
-    border-top: 1px solid #151e1a;
-}
-
 #profile_title,
 #addresses_title,
 #payment_title,
 #employees_title,
 #products_title,
 #discounts_title,
-#favorite_title {
+#favorite_title,
+#discounts_title,
+#product_title {
     border-bottom: 1px solid #151e1a;
 }
 
@@ -67,6 +65,8 @@ h5#productName {
 }
 
 .badge {
+    padding: 5px;
+    font-size: 20px;
     font-weight: 400;
     font-family: 'Quicksand', sans-serif;
     background-color: #40544b;
@@ -121,6 +121,42 @@ button.btn.btn-secondary {
 
 .col-lg-auto.col-md-auto.col-sm-12.text-sm-right {
     color: #CC0000
+}
+
+.fas.fa-trash-alt.ml-auto {
+    font-weight: 100;
+}
+
+.fas.fa-arrow-alt-circle-right {
+    font-weight: 100;
+}
+
+.col-lg-auto.col-md-auto.col-sm-6.text-sm-center:hover i {
+    font-weight: 900;
+}
+
+.fas.fa-heart.ml-auto:hover {
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.fas.fa-trash-alt.ml-auto:hover {
+    cursor: pointer;
+    color: #40544b;
+    font-weight: 900;
+}
+
+.fas.fa-exclamation-triangle:hover,
+.fas.fa-check-circle:hover,
+.fas.fa-user-lock:hover,
+#pencil:hover {
+    cursor: pointer;
+    color: #40544b;
+}
+
+div.details span {
+    float: left;
+    clear: left;
 }
 
 @media only screen and (max-width: 600px) {
