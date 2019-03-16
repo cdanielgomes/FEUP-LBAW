@@ -47,9 +47,13 @@ main {
     border-top: 1px solid #151e1a;
 }
 
-#profile_title, #addresses_title, #payment_title, #employees_title, #products_title, #discounts_title {
+#profile_title,
+#addresses_title,
+#payment_title,
+#employees_title,
+#products_title,
+#discounts_title {
     border-bottom: 1px solid #151e1a;
-    width: 50vh;
 }
 
 #profile .mt-4.col-md-6.col-lg-3 {
@@ -107,11 +111,28 @@ button.btn.btn-secondary {
     width: 100%;
 }
 
+.box.d-flex.flex-column.last-card:hover {
+    color: #40544b;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.col-lg-auto.col-md-auto.col-sm-12.text-sm-right {
+    color: #CC0000
+}
+
 @media only screen and (max-width: 600px) {
     main {
         max-width: 30vh;
     }
-    #profile_title, #addresses_title, #payment_title, #employees_title, #products_title, #discounts_title {
+
+    #profile_title,
+    #addresses_title,
+    #payment_title,
+    #employees_title,
+    #products_title,
+    #discounts_title {
         border-bottom: 1px solid #151e1a;
         width: 20vh;
     }
