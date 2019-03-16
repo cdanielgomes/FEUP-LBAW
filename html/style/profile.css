@@ -33,14 +33,14 @@ main {
 }
 
 #profile-section label {
-    font-size: 25px;
-    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 700;
     color: #40544b;
 }
 
 #profile-section h5 {
-    font-size: 20px;
-    padding-left: 30px;
+    font-size: 15px;
+    padding-left: 15px;
 }
 
 .information.mt-4.pt-3 {
@@ -52,7 +52,8 @@ main {
 #payment_title,
 #employees_title,
 #products_title,
-#discounts_title {
+#discounts_title,
+#favorite_title {
     border-bottom: 1px solid #151e1a;
 }
 
@@ -111,7 +112,7 @@ button.btn.btn-secondary {
     width: 100%;
 }
 
-.box.d-flex.flex-column.last-card:hover {
+#addAlterButton:hover {
     color: #40544b;
     font-weight: 700;
     font-size: 16px;
