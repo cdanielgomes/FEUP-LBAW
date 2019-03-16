@@ -8,7 +8,6 @@ footer {
     box-shadow: 1px 0px 3px #999;
 }
 
-
 .breadcrumb {
     background-color: white;
 }
@@ -101,7 +100,7 @@ input.AddtoCart {
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 10px 25px;
+    padding: 15px 46px;
     border-radius: 5px;
     letter-spacing: 2px;
     display: block;
@@ -139,7 +138,6 @@ input.AddToCart:hover {
     color: white;
 }
 
-
 .product-add label {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
@@ -158,34 +156,40 @@ div.btn-group {
 }
 
 button.btn.btn-secondary {
-    background-color: #40544b;
+    background-color: white;
     font-family: 'Quicksand', sans-serif;
-    border: none;
-    color: #a8c1b6;
+    border: 1.5px solid #40544b;
+    color: #40544b;
     text-align: center;
     text-decoration: none;
-    padding: 3px 8px;
+    width: 200px;
     border-radius: 3px;
     letter-spacing: 2px;
     margin-top: 10px;
-
 }
 
-#color button.btn.btn-secondary {
-    opacity: 0.8;
-    margin-left: 10px;
+.dropdown-menu {
+    width: 200px;
 }
+
+.show>.btn-secondary.dropdown-toggle {
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+}
+
 
 .dropdown-item #option1 {
-    background-color:#654321;
+    background-color: #654321;
 }
 
 .dropdown-item #option2 {
-    background-color:#000000;
+    background-color: #000000;
 }
 
 .dropdown-item #option3 {
-    background-color:#000080;
+    background-color: #000080;
 }
 
 div.product-add {
@@ -282,8 +286,7 @@ li.list-group-item p {
     font-weight: normal;
 }
 
-.list-group-item .pontuation,
-.list-group-item h5 {
+.list-group-item .pontuation, .list-group-item h5 {
     font-family: 'Open Sans', sans-serif;
     display: inline;
     color: #151e1a;
@@ -331,4 +334,38 @@ li.list-group-item p {
     text-align: center;
     color: #40544b;
     font-size: 16px;
+}
+
+.fas.fa-heart {
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.fas.fa-heart:hover {
+    font-weight: 900;
+}
+
+#report:hover {
+    color: #40544b;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .media.pl-5, .media-body.pl-3 {
+        display: block;
+        padding-left: 0 !important;
+    }
+
+    #product-images, .product-title, .product_form {
+        margin: auto auto;
+    }
+
+    div#informations {
+        width: 100% !important;
+    }
+
 }

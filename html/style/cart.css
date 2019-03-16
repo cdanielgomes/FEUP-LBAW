@@ -13,7 +13,7 @@ button.next {
     color: white;
     text-align: center;
     text-decoration: none;
-    border-radius: 16px;
+    border-radius: 5px;
     display: block;
     transition-duration: 0.4s;
 }
