@@ -1,32 +1,56 @@
-button.btn {
+body {
+    --color1: #f6fffb;
+    --color2: #9effd5;
+    --color3: #a8c1b6;
+    --color4: #40544b;
+    --color5: #151e1a;
+    font-family: 'Quicksand', 'Open Sans', sans-serif
+}
+
+button.next {
     background-color: #40544b;
     font-family: 'Quicksand', sans-serif;
-    border: 1.5px solid #40544b;
     color: white;
     text-align: center;
     text-decoration: none;
-    padding: 10px 25px;
-    border-radius: 5px;
-    letter-spacing: 2px;
+    border-radius: 16px;
     display: block;
-    margin-top: 25px;
     transition-duration: 0.4s;
 }
 
-button.btn:hover {
+button.next:hover {
     background-color: #f6fffb;
     font-weight: 700;
     border: 1.5px solid #40544b;
     color: #40544b;
 }
 
-button.btn a{
+button.next a{
     color: white;
     text-decoration: none;
 }
 
-button.btn:hover a {
+button.next:hover a {
     color: #40544b;
     text-decoration: none;
 
 }
+
+.progress-bar{
+    background-color: #40544b
+}
+ul#cart > li > a{
+    text-decoration: none;
+    color: inherit
+}
+ul#cart > li > a:hover{
+    text-decoration: none;
+    color: inherit
+}
+
+
+button.back-button a{ 
+    text-decoration: none;
+    color: var(--color5);
+}
+
