@@ -163,13 +163,16 @@
                 <h1 class="col-lg col-md col-sm-12">
                     Administrator Area
                 </h1>
-                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
+                    <i class="fas fa-arrow-alt-circle-right"></i>
                     Manage Employees
                 </a>
-                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                <a href="#employees_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
+                    <i class="fas fa-arrow-alt-circle-right"></i>
                     Manage Users
                 </a>
-                <a href="#reports_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-left">
+                <a href="#reports_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
+                    <i class="fas fa-arrow-alt-circle-right"></i>
                     Reports
                 </a>
             </div>
@@ -179,10 +182,21 @@
     <main>
         <div class="container">
 
-            <section class="mt-4" id="employees-section">
+            <section class="py-5" id="employees-section">
 
-                <div id="employees_title" class="jumptarget pb-3">
-                    <h2>Manage Employees</h2>
+                <div id="employees_title" class="jumptarget">
+                    <div class="cards row">
+                        <div class="col-md-6 col-xl-6 ml-auto d-flex align-items-left justify-content-left">
+                            <div class="box d-flex flex-column last-card">
+                                <h2>Manage Employees</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-6 ml-auto d-flex align-items-center justify-content-end">
+                            <div id="addAlterButton" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#addManagerModal">
+                                &#10010; Add Employees
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="cards row">
@@ -194,11 +208,6 @@
                                 <h6>Joe Doe</h6>
                             </div>
                             <h6>Store Manager</h6>
-                        </div>
-                    </div>
-                    <div class="mt-4 col-md-6 col-lg-3 ml-auto d-flex align-items-end justify-content-end">
-                        <div class="box d-flex flex-column last-card" data-toggle="modal" data-target="#addManagerModal">
-                            &#10010; Add Employees
                         </div>
                     </div>
                 </div>
@@ -242,9 +251,9 @@
 
         <div class="container">
 
-            <section class="mt-4" id="profile-section">
+            <section class="py-5" id="profile-section">
 
-                <div id="employees_title" class="jumptarget pb-3">
+                <div id="employees_title" class="jumptarget">
                     <h2>Manage Users</h2>
                 </div>
 
@@ -253,7 +262,7 @@
                         <div class="box d-flex flex-column">
                             <i class="fas fa-trash-alt ml-auto"></i>
                             <div class="d-flex flex-row address-header">
-                                <i class="fas fa-user-tie pr-1"></i>
+                                <i class="fas fa-user pr-1"></i>
                                 <h6>Jane Doe</h6>
                             </div>
                             <h6>Regular User</h6>
@@ -275,7 +284,7 @@
         </div>
 
         <div class="container">
-            <section class="mt-5">
+            <section class="py-5">
 
                 <div id="reports_title" class="jumptarget pb-3">
                     <h2>Reports</h2>
@@ -306,7 +315,7 @@
                                 <td colspan="4" class="collapse-line">
                                     <div id="report-1" class="collapse-div collapse">
                                         <div class="information_list container">
-                                            <div class="row" onclick="window.location='product.html#review-1'">
+                                            <div class="row" onclick="window.location='product.html#review-1'" style="cursor:pointer;">
                                                 <h6>Zombie ipsum reversus ab viral inferno, nam rick grimes malum
                                                     cerebro. De carne lumbering animata corpora quaeritis. Summus
                                                     brains sit​​, morbo vel maleficia? De apocalypsi gorger omero
@@ -332,7 +341,7 @@
                                 <td colspan="4" class="collapse-line">
                                     <div id="report-2" class="collapse-div collapse">
                                         <div class="information_list container">
-                                            <div class="row" onclick="window.location='product.html#review-2'">
+                                            <div class="row" onclick="window.location='product.html#review-2'" style="cursor:pointer;">
                                                 <h6>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle
                                                     waistcoat tbh semiotics artisan synth stumptown gastropub cornhole
                                                     celiac swag. Brunch raclette vexillologist post-ironic glossier

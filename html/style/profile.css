@@ -49,7 +49,9 @@ main {
 #employees_title,
 #products_title,
 #discounts_title,
-#favorite_title {
+#favorite_title,
+#discounts_title,
+#product_title {
     border-bottom: 1px solid #151e1a;
 }
 
@@ -142,6 +144,19 @@ button.btn.btn-secondary {
     cursor: pointer;
     color: #40544b;
     font-weight: 900;
+}
+
+.fas.fa-exclamation-triangle:hover,
+.fas.fa-check-circle:hover,
+.fas.fa-user-lock:hover,
+#pencil:hover {
+    cursor: pointer;
+    color: #40544b;
+}
+
+div.details span {
+    float: left;
+    clear: left;
 }
 
 @media only screen and (max-width: 600px) {
