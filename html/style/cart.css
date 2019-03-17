@@ -16,6 +16,7 @@ button.next {
     border-radius: 5px;
     display: block;
     transition-duration: 0.4s;
+    min-width: 90px;
 }
 
 button#back-button {
