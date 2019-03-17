@@ -27,7 +27,6 @@ p {
 }
 
 main {
-    width: 120vh;
     margin-left: auto;
     margin-right: auto;
 }
@@ -35,12 +34,17 @@ main {
 #team_title,
 #information_title {
     border-bottom: 1px solid #151e1a;
-    width: 50vh;
 }
 
+.fas.fa-arrow-alt-circle-right {
+    font-weight: 100;
+}
 
+.col-lg-auto.col-md-auto.col-sm-12.text-sm-center:hover i {
+    font-weight: 900;
+}
 
-.col-md-3 {
+.col-xl-12 {
     background: #40544b;
     font-family: 'Quicksand', sans-serif;
     color: white;
@@ -100,6 +104,6 @@ main {
     cursor: pointer;
 }
 
-.container{
-  overflow-x: hidden;
+.container {
+    overflow-x: hidden;
 }
