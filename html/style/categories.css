@@ -86,3 +86,9 @@ input.AddToCart:hover {
     font-weight: 700;
     color: #40544b;
 }
+.show>.btn-secondary.dropdown-toggle {
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+    border: 1.5px solid #40544b;
+    color: #40544b;
+}

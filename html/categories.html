@@ -159,17 +159,23 @@
 
     <main>
         <div class="container">
-            <div class="products d-flex justify-content-between align-items-center flex-wrap">
-                <h1>Pants</h1>
-                <span>100 Products</span>
-                <select class="selectpicker">
-                    <option>Sort by</option>
-                    <option>Price low to high</option>
-                    <option>Price high to low </option>
-                    <option>Highest rating</option>
-                    <option>Lowest rating</option>
-                </select>
-                <nav aria-label="Page navigation">
+            <div class="products row align-items-center">
+                <div class ="col text-right"><h1>Pants</h1> </div>
+                <div class ="col text-right"><span>100 Products</span></div>
+                <div class="dropdown col w-auto text-center">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort By
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Oldest</a>
+                            <a class="dropdown-item" href="#">Newest</a>
+                            <a class="dropdown-item" href="#">Price</a>
+                            <a class="dropdown-item" href="#">Alphabetically</a>
+                        
+                        </div>
+                </div>
+                    <div class ="col w-auto text-center"><nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Previous">
