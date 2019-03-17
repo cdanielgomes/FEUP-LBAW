@@ -82,9 +82,6 @@ main {
 }
 
 @media only screen and (max-width: 600px) {
-    main {
-        max-width: 30vh;
-    }
 
     #team_title,
     #information_title {
