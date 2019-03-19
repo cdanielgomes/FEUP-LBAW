@@ -171,7 +171,7 @@ div.details span {
 @media only screen and (max-width: 600px) {
 
     main {
-        max-width: 30vh;
+        max-width: 50vh;
     }
 
     #profile_title,
@@ -187,4 +187,5 @@ div.details span {
     body {
         width: 120%;
     }
+
 }

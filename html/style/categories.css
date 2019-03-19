@@ -96,3 +96,18 @@ input.AddToCart:hover {
 div.row#products {
     border-top: 1px solid #151e1a;
 }
+
+@media only screen and (max-width: 600px) {
+
+    main {
+        max-width: 30vh;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    div.mt-4.col-md-4.col-lg-3 {
+        padding-left: 50px;
+    }
+}
