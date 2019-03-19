@@ -101,6 +101,6 @@ main {
     cursor: pointer;
 }
 
-.container {
+main .container {
     overflow-x: hidden;
 }

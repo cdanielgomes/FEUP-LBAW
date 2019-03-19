@@ -18,7 +18,7 @@ button {
     width: 100%;
     height: 70%;
     transition: 0.4s, all 0.3s linear;
-    box-shadow: 0px 10px 27px 3px rgba(221, 221, 221, 0.3)
+    box-shadow: 0px 5px 15px 3px rgba(221, 221, 221, 0.3)
 }
 
 .header_area .navbar-brand.logo_h {
@@ -35,7 +35,7 @@ button {
 }
 
 .header_area .navbar .nav .nav-item .nav-link {
-    color:  #40544b;
+    color: #40544b;
     display: inline-block
 }
 
@@ -49,7 +49,8 @@ button {
     display: none
 }
 
-.header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link {
+.header_area .navbar .nav .nav-item:hover .nav-link,
+.header_area .navbar .nav .nav-item.active .nav-link {
     color: #40544b;
     font-weight: 700;
 }
@@ -143,6 +144,29 @@ button {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 55px #9effd5;
 }
 
-.nav-shop.navbar-nav.menu_nav a {
+.header_area .nav-shop.navbar-nav.menu_nav a {
     color: #40544b;
+}
+
+.header_area .nav {
+    margin-bottom: 0;
+}
+
+.header_area .dropdown {
+    position: static;
+}
+
+.header_area .dropdown-menu {
+    width: 100%;
+    text-align: center;
+    display: inline !important;
+}
+
+.header_area .dropdown-menu>li {
+    display: inline-block;
+}
+
+.header_area .dropdown-header {
+    font-size: 20px;
+    font-weight: 700;
 }
