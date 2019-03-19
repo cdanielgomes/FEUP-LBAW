@@ -67,7 +67,7 @@ footer {
     font-weight: 700;
 }
 
-#team img.center-block {
+img.center-block {
     max-width: 300px;
     max-height: 350px;
     padding: 10px;
