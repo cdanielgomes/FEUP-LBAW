@@ -72,7 +72,7 @@ h5#productName {
     background-color: #40544b;
 }
 
-.modal-footer input {
+main .modal-footer input {
     background-color: #f6fffb;
     font-family: 'Quicksand', sans-serif;
     border: 1.5px solid #40544b;
@@ -108,7 +108,7 @@ button.btn.btn-secondary {
     letter-spacing: 2px;
 }
 
-.dropdown-menu {
+.main_menu.dropdown-menu {
     width: 100%;
 }
 

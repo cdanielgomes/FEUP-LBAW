@@ -36,7 +36,9 @@ button {
 
 .header_area .navbar .nav .nav-item .nav-link {
     color: #40544b;
-    display: inline-block
+    display: inline;
+    letter-spacing: .01em;
+    transition: text-shadow .2s;
 }
 
 @media (min-width: 991px) {
@@ -52,7 +54,7 @@ button {
 .header_area .navbar .nav .nav-item:hover .nav-link,
 .header_area .navbar .nav .nav-item.active .nav-link {
     color: #40544b;
-    font-weight: 700;
+    text-shadow: 0 0 .2px #333, 0 0 .2px #333, 0 0 .2px #333;
 }
 
 .header_area .navbar .nav .nav-item.submenu {
