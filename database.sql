@@ -1,5 +1,12 @@
 -- Tables
 
+CREATE TABLE cart
+(
+  id SERIAL PRIMARY KEY,
+  date DATE DEFAULT current_date
+
+);
+
 CREATE TABLE "user"
 (
   id SERIAL PRIMARY KEY,
@@ -7,6 +14,7 @@ CREATE TABLE "user"
   username text NOT NULL CONSTRAINT username_uk UNIQUE,
   email text NOT NULL CONSTRAINT email_user_uk UNIQUE,
   password text NOT NULL,
+  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE,
   is_admin BOOLEAN NOT NULL,
   is_manager BOOLEAN NOT NULL,
   is_premium BOOLEAN NOT NULL,
@@ -47,26 +55,34 @@ CREATE TABLE review
 CREATE TABLE "order"
 (
   id SERIAL PRIMARY KEY,
+  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
   date DATE DEFAULT current_date,
   total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total >= 0),
   state text NOT NULL CONSTRAINT state_ck CHECK (state IN ('Processing', 'Delivered', 'Shipped'))
 );
 
-CREATE TABLE cart
-(
-  id SERIAL PRIMARY KEY,
-  date DATE DEFAULT current_date
-
-);
-
-CREATE TABLE lineItem
+CREATE TABLE line_item
 (
   id SERIAL PRIMARY KEY,
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
-  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE,
-  id_cart INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
   price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0)
+);
+
+CREATE TABLE line_item_order
+(
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
+  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE,
+  PRIMARY KEY (id_line_item)
+
+);
+
+CREATE TABLE line_item_cart
+(
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
+  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE,
+  PRIMARY KEY (id_line_item)
+
 );
 
 CREATE TABLE country
@@ -120,8 +136,21 @@ CREATE TABLE report
 (
   id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
   id_user_reportee INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  PRIMARY KEY (id_review, id_user_reportee)
+);
+
+CREATE TABLE reportear
+(
+  id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
   id_user_reportear INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
-  PRIMARY KEY (id_review, id_user_reportee, id_user_reportear)
+  PRIMARY KEY (id_review, id_user_reportear)
+);
+
+CREATE TABLE "analyze"
+(
+  id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
+  id_user_analyze INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  PRIMARY KEY (id_review, id_user_analyze)
 );
 
 CREATE TABLE premium
