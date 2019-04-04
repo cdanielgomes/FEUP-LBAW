@@ -212,3 +212,32 @@ CREATE TABLE productCategories
   id_categories INTEGER NOT NULL REFERENCES "categories" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_categories)
 );
+
+/*UPDATES*/
+
+UPDATE "user"
+  SET name = $name, username = $username, email = $email, password = $password
+  WHERE id = $id;
+
+
+UPDATE "product"
+  SET name = $name, price = $price, description = $description, stock = $stock, score = $score
+  WHERE id = $id;
+
+UPDATE "categories"
+  SET name = $name, season = $season
+  WHERE id_user = $id_user, id_product = $id_product;
+
+UPDATE "order"
+  SET date = $date, $total = total, $state = state
+  WHERE id = $id;
+
+UPDATE "line_item"
+  SET quantity = $quantity, price = $price
+  WHERE id_order = $id_order, id_product = $id_product, id_cart = $id_cart;
+
+UPDATE "address"
+  SET street = $street, zipCode = $zipCode
+  WHERE id_user = $id_user, id_city = $id_city;
+ 
+
