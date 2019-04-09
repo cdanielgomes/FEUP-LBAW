@@ -1,4 +1,39 @@
+-----------------------------------------
+-- Drop old schmema
+-----------------------------------------
+DROP TABLE IF EXISTS productCategories CASCADE;
+DROP TABLE IF EXISTS productBrand CASCADE;
+DROP TABLE IF EXISTS productSize CASCADE;
+DROP TABLE IF EXISTS productColor CASCADE;
+DROP TABLE IF EXISTS administrator CASCADE;
+DROP TABLE IF EXISTS storeManager CASCADE;
+DROP TABLE IF EXISTS standard CASCADE;
+DROP TABLE IF EXISTS deleted CASCADE;
+DROP TABLE IF EXISTS premium CASCADE;
+DROP TABLE IF EXISTS "analyze" CASCADE;
+DROP TABLE IF EXISTS reportear CASCADE;
+DROP TABLE IF EXISTS report CASCADE;
+DROP TABLE IF EXISTS favorites CASCADE;
+DROP TABLE IF EXISTS brand CASCADE;
+DROP TABLE IF EXISTS size CASCADE;
+DROP TABLE IF EXISTS color CASCADE;
+DROP TABLE IF EXISTS address CASCADE;
+DROP TABLE IF EXISTS city CASCADE;
+DROP TABLE IF EXISTS country CASCADE;
+DROP TABLE IF EXISTS line_item_cart CASCADE;
+DROP TABLE IF EXISTS line_item_order CASCADE;
+DROP TABLE IF EXISTS line_item CASCADE;
+DROP TABLE IF EXISTS "order" CASCADE;
+DROP TABLE IF EXISTS review CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS product CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS cart CASCADE;
+
+
+-----------------------------------------
 -- Tables
+-----------------------------------------
 
 CREATE TABLE cart
 (
@@ -212,32 +247,41 @@ CREATE TABLE productCategories
   id_categories INTEGER NOT NULL REFERENCES "categories" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_categories)
 );
-
-/*UPDATES*/
-
-UPDATE "user"
-  SET name = $name, username = $username, email = $email, password = $password
-  WHERE id = $id;
-
-
-UPDATE "product"
-  SET name = $name, price = $price, description = $description, stock = $stock, score = $score
-  WHERE id = $id;
-
-UPDATE "categories"
-  SET name = $name, season = $season
-  WHERE id_user = $id_user, id_product = $id_product;
-
-UPDATE "order"
-  SET date = $date, $total = total, $state = state
-  WHERE id = $id;
-
-UPDATE "line_item"
-  SET quantity = $quantity, price = $price
-  WHERE id_order = $id_order, id_product = $id_product, id_cart = $id_cart;
-
-UPDATE "address"
-  SET street = $street, zipCode = $zipCode
-  WHERE id_user = $id_user, id_city = $id_city;
  
+-----------------------------------------
+-- INDEXES
+-----------------------------------------
 
+CREATE INDEX username_user ON user USING hash (username);
+
+CREATE INDEX address_id_user ON address USING hash (id_user);
+
+CREATE INDEX favorites_id_user ON favorites USING hash (id_user);
+
+CREATE INDEX order_id_user ON order USING hash (id_user);
+
+CREATE INDEX review_id_product ON review USING hash (id_product);
+
+CREATE INDEX product_price ON order USING btree (price);
+
+CREATE INDEX product_category_id ON product_categories USING hash (id_product);
+
+CREATE INDEX product_search ON product USING GIST (name);
+
+-----------------------------------------
+-- TRIGGERS and UDFs
+----------------------------------------- 
+
+CREATE FUNCTION update_product_score() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	UPDATE product
+	SET score = (AVG(score) FROM review WHERE id_product = New.product_id)
+	WHERE "product_id" = New."product_id"
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER product_score AFTER INSERT OR UPDATE OR DELETE
+ON review
+EXECUTE PROCEDURE update_product_score();
