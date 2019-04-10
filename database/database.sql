@@ -399,7 +399,7 @@ RETURN NULL;
 CREATE TRIGGER set_users after INSERT 
 ON "USER" FOR EACH ROW EXECUTE PROCEDURE insert_standard_users ();
 
--- update de price in a line 
+-- update price in a line 
 
 CREATE 
 OR replace FUNCTION update_total () RETURNS TRIGGER AS $ body $ 
