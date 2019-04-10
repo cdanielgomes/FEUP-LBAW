@@ -1,4 +1,6 @@
+-----------------------------------------
 -- cart
+-----------------------------------------
 
 INSERT INTO cart (id, date) VALUES (1, '2019/12/02');
 INSERT INTO cart (id, date) VALUES (2, '2022/01/18');
@@ -51,8 +53,9 @@ INSERT INTO cart (id, date) VALUES (48, '2021/02/07');
 INSERT INTO cart (id, date) VALUES (49, '2023/08/17');
 INSERT INTO cart (id, date) VALUES (50, '2021/06/08');
 
-
---"user" 
+-----------------------------------------
+-- "user" 
+-----------------------------------------
 
 INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'Gideon Halhead', 'ghalhead0', 'ghalhead0@mlb.com', 'Xor0TQF', 1, false, false, false, false);
 INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', 'kUpzFTe', 2, false, false, false, false);
@@ -105,7 +108,9 @@ INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_m
 INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', 'zJQF8EWQZ00D', 49, false, false, false, false);
 INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', 'jOWX2YyMgEeM', 50, false, false, false, true);
 
+-----------------------------------------
 -- product
+-----------------------------------------
 
 INSERT INTO product (id, name, price, description, stock, score) VALUES (1, 'Bog Beggarticks', 24.0, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.', 82, 4.0);
 INSERT INTO product (id, name, price, description, stock, score) VALUES (2, 'Pale Indian Paintbrush', 94.04, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 27, 3.6);
@@ -208,8 +213,9 @@ INSERT INTO product (id, name, price, description, stock, score) VALUES (98, 'Wh
 INSERT INTO product (id, name, price, description, stock, score) VALUES (99, 'Russian Milkvetch', 91.59, 'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 93, 1.3);
 INSERT INTO product (id, name, price, description, stock, score) VALUES (100, 'American Plum', 71.73, 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 62, 4.9);
 
-
---categories
+-----------------------------------------
+-- categories
+-----------------------------------------
 
 INSERT INTO categories (id, name, season) VALUES (1, 'consequat', 'lacinia');
 INSERT INTO categories (id, name, season) VALUES (2, 'lacus', 'semper');
@@ -252,8 +258,9 @@ INSERT INTO categories (id, name, season) VALUES (38, 'vestibulum', 'interdum');
 INSERT INTO categories (id, name, season) VALUES (39, 'imperdiet', 'nunc');
 INSERT INTO categories (id, name, season) VALUES (40, 'duis', 'nec');
 
-
---review
+-----------------------------------------
+-- review
+-----------------------------------------
 
 INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (1, 1, 51, 'Duis mattis egestas metus.', 'In congue. Etiam justo. Etiam pretium iaculis justo.', 0);
 INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (2, 2, 49, 'Proin interdum mauris non ligula pellentesque ultrices.', 'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.', 3);
@@ -276,8 +283,9 @@ INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (
 INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (19, 19, 80, 'Nulla justo.', 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', 2);
 INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (20, 20, 42, 'Donec vitae nisi.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 1);
 
-
+-----------------------------------------
 -- "order"
+-----------------------------------------
 
 INSERT INTO "order" (id, id_user, date, total, state) VALUES (1, 46, '2019/01/20', 68.3, 'Processing');
 INSERT INTO "order" (id, id_user, date, total, state) VALUES (2, 31, '2019/10/25', 22.23, 'Shipped');
@@ -310,7 +318,9 @@ INSERT INTO "order" (id, id_user, date, total, state) VALUES (28, 14, '2019/11/2
 INSERT INTO "order" (id, id_user, date, total, state) VALUES (29, 26, '2019/09/02', 68.96, 'Delivered');
 INSERT INTO "order" (id, id_user, date, total, state) VALUES (30, 24, '2018/10/06', 11.94, 'Shipped');
 
+-----------------------------------------
 -- line item 
+-----------------------------------------
 
 INSERT INTO line_item (id, id_product, quantity, price) VALUES (1, 73, 2, 74.78);
 INSERT INTO line_item (id, id_product, quantity, price) VALUES (2, 51, 3, 14.73);
@@ -393,8 +403,9 @@ INSERT INTO line_item (id, id_product, quantity, price) VALUES (78, 37, 8, 33.23
 INSERT INTO line_item (id, id_product, quantity, price) VALUES (79, 33, 3, 40.09);
 INSERT INTO line_item (id, id_product, quantity, price) VALUES (80, 38, 9, 64.4);
 
-
+-----------------------------------------
 -- line_item cart
+-----------------------------------------
 
 INSERT INTO line_item_cart (id_line_item, id_cart) VALUES (1, 27);
 INSERT INTO line_item_cart (id_line_item, id_cart) VALUES (2, 34);
@@ -437,8 +448,9 @@ INSERT INTO line_item_cart (id_line_item, id_cart) VALUES (38, 20);
 INSERT INTO line_item_cart (id_line_item, id_cart) VALUES (39, 16);
 INSERT INTO line_item_cart (id_line_item, id_cart) VALUES (40, 48);
 
-
--- line item ""order""
+-----------------------------------------
+-- line item order
+-----------------------------------------
 
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (41, 14);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (42, 14);
@@ -481,9 +493,9 @@ INSERT INTO line_item_order (id_line_item, id_order) VALUES (78, 26);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (79, 5);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (80, 20);
 
-
-
+-----------------------------------------
 -- country 
+-----------------------------------------
 
 INSERT INTO country (id, name) VALUES (1, 'Vietnam');
 INSERT INTO country (id, name) VALUES (2, 'Philippines');
@@ -506,8 +518,9 @@ INSERT INTO country (id, name) VALUES (18, 'Thailand');
 INSERT INTO country (id, name) VALUES (19, 'Russia');
 INSERT INTO country (id, name) VALUES (20, 'United States');
 
-
+-----------------------------------------
 -- city
+-----------------------------------------
 
 INSERT INTO city (id, id_country, name) VALUES (1, 4, 'Taquara');
 INSERT INTO city (id, id_country, name) VALUES (2, 13, 'Velká Bystřice');
@@ -530,8 +543,9 @@ INSERT INTO city (id, id_country, name) VALUES (18, 13, 'Nova Odesa');
 INSERT INTO city (id, id_country, name) VALUES (19, 15, 'Maple Plain');
 INSERT INTO city (id, id_country, name) VALUES (20, 3, 'Malitubog');
 
-
+-----------------------------------------
 -- address 
+-----------------------------------------
 
 INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (1, 1, 12, 'Grim', '446600');
 INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (2, 2, 4, 'Michigan', '06-121');
@@ -584,8 +598,9 @@ INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (48, 48, 3, '
 INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (49, 49, 8, 'Jenna', '10040');
 INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (50, 50, 13, 'Donald', '11403');
 
-
+-----------------------------------------
 -- brand 
+-----------------------------------------
 
 INSERT INTO brand (id, name) VALUES (1, 'Cummings, Bosco and Botsford');
 INSERT INTO brand (id, name) VALUES (2, 'Bergstrom Group');
@@ -608,7 +623,10 @@ INSERT INTO brand (id, name) VALUES (18, 'Goldner, Torphy and Hilpert');
 INSERT INTO brand (id, name) VALUES (19, 'Bartell-Upton');
 INSERT INTO brand (id, name) VALUES (20, 'Stoltenberg Inc');
 
+-----------------------------------------
 -- color 
+-----------------------------------------
+
 INSERT INTO color (id, name) VALUES (1, 'Mauv');
 INSERT INTO color (id, name) VALUES (2, 'Teal');
 INSERT INTO color (id, name) VALUES (3, 'Turquoise');
@@ -620,7 +638,9 @@ INSERT INTO color (id, name) VALUES (8, 'Purple');
 INSERT INTO color (id, name) VALUES (9, 'Goldenrod');
 INSERT INTO color (id, name) VALUES (10, 'Mauv');
 
+-----------------------------------------
 -- size
+-----------------------------------------
 
 INSERT INTO size (id, name) VALUES (1, 'XXS');
 INSERT INTO size (id, name) VALUES (2, 'XS');
@@ -630,7 +650,9 @@ INSERT INTO size (id, name) VALUES (5, 'L');
 INSERT INTO size (id, name) VALUES (6, 'XL');
 INSERT INTO size (id, name) VALUES (7, 'XXL');
 
+-----------------------------------------
 -- favorites
+-----------------------------------------
 
 INSERT INTO favorites (id_user, id_product) VALUES (49, 40);
 INSERT INTO favorites (id_user, id_product) VALUES (12, 44);
@@ -693,7 +715,9 @@ INSERT INTO favorites (id_user, id_product) VALUES (6, 44);
 INSERT INTO favorites (id_user, id_product) VALUES (44, 68);
 INSERT INTO favorites (id_user, id_product) VALUES (2, 49);
 
+-----------------------------------------
 -- report 
+-----------------------------------------
 
 INSERT INTO report (id_review, id_user_reportee) VALUES (8, 18);
 INSERT INTO report (id_review, id_user_reportee) VALUES (16, 19);
@@ -716,7 +740,9 @@ INSERT INTO report (id_review, id_user_reportee) VALUES (14, 37);
 INSERT INTO report (id_review, id_user_reportee) VALUES (1, 7);
 INSERT INTO report (id_review, id_user_reportee) VALUES (16, 6);
 
+-----------------------------------------
 -- reportear
+-----------------------------------------
 
 INSERT INTO reportear (id_review , id_user_reportear) VALUES (8, 12);
 INSERT INTO reportear (id_review , id_user_reportear) VALUES (16, 10);
@@ -739,7 +765,9 @@ INSERT INTO reportear (id_review , id_user_reportear) VALUES (14, 48);
 INSERT INTO reportear (id_review , id_user_reportear) VALUES (1, 9);
 INSERT INTO reportear (id_review , id_user_reportear) VALUES (16, 2);
 
+-----------------------------------------
 -- analyze
+-----------------------------------------
 
 INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (8, 35);
 INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (13, 35);
@@ -755,7 +783,9 @@ INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (19, 35);
 INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (14, 35);
 INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (1, 35);
 
+-----------------------------------------
 -- product Category  
+-----------------------------------------
 
 INSERT INTO product_categories (id_product, id_categories) VALUES (1, 18);
 INSERT INTO product_categories (id_product, id_categories) VALUES (2, 14);
@@ -858,8 +888,9 @@ INSERT INTO product_categories (id_product, id_categories) VALUES (98, 16);
 INSERT INTO product_categories (id_product, id_categories) VALUES (99, 6);
 INSERT INTO product_categories (id_product, id_categories) VALUES (100, 7);
 
-
+-----------------------------------------
 -- product color
+-----------------------------------------
 
 INSERT INTO product_color (id_product, id_color) VALUES (1, 5);
 INSERT INTO product_color (id_product, id_color) VALUES (2, 3);
@@ -962,8 +993,9 @@ INSERT INTO product_color (id_product, id_color) VALUES (98, 9);
 INSERT INTO product_color (id_product, id_color) VALUES (99, 10);
 INSERT INTO product_color (id_product, id_color) VALUES (100, 9);
 
-
+-----------------------------------------
 -- product size
+-----------------------------------------
 
 INSERT INTO product_size (id_product, id_size) VALUES (1, 4);
 INSERT INTO product_size (id_product, id_size) VALUES (2, 3);
@@ -1066,8 +1098,9 @@ INSERT INTO product_size (id_product, id_size) VALUES (98, 1);
 INSERT INTO product_size (id_product, id_size) VALUES (99, 3);
 INSERT INTO product_size (id_product, id_size) VALUES (100, 1);
 
-
+-----------------------------------------
 -- product brand
+-----------------------------------------
 
 INSERT INTO product_brand (id_product, id_brand) VALUES (1, 3);
 INSERT INTO product_brand (id_product, id_brand) VALUES (2, 9);
