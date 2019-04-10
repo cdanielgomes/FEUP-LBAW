@@ -72,7 +72,7 @@ CREATE TABLE product
   description text,
   deleted BOOLEAN DEFAULT TRUE,
   stock INTEGER NOT NULL CONSTRAINT stock_ck CHECK (stock >= 0),
-  score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score >= 0) OR (score <=5))
+  score INTEGER NOT NULL CONSTRAINT score_ck DEFAULT 0 CHECK ((score >= 0) OR (score <=5))
 
 );
 
@@ -279,22 +279,22 @@ CREATE INDEX product_search ON product USING GIST (to_tsvector('english', name))
 -----------------------------------------
 -- TRIGGERS and UDFs
 ----------------------------------------- 
-
+/*
 CREATE OR REPLACE FUNCTION update_product_score() RETURNS TRIGGER AS
 $BODY$
 BEGIN
 	UPDATE product
 	SET score = (SELECT avg(score) FROM review WHERE id_product = New.id_product)
-	WHERE id_product = New.id_product;
+	WHERE id = New.id_product;
 END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER product_score AFTER INSERT OR UPDATE OR DELETE
+CREATE TRIGGER product_score AFTER INSERT OR UPDATE
 ON review
 EXECUTE PROCEDURE update_product_score();
 
-
+*/
 -- insert users 
 
 CREATE OR REPLACE FUNCTION insert_standard_users() RETURNS TRIGGER AS 
@@ -302,14 +302,16 @@ $BODY$
 BEGIN 
     CASE
     WHEN NEW.is_admin THEN
-     INSERT INTO administrator VALUES(NEW.id);
+     INSERT INTO administrator(id_user) VALUES(NEW.id);
     WHEN NEW.is_premium THEN 
-     INSERT INTO premium VALUES(NEW.id);
+     INSERT INTO premium(id_user, discounts) VALUES(NEW.id, 20);
     WHEN NEW.is_manager THEN
-     INSERT INTO store_manager VALUES(NEW.id);
-  
-    ELSE INSERT INTO standard VALUES(NEW.id);
+     INSERT INTO store_manager(id_user) VALUES(NEW.id);
+    ELSE INSERT INTO standard(id_user) VALUES(NEW.id);
     END CASE;
+
+RETURN NULL;
+
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -328,6 +330,7 @@ BEGIN
     SET price  = (SELECT price FROM product WHERE id = id_product) * quantity
     where id = new.id;
 
+RETURN NULL;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -342,12 +345,13 @@ EXECUTE PROCEDURE update_total();
 CREATE OR REPLACE FUNCTION setStock() RETURNS TRIGGER AS
 $BODY$
 BEGIN 
-IF NOT EXISTS (SELECT * FROM product WHERE product.id = new.id_product AND stock < new.quantity) THEN 
-    RAISE EXCEPTION 'YOU CAN NOT BUY % ITEMS OF PRODUCT %', new.quantity, new.id_product;
-
+IF NOT EXISTS (SELECT * FROM product, line_item WHERE product.id = line_item.id_product AND new.id_line_item = line_item.id AND stock >= line_item.quantity) THEN 
+    RAISE EXCEPTION 'YOU CAN NOT BUY That number of ITEMS';
 ELSE
-    UPDATE product SET stock = stock - new.quantity WHERE product.id = new.id_product;
+    UPDATE product SET stock = stock - line_item.quantity FROM line_item WHERE product.id = line_item.id_product and  new.id_line_item = line_item.id;
 END IF;
+
+RETURN NULL;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -367,13 +371,14 @@ IF new.deleted = TRUE THEN
     DELETE FROM favorites WHERE favorites.id_product = NEW.id;
     DELETE FROM product_categories where product_categories.id_product = NEW.id;
 
-    IF EXISTS (SELECT id_line_item, id, id_product from line_item_cart, line_item where id = id_line_item and id_product = new.id_product) THEN 
+    IF EXISTS (SELECT id_line_item, id, id_product from line_item_cart, line_item where id = id_line_item and id_product = new.id) THEN 
         DELETE FROM line_item_cart USING line_item where line_item.id = line_item_cart.id_line_item and new.id = line_item.id_product; 
         DELETE from line_item where new.id = line_item.id_product;
     END IF;
 
 END IF;
 
+RETURN NULL;
 END
 
 $BODY$
