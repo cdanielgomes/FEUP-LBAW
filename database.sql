@@ -1,12 +1,12 @@
 -----------------------------------------
 -- Drop old schmema
 -----------------------------------------
-DROP TABLE IF EXISTS productCategories CASCADE;
-DROP TABLE IF EXISTS productBrand CASCADE;
-DROP TABLE IF EXISTS productSize CASCADE;
-DROP TABLE IF EXISTS productColor CASCADE;
+DROP TABLE IF EXISTS product_categories CASCADE;
+DROP TABLE IF EXISTS product_brand CASCADE;
+DROP TABLE IF EXISTS product_size CASCADE;
+DROP TABLE IF EXISTS product_color CASCADE;
 DROP TABLE IF EXISTS administrator CASCADE;
-DROP TABLE IF EXISTS storeManager CASCADE;
+DROP TABLE IF EXISTS store_manager CASCADE;
 DROP TABLE IF EXISTS standard CASCADE;
 DROP TABLE IF EXISTS deleted CASCADE;
 DROP TABLE IF EXISTS premium CASCADE;
@@ -29,6 +29,13 @@ DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS cart CASCADE;
+DROP TRIGGER IF EXISTS product_score ON review;
+DROP TRIGGER IF EXISTS set_users ON "user";
+DROP TRIGGER IF EXISTS update_total_line ON line_item;
+DROP TRIGGER IF EXISTS update_stock ON line_item_order;
+DROP TRIGGER IF EXISTS deleteProd ON product;
+
+
 
 
 -----------------------------------------
@@ -63,6 +70,7 @@ CREATE TABLE product
   name text NOT NULL CONSTRAINT name_uk UNIQUE,
   price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0),
   description text,
+  deleted BOOLEAN DEFAULT TRUE,
   stock INTEGER NOT NULL CONSTRAINT stock_ck CHECK (stock >= 0),
   score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score >= 0) OR (score <=5))
 
@@ -208,7 +216,7 @@ CREATE TABLE standard
   PRIMARY KEY (id_user)
 );
 
-CREATE TABLE storeManager
+CREATE TABLE store_manager
 (
   id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user)
@@ -220,28 +228,28 @@ CREATE TABLE administrator
   PRIMARY KEY (id_user)
 );
 
-CREATE TABLE productColor
+CREATE TABLE product_color
 (
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   id_color INTEGER NOT NULL REFERENCES "color" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_color)
 );
 
-CREATE TABLE productSize
+CREATE TABLE product_size
 (
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   id_size INTEGER NOT NULL REFERENCES "size" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_size)
 );
 
-CREATE TABLE productBrand
+CREATE TABLE product_brand
 (
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   id_brand INTEGER NOT NULL REFERENCES "brand" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_brand)
 );
 
-CREATE TABLE productCategories
+CREATE TABLE product_categories
 (
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   id_categories INTEGER NOT NULL REFERENCES "categories" (id) ON UPDATE CASCADE,
@@ -252,32 +260,32 @@ CREATE TABLE productCategories
 -- INDEXES
 -----------------------------------------
 
-CREATE INDEX username_user ON user USING hash (username);
+CREATE INDEX username_user ON "user" USING hash (username);
 
 CREATE INDEX address_id_user ON address USING hash (id_user);
 
 CREATE INDEX favorites_id_user ON favorites USING hash (id_user);
 
-CREATE INDEX order_id_user ON order USING hash (id_user);
+CREATE INDEX order_id_user ON "order" USING hash (id_user);
 
 CREATE INDEX review_id_product ON review USING hash (id_product);
 
-CREATE INDEX product_price ON order USING btree (price);
+CREATE INDEX product_price ON "order" USING btree (total);
 
 CREATE INDEX product_category_id ON product_categories USING hash (id_product);
 
-CREATE INDEX product_search ON product USING GIST (name);
+CREATE INDEX product_search ON product USING GIST (to_tsvector('english', name));
 
 -----------------------------------------
 -- TRIGGERS and UDFs
 ----------------------------------------- 
 
-CREATE FUNCTION update_product_score() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION update_product_score() RETURNS TRIGGER AS
 $BODY$
 BEGIN
 	UPDATE product
-	SET score = (AVG(score) FROM review WHERE id_product = New.product_id)
-	WHERE "product_id" = New."product_id"
+	SET score = (SELECT avg(score) FROM review WHERE id_product = New.id_product)
+	WHERE id_product = New.id_product;
 END
 $BODY$
 LANGUAGE plpgsql;
@@ -285,3 +293,96 @@ LANGUAGE plpgsql;
 CREATE TRIGGER product_score AFTER INSERT OR UPDATE OR DELETE
 ON review
 EXECUTE PROCEDURE update_product_score();
+
+
+-- insert users 
+
+CREATE OR REPLACE FUNCTION insert_standard_users() RETURNS TRIGGER AS 
+$BODY$
+BEGIN 
+    CASE
+    WHEN NEW.is_admin THEN
+     INSERT INTO administrator VALUES(NEW.id);
+    WHEN NEW.is_premium THEN 
+     INSERT INTO premium VALUES(NEW.id);
+    WHEN NEW.is_manager THEN
+     INSERT INTO store_manager VALUES(NEW.id);
+  
+    ELSE INSERT INTO standard VALUES(NEW.id);
+    END CASE;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER set_users AFTER INSERT ON "user" 
+FOR EACH ROW  
+EXECUTE PROCEDURE insert_standard_users();
+
+
+
+-- update de price in a line 
+CREATE OR REPLACE  FUNCTION update_total() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE line_item
+    SET price  = (SELECT price FROM product WHERE id = id_product) * quantity
+    where id = new.id;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_total_line AFTER INSERT ON line_item 
+FOR EACH ROW
+EXECUTE PROCEDURE update_total();
+
+
+-- update quantity of stock 
+
+CREATE OR REPLACE FUNCTION setStock() RETURNS TRIGGER AS
+$BODY$
+BEGIN 
+IF NOT EXISTS (SELECT * FROM product WHERE product.id = new.id_product AND stock < new.quantity) THEN 
+    RAISE EXCEPTION 'YOU CAN NOT BUY % ITEMS OF PRODUCT %', new.quantity, new.id_product;
+
+ELSE
+    UPDATE product SET stock = stock - new.quantity WHERE product.id = new.id_product;
+END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+
+
+CREATE TRIGGER update_stock BEFORE INSERT ON line_item_order 
+FOR EACH ROW 
+EXECUTE PROCEDURE setStock();
+
+-- delete all products 
+
+CREATE OR REPLACE FUNCTION removeProducts() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+IF new.deleted = TRUE THEN 
+    DELETE FROM favorites WHERE favorites.id_product = NEW.id;
+    DELETE FROM product_categories where product_categories.id_product = NEW.id;
+
+    IF EXISTS (SELECT id_line_item, id, id_product from line_item_cart, line_item where id = id_line_item and id_product = new.id_product) THEN 
+        DELETE FROM line_item_cart USING line_item where line_item.id = line_item_cart.id_line_item and new.id = line_item.id_product; 
+        DELETE from line_item where new.id = line_item.id_product;
+    END IF;
+
+END IF;
+
+END
+
+$BODY$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER deleteProd AFTER UPDATE ON product 
+FOR EACH ROW
+EXECUTE PROCEDURE removeProducts();
+
+
+
