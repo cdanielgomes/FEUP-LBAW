@@ -317,22 +317,22 @@ CREATE INDEX product_search ON product USING GIST
 
 -----------------------------------------
 -- TRIGGERS and UDFs
------------------------------------------ 
+-----------------------------------------
 
 -- update score of product
 
-CREATE 
-OR replace FUNCTION update_product_score () RETURNS TRIGGER AS $ body $ 
+CREATE
+OR replace FUNCTION update_product_score () RETURNS TRIGGER AS $BODY$
 BEGIN
    UPDATE
-      product 
+      product
    SET
-      score = 
+      score =
       (
          SELECT
-            AVG(score) 
+            AVG(score)
          FROM
-            review 
+            review
          WHERE
             id_product = NEW.id_product
       )
@@ -340,43 +340,43 @@ BEGIN
       id = NEW.id_product;
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER product_score after INSERT 
-OR 
+$BODY$ language plpgsql;
+CREATE TRIGGER product_score after INSERT
+OR
 UPDATE
    ON review FOR EACH ROW EXECUTE PROCEDURE update_product_score ();
 
--- insert users 
+-- insert users
 
-CREATE 
-OR replace FUNCTION insert_standard_users () RETURNS TRIGGER AS $ body $ 
+CREATE
+OR replace FUNCTION insert_standard_users () RETURNS TRIGGER AS $BODY$
 BEGIN
    CASE
       WHEN
-         NEW.is_admin 
+         NEW.is_admin
       THEN
          INSERT INTO
-            administrator (id_user) 
+            administrator (id_user)
          VALUES
             (
                NEW.id
             )
 ;
 WHEN
-   NEW.is_premium 
+   NEW.is_premium
 THEN
    INSERT INTO
-      premium (id_user, discounts) 
+      premium (id_user, discounts)
    VALUES
       (
          NEW.id, 20
       )
 ;
 WHEN
-   NEW.is_manager 
+   NEW.is_manager
 THEN
    INSERT INTO
-      store_manager (id_user) 
+      store_manager (id_user)
    VALUES
       (
          NEW.id
@@ -384,7 +384,7 @@ THEN
 ;
 ELSE
    INSERT INTO
-      standard (id_user) 
+      standard (id_user)
    VALUES
       (
          NEW.id
@@ -395,113 +395,113 @@ ELSE
 ;
 RETURN NULL;
    END
-   $ body $ language plpgsql;
-CREATE TRIGGER set_users after INSERT 
+   $BODY$ language plpgsql;
+CREATE TRIGGER set_users after INSERT
 ON "USER" FOR EACH ROW EXECUTE PROCEDURE insert_standard_users ();
 
--- update price in a line 
+-- update price in a line
 
-CREATE 
-OR replace FUNCTION update_total () RETURNS TRIGGER AS $ body $ 
+CREATE
+OR replace FUNCTION update_total () RETURNS TRIGGER AS $BODY$
 BEGIN
    UPDATE
-      line_item 
+      line_item
    SET
-      price = 
+      price =
       (
          SELECT
-            price 
+            price
          FROM
-            product 
+            product
          WHERE
             id = id_product
       )
-      * quantity 
+      * quantity
    WHERE
       id = NEW.id;
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER update_total_line after INSERT 
+$BODY$ language plpgsql;
+CREATE TRIGGER update_total_line after INSERT
 ON line_item FOR EACH ROW EXECUTE PROCEDURE update_total ();
 
--- update quantity of stock 
+-- update quantity of stock
 
-CREATE 
-OR replace FUNCTION setstock () RETURNS TRIGGER AS $ body $ 
+CREATE
+OR replace FUNCTION setstock () RETURNS TRIGGER AS $BODY$
 BEGIN
-   IF NOT EXISTS 
+   IF NOT EXISTS
    (
       SELECT
-         * 
+         *
       FROM
          product,
-         line_item 
+         line_item
       WHERE
-         product.id = line_item.id_product 
-         AND NEW.id_line_item = line_item.id 
+         product.id = line_item.id_product
+         AND NEW.id_line_item = line_item.id
          AND stock >= line_item.quantity
    )
 THEN
    raise exception 'YOU CAN NOT BUY That number of ITEMS';
 ELSE
    UPDATE
-      product 
+      product
    SET
-      stock = stock - line_item.quantity 
+      stock = stock - line_item.quantity
    FROM
-      line_item 
+      line_item
    WHERE
-      product.id = line_item.id_product 
+      product.id = line_item.id_product
       AND NEW.id_line_item = line_item.id;
 END
 IF;
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER update_stock BEFORE INSERT 
+$BODY$ language plpgsql;
+CREATE TRIGGER update_stock BEFORE INSERT
 ON line_item_order FOR EACH ROW EXECUTE PROCEDURE setstock ();
 
--- delete all products 
+-- delete all products
 
-CREATE 
-OR replace FUNCTION removeproducts () RETURNS TRIGGER AS $ body $ 
+CREATE
+OR replace FUNCTION removeproducts () RETURNS TRIGGER AS $BODY$
 BEGIN
-   IF NEW.deleted = TRUE 
+   IF NEW.deleted = TRUE
 THEN
    DELETE
    FROM
-      favorites 
+      favorites
    WHERE
       favorites.id_product = NEW.id;
 DELETE
 FROM
-   product_categories 
+   product_categories
 WHERE
    product_categories.id_product = NEW.id;
-IF EXISTS 
+IF EXISTS
 (
    SELECT
       id_line_item,
       id,
-      id_product 
+      id_product
    FROM
       line_item_cart,
-      line_item 
+      line_item
    WHERE
-      id = id_line_item 
+      id = id_line_item
       AND id_product = NEW.id
 )
 THEN
    DELETE
    FROM
-      line_item_cart USING line_item 
+      line_item_cart USING line_item
    WHERE
-      line_item.id = line_item_cart.id_line_item 
+      line_item.id = line_item_cart.id_line_item
       AND NEW.id = line_item.id_product;
 DELETE
 FROM
-   line_item 
+   line_item
 WHERE
    NEW.id = line_item.id_product;
 END
@@ -510,9 +510,7 @@ END
 IF;
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER deleteprod after 
+$BODY$ language plpgsql;
+CREATE TRIGGER deleteprod after
 UPDATE
    ON product FOR EACH ROW EXECUTE PROCEDURE removeproducts ();
-
-
