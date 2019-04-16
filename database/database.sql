@@ -278,7 +278,7 @@ CREATE INDEX product_search ON product USING GIST (to_tsvector('english', name))
 
 -----------------------------------------
 -- TRIGGERS and UDFs
------------------------------------------ 
+-----------------------------------------
 
 CREATE OR REPLACE FUNCTION update_product_score() RETURNS TRIGGER AS
 $BODY$
@@ -297,7 +297,7 @@ ON review
 FOR EACH ROW  
 EXECUTE PROCEDURE update_product_score();
 
--- insert users 
+-- insert users
 
 CREATE OR REPLACE FUNCTION insert_standard_users() RETURNS TRIGGER AS 
 $BODY$
@@ -342,7 +342,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE update_total();
 
 
--- update quantity of stock 
+-- update quantity of stock
 
 CREATE OR REPLACE FUNCTION setStock() RETURNS TRIGGER AS
 $BODY$
@@ -364,7 +364,7 @@ CREATE TRIGGER update_stock BEFORE INSERT ON line_item_order
 FOR EACH ROW 
 EXECUTE PROCEDURE setStock();
 
--- delete all products 
+-- delete all products
 
 CREATE OR REPLACE FUNCTION removeProducts() RETURNS TRIGGER AS
 $BODY$
