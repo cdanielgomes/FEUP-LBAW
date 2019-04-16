@@ -1,72 +1,42 @@
 -----------------------------------------
 -- Drop old schmema
 -----------------------------------------
-DROP TABLE IF EXISTS product_categories
-CASCADE;
-DROP TABLE IF EXISTS product_brand
-CASCADE;
-DROP TABLE IF EXISTS product_size
-CASCADE;
-DROP TABLE IF EXISTS product_color
-CASCADE;
-DROP TABLE IF EXISTS administrator
-CASCADE;
-DROP TABLE IF EXISTS store_manager
-CASCADE;
-DROP TABLE IF EXISTS standard
-CASCADE;
-DROP TABLE IF EXISTS deleted
-CASCADE;
-DROP TABLE IF EXISTS premium
-CASCADE;
-DROP TABLE IF EXISTS "analyze"
-CASCADE;
-DROP TABLE IF EXISTS reportear
-CASCADE;
-DROP TABLE IF EXISTS report
-CASCADE;
-DROP TABLE IF EXISTS favorites
-CASCADE;
-DROP TABLE IF EXISTS brand
-CASCADE;
-DROP TABLE IF EXISTS size
-CASCADE;
-DROP TABLE IF EXISTS color
-CASCADE;
-DROP TABLE IF EXISTS address
-CASCADE;
-DROP TABLE IF EXISTS city
-CASCADE;
-DROP TABLE IF EXISTS country
-CASCADE;
-DROP TABLE IF EXISTS line_item_cart
-CASCADE;
-DROP TABLE IF EXISTS line_item_order
-CASCADE;
-DROP TABLE IF EXISTS line_item
-CASCADE;
-DROP TABLE IF EXISTS "order"
-CASCADE;
-DROP TABLE IF EXISTS review
-CASCADE;
-DROP TABLE IF EXISTS categories
-CASCADE;
-DROP TABLE IF EXISTS product
-CASCADE;
-DROP TABLE IF EXISTS "user"
-CASCADE;
-DROP TABLE IF EXISTS cart
-CASCADE;
-DROP TRIGGER IF EXISTS product_score
-ON review;
-DROP TRIGGER IF EXISTS set_users
-ON "user";
-DROP TRIGGER IF EXISTS update_total_line
-ON line_item;
-DROP TRIGGER IF EXISTS update_stock
-ON line_item_order;
-DROP TRIGGER IF EXISTS deleteProd
-ON product;
+DROP TABLE IF EXISTS product_categories CASCADE;
+DROP TABLE IF EXISTS product_brand CASCADE;
+DROP TABLE IF EXISTS product_size CASCADE;
+DROP TABLE IF EXISTS product_color CASCADE;
+DROP TABLE IF EXISTS administrator CASCADE;
+DROP TABLE IF EXISTS store_manager CASCADE;
+DROP TABLE IF EXISTS standard CASCADE;
+DROP TABLE IF EXISTS deleted CASCADE;
+DROP TABLE IF EXISTS premium CASCADE;
+DROP TABLE IF EXISTS "analyze" CASCADE;
+DROP TABLE IF EXISTS reportear CASCADE;
+DROP TABLE IF EXISTS report CASCADE;
+DROP TABLE IF EXISTS favorites CASCADE;
+DROP TABLE IF EXISTS brand CASCADE;
+DROP TABLE IF EXISTS size CASCADE;
+DROP TABLE IF EXISTS color CASCADE;
+DROP TABLE IF EXISTS address CASCADE;
+DROP TABLE IF EXISTS city CASCADE;
+DROP TABLE IF EXISTS country CASCADE;
+DROP TABLE IF EXISTS line_item_cart CASCADE;
+DROP TABLE IF EXISTS line_item_order CASCADE;
+DROP TABLE IF EXISTS line_item CASCADE;
+DROP TABLE IF EXISTS "order" CASCADE;
+DROP TABLE IF EXISTS review CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS product CASCADE;
+DROP TABLE IF EXISTS "user" CASCADE;
+DROP TABLE IF EXISTS cart CASCADE;
+DROP TRIGGER IF EXISTS product_score ON review;
+DROP TRIGGER IF EXISTS set_users ON "user";
+DROP TRIGGER IF EXISTS update_total_line ON line_item;
+DROP TRIGGER IF EXISTS update_stock ON line_item_order;
+DROP TRIGGER IF EXISTS deleteProd ON product;
+
+
+
 
 -----------------------------------------
 -- Tables
@@ -285,234 +255,143 @@ CREATE TABLE product_categories
   id_categories INTEGER NOT NULL REFERENCES "categories" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_categories)
 );
-
+ 
 -----------------------------------------
 -- INDEXES
 -----------------------------------------
 
-CREATE INDEX username_user ON "user" USING hash
-(username);
+CREATE INDEX username_user ON "user" USING hash (username);
 
-CREATE INDEX address_id_user ON address USING hash
-(id_user);
+CREATE INDEX address_id_user ON address USING hash (id_user);
 
-CREATE INDEX favorites_id_user ON favorites USING hash
-(id_user);
+CREATE INDEX favorites_id_user ON favorites USING hash (id_user);
 
-CREATE INDEX order_id_user ON "order" USING hash
-(id_user);
+CREATE INDEX order_id_user ON "order" USING hash (id_user);
 
-CREATE INDEX review_id_product ON review USING hash
-(id_product);
+CREATE INDEX review_id_product ON review USING hash (id_product);
 
-CREATE INDEX product_price ON "order" USING btree
-(total);
+CREATE INDEX product_price ON "order" USING btree (total);
 
-CREATE INDEX product_category_id ON product_categories USING hash
-(id_product);
+CREATE INDEX product_category_id ON product_categories USING hash (id_product);
 
-CREATE INDEX product_search ON product USING GIST
-(to_tsvector
-('english', name));
+CREATE INDEX product_search ON product USING GIST (to_tsvector('english', name));
 
 -----------------------------------------
 -- TRIGGERS and UDFs
 ----------------------------------------- 
 
--- update score of product
-
-CREATE 
-OR replace FUNCTION update_product_score () RETURNS TRIGGER AS $ body $ 
+CREATE OR REPLACE FUNCTION update_product_score() RETURNS TRIGGER AS
+$BODY$
 BEGIN
-   UPDATE
-      product 
-   SET
-      score = 
-      (
-         SELECT
-            AVG(score) 
-         FROM
-            review 
-         WHERE
-            id_product = NEW.id_product
-      )
-   WHERE
-      id = NEW.id_product;
-RETURN NULL;
+	UPDATE product
+	SET score = (SELECT avg(review.score) FROM review WHERE id_product = New.id_product)
+	WHERE id = New.id_product;
+
+  RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER product_score after INSERT 
-OR 
-UPDATE
-   ON review FOR EACH ROW EXECUTE PROCEDURE update_product_score ();
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER product_score AFTER INSERT OR UPDATE
+ON review
+FOR EACH ROW  
+EXECUTE PROCEDURE update_product_score();
 
 -- insert users 
 
-CREATE 
-OR replace FUNCTION insert_standard_users () RETURNS TRIGGER AS $ body $ 
-BEGIN
-   CASE
-      WHEN
-         NEW.is_admin 
-      THEN
-         INSERT INTO
-            administrator (id_user) 
-         VALUES
-            (
-               NEW.id
-            )
-;
-WHEN
-   NEW.is_premium 
-THEN
-   INSERT INTO
-      premium (id_user, discounts) 
-   VALUES
-      (
-         NEW.id, 20
-      )
-;
-WHEN
-   NEW.is_manager 
-THEN
-   INSERT INTO
-      store_manager (id_user) 
-   VALUES
-      (
-         NEW.id
-      )
-;
-ELSE
-   INSERT INTO
-      standard (id_user) 
-   VALUES
-      (
-         NEW.id
-      )
-;
-   END
-   CASE
-;
+CREATE OR REPLACE FUNCTION insert_standard_users() RETURNS TRIGGER AS 
+$BODY$
+BEGIN 
+    CASE
+    WHEN NEW.is_admin THEN
+     INSERT INTO administrator(id_user) VALUES(NEW.id);
+    WHEN NEW.is_premium THEN 
+     INSERT INTO premium(id_user, discounts) VALUES(NEW.id, 20);
+    WHEN NEW.is_manager THEN
+     INSERT INTO store_manager(id_user) VALUES(NEW.id);
+    ELSE INSERT INTO standard(id_user) VALUES(NEW.id);
+    END CASE;
+
 RETURN NULL;
-   END
-   $ body $ language plpgsql;
-CREATE TRIGGER set_users after INSERT 
-ON "USER" FOR EACH ROW EXECUTE PROCEDURE insert_standard_users ();
 
--- update price in a line 
+END
+$BODY$
+LANGUAGE plpgsql;
 
-CREATE 
-OR replace FUNCTION update_total () RETURNS TRIGGER AS $ body $ 
+CREATE TRIGGER set_users AFTER INSERT ON "user" 
+FOR EACH ROW  
+EXECUTE PROCEDURE insert_standard_users();
+
+
+
+-- update de price in a line 
+CREATE OR REPLACE  FUNCTION update_total() RETURNS TRIGGER AS
+$BODY$
 BEGIN
-   UPDATE
-      line_item 
-   SET
-      price = 
-      (
-         SELECT
-            price 
-         FROM
-            product 
-         WHERE
-            id = id_product
-      )
-      * quantity 
-   WHERE
-      id = NEW.id;
+    UPDATE line_item
+    SET price  = (SELECT price FROM product WHERE id = id_product) * quantity
+    where id = new.id;
+
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER update_total_line after INSERT 
-ON line_item FOR EACH ROW EXECUTE PROCEDURE update_total ();
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_total_line AFTER INSERT ON line_item 
+FOR EACH ROW
+EXECUTE PROCEDURE update_total();
+
 
 -- update quantity of stock 
 
-CREATE 
-OR replace FUNCTION setstock () RETURNS TRIGGER AS $ body $ 
-BEGIN
-   IF NOT EXISTS 
-   (
-      SELECT
-         * 
-      FROM
-         product,
-         line_item 
-      WHERE
-         product.id = line_item.id_product 
-         AND NEW.id_line_item = line_item.id 
-         AND stock >= line_item.quantity
-   )
-THEN
-   raise exception 'YOU CAN NOT BUY That number of ITEMS';
+CREATE OR REPLACE FUNCTION setStock() RETURNS TRIGGER AS
+$BODY$
+BEGIN 
+IF NOT EXISTS (SELECT * FROM product, line_item WHERE product.id = line_item.id_product AND new.id_line_item = line_item.id AND stock >= line_item.quantity) THEN 
+    RAISE EXCEPTION 'YOU CAN NOT BUY That number of ITEMS';
 ELSE
-   UPDATE
-      product 
-   SET
-      stock = stock - line_item.quantity 
-   FROM
-      line_item 
-   WHERE
-      product.id = line_item.id_product 
-      AND NEW.id_line_item = line_item.id;
-END
-IF;
+    UPDATE product SET stock = stock - line_item.quantity FROM line_item WHERE product.id = line_item.id_product and  new.id_line_item = line_item.id;
+END IF;
+
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER update_stock BEFORE INSERT 
-ON line_item_order FOR EACH ROW EXECUTE PROCEDURE setstock ();
+$BODY$
+LANGUAGE plpgsql;
+
+
+
+CREATE TRIGGER update_stock BEFORE INSERT ON line_item_order 
+FOR EACH ROW 
+EXECUTE PROCEDURE setStock();
 
 -- delete all products 
 
-CREATE 
-OR replace FUNCTION removeproducts () RETURNS TRIGGER AS $ body $ 
+CREATE OR REPLACE FUNCTION removeProducts() RETURNS TRIGGER AS
+$BODY$
 BEGIN
-   IF NEW.deleted = TRUE 
-THEN
-   DELETE
-   FROM
-      favorites 
-   WHERE
-      favorites.id_product = NEW.id;
-DELETE
-FROM
-   product_categories 
-WHERE
-   product_categories.id_product = NEW.id;
-IF EXISTS 
-(
-   SELECT
-      id_line_item,
-      id,
-      id_product 
-   FROM
-      line_item_cart,
-      line_item 
-   WHERE
-      id = id_line_item 
-      AND id_product = NEW.id
-)
-THEN
-   DELETE
-   FROM
-      line_item_cart USING line_item 
-   WHERE
-      line_item.id = line_item_cart.id_line_item 
-      AND NEW.id = line_item.id_product;
-DELETE
-FROM
-   line_item 
-WHERE
-   NEW.id = line_item.id_product;
-END
-IF;
-END
-IF;
+IF new.deleted = TRUE THEN 
+    DELETE FROM favorites WHERE favorites.id_product = NEW.id;
+    DELETE FROM product_categories where product_categories.id_product = NEW.id;
+
+    IF EXISTS (SELECT id_line_item, id, id_product from line_item_cart, line_item where id = id_line_item and id_product = new.id) THEN 
+        DELETE FROM line_item_cart USING line_item where line_item.id = line_item_cart.id_line_item and new.id = line_item.id_product; 
+        DELETE from line_item where new.id = line_item.id_product;
+    END IF;
+
+END IF;
+
 RETURN NULL;
 END
-$ body $ language plpgsql;
-CREATE TRIGGER deleteprod after 
-UPDATE
-   ON product FOR EACH ROW EXECUTE PROCEDURE removeproducts ();
+
+$BODY$
+LANGUAGE plpgsql;
+
+
+CREATE TRIGGER deleteProd AFTER UPDATE ON product 
+FOR EACH ROW
+EXECUTE PROCEDURE removeProducts();
+
+
+
 
 
