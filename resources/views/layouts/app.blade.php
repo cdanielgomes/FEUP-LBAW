@@ -8,11 +8,25 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'aurora') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+
+
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+    
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -21,16 +35,84 @@
 </script>
   </head>
   <body>
-    <main>
-      <header>
-        <h1><a href="{{ url('/cards') }}">Thingy!</a></h1>
-        @if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
-        @endif
-      </header>
-      <section id="content">
-        @yield('content')
-      </section>
-    </main>
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container pl-0">
+          <a class="navbar-brand logo_h d-flex align-items-center" href="index.html">
+            <img class="float-left mr-3" src="assets/logo.png" alt="">
+            <h1>aurora</h1>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav px-5">
+              <li class="nav-item submenu dropdown">
+                <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Clothing</a>
+                <ul class="dropdown-menu float-left">
+                  <h3 class="dropdown-header">Men</h3>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Tops</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Bottoms</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Shoes</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Accesories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Shop All</a></li>
+                  <h3 class="dropdown-header">Women</h3>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Tops</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Bottoms</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Shoes</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Accesories</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Shop All</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">House-Decor</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Bedroom</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Kitchen</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Living Room</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Outdoor</a></li>
+                </ul>
+              </li>
+              <li class="nav-item submenu dropdown">
+                <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">Activities</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Climbing</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Hiking</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Running</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Fishing</a></li>
+                  <li class="nav-item"><a class="nav-link" href="categories.html">Hunting</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <ul class="nav-shop navbar-nav menu_nav pl-2">
+              <li class="nav-item">
+                <form class="form-inline md-form form-lg">
+                  <input class="form-control form-control-md mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </form>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="cart.html">
+                  <h5><i class="fas fa-shopping-cart"></i> </h5>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="register.html">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
   </body>
 </html>

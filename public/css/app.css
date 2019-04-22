@@ -1,157 +1,106 @@
-body {
-  background-color: #ffffff;
-  color: #9b4dca;
-}
-main > header {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  background-color: #d2afe7;
-  padding: 1em;
-  margin: 1em;
-}
-main > header h1 {
-  margin: 0;
-}
-main > header a.button {
-  margin: 1em;
-  justify-self: center;
-}
-main > header span {
-  margin: 1em;
-  justify-self: center;
-}
-#cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-#cards article.card {
-  display: flex;
-  flex-direction: column;
-  background-color: #d3edc3;
-  padding: 1em;
-  margin: 1em;
-}
-#cards article.card header {
-  display: flex;
-  align-items: center;
-}
-#cards article.card header h2 {
-  flex-grow: 1;
-}
-#cards article.card header a.delete {
-  display: none;
-  font-size: 2.6rem;
-  margin-top: .5rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.25;
-}
-#cards article.card header:hover a.delete {
-  display: inline;
-}
-#cards article.card li {
-  list-style-type: none;
-}
-#cards article.card li label {
-  display: flex;
-  align-items: baseline;
-}
-#cards article.card li label span {
-  margin-left: .5em;
-  flex-grow: 1;
-}
-#cards article.card li label a {
-  display: none;
-}
-#cards article.card li label:hover a {
-  display: inline;
-}
-#cards article.card input:checked + span {
-  text-decoration: var(--primary-color) solid line-through;
-}
-#cards article.card ul {
-  margin: 0;
-}
-#cards article.card form {
-  margin: 0;
-}
-#cards article.card input[type=text] {
+.breadcrumb {
   background-color: white;
-  margin: 0;
 }
-#content label {
+
+.breadcrumb-item.active {
+  color: #151e1a;
+  font-family: 'Quicksand', sans-serif;
+}
+
+li > a {
+  font-family: 'Quicksand', sans-serif;
+  color: #40544b;
+}
+
+.breadcrumb a:hover {
+  color: #40544b;
+  text-decoration: none;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.row a {
+  font-family: 'Quicksand', sans-serif;
+  color: #40544b;
+}
+
+main {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#team_title,
+#information_title {
+  border-bottom: 1px solid #151e1a;
+}
+
+.fas.fa-arrow-alt-circle-right {
+  font-weight: 100;
+}
+
+.col-lg-auto.col-md-auto.col-sm-12.text-sm-center:hover i {
+  font-weight: 900;
+}
+
+.col-xl-12 {
+  background: #40544b;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  border-radius: 5px;
+}
+
+.col-md-9 {
+  background: #fff;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form button {
+  background-color: #f6fffb;
+  font-family: 'Quicksand', sans-serif;
+  border: 1.5px solid #40544b;
+  color: #40544b;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  padding: 7px 20px;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 25px;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.contact-form button:hover {
+  background-color: #40544b;
   font-weight: normal;
+  border: 2px solid #40544b;
+  color: white;
 }
-#content > form {
-  margin: 0 auto;
-  padding: 1em;
-  max-width: 20em;
-  border: 1px solid #d2afe7;
-}
-#content > form .error {
-  font-weight: bold;
-  color: #ff3333;
-}
-#content > form input {
-  background-color: white;
-}
-@media (max-width: 70em) {
-  #cards {
-    grid-template-columns: repeat(2, 1fr);
+
+@media only screen and (max-width: 600px) {
+  #team_title,
+  #information_title {
+    border-bottom: 1px solid #151e1a;
+    width: 20vh;
   }
-  main > header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-  }
-  main > header h1 {
-    grid-row-end: span 2;
-  }
-}
-@media (max-width: 40em) {
-  #cards {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 25em) {
+
   body {
-    margin: 0;
-  }
-  main > header {
-    margin: 0;
-    padding: 0.5em;
-  }
-  main > header span {
-    margin: 0;
-  }
-  #content form {
-    margin: 0;
-    max-width: 25em;
-  }
-  article.card {
-    margin: 0;
-    border-bottom: 1px solid rgba(96, 108, 118, 0.4);
+    width: 120%;
   }
 }
-/**
- * Overide milligram colors
- * Some styles might be missing
- **/
-button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+
+#addAlterButton:hover {
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
 }
-a.button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
+
+main .container {
+  overflow-x: hidden;
 }
-a.button.button-outline {
-  color: #9b4dca;
-}
-a {
-  color: #9b4dca;
-}
-input[type=text]:focus,
-input[type=email]:focus,
-input[type=password]:focus {
-  border-color: #9b4dca;
-}
+
