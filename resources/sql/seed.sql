@@ -56,7 +56,7 @@ CREATE TABLE "user"
   username text NOT NULL CONSTRAINT username_uk UNIQUE,
   email text NOT NULL CONSTRAINT email_user_uk UNIQUE,
   password text NOT NULL,
-  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE,
+  id_cart INTEGER REFERENCES "cart" (id) ON UPDATE CASCADE,
   is_admin BOOLEAN NOT NULL,
   is_manager BOOLEAN NOT NULL,
   is_premium BOOLEAN NOT NULL,
@@ -393,7 +393,22 @@ EXECUTE PROCEDURE removeProducts();
 
 
 
+-- create a new cart to a new User
 
+CREATE OR REPLACE FUNCTION createCart() RETURNS TRIGGER AS 
+$BODY
+BEGIN
+
+
+RETURN NEW
+END
+
+
+
+
+CREATE TRIGGER k AFTER INSERT ON "user" 
+FOR EACH ROW
+EXECUTE PROCEDURE createCart();
 
 -----------------------------------------
 -- cart
@@ -869,7 +884,6 @@ INSERT INTO line_item_order (id_line_item, id_order) VALUES (57, 15);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (58, 6);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (59, 16);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (60, 15);
-INSERT INTO line_item_order (id_line_item, id_order) VALUES (61, 11);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (62, 28);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (63, 4);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (64, 11);
@@ -885,10 +899,8 @@ INSERT INTO line_item_order (id_line_item, id_order) VALUES (73, 11);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (74, 25);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (75, 7);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (76, 5);
-INSERT INTO line_item_order (id_line_item, id_order) VALUES (77, 4);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (78, 26);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (79, 5);
-INSERT INTO line_item_order (id_line_item, id_order) VALUES (80, 20);
 
 -----------------------------------------
 -- country 

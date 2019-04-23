@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
-    return redirect('/about');
+    return redirect('/home');
 });
 
-route::get('/about', 'AboutController@about');
+Route::get('/about', 'AboutController@about');
+
+Auth::routes();
+
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register');
+
+Route::get('/home', 'HomeController@index')->name('home');

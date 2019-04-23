@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Quicksand');
 
 html, body {
-  background-image: url('../assets/forest.jpg');
+  background-image: url('../imgs/forest.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -34,7 +34,7 @@ footer {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.card-header h3
+.card-header h3{
   color: white;
 }
 

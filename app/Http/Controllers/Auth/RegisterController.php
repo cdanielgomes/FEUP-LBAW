@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Cart;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/about';
 
     /**
      * Create a new controller instance.
@@ -39,6 +40,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+/*
+protected function guard()
+{
+    return Auth::guard('guard-name');
+}*/
     /**
      * Get a validator for an incoming registration request.
      *
@@ -49,6 +55,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -62,10 +69,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $id_cart = Cart::max('id') + 1;
+
+      $cart = Cart::create(['id' => $id_cart]);
+
+        $id_user = User::max('id') +1;
+
         return User::create([
+            'id' => $id_user,
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            'id_cart' => $cart->id,
+            'is_admin' => false,
+            'is_manager' => false,
+            'is_premium' => false,
+            'deleted' => false,
+            ]);
     }
 }

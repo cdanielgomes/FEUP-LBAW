@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cart;
 
 class User extends Authenticatable
 {
@@ -11,6 +12,7 @@ class User extends Authenticatable
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
+    protected $table  = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'username' ,'email', 'password', 'id_cart', 'is_admin', 'is_manager', 'is_premium', 'deleted',
     ];
 
     /**
