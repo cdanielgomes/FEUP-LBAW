@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'aurora') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/milligram.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
-
 
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -27,20 +25,24 @@
     crossorigin="anonymous"></script>
 
     
+    <!-- Styles -->
+    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    
+    @yield('styles')
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
-    <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-</script>
+    <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
   </head>
   <body>
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-md navbar-light">
         <div class="container pl-0">
-          <a class="navbar-brand logo_h d-flex align-items-center" href="index.html">
-            <img class="float-left mr-3" src="assets/logo.png" alt="">
+          <a class="navbar-brand logo_h d-flex align-items-center" href="#">
+            <img class="float-left mr-3" src={{asset("imgs/logo.png")}} alt="logo">
             <h1>aurora</h1>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -114,5 +116,37 @@
       </nav>
     </div>
   </header>
+
+  @yield('content')
+
+  <footer class="footer pt-2 mt-5" >
+    <div class="container">
+      <div class="row text-center">
+        <div class="col">
+          <h5 class="header">Information</h5>
+          <ul class="list-group links">
+            <li class="list-group-item"> <span><a href="about.html">About Us</a> </span></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h5 class="header">Services</h5>
+          <ul class="list-group links">
+            <li class="list-group-item"> <span></i> <a href="faq.html"> FAQ </a></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col">
+        </div>
+        <div class="col">
+          <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
+        </div>
+        <div class="col text-center">
+        </div>
+      </div>
+    </div>
+  </footer>
   </body>
-</html>
+
+
+  </html>
