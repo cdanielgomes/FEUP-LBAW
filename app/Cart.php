@@ -21,5 +21,7 @@ class Cart extends Model
         'id', 
     ];
 
+
+    
     
 }
