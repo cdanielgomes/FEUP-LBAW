@@ -19,22 +19,28 @@
 				</div>
 				<div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
-                            {{ csrf_field() }}
+							{{ csrf_field() }}
+							
+							@if(session()->has('login_error'))
+							<div class="alert alert-success">
+							  {{ session()->get('login_error') }}
+							</div>
+						  @endif
                             
-						<div class="input-group form-group">
+						<div class="input-group form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" class="form-control" placeholder="username" value="{{ old('email') }}" required autofocus>
+							<input type="text" class="form-control" placeholder="username" name="username" value="{{ old('username') }}" required autofocus>
                            
                             @if ($errors->has('username'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('username') }}</strong>
                             </span>
                         @endif
 
 						</div>
-						<div class="input-group form-group">
+						<div class="input-group form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
@@ -49,7 +55,7 @@
 
 						<div class="row align-items-center remember">
                             <label>    
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                            <input type="checkbox" name="remember_token" {{ old('remember') ? 'checked' : '' }}> Remember Me
                         </label>
 
                         </div>
@@ -65,7 +71,7 @@
 						Don't have an account?<a href="{{ route('register') }}">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="#"> Forgot your password?</a>
+					<a href="password/reset"> Forgot your password?</a>
 					</div>
 				</div>
 			</div>

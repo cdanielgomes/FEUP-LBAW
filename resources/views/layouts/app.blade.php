@@ -43,7 +43,7 @@
                 <div class="main_menu">
                   <nav class="navbar navbar-expand-md navbar-light">
                     <div class="container pl-0">
-                      <a class="navbar-brand logo_h d-flex align-items-center" href="{{ url('/homepage') }}">
+                      <a class="navbar-brand logo_h d-flex align-items-center" href="{{ route('homepage') }}">
                         <img class="float-left mr-3" src="{{asset('imgs/logo.png')}}" alt="img">
                         <h1> {{ config('app.name', 'aurora') }}</h1>
                       </a>
@@ -112,11 +112,11 @@
                       @else
                           <li class="nav-item">
                               <a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                  {{ Auth::user()->name }} <i class="fas fa-user pt-1"></i>
+                                 <i class="fas fa-user pt-1"></i>
                               </a>
                             </li>
 
-                              <li class="nav-item">
+                              <li class="nav-item pt-2 pl-2">
                         
                                       <a href="{{ route('logout') }}"
                                           onclick="event.preventDefault();
@@ -145,13 +145,13 @@
                 <div class="col">
                   <h5 class="header">Information</h5>
                   <ul class="list-group links">
-                    <li class="list-group-item"> <span><a href="about.html">About Us</a> </span></li>
+                    <li class="list-group-item"> <span><a href="{{route('about')}}">About Us</a> </span></li>
                   </ul>
                 </div>
                 <div class="col">
                   <h5 class="header">Services</h5>
                   <ul class="list-group links">
-                    <li class="list-group-item"> <span></i> <a href="faq.html"> FAQ </a></span></li>
+                    <li class="list-group-item"> <span></i> <a href={{route('faq')}}> FAQ </a></span></li>
                   </ul>
                 </div>
               </div>

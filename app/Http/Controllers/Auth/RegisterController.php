@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use App\Cart;
 
 class RegisterController extends Controller
@@ -40,11 +41,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-/*
-protected function guard()
-{
-    return Auth::guard('guard-name');
-}*/
     /**
      * Get a validator for an incoming registration request.
      *
@@ -72,7 +68,7 @@ protected function guard()
 
         $id_cart = Cart::max('id') + 1;
 
-      $cart = Cart::create(['id' => $id_cart]);
+        $cart = Cart::create(['id' => $id_cart]);
 
         $id_user = User::max('id') +1;
 

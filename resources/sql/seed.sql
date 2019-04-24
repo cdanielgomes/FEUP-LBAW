@@ -27,10 +27,11 @@ DROP TABLE IF EXISTS "order" CASCADE;
 DROP TABLE IF EXISTS review CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS "user" CASCADE;
 DROP TABLE IF EXISTS cart CASCADE;
 DROP TRIGGER IF EXISTS product_score ON review;
-DROP TRIGGER IF EXISTS set_users ON "user";
+DROP TRIGGER IF EXISTS set_users ON users;
 DROP TRIGGER IF EXISTS update_total_line ON line_item;
 DROP TRIGGER IF EXISTS update_stock ON line_item_order;
 DROP TRIGGER IF EXISTS deleteProd ON product;
@@ -49,7 +50,7 @@ CREATE TABLE cart
 
 );
 
-CREATE TABLE "user"
+CREATE TABLE users
 (
   id SERIAL PRIMARY KEY,
   name text NOT NULL,
@@ -60,7 +61,8 @@ CREATE TABLE "user"
   is_admin BOOLEAN NOT NULL,
   is_manager BOOLEAN NOT NULL,
   is_premium BOOLEAN NOT NULL,
-  deleted BOOLEAN NOT NULL
+  deleted BOOLEAN NOT NULL,
+  remember_token TEXT
 
 );
 
@@ -87,7 +89,7 @@ CREATE TABLE categories
 CREATE TABLE review
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   title text NOT NULL,
   description text,
@@ -98,7 +100,7 @@ CREATE TABLE review
 CREATE TABLE "order"
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   date DATE DEFAULT current_date,
   total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total >= 0),
   state text NOT NULL CONSTRAINT state_ck CHECK (state IN ('Processing', 'Delivered', 'Shipped'))
@@ -144,7 +146,7 @@ CREATE TABLE city
 CREATE TABLE address
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_city INTEGER NOT NULL REFERENCES "city" (id) ON UPDATE CASCADE,
   street text NOT NULL,
   zipCode text NOT NULL
@@ -170,7 +172,7 @@ CREATE TABLE brand
 
 CREATE TABLE favorites
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user, id_product)
 );
@@ -178,53 +180,53 @@ CREATE TABLE favorites
 CREATE TABLE report
 (
   id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_reportee INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user_reportee INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_review, id_user_reportee)
 );
 
 CREATE TABLE reportear
 (
   id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_reportear INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user_reportear INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_review, id_user_reportear)
 );
 
 CREATE TABLE "analyze"
 (
   id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_analyze INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user_analyze INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_review, id_user_analyze)
 );
 
 CREATE TABLE premium
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   discounts FLOAT NOT NULL CONSTRAINT discounts_ck CHECK (discounts > 0),
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE deleted
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   date DATE DEFAULT current_date,
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE standard
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE store_manager
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE administrator
 (
-  id_user INTEGER NOT NULL REFERENCES "user" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user)
 );
 
@@ -260,7 +262,7 @@ CREATE TABLE product_categories
 -- INDEXES
 -----------------------------------------
 
-CREATE INDEX username_user ON "user" USING hash (username);
+CREATE INDEX username_user ON users USING hash (username);
 
 CREATE INDEX address_id_user ON address USING hash (id_user);
 
@@ -318,7 +320,7 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER set_users AFTER INSERT ON "user" 
+CREATE TRIGGER set_users AFTER INSERT ON users 
 FOR EACH ROW  
 EXECUTE PROCEDURE insert_standard_users();
 
@@ -391,25 +393,6 @@ CREATE TRIGGER deleteProd AFTER UPDATE ON product
 FOR EACH ROW
 EXECUTE PROCEDURE removeProducts();
 
-
-
--- create a new cart to a new User
-
-CREATE OR REPLACE FUNCTION createCart() RETURNS TRIGGER AS 
-$BODY
-BEGIN
-
-
-RETURN NEW
-END
-
-
-
-
-CREATE TRIGGER k AFTER INSERT ON "user" 
-FOR EACH ROW
-EXECUTE PROCEDURE createCart();
-
 -----------------------------------------
 -- cart
 -----------------------------------------
@@ -466,59 +449,59 @@ INSERT INTO cart (id, date) VALUES (49, '2023/08/17');
 INSERT INTO cart (id, date) VALUES (50, '2021/06/08');
 
 -----------------------------------------
--- "user" 
+-- users 
 -----------------------------------------
 
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'Gideon Halhead', 'ghalhead0', 'ghalhead0@mlb.com', 'Xor0TQF', 1, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', 'kUpzFTe', 2, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', 'wGZDjBvHBv', 3, false, false, false, true);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', 'kjFjyEk', 4, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (5, 'Sacha Syred', 'ssyred4', 'ssyred4@wp.com', 'dBkmxIoPC', 5, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (6, 'Bert Volke', 'bvolke5', 'bvolke5@posterous.com', 'Nd7cJoQ1ROZ0', 6, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (7, 'Teodora Collens', 'tcollens6', 'tcollens6@google.com', 'tC7fxIcXpxu', 7, false, false, true, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (8, 'Clarine Roswarn', 'croswarn7', 'croswarn7@economist.com', 'Hu5cSRclBAou', 8, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (9, 'Judy Stote', 'jstote8', 'jstote8@telegraph.co.uk', 'wAFyiO', 9, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (10, 'Melanie Fillon', 'mfillon9', 'mfillon9@simplemachines.org', 'djYN63s', 10, false, false, true, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (11, 'Darrel Louder', 'dloudera', 'dloudera@paginegialle.it', 'a3nBuNl', 11, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (12, 'Layla Ewell', 'lewellb', 'lewellb@etsy.com', 'Wb2vMbvdy', 12, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (13, 'Ross Grigorescu', 'rgrigorescuc', 'rgrigorescuc@nasa.gov', 'XvkMLLj', 13, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (14, 'Beaufort Canter', 'bcanterd', 'bcanterd@dot.gov', 'Hq5uGz', 14, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (15, 'Sonnie Lemasney', 'slemasneye', 'slemasneye@patch.com', '6fUffqV3', 15, false, false, true, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (16, 'Ewell Irwin', 'eirwinf', 'eirwinf@hexun.com', '8ILlOJb1t', 16, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (17, 'Poul Lansberry', 'plansberryg', 'plansberryg@patch.com', 'QMPyvW', 17, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (18, 'Marylinda Licari', 'mlicarih', 'mlicarih@google.ca', 'TQJ2GGpc2ME', 18, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (19, 'Benita Alwell', 'balwelli', 'balwelli@wix.com', 'BPhAojIt', 19, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (20, 'Tammy Zaczek', 'tzaczekj', 'tzaczekj@amazonaws.com', '1IuFt4', 20, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (21, 'Valeria Auton', 'vautonk', 'vautonk@ft.com', 'yEPcN15E', 21, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (22, 'Hildagarde Hargate', 'hhargatel', 'hhargatel@pagesperso-orange.fr', '5kQdqsTY63eB', 22, false, false, true, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (23, 'Brit Polson', 'bpolsonm', 'bpolsonm@shareasale.com', '9MDCv0Wx', 23, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (24, 'Maurise Czaja', 'mczajan', 'mczajan@java.com', 'hTJylxOpnbJx', 24, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (25, 'Daphne Emanuel', 'demanuelo', 'demanuelo@spiegel.de', '3gN5w8rrWs', 25, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (26, 'Bill McGeagh', 'bmcgeaghp', 'bmcgeaghp@lulu.com', 'SpBr9VnP3', 26, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (27, 'Cookie Creigan', 'ccreiganq', 'ccreiganq@webnode.com', 'lWU1MPLtCUv', 27, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (28, 'Damian Dukelow', 'ddukelowr', 'ddukelowr@altervista.org', 'tnONDendzNr', 28, false, false, false, true);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (29, 'Gavan Kinker', 'gkinkers', 'gkinkers@cloudflare.com', 'RneFUOyLA', 29, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (30, 'Elset Rudall', 'erudallt', 'erudallt@hc360.com', 'PP3zDuT9', 30, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (31, 'Lynnette Hearnes', 'lhearnesu', 'lhearnesu@angelfire.com', 'kMoRnrKd2PD', 31, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (32, 'Den Elsegood', 'delsegoodv', 'delsegoodv@state.gov', 'kUf4RA84GVyi', 32, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (33, 'Annabelle Bentke', 'abentkew', 'abentkew@msu.edu', '5mPbbeZW', 33, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (34, 'Corabelle Ascraft', 'cascraftx', 'cascraftx@delicious.com', '0RacTW85mG', 34, false, true, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (35, 'Garrik Spirritt', 'gspirritty', 'gspirritty@icio.us', 'p4mSWnS', 35, true, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (36, 'Osbourne Fylan', 'ofylanz', 'ofylanz@dedecms.com', 'ujVIpac', 36, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (37, 'Claretta Blacklawe', 'cblacklawe10', 'cblacklawe10@youtu.be', 'gWjBWO9ecxtN', 37, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (38, 'Tommi Fallon', 'tfallon11', 'tfallon11@mysql.com', 'O7uVgk', 38, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (39, 'Melantha Teague', 'mteague12', 'mteague12@intel.com', 'WCEdNA7s', 39, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (40, 'Lizabeth Isacke', 'lisacke13', 'lisacke13@tripod.com', 'WZiPSD90HQI1', 40, false, false, false, true);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (41, 'Sigrid Borthwick', 'sborthwick14', 'sborthwick14@cbc.ca', 'RFQYCGjT', 41, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (42, 'Ulberto Scholard', 'uscholard15', 'uscholard15@dagondesign.com', 'pYyvkE', 42, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (43, 'Colene Fennelow', 'cfennelow16', 'cfennelow16@dailymail.co.uk', 'QxQJwJew7', 43, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (44, 'Revkah Zapatero', 'rzapatero17', 'rzapatero17@bbc.co.uk', 'xRogmOsuAj', 44, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (45, 'Editha Mableson', 'emableson18', 'emableson18@fema.gov', 'QJoAnqXhRU', 45, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (46, 'Gabriel Ashwin', 'gashwin19', 'gashwin19@flickr.com', 'uyItdeNbcg', 46, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (47, 'Joyann Villa', 'jvilla1a', 'jvilla1a@hp.com', 'mbZHXXTy', 47, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (48, 'Colleen Greenmon', 'cgreenmon1b', 'cgreenmon1b@barnesandnoble.com', 'zovT3VWH', 48, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', 'zJQF8EWQZ00D', 49, false, false, false, false);
-INSERT INTO "user" (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', 'jOWX2YyMgEeM', 50, false, false, false, true);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'Gideon Halhead', 'ghalhead0', 'ghalhead0@mlb.com', 'Xor0TQF', 1, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', 'kUpzFTe', 2, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', 'wGZDjBvHBv', 3, false, false, false, true);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', 'kjFjyEk', 4, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (5, 'Sacha Syred', 'ssyred4', 'ssyred4@wp.com', 'dBkmxIoPC', 5, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (6, 'Bert Volke', 'bvolke5', 'bvolke5@posterous.com', 'Nd7cJoQ1ROZ0', 6, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (7, 'Teodora Collens', 'tcollens6', 'tcollens6@google.com', 'tC7fxIcXpxu', 7, false, false, true, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (8, 'Clarine Roswarn', 'croswarn7', 'croswarn7@economist.com', 'Hu5cSRclBAou', 8, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (9, 'Judy Stote', 'jstote8', 'jstote8@telegraph.co.uk', 'wAFyiO', 9, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (10, 'Melanie Fillon', 'mfillon9', 'mfillon9@simplemachines.org', 'djYN63s', 10, false, false, true, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (11, 'Darrel Louder', 'dloudera', 'dloudera@paginegialle.it', 'a3nBuNl', 11, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (12, 'Layla Ewell', 'lewellb', 'lewellb@etsy.com', 'Wb2vMbvdy', 12, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (13, 'Ross Grigorescu', 'rgrigorescuc', 'rgrigorescuc@nasa.gov', 'XvkMLLj', 13, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (14, 'Beaufort Canter', 'bcanterd', 'bcanterd@dot.gov', 'Hq5uGz', 14, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (15, 'Sonnie Lemasney', 'slemasneye', 'slemasneye@patch.com', '6fUffqV3', 15, false, false, true, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (16, 'Ewell Irwin', 'eirwinf', 'eirwinf@hexun.com', '8ILlOJb1t', 16, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (17, 'Poul Lansberry', 'plansberryg', 'plansberryg@patch.com', 'QMPyvW', 17, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (18, 'Marylinda Licari', 'mlicarih', 'mlicarih@google.ca', 'TQJ2GGpc2ME', 18, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (19, 'Benita Alwell', 'balwelli', 'balwelli@wix.com', 'BPhAojIt', 19, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (20, 'Tammy Zaczek', 'tzaczekj', 'tzaczekj@amazonaws.com', '1IuFt4', 20, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (21, 'Valeria Auton', 'vautonk', 'vautonk@ft.com', 'yEPcN15E', 21, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (22, 'Hildagarde Hargate', 'hhargatel', 'hhargatel@pagesperso-orange.fr', '5kQdqsTY63eB', 22, false, false, true, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (23, 'Brit Polson', 'bpolsonm', 'bpolsonm@shareasale.com', '9MDCv0Wx', 23, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (24, 'Maurise Czaja', 'mczajan', 'mczajan@java.com', 'hTJylxOpnbJx', 24, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (25, 'Daphne Emanuel', 'demanuelo', 'demanuelo@spiegel.de', '3gN5w8rrWs', 25, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (26, 'Bill McGeagh', 'bmcgeaghp', 'bmcgeaghp@lulu.com', 'SpBr9VnP3', 26, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (27, 'Cookie Creigan', 'ccreiganq', 'ccreiganq@webnode.com', 'lWU1MPLtCUv', 27, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (28, 'Damian Dukelow', 'ddukelowr', 'ddukelowr@altervista.org', 'tnONDendzNr', 28, false, false, false, true);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (29, 'Gavan Kinker', 'gkinkers', 'gkinkers@cloudflare.com', 'RneFUOyLA', 29, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (30, 'Elset Rudall', 'erudallt', 'erudallt@hc360.com', 'PP3zDuT9', 30, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (31, 'Lynnette Hearnes', 'lhearnesu', 'lhearnesu@angelfire.com', 'kMoRnrKd2PD', 31, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (32, 'Den Elsegood', 'delsegoodv', 'delsegoodv@state.gov', 'kUf4RA84GVyi', 32, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (33, 'Annabelle Bentke', 'abentkew', 'abentkew@msu.edu', '5mPbbeZW', 33, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (34, 'Corabelle Ascraft', 'cascraftx', 'cascraftx@delicious.com', '0RacTW85mG', 34, false, true, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (35, 'Garrik Spirritt', 'gspirritty', 'gspirritty@icio.us', 'p4mSWnS', 35, true, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (36, 'Osbourne Fylan', 'ofylanz', 'ofylanz@dedecms.com', 'ujVIpac', 36, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (37, 'Claretta Blacklawe', 'cblacklawe10', 'cblacklawe10@youtu.be', 'gWjBWO9ecxtN', 37, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (38, 'Tommi Fallon', 'tfallon11', 'tfallon11@mysql.com', 'O7uVgk', 38, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (39, 'Melantha Teague', 'mteague12', 'mteague12@intel.com', 'WCEdNA7s', 39, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (40, 'Lizabeth Isacke', 'lisacke13', 'lisacke13@tripod.com', 'WZiPSD90HQI1', 40, false, false, false, true);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (41, 'Sigrid Borthwick', 'sborthwick14', 'sborthwick14@cbc.ca', 'RFQYCGjT', 41, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (42, 'Ulberto Scholard', 'uscholard15', 'uscholard15@dagondesign.com', 'pYyvkE', 42, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (43, 'Colene Fennelow', 'cfennelow16', 'cfennelow16@dailymail.co.uk', 'QxQJwJew7', 43, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (44, 'Revkah Zapatero', 'rzapatero17', 'rzapatero17@bbc.co.uk', 'xRogmOsuAj', 44, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (45, 'Editha Mableson', 'emableson18', 'emableson18@fema.gov', 'QJoAnqXhRU', 45, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (46, 'Gabriel Ashwin', 'gashwin19', 'gashwin19@flickr.com', 'uyItdeNbcg', 46, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (47, 'Joyann Villa', 'jvilla1a', 'jvilla1a@hp.com', 'mbZHXXTy', 47, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (48, 'Colleen Greenmon', 'cgreenmon1b', 'cgreenmon1b@barnesandnoble.com', 'zovT3VWH', 48, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', 'zJQF8EWQZ00D', 49, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', 'jOWX2YyMgEeM', 50, false, false, false, true);
 
 -----------------------------------------
 -- product
