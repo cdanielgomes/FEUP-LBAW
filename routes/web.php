@@ -19,6 +19,8 @@ Route::get('homepage', 'HomepageController@show')->name('homepage');
 Route::get('/about', 'AboutController@about')->name('about');
 Route::get('/faq', 'FaqController@show')->name('faq');
 
+Route::get('profile/{id}', 'ProfileController@show');
+
 Auth::routes();
 
 /*

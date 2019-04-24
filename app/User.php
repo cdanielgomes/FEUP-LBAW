@@ -14,6 +14,7 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,4 +32,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+     /**
+     * Get the phone record associated with the user.
+     */
+    public function cart()
+    {
+        return $this->hasOne('App\Cart');
+    }
+
 }

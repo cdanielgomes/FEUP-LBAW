@@ -69,12 +69,12 @@
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('assets/slide2.jpg')">
+          <div class="carousel-item" style="background-image: url({{asset('imgs/slide2.jpg')}})">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('assets/slide3.png')">
+          <div class="carousel-item" style="background-image: url({{asset('imgs/slide3.png')}})">
             <div class="carousel-caption d-none d-md-block">
               <p class="lead">Any questions? Let us know!</p>
             </div>
@@ -93,7 +93,7 @@
       <div class="video2">
         <div class="overlay"></div>
         <div class="video-block block">
-          <video src="assets/promovidOUTDOORS.mp4" autoplay muted loop></video>
+        <video src="{{url('imgs/promovidOUTDOORS.mp4')}}" autoplay muted loop></video>
         </div>
     
         <div class="container h-100">

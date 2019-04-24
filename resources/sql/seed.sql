@@ -452,7 +452,7 @@ INSERT INTO cart (id, date) VALUES (50, '2021/06/08');
 -- users 
 -----------------------------------------
 
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'Gideon Halhead', 'ghalhead0', 'ghalhead0@mlb.com', 'Xor0TQF', 1, false, false, false, false);
+INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'user', 'user', 'ghalhead0@mlb.com', '$2y$12$xqJe1BDygV3tiCKv3kCTyO92Oyd3jnL8RGcmze0xb2XnRL13KmEpu', 1, false, false, false, false);
 INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', 'kUpzFTe', 2, false, false, false, false);
 INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', 'wGZDjBvHBv', 3, false, false, false, true);
 INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', 'kjFjyEk', 4, false, false, false, false);
