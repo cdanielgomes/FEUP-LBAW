@@ -12,7 +12,7 @@
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+        <li class="breadcrumb-item"><a href="/homepage">Homepage</a></li>
         <li class="breadcrumb-item active" aria-current="page">Product</li>
       </ol>
     </nav>
