@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class City extends Model
 {
-    protected $table = 'address';
+    protected $table = 'city';
     
     
      /**
@@ -15,7 +15,7 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'id_user', 'id_city', 'street', 'zipCode', 'type_address'
+        'id', 'id_country', 'name'
     ];
 
 
@@ -27,8 +27,12 @@ class Address extends Model
         return $this->belongsToMany('App\User', 'id_user');
     }
 
+    public function countries(){
+        return $this->hasOne('App\Country', 'id_country');
+    }
 
-    public function cities(){
-        return $this->hasOne('App\City', 'id_city');
+    public function cities()
+    {
+        return $this->belongsTo('App\Address', 'id_city');
     }
 }

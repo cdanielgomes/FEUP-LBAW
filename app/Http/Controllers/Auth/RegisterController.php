@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/about';
+    protected $redirectTo = '/homepage';
 
     /**
      * Create a new controller instance.
@@ -65,11 +65,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        $id_cart = Cart::max('id') + 1;
-
-        $cart = Cart::create(['id' => $id_cart]);
-
         $id_user = User::max('id') +1;
 
         return User::create([
@@ -78,7 +73,6 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'id_cart' => $cart->id,
             'is_admin' => false,
             'is_manager' => false,
             'is_premium' => false,

@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'username' ,'email', 'password', 'id_cart', 'is_admin', 'is_manager', 'is_premium', 'deleted', 'remember_token'
+        'id', 'name', 'username' ,'email', 'password', 'is_admin', 'is_manager', 'is_premium', 'deleted', 'remember_token'
     ];
 
     /**
@@ -36,9 +36,14 @@ class User extends Authenticatable
      /**
      * Get the phone record associated with the user.
      */
-    public function cart()
+    public function carts()
     {
-        return $this->hasOne('App\Cart');
+        return $this->hasOne('App\Cart','id_user');
+    }
+
+    public function addresses(){
+
+        return $this->hasMany('App\Address', 'id_user');
     }
 
 }

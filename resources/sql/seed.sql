@@ -43,12 +43,7 @@ DROP TRIGGER IF EXISTS deleteProd ON product;
 -- Tables
 -----------------------------------------
 
-CREATE TABLE cart
-(
-  id SERIAL PRIMARY KEY,
-  date DATE DEFAULT current_date
 
-);
 
 CREATE TABLE users
 (
@@ -57,12 +52,19 @@ CREATE TABLE users
   username text NOT NULL CONSTRAINT username_uk UNIQUE,
   email text NOT NULL CONSTRAINT email_user_uk UNIQUE,
   password text NOT NULL,
-  id_cart INTEGER REFERENCES "cart" (id) ON UPDATE CASCADE,
   is_admin BOOLEAN NOT NULL,
   is_manager BOOLEAN NOT NULL,
   is_premium BOOLEAN NOT NULL,
   deleted BOOLEAN NOT NULL,
   remember_token TEXT
+
+);
+
+CREATE TABLE cart
+(
+  id SERIAL PRIMARY KEY,
+  id_user INTEGER REFERENCES "users" (id) CONSTRAINT user_id_cart_uk UNIQUE, 
+  date DATE DEFAULT current_date
 
 );
 
@@ -146,10 +148,12 @@ CREATE TABLE city
 CREATE TABLE address
 (
   id SERIAL PRIMARY KEY,
+  door_number INTEGER NOT NULL,
   id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_city INTEGER NOT NULL REFERENCES "city" (id) ON UPDATE CASCADE,
   street text NOT NULL,
-  zipCode text NOT NULL
+  zipCode text NOT NULL,
+  type_address text NOT NULL CONSTRAINT type_ck CHECK (type_address IN ('home', 'other', 'work'))
 );
 
 CREATE TABLE color
@@ -304,17 +308,10 @@ EXECUTE PROCEDURE update_product_score();
 CREATE OR REPLACE FUNCTION insert_standard_users() RETURNS TRIGGER AS 
 $BODY$
 BEGIN 
-    CASE
-    WHEN NEW.is_admin THEN
-     INSERT INTO administrator(id_user) VALUES(NEW.id);
-    WHEN NEW.is_premium THEN 
-     INSERT INTO premium(id_user, discounts) VALUES(NEW.id, 20);
-    WHEN NEW.is_manager THEN
-     INSERT INTO store_manager(id_user) VALUES(NEW.id);
-    ELSE INSERT INTO standard(id_user) VALUES(NEW.id);
-    END CASE;
 
-RETURN NULL;
+    INSERT INTO cart (id_user) VALUES(NEW.id);
+
+RETURN NEW;
 
 END
 $BODY$
@@ -393,115 +390,118 @@ CREATE TRIGGER deleteProd AFTER UPDATE ON product
 FOR EACH ROW
 EXECUTE PROCEDURE removeProducts();
 
------------------------------------------
--- cart
------------------------------------------
-
-INSERT INTO cart (id, date) VALUES (1, '2019/12/02');
-INSERT INTO cart (id, date) VALUES (2, '2022/01/18');
-INSERT INTO cart (id, date) VALUES (3, '2023/02/19');
-INSERT INTO cart (id, date) VALUES (4, '2021/08/10');
-INSERT INTO cart (id, date) VALUES (5, '2020/12/01');
-INSERT INTO cart (id, date) VALUES (6, '2018/05/22');
-INSERT INTO cart (id, date) VALUES (7, '2022/04/19');
-INSERT INTO cart (id, date) VALUES (8, '2021/08/05');
-INSERT INTO cart (id, date) VALUES (9, '2018/11/06');
-INSERT INTO cart (id, date) VALUES (10, '2018/12/30');
-INSERT INTO cart (id, date) VALUES (11, '2023/01/02');
-INSERT INTO cart (id, date) VALUES (12, '2022/09/29');
-INSERT INTO cart (id, date) VALUES (13, '2021/06/15');
-INSERT INTO cart (id, date) VALUES (14, '2021/03/31');
-INSERT INTO cart (id, date) VALUES (15, '2019/07/08');
-INSERT INTO cart (id, date) VALUES (16, '2023/04/29');
-INSERT INTO cart (id, date) VALUES (17, '2021/05/13');
-INSERT INTO cart (id, date) VALUES (18, '2018/10/28');
-INSERT INTO cart (id, date) VALUES (19, '2019/07/26');
-INSERT INTO cart (id, date) VALUES (20, '2019/12/22');
-INSERT INTO cart (id, date) VALUES (21, '2018/08/17');
-INSERT INTO cart (id, date) VALUES (22, '2021/11/12');
-INSERT INTO cart (id, date) VALUES (23, '2021/04/16');
-INSERT INTO cart (id, date) VALUES (24, '2019/01/23');
-INSERT INTO cart (id, date) VALUES (25, '2022/11/25');
-INSERT INTO cart (id, date) VALUES (26, '2019/04/07');
-INSERT INTO cart (id, date) VALUES (27, '2022/12/01');
-INSERT INTO cart (id, date) VALUES (28, '2023/07/26');
-INSERT INTO cart (id, date) VALUES (29, '2020/07/11');
-INSERT INTO cart (id, date) VALUES (30, '2018/08/24');
-INSERT INTO cart (id, date) VALUES (31, '2020/04/21');
-INSERT INTO cart (id, date) VALUES (32, '2021/03/31');
-INSERT INTO cart (id, date) VALUES (33, '2021/03/12');
-INSERT INTO cart (id, date) VALUES (34, '2020/09/14');
-INSERT INTO cart (id, date) VALUES (35, '2022/08/25');
-INSERT INTO cart (id, date) VALUES (36, '2020/06/13');
-INSERT INTO cart (id, date) VALUES (37, '2021/06/30');
-INSERT INTO cart (id, date) VALUES (38, '2020/09/24');
-INSERT INTO cart (id, date) VALUES (39, '2019/12/19');
-INSERT INTO cart (id, date) VALUES (40, '2018/05/04');
-INSERT INTO cart (id, date) VALUES (41, '2019/04/22');
-INSERT INTO cart (id, date) VALUES (42, '2021/10/01');
-INSERT INTO cart (id, date) VALUES (43, '2019/07/27');
-INSERT INTO cart (id, date) VALUES (44, '2019/08/09');
-INSERT INTO cart (id, date) VALUES (45, '2019/05/09');
-INSERT INTO cart (id, date) VALUES (46, '2019/10/27');
-INSERT INTO cart (id, date) VALUES (47, '2023/05/28');
-INSERT INTO cart (id, date) VALUES (48, '2021/02/07');
-INSERT INTO cart (id, date) VALUES (49, '2023/08/17');
-INSERT INTO cart (id, date) VALUES (50, '2021/06/08');
 
 -----------------------------------------
 -- users 
 -----------------------------------------
 
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (1, 'user', 'user', 'ghalhead0@mlb.com', '$2y$12$xqJe1BDygV3tiCKv3kCTyO92Oyd3jnL8RGcmze0xb2XnRL13KmEpu', 1, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', 'kUpzFTe', 2, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', 'wGZDjBvHBv', 3, false, false, false, true);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', 'kjFjyEk', 4, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (5, 'Sacha Syred', 'ssyred4', 'ssyred4@wp.com', 'dBkmxIoPC', 5, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (6, 'Bert Volke', 'bvolke5', 'bvolke5@posterous.com', 'Nd7cJoQ1ROZ0', 6, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (7, 'Teodora Collens', 'tcollens6', 'tcollens6@google.com', 'tC7fxIcXpxu', 7, false, false, true, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (8, 'Clarine Roswarn', 'croswarn7', 'croswarn7@economist.com', 'Hu5cSRclBAou', 8, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (9, 'Judy Stote', 'jstote8', 'jstote8@telegraph.co.uk', 'wAFyiO', 9, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (10, 'Melanie Fillon', 'mfillon9', 'mfillon9@simplemachines.org', 'djYN63s', 10, false, false, true, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (11, 'Darrel Louder', 'dloudera', 'dloudera@paginegialle.it', 'a3nBuNl', 11, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (12, 'Layla Ewell', 'lewellb', 'lewellb@etsy.com', 'Wb2vMbvdy', 12, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (13, 'Ross Grigorescu', 'rgrigorescuc', 'rgrigorescuc@nasa.gov', 'XvkMLLj', 13, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (14, 'Beaufort Canter', 'bcanterd', 'bcanterd@dot.gov', 'Hq5uGz', 14, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (15, 'Sonnie Lemasney', 'slemasneye', 'slemasneye@patch.com', '6fUffqV3', 15, false, false, true, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (16, 'Ewell Irwin', 'eirwinf', 'eirwinf@hexun.com', '8ILlOJb1t', 16, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (17, 'Poul Lansberry', 'plansberryg', 'plansberryg@patch.com', 'QMPyvW', 17, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (18, 'Marylinda Licari', 'mlicarih', 'mlicarih@google.ca', 'TQJ2GGpc2ME', 18, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (19, 'Benita Alwell', 'balwelli', 'balwelli@wix.com', 'BPhAojIt', 19, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (20, 'Tammy Zaczek', 'tzaczekj', 'tzaczekj@amazonaws.com', '1IuFt4', 20, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (21, 'Valeria Auton', 'vautonk', 'vautonk@ft.com', 'yEPcN15E', 21, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (22, 'Hildagarde Hargate', 'hhargatel', 'hhargatel@pagesperso-orange.fr', '5kQdqsTY63eB', 22, false, false, true, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (23, 'Brit Polson', 'bpolsonm', 'bpolsonm@shareasale.com', '9MDCv0Wx', 23, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (24, 'Maurise Czaja', 'mczajan', 'mczajan@java.com', 'hTJylxOpnbJx', 24, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (25, 'Daphne Emanuel', 'demanuelo', 'demanuelo@spiegel.de', '3gN5w8rrWs', 25, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (26, 'Bill McGeagh', 'bmcgeaghp', 'bmcgeaghp@lulu.com', 'SpBr9VnP3', 26, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (27, 'Cookie Creigan', 'ccreiganq', 'ccreiganq@webnode.com', 'lWU1MPLtCUv', 27, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (28, 'Damian Dukelow', 'ddukelowr', 'ddukelowr@altervista.org', 'tnONDendzNr', 28, false, false, false, true);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (29, 'Gavan Kinker', 'gkinkers', 'gkinkers@cloudflare.com', 'RneFUOyLA', 29, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (30, 'Elset Rudall', 'erudallt', 'erudallt@hc360.com', 'PP3zDuT9', 30, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (31, 'Lynnette Hearnes', 'lhearnesu', 'lhearnesu@angelfire.com', 'kMoRnrKd2PD', 31, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (32, 'Den Elsegood', 'delsegoodv', 'delsegoodv@state.gov', 'kUf4RA84GVyi', 32, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (33, 'Annabelle Bentke', 'abentkew', 'abentkew@msu.edu', '5mPbbeZW', 33, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (34, 'Corabelle Ascraft', 'cascraftx', 'cascraftx@delicious.com', '0RacTW85mG', 34, false, true, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (35, 'Garrik Spirritt', 'gspirritty', 'gspirritty@icio.us', 'p4mSWnS', 35, true, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (36, 'Osbourne Fylan', 'ofylanz', 'ofylanz@dedecms.com', 'ujVIpac', 36, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (37, 'Claretta Blacklawe', 'cblacklawe10', 'cblacklawe10@youtu.be', 'gWjBWO9ecxtN', 37, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (38, 'Tommi Fallon', 'tfallon11', 'tfallon11@mysql.com', 'O7uVgk', 38, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (39, 'Melantha Teague', 'mteague12', 'mteague12@intel.com', 'WCEdNA7s', 39, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (40, 'Lizabeth Isacke', 'lisacke13', 'lisacke13@tripod.com', 'WZiPSD90HQI1', 40, false, false, false, true);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (41, 'Sigrid Borthwick', 'sborthwick14', 'sborthwick14@cbc.ca', 'RFQYCGjT', 41, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (42, 'Ulberto Scholard', 'uscholard15', 'uscholard15@dagondesign.com', 'pYyvkE', 42, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (43, 'Colene Fennelow', 'cfennelow16', 'cfennelow16@dailymail.co.uk', 'QxQJwJew7', 43, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (44, 'Revkah Zapatero', 'rzapatero17', 'rzapatero17@bbc.co.uk', 'xRogmOsuAj', 44, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (45, 'Editha Mableson', 'emableson18', 'emableson18@fema.gov', 'QJoAnqXhRU', 45, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (46, 'Gabriel Ashwin', 'gashwin19', 'gashwin19@flickr.com', 'uyItdeNbcg', 46, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (47, 'Joyann Villa', 'jvilla1a', 'jvilla1a@hp.com', 'mbZHXXTy', 47, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (48, 'Colleen Greenmon', 'cgreenmon1b', 'cgreenmon1b@barnesandnoble.com', 'zovT3VWH', 48, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', 'zJQF8EWQZ00D', 49, false, false, false, false);
-INSERT INTO users (id, name, username, email, password, id_cart, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', 'jOWX2YyMgEeM', 50, false, false, false, true);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (1, 'user', 'user', 'ghalhead0@mlb.com', '$2y$12$xqJe1BDygV3tiCKv3kCTyO92Oyd3jnL8RGcmze0xb2XnRL13KmEpu', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', '$2y$12$H/SY6zoFHDr3RWQS3Gqtde97POYTOCZT/JI6YpeknU.7UtKkF6Nd.', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', '$2y$12$I01WpYQxCiUL8f25QrfTTu7HYVWVFqJFCTt7QCxwWrDmy5dPltD1u', false, false, false, true);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', '$2y$12$Po/a1Yg2hT9MiX22ebyhauqxbXmtMEOHhD2K7vNrc21JPNYqYpW9a', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (5, 'Sacha Syred', 'ssyred4', 'ssyred4@wp.com', '$2y$12$M52ft3z9K9vrlM1KFMqFRueKEpmgxHFU1VSx9YerSR1fsBGtsaDHG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (6, 'Bert Volke', 'bvolke5', 'bvolke5@posterous.com', '$2y$12$sdrew.jzz8rQBbqjV34QG.eN8z9mbFebIdHv5j/Drf.LPK.1YL.We', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (7, 'Teodora Collens', 'tcollens6', 'tcollens6@google.com', '$2y$12$NhzJx2.7B6lA/LtBzv5ULOsZmy/QN85.M0conkKJcenLx5kEdAcrq', false, false, true, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (8, 'Clarine Roswarn', 'croswarn7', 'croswarn7@economist.com', '$2y$12$2SuzgixcA7Ib34ujOMRuvuIQoGZC4C.2ZlPDNBA0J2O4w.VlVNxGG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (9, 'Judy Stote', 'jstote8', 'jstote8@telegraph.co.uk', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (10, 'Melanie Fillon', 'mfillon9', 'mfillon9@simplemachines.org', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', false, false, true, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (11, 'Darrel Louder', 'dloudera', 'dloudera@paginegialle.it', '$2y$12$CUTu30SnZwsp87mTjOx7hOTHK2bJmCmtKVCH49ADFiWgqjmv1jRF.', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (12, 'Layla Ewell', 'lewellb', 'lewellb@etsy.com', '$2y$12$KUjNI.ge1nGGjRVoE/0.WOGMLuW5uifnNzg3yXvqJNSon9XioMvX.', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (13, 'Ross Grigorescu', 'rgrigorescuc', 'rgrigorescuc@nasa.gov', '$2y$12$5Ii2OMUtuv/J/hI6FoS/jO0rHaAVu4JxtBNn1CDOgBYfZUK/AK5Oq', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (14, 'Beaufort Canter', 'bcanterd', 'bcanterd@dot.gov', '$2y$12$myX5OPHAK3zWxhJDnNWteeH.G7lZbYlVO22bugaVBQqP2p4mDLItW', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (15, 'Sonnie Lemasney', 'slemasneye', 'slemasneye@patch.com', '$2y$12$pNPGlANG65S43CricrSLBOe/vh7HYAwUA.DvnzF0kYql6D9RJjmFe', false, false, true, false); ----storemanager
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (16, 'Ewell Irwin', 'eirwinf', 'eirwinf@hexun.com', '$2y$12$ycQ0rY2t8KwdTB8zxZMTFeHG1RPbXqU7XHnwZ0OV0ggNqmRaRyqj.', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (17, 'Poul Lansberry', 'plansberryg', 'plansberryg@patch.com', '$2y$12$gb.ohhid7730rXdvSPK8PukXu8dlPdjqC8iw90VEi9RTxvlR2ZEJW', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (18, 'Marylinda Licari', 'mlicarih', 'mlicarih@google.ca', '$2y$12$QQX17gtHagllSTbLWUSRM.VFHrzlww9L9DAWlto9lPFNzVTIDnMES', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (19, 'Benita Alwell', 'balwelli', 'balwelli@wix.com', '$2y$12$suFAut6b0tpgooRxEdaE4eGZXU4G1vx541A0mUjWp7sq0AYfMmXZG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (20, 'Tammy Zaczek', 'tzaczekj', 'tzaczekj@amazonaws.com', '$2y$12$.Vz5myPyjh7P9VZxvAQaiu0Yg6k0g0aPbUIo8wwqpgGjrPKUF8FBy',  false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (21, 'Valeria Auton', 'vautonk', 'vautonk@ft.com', '$2y$12$g/FPPKLfyLpGG5jp4VPA.eCpUZph07koI4wYrmqiuizQDP56maOVm', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (22, 'Hildagarde Hargate', 'hhargatel', 'hhargatel@pagesperso-orange.fr', '$2y$12$1h/X7gkf35TiExIYFaw.2.k4Vifig/7OiXfmJGgjWu7LM9dcD4NGS', false, false, true, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (23, 'Brit Polson', 'bpolsonm', 'bpolsonm@shareasale.com', '$2y$12$AK0KJQLsjYH/cUppOLXZBO/BQm41cM.SNk3Ko2ECDmwVk48EzwlVG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (24, 'Maurise Czaja', 'mczajan', 'mczajan@java.com', '$2y$12$6OoEWLt7soxvRZipfJppn.nSn0FIZuI9cIMnnRqiP5dnN7xZa3.HG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (25, 'Daphne Emanuel', 'demanuelo', 'demanuelo@spiegel.de', '$2y$12$1QjDkmYMCwk8erc5g9eEZ.bJ1FCFIGxRbQkypQN9SQWVwnqyZ5WeO', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (26, 'Bill McGeagh', 'bmcgeaghp', 'bmcgeaghp@lulu.com', '$2y$12$zwXXdAX9OEBwz9.dOGp44eE.ALxaruMHKDku7a3U5p6aP9DUPjuo2', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (27, 'Cookie Creigan', 'ccreiganq', 'ccreiganq@webnode.com', '$2y$12$x1Yn5/IkvtEscCJeSEMl4e7gm6ZyzJSp.lJytxULdCuBJ//zYC1GG', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (28, 'Damian Dukelow', 'ddukelowr', 'ddukelowr@altervista.org', '$2y$12$GvU4io/XroHlI/5IGcZD7OezWC4nFUiOIVQwJc.B3wf.J7L6iV6vO', false, false, false, true);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (29, 'Gavan Kinker', 'gkinkers', 'gkinkers@cloudflare.com', '$2y$12$Z.Vl2gWBG0q1Yurf7g28SuPIpZOssrcEvFsvCzfEn/sBzq5OjQSlO', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (30, 'Elset Rudall', 'erudallt', 'erudallt@hc360.com', '$2y$12$MNaFWq.kzsHSyhnL43aoh.h2EL7zpdG0/u3egstkHJuALaCFVYao2', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (31, 'Lynnette Hearnes', 'lhearnesu', 'lhearnesu@angelfire.com', '$2y$12$3FS.oOSZocOn6CehKeI2dOZOSj/jVlMFAK/QjlouQAino3iqK0L3S', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (32, 'Den Elsegood', 'delsegoodv', 'delsegoodv@state.gov', '$2y$12$kmGopE/vOBqQ9Dey75rPNOfT9H4EFXCxTmTJbLRp2Gb8KtYyfExuK', false, false, false, false); ---kUf4RA84GVyi
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (33, 'Annabelle Bentke', 'abentkew', 'abentkew@msu.edu', '$2y$12$B5z9JH0A09dtvi3nYWeq8.AUzhV4KU/sW23GqCqbWSUPiocgr7sc2', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (34, 'Corabelle Ascraft', 'cascraftx', 'cascraftx@delicious.com', '$2y$12$kf1FrVQkw.NSpYNBbydEGOQhEprJs8K5eGRgRWeTi2pUZFBll1lfK', false, true, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (35, 'Garrik Spirritt', 'gspirritty', 'gspirritty@icio.us', '$2y$12$sC60uI3KqndBj25Ete5sVekXVLo2oqZdzqxaqhAIAfQFHzRom/Woi', true, false, false, false); ------- p4mSWnS
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (36, 'Osbourne Fylan', 'ofylanz', 'ofylanz@dedecms.com', '$2y$12$4N1QaMAzIgOj0JvlJh7eUeQDH.A4WS/4AVGxsDPUgpetq0786Xaua', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (37, 'Claretta Blacklawe', 'cblacklawe10', 'cblacklawe10@youtu.be', '$2y$12$sz5V.Z7xaf24EEz6kYv36.IwDItT/zi77zrQ.RFsLRXJaJIB0mk6m', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (38, 'Tommi Fallon', 'tfallon11', 'tfallon11@mysql.com', '$2y$12$mYp8bbK3aGUG4gfs7FZ7/.SMUWH8oW3sIOMVwnRBw7RlDauJIjAF6', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (39, 'Melantha Teague', 'mteague12', 'mteague12@intel.com', '$2y$12$Zde0ICDf7Ibbnq0tyLr1yOa/Bfn3yA5ZiSkOBTitAwO0BMisKAvMi', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (40, 'Lizabeth Isacke', 'lisacke13', 'lisacke13@tripod.com', '$2y$12$A82igeJSparasqEAsTZjPes5SOX.LpU/M3XxFY/IVB.bcX7IXpwmq', false, false, false, true);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (41, 'Sigrid Borthwick', 'sborthwick14', 'sborthwick14@cbc.ca', '$2y$12$B2.KTPjZo1F6NXQOiqqhWuaIiRvQuhP.NuFhX/ff7dC0avjZ0qZRS', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (42, 'Ulberto Scholard', 'uscholard15', 'uscholard15@dagondesign.com', '$2y$12$JPHGCY.5y94ySfNG2qUABeorvqEaBulbEiVdGseGGb5bnSDTfAdPa', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (43, 'Colene Fennelow', 'cfennelow16', 'cfennelow16@dailymail.co.uk', '$2y$12$/2oWoG9V1tp0LqubADwO9eseYL/AClEag0WNz85KVtH4xLuLQtfIu', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (44, 'Revkah Zapatero', 'rzapatero17', 'rzapatero17@bbc.co.uk', '$2y$12$1Sn.VMsTYV4icGuqJkzuEOe20UmxmL6IdDCEnzy4n2fOFTq3XIGYq', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (45, 'Editha Mableson', 'emableson18', 'emableson18@fema.gov', '$2y$12$zdHPJ6eT7kKDQSnWBUvlTOKmKEFC3RGX9pcIe/39QFJy727NtAfR.', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (46, 'Gabriel Ashwin', 'gashwin19', 'gashwin19@flickr.com', '$2y$12$wu2gGBRxDPCa6po/eToFbOyHE0l0YMQeIzTJi0xyYSxBvEmLTRvh2', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (47, 'Joyann Villa', 'jvilla1a', 'jvilla1a@hp.com', '$2y$12$uWwaVpvS19Dr03./s94MQe4X4GkNsC/DtqFbdeJl64NB2bjwG.wB6', false, false, false, false);
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (48, 'Colleen Greenmon', 'cgreenmon1b', 'cgreenmon1b@barnesandnoble.com', '$2y$12$pJlnYi20nsgDjj8JzzIRYOozPDK0.4RculMcBjPEscjHoTozlVRFy', false, false, false, false); ----- zovT3VWH
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', '$2y$12$aCWmm1Rxl4WWEuP/15OgiOluHevXFzzv3U.23PzZ9zx862ZwudW4G', false, false, false, false);------zJQF8EWQZ00D
+INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', '$2y$12$s0VNpdRTDox8BdLM45Sj7.0r6UhPbwyT4Nv0Ol998trU6gq232Pkq', false, false, false, true); ---jOWX2YyMgEeM
+
+
+-- -----------------------------------------
+-- -- cart
+-- -----------------------------------------
+
+-- INSERT INTO cart (id, id_user, date) VALUES (1, 1, '2019/12/02');
+-- INSERT INTO cart (id, id_user, date) VALUES (2, 2, '2022/01/18');
+-- INSERT INTO cart (id, id_user, date) VALUES (3, 3, '2023/02/19');
+-- INSERT INTO cart (id, id_user, date) VALUES (4, 4, '2021/08/10');
+-- INSERT INTO cart (id, id_user, date) VALUES (5, 5, '2020/12/01');
+-- INSERT INTO cart (id, id_user, date) VALUES (6, 6, '2018/05/22');
+-- INSERT INTO cart (id, id_user, date) VALUES (7, 7, '2022/04/19');
+-- INSERT INTO cart (id, id_user, date) VALUES (8, 8, '2021/08/05');
+-- INSERT INTO cart (id, id_user, date) VALUES (9, 9, '2018/11/06');
+-- INSERT INTO cart (id, id_user, date) VALUES (10, 10, '2018/12/30');
+-- INSERT INTO cart (id, id_user, date) VALUES (11, 11, '2023/01/02');
+-- INSERT INTO cart (id, id_user, date) VALUES (12, 12, '2022/09/29');
+-- INSERT INTO cart (id, id_user, date) VALUES (13, 13, '2021/06/15');
+-- INSERT INTO cart (id, id_user, date) VALUES (14, 14, '2021/03/31');
+-- INSERT INTO cart (id, id_user, date) VALUES (15, 15, '2019/07/08');
+-- INSERT INTO cart (id, id_user, date) VALUES (16, 16, '2023/04/29');
+-- INSERT INTO cart (id, id_user, date) VALUES (17, 17, '2021/05/13');
+-- INSERT INTO cart (id, id_user, date) VALUES (18, 18, '2018/10/28');
+-- INSERT INTO cart (id, id_user, date) VALUES (19, 19, '2019/07/26');
+-- INSERT INTO cart (id, id_user, date) VALUES (20, 20, '2019/12/22');
+-- INSERT INTO cart (id, id_user, date) VALUES (21, 21, '2018/08/17');
+-- INSERT INTO cart (id, id_user, date) VALUES (22, 22, '2021/11/12');
+-- INSERT INTO cart (id, id_user, date) VALUES (23, 23, '2021/04/16');
+-- INSERT INTO cart (id, id_user, date) VALUES (24, 24, '2019/01/23');
+-- INSERT INTO cart (id, id_user, date) VALUES (25, 25, '2022/11/25');
+-- INSERT INTO cart (id, id_user, date) VALUES (26, 26, '2019/04/07');
+-- INSERT INTO cart (id, id_user, date) VALUES (27, 27, '2022/12/01');
+-- INSERT INTO cart (id, id_user, date) VALUES (28, 28, '2023/07/26');
+-- INSERT INTO cart (id, id_user, date) VALUES (29, 29, '2020/07/11');
+-- INSERT INTO cart (id, id_user, date) VALUES (30, 30, '2018/08/24');
+-- INSERT INTO cart (id, id_user, date) VALUES (31, 31, '2020/04/21');
+-- INSERT INTO cart (id, id_user, date) VALUES (32, 32, '2021/03/31');
+-- INSERT INTO cart (id, id_user, date) VALUES (33, 33, '2021/03/12');
+-- INSERT INTO cart (id, id_user, date) VALUES (34, 34, '2020/09/14');
+-- INSERT INTO cart (id, id_user, date) VALUES (35, 35, '2022/08/25');
+-- INSERT INTO cart (id, id_user, date) VALUES (36, 36, '2020/06/13');
+-- INSERT INTO cart (id, id_user, date) VALUES (37, 37, '2021/06/30');
+-- INSERT INTO cart (id, id_user, date) VALUES (38, 38, '2020/09/24');
+-- INSERT INTO cart (id, id_user, date) VALUES (39, 39, '2019/12/19');
+-- INSERT INTO cart (id, id_user, date) VALUES (40, 40, '2018/05/04');
+-- INSERT INTO cart (id, id_user, date) VALUES (41, 41, '2019/04/22');
+-- INSERT INTO cart (id, id_user, date) VALUES (42, 42, '2021/10/01');
+-- INSERT INTO cart (id, id_user, date) VALUES (43, 43, '2019/07/27');
+-- INSERT INTO cart (id, id_user, date) VALUES (44, 44, '2019/08/09');
+-- INSERT INTO cart (id, id_user, date) VALUES (45, 45, '2019/05/09');
+-- INSERT INTO cart (id, id_user, date) VALUES (46, 46, '2019/10/27');
+-- INSERT INTO cart (id, id_user, date) VALUES (47, 47, '2023/05/28');
+-- INSERT INTO cart (id, id_user, date) VALUES (48, 48, '2021/02/07');
+-- INSERT INTO cart (id, id_user, date) VALUES (49, 49, '2023/08/17');
+-- INSERT INTO cart (id, id_user, date) VALUES (50, 50, '2021/06/08');
+
 
 -----------------------------------------
 -- product
@@ -939,56 +939,56 @@ INSERT INTO city (id, id_country, name) VALUES (20, 3, 'Malitubog');
 -- address 
 -----------------------------------------
 
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (1, 1, 12, 'Grim', '446600');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (2, 2, 4, 'Michigan', '06-121');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (3, 3, 19, 'Pepper Wood', '70061');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (4, 4, 19, 'Lighthouse Bay', '431-10');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (5, 5, 20, 'Arrowood', '7104');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (6, 6, 3, 'Anzinger', '662133');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (7, 7, 12, 'American Ash', '744 88');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (8, 8, 9, 'Nobel', '301649');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (9, 9, 2, 'Artisan', '2350-259');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (10, 10, 5, 'Nancy', 'L1X');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (11, 11, 7, 'Melvin', '675 31');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (12, 12, 2, 'Northview', '4890-223');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (13, 13, 20, 'Westport', '8301');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (14, 14, 15, 'Fordem', '22111');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (15, 15, 4, 'Karstens', '58500-000');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (16, 16, 9, 'Lien', '249070');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (17, 17, 1, 'Commercial', '60078');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (18, 18, 2, 'Anhalt', '7104');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (19, 19, 8, 'Corben', '30902');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (20, 20, 17, 'Nova', '399-8205');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (21, 21, 4, 'Northridge', '82001');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (22, 22, 17, 'Jenna', '28210');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (23, 23, 11, 'Lunder', '21006');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (24, 24, 18, 'Prairieview', '64800-000');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (25, 25, 11, 'Evergreen', '2327');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (26, 26, 6, 'Mayer', '28210');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (27, 27, 2, 'Kings', '999-3503');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (28, 28, 19, 'Oxford', '21006');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (29, 29, 4, 'Golf Course', '142143');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (30, 30, 15, 'Russell', '83404 CEDEX');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (31, 31, 10, '1st', '1695');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (32, 32, 7, 'Fieldstone', '733517');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (33, 33, 8, 'Reinke', '6406');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (34, 34, 16, 'Center', '10040');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (35, 35, 19, 'Memorial', '19130');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (36, 36, 3, 'Carpenter', '624857');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (37, 37, 15, 'Memorial', '3255');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (38, 38, 11, 'International', '47405');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (39, 39, 17, 'Lindbergh', '419-0125');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (40, 40, 11, 'Ridge Oak', '05-804');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (41, 41, 1, 'Carey', '9630-311');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (42, 42, 8, 'Sachtjen', '242467');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (43, 43, 5, 'Killdeer', '374 53');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (44, 44, 6, 'Manitowish', '30010');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (45, 45, 9, 'Pleasure', '912 24');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (46, 46, 4, 'Sycamore', '4750-521');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (47, 47, 7, 'Eggendart', '141986');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (48, 48, 3, 'Clemons', '7803');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (49, 49, 8, 'Jenna', '10040');
-INSERT INTO address (id, id_user, id_city, street, zipCode) VALUES (50, 50, 13, 'Donald', '11403');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (1, 2332, 1, 12, 'Grim', '446600', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (2, 323132, 2, 4, 'Michigan', '06-121', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (3, 345, 3, 19, 'Pepper Wood', '70061', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (4, 453, 4, 19, 'Lighthouse Bay', '431-10', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (5, 234, 5, 20, 'Arrowood', '7104', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (6, 345, 6, 3, 'Anzinger', '662133', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (7, 34, 7, 12, 'American Ash', '744 88', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (8, 395, 8, 9, 'Nobel', '301649', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (9, 385, 9, 2, 'Artisan', '2350-259', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (10, 378, 10, 5, 'Nancy', 'L1X', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (11, 312, 11, 7, 'Melvin', '675 31', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (12, 324, 12, 2, 'Northview', '4890-223', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (13, 32, 13, 20, 'Westport', '8301', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (14, 34, 14, 15, 'Fordem', '22111', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (15, 98, 15, 4, 'Karstens', '58500-000', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (16, 87, 16, 9, 'Lien', '249070', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (17, 123, 17, 1, 'Commercial', '60078', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (18, 56, 18, 2, 'Anhalt', '7104', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (19, 34, 19, 8, 'Corben', '30902', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (20, 765, 20, 17, 'Nova', '399-8205', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (21, 56, 21, 4, 'Northridge', '82001', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (22, 456, 22, 17, 'Jenna', '28210', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (23, 456, 23, 11, 'Lunder', '21006', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (24, 42, 24, 18, 'Prairieview', '64800-000', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (25, 56, 25, 11, 'Evergreen', '2327', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (26, 78, 26, 6, 'Mayer', '28210', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (27, 56, 27, 2, 'Kings', '999-3503', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (28, 56, 28, 19, 'Oxford', '21006', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (29, 342, 29, 4, 'Golf Course', '142143', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (30, 53, 30, 15, 'Russell', '83404 CEDEX', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (31, 23, 31, 10, '1st', '1695', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (32, 787, 32, 7, 'Fieldstone', '733517', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (33, 98, 33, 8, 'Reinke', '6406', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (34, 98, 34, 16, 'Center', '10040', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (35, 12, 35, 19, 'Memorial', '19130', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (36, 123, 36, 3, 'Carpenter', '624857', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (37, 23, 37, 15, 'Memorial', '3255', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (38, 132, 38, 11, 'International', '47405', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (39, 123, 39, 17, 'Lindbergh', '419-0125', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (40, 123, 40, 11, 'Ridge Oak', '05-804', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (41, 45, 41, 1, 'Carey', '9630-311', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (42, 345, 42, 8, 'Sachtjen', '242467', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (43, 123, 43, 5, 'Killdeer', '374 53', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (44, 56, 44, 6, 'Manitowish', '30010', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (45, 34, 45, 9, 'Pleasure', '912 24', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (46, 987, 46, 4, 'Sycamore', '4750-521', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (47, 123, 47, 7, 'Eggendart', '141986', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (48, 123, 48, 3, 'Clemons', '7803', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (49, 321, 49, 8, 'Jenna', '10040', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (50, 654, 50, 13, 'Donald', '11403', 'home');
 
 -----------------------------------------
 -- brand 
