@@ -33,8 +33,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-
-
+  {{ csrf_field() }}
 
 </head>
 <body>

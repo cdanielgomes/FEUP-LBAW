@@ -40,4 +40,24 @@ class ProfileController extends Controller
 
        
     }
+
+
+       /**
+     * Deletes an individual address.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function deleteAddress(Request $request, $id)
+    {
+      $item = Address::find($id)->get();
+
+      $this->authorize('delete', $item);
+
+      $item->delete();
+
+      return $item;
+    }
+
+
 }

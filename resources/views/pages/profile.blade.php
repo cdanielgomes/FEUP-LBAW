@@ -162,9 +162,9 @@
             <div class="cards row mt-2">
     
             @foreach ($address as $item)
-            <div class="mt-2 col-md-6 col-lg-3">
+            <div class="mt-2 col-md-6 col-lg-3" id="address-{{$item['id']}}">
                 <div class="box d-flex flex-column">
-                    <i class="fas fa-trash-alt ml-auto"></i>
+                    <i class="fas fa-trash-alt ml-auto"  value={{$item['id']}}></i>
                    
                 <div class="d-flex flex-row address-header">
                     <i class="fas fa-home pr-1"></i>
@@ -187,6 +187,7 @@
             @endswitch
 
         </div>
+     
            <h6> {{ $item['door_number']. ' ' . $item['street'] . ', ' . $item['zipcode'] . ' ' . $item['city'] . ' - ' . $item['country']}} </h6>
                     
                     </div>

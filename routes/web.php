@@ -26,10 +26,5 @@ Route::get('/cart', 'CartController@show')->name('cart');
 
 Auth::routes();
 
-/*
-Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'Auth\RegisterController@register');
-
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login');*/
+Route::delete('api/profile/{id}/address/{idAddr}','ProfileController@deleteAddress');
 
