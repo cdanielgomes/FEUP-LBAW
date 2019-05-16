@@ -1,5 +1,6 @@
 
- let itemCheckers = document.querySelectorAll('.fas .fa-trash-alt .ml-auto');
+ let itemCheckers = document.querySelectorAll('i.fas.fa-trash-alt.ml-auto.addr');
+
  [].forEach.call(itemCheckers, function(checker) {
    checker.addEventListener('click', sendDeleteAddress);
  });
@@ -23,14 +24,17 @@ function encodeForAjax(data) {
   }
   
   function sendDeleteAddress(event) {
-      let id =  event.target.value;
-
-    sendAjaxRequest('delete', 'api/profile/' + id + "/address/" + id, null, addressDeletedHandler);
+      let idAddr =  event.target.getAttribute('value');
+      let idUser = document.getElementById('userId').getAttribute('value');
+    sendAjaxRequest('delete', 'api/profile/' + idUser + "/address/" + idAddr, null, addressDeletedHandler(idUser));
   }
 
-  function addressDeletedHandler() {
-    if (this.status != 200) window.location = '/profile/' + ;
+  function addressDeletedHandler(id) {
+    if (this.status != 200) window.location = '/profile/' + id;
+    console.log("xD")
     let item = JSON.parse(this.responseText);
+    console.log("response");
     let element = document.querySelector("address-" + item.id);
+    console.log(element);
     element.remove();
   }

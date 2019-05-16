@@ -19,12 +19,12 @@ Route::get('homepage', 'HomepageController@show')->name('homepage');
 Route::get('/about', 'AboutController@about')->name('about');
 Route::get('/faq', 'FaqController@show')->name('faq');
 
-Route::get('profile/{id}', 'ProfileController@show');
+Route::get('/profile/{id}', 'ProfileController@show')->name('profile');
 
 Route::get('/product', 'ProductController@show')->name('product');
 Route::get('/cart', 'CartController@show')->name('cart');
 
 Auth::routes();
 
-Route::delete('api/profile/{id}/address/{idAddr}','ProfileController@deleteAddress');
+Route::delete('api/profile/{idUser}/address/{idAddr}','ProfileController@deleteAddress');
 

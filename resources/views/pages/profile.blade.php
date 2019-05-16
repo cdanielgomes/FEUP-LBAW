@@ -2,7 +2,7 @@
 
 @section('styles')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-    
+<script src="{{url('js/scripts.js')}}" defer></script>
 @endsection
 
 
@@ -14,6 +14,8 @@
  $address = $data['addresses'];
 
 @endphp
+
+<input type="hidden" id="userId" value={{Auth::user()->id}}>
 
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
@@ -164,7 +166,7 @@
             @foreach ($address as $item)
             <div class="mt-2 col-md-6 col-lg-3" id="address-{{$item['id']}}">
                 <div class="box d-flex flex-column">
-                    <i class="fas fa-trash-alt ml-auto"  value={{$item['id']}}></i>
+                    <i class="fas fa-trash-alt ml-auto addr"  value={{$item['id']}}></i>
                    
                 <div class="d-flex flex-row address-header">
                     <i class="fas fa-home pr-1"></i>
@@ -274,7 +276,7 @@
             <div class="cards row mt-2">
                 <div class="mt-2 col-md-6 col-lg-3">
                     <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto"></i>
+                        <i class="fas fa-trash-alt ml-auto card"></i>
                         <div class="d-flex flex-row address-header">
                             <i class="fa fa-cc-mastercard pr-1"></i>
                             <h6>Mastercard</h6>
@@ -284,7 +286,7 @@
                 </div>
                 <div class="mt-2 col-md-6 col-lg-3">
                     <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto"></i>
+                        <i class="fas fa-trash-alt ml-auto card"></i>
                         <div class="d-flex flex-row address-header">
                             <i class="fa fa-cc-visa pr-1"></i>
                             <h6>Visa</h6>
@@ -294,7 +296,7 @@
                 </div>
                 <div class="mt-2 col-md-6 col-lg-3">
                     <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto"></i>
+                        <i class="fas fa-trash-alt ml-auto card"></i>
                         <div class="d-flex flex-row address-header">
                             <i class="fa fa-cc-amex pr-1"></i>
                             <h6>American Express</h6>
@@ -324,11 +326,11 @@
                         </div>
                         <div class="form-group">
                             <div class="dropdown">
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
+                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton2"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Type of card
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                     <a class="dropdown-item" href="#"><i class="fa fa-cc-visa"></i> Visa</a>
                                     <a class="dropdown-item" href="#"><i class="fa fa-cc-mastercard"></i>
                                         Mastercard</a>

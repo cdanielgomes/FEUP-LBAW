@@ -48,9 +48,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function deleteAddress(Request $request, $id)
+    public function deleteAddress(Request $request, $idUser, $idAddr)
     {
-      $item = Address::find($id)->get();
+
+      print_r($idUser);
+      print_r("addr = " . $idAddr);
+      
+      $item = Address::find($idAddr)->get();
 
       $this->authorize('delete', $item);
 

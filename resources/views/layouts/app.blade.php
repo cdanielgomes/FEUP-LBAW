@@ -110,7 +110,7 @@
                           <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                       @else
                           <li class="nav-item">
-                          <a href="profile/{{ Auth::user()->id}}" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                          <a href="{{route('profile', ['id' => Auth::user()->id ])}}" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                               
      
                             <i class="fas fa-user pt-1"></i>
