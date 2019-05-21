@@ -8,6 +8,7 @@ use App\User;
 use App\Address;
 use App\City;
 use App\Country;
+use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function show($id){
@@ -40,28 +41,5 @@ class ProfileController extends Controller
 
        
     }
-
-
-       /**
-     * Deletes an individual address.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function deleteAddress(Request $request, $idUser, $idAddr)
-    {
-
-      print_r($idUser);
-      print_r("addr = " . $idAddr);
-      
-      $item = Address::find($idAddr)->get();
-
-      $this->authorize('delete', $item);
-
-      $item->delete();
-
-      return $item;
-    }
-
 
 }

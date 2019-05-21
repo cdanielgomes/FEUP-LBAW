@@ -18,7 +18,6 @@ class Address extends Model
         'id', 'id_user', 'id_city', 'street', 'zipCode', 'type_address'
     ];
 
-
     /**
      * The users that belong to the role.
      */

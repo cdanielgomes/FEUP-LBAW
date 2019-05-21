@@ -26,15 +26,18 @@ function encodeForAjax(data) {
   function sendDeleteAddress(event) {
       let idAddr =  event.target.getAttribute('value');
       let idUser = document.getElementById('userId').getAttribute('value');
-    sendAjaxRequest('delete', 'api/profile/' + idUser + "/address/" + idAddr, null, addressDeletedHandler(idUser));
+    sendAjaxRequest('delete', "/api/address/" + idAddr, null, addressDeletedHandler);
   }
 
-  function addressDeletedHandler(id) {
-    if (this.status != 200) window.location = '/profile/' + id;
-    console.log("xD")
+  function addressDeletedHandler() {
+    if (this.status != 200){
+      console.log(this.status);
+     return;
+    } 
+    console.log(this.responseText);
     let item = JSON.parse(this.responseText);
     console.log("response");
-    let element = document.querySelector("address-" + item.id);
+    let element = document.querySelector("address-" + item.idAddress);
     console.log(element);
     element.remove();
   }
