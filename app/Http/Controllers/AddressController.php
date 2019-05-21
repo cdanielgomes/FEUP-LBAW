@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+
+    public function _construct(){
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

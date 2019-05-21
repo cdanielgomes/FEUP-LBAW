@@ -34,10 +34,7 @@ function encodeForAjax(data) {
       console.log(this.status);
      return;
     } 
-    console.log(this.responseText);
     let item = JSON.parse(this.responseText);
-    console.log("response");
-    let element = document.querySelector("address-" + item.idAddress);
-    console.log(element);
+    let element = document.querySelector("#address-" + item['id']);
     element.remove();
   }
