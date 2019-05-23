@@ -8,14 +8,20 @@ class Address extends Model
 {
     protected $table = 'address';
     
-    
+     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
      /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id', 'id_user', 'id_city', 'street', 'zipCode', 'type_address'
+        'id', 'door_number', 'id_user', 'id_city', 'street', 'zipcode', 'type_address'
     ];
 
     /**

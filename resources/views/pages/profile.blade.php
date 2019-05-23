@@ -2,7 +2,7 @@
 
 @section('styles')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-<script src="{{url('js/scripts.js')}}" defer></script>
+<script src="{{url('js/profile.js')}}" defer></script>
 @endsection
 
 
@@ -169,21 +169,21 @@
                     <i class="fas fa-trash-alt ml-auto addr"  value={{$item['id']}}></i>
                    
                 <div class="d-flex flex-row address-header">
-                    <i class="fas fa-home pr-1"></i>
+                    
                 
             @switch($item['type_address'])
                 @case('home')
-            
+                <i class="fas fa-home pr-1"></i>
                     <h6>Home</h6>
                
                     @break
                 @case('other')
-                    
+                <i class="fab fa-bandcamp pr-1"></i>
                 <h6>Other</h6>
                
                     @break
                 @default
-                    
+                <i class="fas fa-briefcase pr-1"></i>
                 <h6>Work</h6>
                
             @endswitch
@@ -212,7 +212,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form id="newAddress">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <div class="dropdown">
@@ -222,11 +222,15 @@
                                     Type
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</a>
-                                    <a class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</a>
+                                    <span class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</span>
+                                    <span class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</span>
+                                    <span class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="review_title">Door Number</label>
+                            <input type="number" class="form-control" placeholder="Door Number" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Street</label>

@@ -18,25 +18,15 @@ class ProfileController extends Controller
         
         
         $address = $user->addresses()->get();
-        $addresses =$address->toArray(); 
        
+        $addresses = $address->toArray(); 
         $city = array();
         foreach ($addresses as &$value) {
-        $array = City::find($value['id_city'])->get()->toArray()[0];
-            $value['city'] = $array['name'];
-            $value['country'] = Country::find($array['id_country'])->get()->toArray()[0]['name'];
+        $array = City::where('id', $value['id_city'])->get()->toArray()[0];
+        $value['city'] = $array['name'];
+        $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
         }
-
-        $country = 2;
-
         
-        //$country = $city->countries();
-      /*foreach($address as &$a){
-            $a['city'] = DB::table('city')->where('id', $a['id_city'])->get(); 
-            $a['country'] = DB::table('country')->where('id',DB::table('city')->where('id', $a['id_city'])->get('id_country'))->get();
-           
-        }*/
-
        return view('pages.profile')->with('data', ['user' => $user, 'addresses' => $addresses]);
 
        

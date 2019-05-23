@@ -8,6 +8,12 @@ class Country extends Model
 {
    
     protected $table = 'country';
+       /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
     
     
     /**
@@ -16,7 +22,7 @@ class Country extends Model
     * @var array
     */
    protected $fillable = [
-       'id', 'id_country', 'name'
+       'id', 'name'
    ];
 
 

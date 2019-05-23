@@ -27,4 +27,5 @@ Route::get('/cart', 'CartController@show')->name('cart');
 Auth::routes();
 
 Route::delete('api/address/{idAddr}','AddressController@destroy');
+Route::post('api/profile/{idUser}/address','AddressController@create');
 
