@@ -13,6 +13,10 @@ footer {
   border-color: #9effd5;
 }
 
+/*<div class="topright">*/
+.topright {
+  padding-top: 1px;
+}
 div.saleproducts,
 div.featuredproducts,
 div.companybreak {
