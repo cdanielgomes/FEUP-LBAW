@@ -39,8 +39,8 @@
 
       <!-- Button trigger modal -->
       <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
-        <div class="container topright text-aling-top fa-2x ">
-          <i class="far topright fa-question-circle text-top "></i>
+        <div class="container topright text-aling-top">
+          <i class="far topright fa-question-circle fa-2x text-top "></i>
         </div>
       </button>
 
@@ -50,21 +50,25 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">What is About?</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              Egestas integer eget aliquet nibh praesent tristique. Libero justo laoreet sit amet cursus sit amet
+              dictum.
+              Sed ullamcorper morbi tincidunt ornare massa. Nisi vitae suscipit tellus mauris a diam maecenas. Justo
+              donec enim diam vulputate ut pharetra sit amet aliquam. Nunc sed id semper risus in hendrerit gravida
+              rutrum.
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
             </div>
           </div>
         </div>
       </div>
+
 
     </div>
   </div>
