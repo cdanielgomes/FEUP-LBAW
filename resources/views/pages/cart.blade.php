@@ -21,7 +21,6 @@
 <main class="cart">
   <section class="container">
     <div class="row my-3">
-      <h1 class="my-2"> Checkout </h1>
 
 
       <!-- Button trigger modal -->
@@ -50,6 +49,10 @@
               rutrum.
             </div>
             <div class="modal-footer">
+              <div class="container">
+                <div class="modal-body">
+                  <span><a href={{route('faq')}}> More Questions? </a></span> </div>
+              </div>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
             </div>
           </div>
@@ -57,6 +60,7 @@
       </div>
 
 
+      <h1 class="my-2"> Checkout </h1>
     </div>
     <ul class="nav nav-tabs navbar-expand-md flex-column flex-sm-row" id="cart">
       <li class="nav-item">

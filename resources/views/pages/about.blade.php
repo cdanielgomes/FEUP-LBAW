@@ -21,26 +21,13 @@
 <div class="container">
   <div class="container scroll_nav">
     <div class="row">
-      <h1 class="col-lg col-md col-sm-12">
-        About Us
-      </h1>
-      <a href="#information_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
-        <i class="fas fa-arrow-alt-circle-right"></i>
-        Information
-      </a>
-      <a href="#contacts_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
-        <i class="fas fa-arrow-alt-circle-right"></i>
-        Contacts
-      </a>
-      <a href="#team_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
-        <i class="fas fa-arrow-alt-circle-right"></i>
-        The Team
-      </a>
+
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
-        <div class="container topright text-aling-top">
-          <i class="far topright fa-question-circle fa-2x text-top "></i>
+
+      <button type="button" class="btn overlay" data-toggle="modal" data-target="#exampleModal">
+        <div class="container text-aling-top">
+          <i class="far fa-question-circle fa-2x text-top "></i>
         </div>
       </button>
 
@@ -63,12 +50,33 @@
               rutrum.
             </div>
             <div class="modal-footer">
+              <div class="container">
+                <div class="modal-body">
+                  <span><a href={{route('faq')}}> More Questions? </a></span> </div>
+              </div>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
             </div>
           </div>
         </div>
       </div>
 
+      <h1 class="col-lg col-md col-sm-12">
+        About Us
+      </h1>
+
+
+      <a href="#information_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
+        <i class="fas fa-arrow-alt-circle-right"></i>
+        Information
+      </a>
+      <a href="#contacts_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
+        <i class="fas fa-arrow-alt-circle-right"></i>
+        Contacts
+      </a>
+      <a href="#team_title" class="col-lg-auto col-md-auto col-sm-12 text-sm-center">
+        <i class="fas fa-arrow-alt-circle-right"></i>
+        The Team
+      </a>
 
     </div>
   </div>
