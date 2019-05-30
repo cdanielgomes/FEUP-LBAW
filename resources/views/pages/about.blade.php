@@ -23,43 +23,6 @@
     <div class="row">
 
 
-      <!-- Button trigger modal -->
-
-      <button type="button" class="btn overlay" data-toggle="modal" data-target="#exampleModal">
-        <div class="container text-aling-top">
-          <i class="far fa-question-circle fa-2x text-top "></i>
-        </div>
-      </button>
-
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">What is About?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Egestas integer eget aliquet nibh praesent tristique. Libero justo laoreet sit amet cursus sit amet
-              dictum.
-              Sed ullamcorper morbi tincidunt ornare massa. Nisi vitae suscipit tellus mauris a diam maecenas. Justo
-              donec enim diam vulputate ut pharetra sit amet aliquam. Nunc sed id semper risus in hendrerit gravida
-              rutrum.
-            </div>
-            <div class="modal-footer">
-              <div class="container">
-                <div class="modal-body">
-                  <span><a href={{route('faq')}}> More Questions? </a></span> </div>
-              </div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <h1 class="col-lg col-md col-sm-12">
         About Us
       </h1>

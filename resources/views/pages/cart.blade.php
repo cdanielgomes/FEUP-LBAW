@@ -21,10 +21,11 @@
 <main class="cart">
   <section class="container">
     <div class="row my-3">
+    <h1 class="my-2"> Checkout </h1>
 
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
         <div class="container topright text-aling-top">
           <i class="far topright fa-question-circle fa-2x text-top "></i>
         </div>
@@ -60,7 +61,6 @@
       </div>
 
 
-      <h1 class="my-2"> Checkout </h1>
     </div>
     <ul class="nav nav-tabs navbar-expand-md flex-column flex-sm-row" id="cart">
       <li class="nav-item">
