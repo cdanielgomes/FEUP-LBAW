@@ -140,7 +140,7 @@
 
         @yield('content')
 
-    <footer class="footer pt-2 mt-5">
+    <footer class="footer pt-3">
             <div class="container">
               <div class="row text-center">
                 <div class="col">
