@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['categories' = $categories])
 
 @section('styles')
 

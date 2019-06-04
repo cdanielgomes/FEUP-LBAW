@@ -9,6 +9,7 @@ use App\Address;
 use App\City;
 use App\Country;
 use App\Product;
+use App\Categories;
 use App\Favorites;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Xml\Facade;
@@ -65,7 +66,7 @@ class ProfileController extends Controller
         }
 
        // dd($delivered);
-        return view('pages.profile')->with('data', ['user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
+        return view('pages.profile', ['categories' => Categories::all()])->with('data', ['user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
     }
 
     public function deleteFav($idUser, $idProduct)
