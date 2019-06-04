@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Categories;
 
 class LoginController extends Controller
 {
@@ -30,6 +31,12 @@ class LoginController extends Controller
     protected $redirectTo = '/homepage';
 
   
+    protected function showLoginForm(){
+
+        $categories =  Categories::all();
+
+        return view('auth.login', compact('categories'));
+    }
 
     /**
      * Create a new controller instance.
@@ -40,6 +47,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
     public function username()
     {
     

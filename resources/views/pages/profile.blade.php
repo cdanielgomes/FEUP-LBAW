@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['categories' => $categories])
 
 @section('styles')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
@@ -129,7 +129,7 @@ $hold = $data['hold']
                         </div>
                         <div class="form-group">
                             <label for="review_title">Password</label>
-                            <input type="password" class="form-control" placeholder="Your password" required>
+                            <input type="password" class="form-control" placeholder="Your password">
                         </div>
                         <div class="form-group">
                             <label for="review_title">New Password</label>
@@ -482,11 +482,11 @@ $hold = $data['hold']
 
             </div>
 
+
+
+            @endif
         </section>
     </div>
-
-    @endif
-
 
     <div class="container">
         <section class="py-5">
@@ -559,11 +559,11 @@ $hold = $data['hold']
                 </table>
             </div>
 
+            @endif
+
+
         </section>
     </div>
-
-    @endif
-
 
 
     <div class="container p-2">

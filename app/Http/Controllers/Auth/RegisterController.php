@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Cart;
+use App\Categories;
 
 class RegisterController extends Controller
 {
@@ -39,6 +40,14 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    protected function showRegistrationForm(){
+
+        $categories =  Categories::all();
+
+        return view('auth.register', compact('categories'));
     }
 
     /**

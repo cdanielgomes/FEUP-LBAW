@@ -83,8 +83,10 @@ CREATE TABLE product
 CREATE TABLE categories
 (
   id SERIAL PRIMARY KEY,
-  name text NOT NULL CONSTRAINT categories_name_uk UNIQUE,
-  season text NOT NULL
+  name text NOT NULL,
+  sex CHAR(1) DEFAULT '?' CONSTRAINT sex_ck CHECK(sex IN ('?', 'F', 'M')),
+  season text NOT NULL, 
+  dad text NOT NULL
 
 );
 
@@ -215,7 +217,7 @@ CREATE TABLE deleted
   date DATE DEFAULT current_date,
   PRIMARY KEY (id_user)
 );
-
+/*
 CREATE TABLE standard
 (
   id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
@@ -233,6 +235,7 @@ CREATE TABLE administrator
   id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_user)
 );
+*/
 
 CREATE TABLE product_color
 (
@@ -614,47 +617,23 @@ INSERT INTO product (id, name, price, description, stock, score) VALUES (100, 'A
 -- categories
 -----------------------------------------
 
-INSERT INTO categories (id, name, season) VALUES (1, 'consequat', 'lacinia');
-INSERT INTO categories (id, name, season) VALUES (2, 'lacus', 'semper');
-INSERT INTO categories (id, name, season) VALUES (3, 'ipsum', 'lobortis');
-INSERT INTO categories (id, name, season) VALUES (4, 'est', 'vestibulum');
-INSERT INTO categories (id, name, season) VALUES (5, 'massa', 'justo');
-INSERT INTO categories (id, name, season) VALUES (6, 'cras', 'nulla');
-INSERT INTO categories (id, name, season) VALUES (7, 'faucibus', 'volutpat');
-INSERT INTO categories (id, name, season) VALUES (8, 'penatibus', 'sed');
-INSERT INTO categories (id, name, season) VALUES (9, 'accumsan', 'ligula');
-INSERT INTO categories (id, name, season) VALUES (10, 'adipiscing', 'justo');
-INSERT INTO categories (id, name, season) VALUES (11, 'panths', 'quis');
-INSERT INTO categories (id, name, season) VALUES (12, 'interdum', 'et');
-INSERT INTO categories (id, name, season) VALUES (13, 'tristique', 'cubilia');
-INSERT INTO categories (id, name, season) VALUES (14, 'kinus', 'volutpat');
-INSERT INTO categories (id, name, season) VALUES (15, 'nisi', 'commodo');
-INSERT INTO categories (id, name, season) VALUES (16, 'elementum', 'facilisi');
-INSERT INTO categories (id, name, season) VALUES (17, 'praesent', 'in');
-INSERT INTO categories (id, name, season) VALUES (18, 'barberum', 'nulla');
-INSERT INTO categories (id, name, season) VALUES (19, 'aliquet', 'eget');
-INSERT INTO categories (id, name, season) VALUES (20, 'ultrices', 'ut');
-INSERT INTO categories (id, name, season) VALUES (21, 'bibendum', 'sapien');
-INSERT INTO categories (id, name, season) VALUES (22, 'adipiscin', 'duis');
-INSERT INTO categories (id, name, season) VALUES (23, 'et', 'duis');
-INSERT INTO categories (id, name, season) VALUES (24, 'in', 'amet');
-INSERT INTO categories (id, name, season) VALUES (25, 'magna', 'nulla');
-INSERT INTO categories (id, name, season) VALUES (26, 'tu', 'platea');
-INSERT INTO categories (id, name, season) VALUES (27, 'augue', 'ultrices');
-INSERT INTO categories (id, name, season) VALUES (28, 'eu', 'elit');
-INSERT INTO categories (id, name, season) VALUES (29, 'congue', 'pede');
-INSERT INTO categories (id, name, season) VALUES (30, 'viverra', 'ipsum');
-INSERT INTO categories (id, name, season) VALUES (31, 'ola', 'lacinia');
-INSERT INTO categories (id, name, season) VALUES (32, 'orci', 'non');
-INSERT INTO categories (id, name, season) VALUES (33, 'nulla', 'convallis');
-INSERT INTO categories (id, name, season) VALUES (34, 'sopa', 'leo');
-INSERT INTO categories (id, name, season) VALUES (35, 'eget', 'sapien');
-INSERT INTO categories (id, name, season) VALUES (36, 'consectetuer', 'sapien');
-INSERT INTO categories (id, name, season) VALUES (37, 'donec', 'leo');
-INSERT INTO categories (id, name, season) VALUES (38, 'vestibulum', 'interdum');
-INSERT INTO categories (id, name, season) VALUES (39, 'imperdiet', 'nunc');
-INSERT INTO categories (id, name, season) VALUES (40, 'duis', 'nec');
-
+INSERT INTO categories (id, name, sex, season, dad) VALUES (1, 'Tops', 'F', 'lacinia', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (2, 'Tops', 'M', 'semper', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (3, 'Bottoms', 'F', 'lobortis','Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (4, 'Shoes', 'F', 'vestibulum', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accesoires', 'F','justo', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (6, 'Bottoms', 'M', 'nulla', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (7, 'Shoes', 'M', 'volutpat', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accesoires', 'M', 'sed', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (9, 'Bedroom', '?', 'ligula', 'House-Decor');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (10, 'Kitchen', '?', 'justo', 'House-Decor');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (11, 'Living Room', '?', 'quis', 'House-Decor');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (12, 'Outdoor', '?', 'et', 'House-Decor');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (13, 'Climbing', '?', 'cubilia', 'Activities');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (14, 'Hiking', '?', 'volutpat', 'Activities');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (15, 'Running', '?', 'commodo', 'Activities');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (16, 'Fishing', '?', 'facilisi', 'Activities');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (17, 'Hunting', '?', 'in', 'Activities');
 -----------------------------------------
 -- review
 -----------------------------------------
@@ -1181,107 +1160,106 @@ INSERT INTO "analyze" (id_review , id_user_analyze) VALUES (1, 35);
 -- product Category  
 -----------------------------------------
 
-INSERT INTO product_categories (id_product, id_categories) VALUES (1, 18);
-INSERT INTO product_categories (id_product, id_categories) VALUES (2, 14);
-INSERT INTO product_categories (id_product, id_categories) VALUES (3, 11);
-INSERT INTO product_categories (id_product, id_categories) VALUES (4, 12);
-INSERT INTO product_categories (id_product, id_categories) VALUES (5, 14);
-INSERT INTO product_categories (id_product, id_categories) VALUES (6, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (7, 15);
-INSERT INTO product_categories (id_product, id_categories) VALUES (8, 15);
-INSERT INTO product_categories (id_product, id_categories) VALUES (9, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (10, 1);
-INSERT INTO product_categories (id_product, id_categories) VALUES (11, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (12, 7);
-INSERT INTO product_categories (id_product, id_categories) VALUES (13, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (14, 15);
-INSERT INTO product_categories (id_product, id_categories) VALUES (15, 1);
-INSERT INTO product_categories (id_product, id_categories) VALUES (16, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (17, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (18, 19);
-INSERT INTO product_categories (id_product, id_categories) VALUES (19, 1);
-INSERT INTO product_categories (id_product, id_categories) VALUES (20, 19);
-INSERT INTO product_categories (id_product, id_categories) VALUES (21, 3);
-INSERT INTO product_categories (id_product, id_categories) VALUES (22, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (23, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (24, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (25, 12);
-INSERT INTO product_categories (id_product, id_categories) VALUES (26, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (27, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (28, 7);
-INSERT INTO product_categories (id_product, id_categories) VALUES (29, 14);
-INSERT INTO product_categories (id_product, id_categories) VALUES (30, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (31, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (32, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (33, 3);
-INSERT INTO product_categories (id_product, id_categories) VALUES (34, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (35, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (36, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (37, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (38, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (39, 6);
-INSERT INTO product_categories (id_product, id_categories) VALUES (40, 11);
-INSERT INTO product_categories (id_product, id_categories) VALUES (41, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (42, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (43, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (44, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (45, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (46, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (47, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (48, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (49, 3);
-INSERT INTO product_categories (id_product, id_categories) VALUES (50, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (51, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (52, 1);
-INSERT INTO product_categories (id_product, id_categories) VALUES (53, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (54, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (55, 15);
-INSERT INTO product_categories (id_product, id_categories) VALUES (56, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (57, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (58, 6);
-INSERT INTO product_categories (id_product, id_categories) VALUES (59, 15);
-INSERT INTO product_categories (id_product, id_categories) VALUES (60, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (61, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (62, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (63, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (64, 12);
-INSERT INTO product_categories (id_product, id_categories) VALUES (65, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (66, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (67, 3);
-INSERT INTO product_categories (id_product, id_categories) VALUES (68, 4);
-INSERT INTO product_categories (id_product, id_categories) VALUES (69, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (70, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (71, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (72, 17);
-INSERT INTO product_categories (id_product, id_categories) VALUES (73, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (74, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (75, 19);
-INSERT INTO product_categories (id_product, id_categories) VALUES (76, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (77, 4);
-INSERT INTO product_categories (id_product, id_categories) VALUES (78, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (79, 5);
-INSERT INTO product_categories (id_product, id_categories) VALUES (80, 4);
-INSERT INTO product_categories (id_product, id_categories) VALUES (81, 7);
-INSERT INTO product_categories (id_product, id_categories) VALUES (82, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (83, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (84, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (85, 20);
-INSERT INTO product_categories (id_product, id_categories) VALUES (86, 6);
-INSERT INTO product_categories (id_product, id_categories) VALUES (87, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (88, 8);
-INSERT INTO product_categories (id_product, id_categories) VALUES (89, 14);
-INSERT INTO product_categories (id_product, id_categories) VALUES (90, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (91, 10);
-INSERT INTO product_categories (id_product, id_categories) VALUES (92, 6);
-INSERT INTO product_categories (id_product, id_categories) VALUES (93, 9);
-INSERT INTO product_categories (id_product, id_categories) VALUES (94, 18);
-INSERT INTO product_categories (id_product, id_categories) VALUES (95, 13);
-INSERT INTO product_categories (id_product, id_categories) VALUES (96, 2);
-INSERT INTO product_categories (id_product, id_categories) VALUES (97, 3);
-INSERT INTO product_categories (id_product, id_categories) VALUES (98, 16);
-INSERT INTO product_categories (id_product, id_categories) VALUES (99, 6);
-INSERT INTO product_categories (id_product, id_categories) VALUES (100, 7);
-
+insert into product_categories (id_product, id_categories) values (1, 8);
+insert into product_categories (id_product, id_categories) values (2, 14);
+insert into product_categories (id_product, id_categories) values (3, 8);
+insert into product_categories (id_product, id_categories) values (4, 6);
+insert into product_categories (id_product, id_categories) values (5, 3);
+insert into product_categories (id_product, id_categories) values (6, 2);
+insert into product_categories (id_product, id_categories) values (7, 12);
+insert into product_categories (id_product, id_categories) values (8, 14);
+insert into product_categories (id_product, id_categories) values (9, 13);
+insert into product_categories (id_product, id_categories) values (10, 13);
+insert into product_categories (id_product, id_categories) values (11, 5);
+insert into product_categories (id_product, id_categories) values (12, 4);
+insert into product_categories (id_product, id_categories) values (13, 15);
+insert into product_categories (id_product, id_categories) values (14, 5);
+insert into product_categories (id_product, id_categories) values (15, 3);
+insert into product_categories (id_product, id_categories) values (16, 10);
+insert into product_categories (id_product, id_categories) values (17, 10);
+insert into product_categories (id_product, id_categories) values (18, 8);
+insert into product_categories (id_product, id_categories) values (19, 13);
+insert into product_categories (id_product, id_categories) values (20, 14);
+insert into product_categories (id_product, id_categories) values (21, 15);
+insert into product_categories (id_product, id_categories) values (22, 4);
+insert into product_categories (id_product, id_categories) values (23, 4);
+insert into product_categories (id_product, id_categories) values (24, 10);
+insert into product_categories (id_product, id_categories) values (25, 11);
+insert into product_categories (id_product, id_categories) values (26, 15);
+insert into product_categories (id_product, id_categories) values (27, 10);
+insert into product_categories (id_product, id_categories) values (28, 4);
+insert into product_categories (id_product, id_categories) values (29, 2);
+insert into product_categories (id_product, id_categories) values (30, 11);
+insert into product_categories (id_product, id_categories) values (31, 10);
+insert into product_categories (id_product, id_categories) values (32, 2);
+insert into product_categories (id_product, id_categories) values (33, 11);
+insert into product_categories (id_product, id_categories) values (34, 13);
+insert into product_categories (id_product, id_categories) values (35, 15);
+insert into product_categories (id_product, id_categories) values (36, 11);
+insert into product_categories (id_product, id_categories) values (37, 16);
+insert into product_categories (id_product, id_categories) values (38, 13);
+insert into product_categories (id_product, id_categories) values (39, 5);
+insert into product_categories (id_product, id_categories) values (40, 16);
+insert into product_categories (id_product, id_categories) values (41, 1);
+insert into product_categories (id_product, id_categories) values (42, 3);
+insert into product_categories (id_product, id_categories) values (43, 9);
+insert into product_categories (id_product, id_categories) values (44, 2);
+insert into product_categories (id_product, id_categories) values (45, 10);
+insert into product_categories (id_product, id_categories) values (46, 12);
+insert into product_categories (id_product, id_categories) values (47, 15);
+insert into product_categories (id_product, id_categories) values (48, 4);
+insert into product_categories (id_product, id_categories) values (49, 12);
+insert into product_categories (id_product, id_categories) values (50, 17);
+insert into product_categories (id_product, id_categories) values (51, 16);
+insert into product_categories (id_product, id_categories) values (52, 5);
+insert into product_categories (id_product, id_categories) values (53, 14);
+insert into product_categories (id_product, id_categories) values (54, 6);
+insert into product_categories (id_product, id_categories) values (55, 13);
+insert into product_categories (id_product, id_categories) values (56, 10);
+insert into product_categories (id_product, id_categories) values (57, 9);
+insert into product_categories (id_product, id_categories) values (58, 4);
+insert into product_categories (id_product, id_categories) values (59, 13);
+insert into product_categories (id_product, id_categories) values (60, 7);
+insert into product_categories (id_product, id_categories) values (61, 1);
+insert into product_categories (id_product, id_categories) values (62, 8);
+insert into product_categories (id_product, id_categories) values (63, 8);
+insert into product_categories (id_product, id_categories) values (64, 10);
+insert into product_categories (id_product, id_categories) values (65, 15);
+insert into product_categories (id_product, id_categories) values (66, 13);
+insert into product_categories (id_product, id_categories) values (67, 11);
+insert into product_categories (id_product, id_categories) values (68, 14);
+insert into product_categories (id_product, id_categories) values (69, 1);
+insert into product_categories (id_product, id_categories) values (70, 3);
+insert into product_categories (id_product, id_categories) values (71, 16);
+insert into product_categories (id_product, id_categories) values (72, 10);
+insert into product_categories (id_product, id_categories) values (73, 16);
+insert into product_categories (id_product, id_categories) values (74, 13);
+insert into product_categories (id_product, id_categories) values (75, 16);
+insert into product_categories (id_product, id_categories) values (76, 12);
+insert into product_categories (id_product, id_categories) values (77, 13);
+insert into product_categories (id_product, id_categories) values (78, 4);
+insert into product_categories (id_product, id_categories) values (79, 7);
+insert into product_categories (id_product, id_categories) values (80, 17);
+insert into product_categories (id_product, id_categories) values (81, 11);
+insert into product_categories (id_product, id_categories) values (82, 14);
+insert into product_categories (id_product, id_categories) values (83, 9);
+insert into product_categories (id_product, id_categories) values (84, 17);
+insert into product_categories (id_product, id_categories) values (85, 17);
+insert into product_categories (id_product, id_categories) values (86, 11);
+insert into product_categories (id_product, id_categories) values (87, 14);
+insert into product_categories (id_product, id_categories) values (88, 9);
+insert into product_categories (id_product, id_categories) values (89, 17);
+insert into product_categories (id_product, id_categories) values (90, 1);
+insert into product_categories (id_product, id_categories) values (91, 5);
+insert into product_categories (id_product, id_categories) values (92, 5);
+insert into product_categories (id_product, id_categories) values (93, 6);
+insert into product_categories (id_product, id_categories) values (94, 1);
+insert into product_categories (id_product, id_categories) values (95, 11);
+insert into product_categories (id_product, id_categories) values (96, 4);
+insert into product_categories (id_product, id_categories) values (97, 4);
+insert into product_categories (id_product, id_categories) values (98, 2);
+insert into product_categories (id_product, id_categories) values (99, 10);
+insert into product_categories (id_product, id_categories) values (100, 4);
 -----------------------------------------
 -- product color
 -----------------------------------------
