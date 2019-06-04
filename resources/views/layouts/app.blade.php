@@ -51,44 +51,44 @@
                         <i class="fas fa-bars"></i>
                       </button>
                       <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav px-5">
+                        <ul class="nav navbar-nav menu_nav">
                           <li class="nav-item submenu dropdown">
-                            <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            <a href="{{ route('categories') }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                               aria-haspopup="true" aria-expanded="false">Clothing</a>
                             <ul class="dropdown-menu float-left">
                               <h3 class="dropdown-header">Men</h3>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Tops</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Bottoms</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Shoes</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Accesories</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Shop All</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Tops</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Bottoms</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Shoes</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Accesories</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Shop All</a></li>
                               <h3 class="dropdown-header">Women</h3>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Tops</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Bottoms</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Shoes</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Accesories</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Shop All</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Tops</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Bottoms</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Shoes</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Accesories</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Shop All</a></li>
                             </ul>
                           </li>
                           <li class="nav-item submenu dropdown">
-                            <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            <a href="{{ route('categories') }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                               aria-haspopup="true" aria-expanded="false">House-Decor</a>
                             <ul class="dropdown-menu">
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Bedroom</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Kitchen</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Living Room</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Outdoor</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Bedroom</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Kitchen</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Living Room</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Outdoor</a></li>
                             </ul>
                           </li>
                           <li class="nav-item submenu dropdown">
-                            <a href="categories.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            <a href="{{ route('categories') }}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                               aria-haspopup="true" aria-expanded="false">Activities</a>
                             <ul class="dropdown-menu">
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Climbing</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Hiking</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Running</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Fishing</a></li>
-                              <li class="nav-item"><a class="nav-link" href="categories.html">Hunting</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Climbing</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Hiking</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Running</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Fishing</a></li>
+                              <li class="nav-item"><a class="nav-link" href="{{ route('categories') }}">Hunting</a></li>
                             </ul>
                           </li>
                         </ul>
