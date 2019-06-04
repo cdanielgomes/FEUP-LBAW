@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Product;
 
 use Illuminate\Http\Request;
+use App\Categories;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductController extends Controller
 
         //dd($product);
 
-        return view('pages.product')->with(['product' => $product]);
+        return view('pages.product', ['categories' => Categories::all()])->with(['product' => $product]);
 
 
     }

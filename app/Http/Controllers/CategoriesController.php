@@ -9,6 +9,9 @@ class CategoriesController extends Controller
 {
     public function show()
     {
+
+        
+
         return view('pages.categories', ['categories' => Categories::all()]);
     }
 }
