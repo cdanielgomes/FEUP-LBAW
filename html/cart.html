@@ -5,7 +5,8 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous">
@@ -261,14 +262,8 @@
           </div>
 
           <form class="row" action="#">
-            <div class="container">
-              <div class="container-btn">
-                <span class="radio-button"></span>
-
-                <input id="creditCard" type="radio" name="payment">
-                <label for="creditCard"> Credit Card</label>
-              </div>
-              <div class="col-lg-6 justify-content-center offset-md-2 col-xs-12">
+            <div class="container pt-3">
+              <div class="col-lg-6 col-xs-12">
 
                 <div class="form-group">
                   <label class="form-label" for="cardNumber"> Card Number </label>
@@ -286,11 +281,10 @@
               </div>
             </div>
 
-            <div class="container-btn">
-              <span class="radio-button"></span>
-
-              <input id="paypal" type="radio" name="payment">
-              <label for="paypal"> Paypal</label>
+            <div class="container-btn pl-5 pt-3">
+                <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+                <div id="paypal-button-container"></div>
+                <script>paypal.Buttons().render('#paypal-button-container');</script>
             </div>
 
           </form>

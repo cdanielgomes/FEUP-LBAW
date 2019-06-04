@@ -207,41 +207,32 @@
         </div>
 
         <form class="row" action="#">
-          <div class="container">
-            <div class="container-btn">
-              <span class="radio-button"></span>
+            <div class="container pt-3">
+              <div class="col-lg-6 col-xs-12">
 
-              <input id="creditCard" type="radio" name="payment">
-              <label for="creditCard"> Credit Card</label>
-            </div>
-            <div class="col-lg-6 justify-content-center offset-md-2 col-xs-12">
+                <div class="form-group">
+                  <label class="form-label" for="cardNumber"> Card Number </label>
+                  <input class="form-control" type="text" id="cardNumber">
+                </div>
+                <div class="form-group">
+                  <label for="expDate"> Expiration Date </label>
+                  <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
+                </div>
 
-              <div class="form-group">
-                <label class="form-label" for="cardNumber"> Card Number </label>
-                <input class="form-control" type="text" id="cardNumber">
-              </div>
-              <div class="form-group">
-                <label for="expDate"> Expiration Date </label>
-                <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
-              </div>
-
-              <div class="form-group">
-                <label for="ccv"> CCV </label>
-                <input class="form-control" type="text" id="cardNumber">
+                <div class="form-group">
+                  <label for="ccv"> CCV </label>
+                  <input class="form-control" type="text" id="cardNumber">
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="container-btn">
-            <span class="radio-button"></span>
+            <div class="container-btn pl-5 pt-3">
+                <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+                <div id="paypal-button-container"></div>
+                <script>paypal.Buttons().render('#paypal-button-container');</script>
+            </div>
 
-            <input id="paypal" type="radio" name="payment">
-            <label for="paypal"> Paypal</label>
-          </div>
-
-        </form>
-
-
+          </form>
 
         <div class="row">
           <button type="button" id="back-button" class="btn col-lg-2 offset-md-2 back-button col-xs-2">
