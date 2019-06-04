@@ -10,6 +10,14 @@ let submitAddress = document.querySelectorAll('#newAddress');
 })
 
 
+
+let faves = document.getElementsByClassName("fas fa-heart ml-auto");
+//faves.forEach(element => {element.addEventListener()});
+[].forEach.call(faves, function(elem){
+elem.addEventListener('click', sendRemoveFav);
+});
+
+
 function encodeForAjax(data) {
     if (data == null) return null;
     return Object.keys(data).map(function(k){
@@ -80,7 +88,9 @@ function addressCreateHandler(){
 } 
 
 function clearFormAddress(){
-  let form = document.querySelectorAll('#newAddress')
+  let form = document.getElementById('newAddress')
+  form.reset();
+  //$('#addAddressModal').modal('hide') PRESS CLOSE THAN
 
 }
 
@@ -90,7 +100,6 @@ function createAddress(addr){
      
   div += '<div class="d-flex flex-row address-header">';
   
-  console.log(addr[0]['type_address'])
   if(addr[0]['type_address']=='home'){
    div+= '<i class="fas fa-home pr-1"></i><h6>Home</h6>';
   } else if(addr['type_address']=='work'){
@@ -104,3 +113,28 @@ function createAddress(addr){
 
     return div;
     }
+
+
+function sendRemoveFav(event){
+  let id = document.querySelector("#userId").value;
+  let helper = event.target.parentElement.parentElement;
+  let idProduct = helper.getAttribute('id').split('-')[1];
+
+  sendAjaxRequest('delete', "/api/profile/" + id + "/products/" + idProduct, null, removeFavHandler);
+}
+
+function removeFavHandler(){
+  if(this.status != 200){
+    console.log("implementa tudo");
+  }
+
+  let info = JSON.parse(this.responseText);
+  if(info === 0) return;
+  removeCard(info);
+}
+
+function removeCard(id){
+  let i = document.getElementById("favorite-" + id)
+  i.remove();
+
+}

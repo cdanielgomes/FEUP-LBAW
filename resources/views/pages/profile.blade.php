@@ -363,7 +363,6 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <section class="py-5">
 
@@ -371,29 +370,39 @@
                 <h2>Favorites</h2>
             </div>
 
-            <div class="cards row">
-                <div class="mt-3 col-md-5 col-lg-4">
+            <div class="cards row" id="favorites">
+
+                @if (empty($data['favorites']))
+                <div class="mt-3 col-md-4"> 
+                    
+                </div>
+                <div class="mt-3 col-md-4"> 
+                    <div class="box d-flex flex-column align-items-center"> 
+                        <h5>No favorites to show</h5>
+                    </div>   
+                </div>
+                <div class="mt-3 col-md-4"> 
+                    
+                </div>
+                   @endif
+
+                @foreach ($data['favorites'] as $item)
+                <div id={{"favorite-" . $item['id']}} class="mt-3 col-md-5 col-lg-4">
                     <div class="box d-flex flex-column align-items-center">
                         <i class="fas fa-heart ml-auto"></i>
-                        <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
-                            style="cursor:pointer;">
-                        <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
-                            Sprag
-                            5-pocket Pants</h5>
-                        <span>Price: 32,00 €</span>
-                    </div>
+                       <img src="assets/{{$item['name']}}.png" alt="{{$item['name']}}" class="center-block" onclick="window.location='' "
+                        style="cursor:pointer;">
+
+                    <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='product.html'" style="cursor:pointer;">
+                            {{$item['name']}}    
+                        </h5>
+
+                    <span>Price: {{$item['price']}} €</span>
                 </div>
-                <div class="mt-3 col-md-5 col-lg-4">
-                    <div class="box d-flex flex-column align-items-center">
-                        <i class="fas fa-heart ml-auto"></i>
-                        <img src="assets/jacket2.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
-                            style="cursor:pointer;">
-                        <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
-                            Gotham Jacket
-                            III</h5>
-                        <span>Price: 89,90 €</span>
-                    </div>
-                </div>
+            </div>
+
+                @endforeach
+
             </div>
         </section>
     </div>

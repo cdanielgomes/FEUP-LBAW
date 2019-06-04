@@ -74,7 +74,7 @@ CREATE TABLE product
   name text NOT NULL CONSTRAINT name_uk UNIQUE,
   price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0),
   description text,
-  deleted BOOLEAN DEFAULT TRUE,
+  deleted BOOLEAN DEFAULT FALSE,
   stock INTEGER NOT NULL CONSTRAINT stock_ck CHECK (stock >= 0),
   score INTEGER NOT NULL CONSTRAINT score_ck DEFAULT 0 CHECK ((score >= 0) OR (score <=5))
 

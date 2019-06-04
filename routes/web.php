@@ -29,4 +29,4 @@ Auth::routes();
 
 Route::delete('api/address/{idAddr}','AddressController@destroy');
 Route::post('api/profile/{idUser}/address','AddressController@create');
-
+Route::delete('api/profile/{idUser}/products/{idProduct}', 'ProfileController@deleteFav');

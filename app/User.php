@@ -46,4 +46,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Address', 'id_user');
     }
 
+    public function myFavs()
+    {
+        return $this->hasMany('App\Favorites', 'id_user');
+    }
+
 }
