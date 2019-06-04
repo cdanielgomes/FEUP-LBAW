@@ -140,7 +140,7 @@
 
 
 <!-- Button trigger modal -->
-<p class="text-secondary mb-0">
+<p class="text-secondary">
   <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
     <div class="container topright text-aling-top">
       <i class="far topright fa-question-circle fa-2x text-top "></i>

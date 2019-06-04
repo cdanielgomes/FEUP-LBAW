@@ -4,7 +4,8 @@ body {
     --color3: #a8c1b6;
     --color4: #40544b;
     --color5: #151e1a;
-    font-family: 'Quicksand', 'Open Sans', sans-serif
+    font-family: 'Quicksand', 'Open Sans', sans-serif;
+    padding-right: 0px !important;
 }
 
 .img-fluid {

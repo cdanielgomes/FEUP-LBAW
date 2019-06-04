@@ -157,35 +157,33 @@
     </div>
   </header>
 
-  @yield('content')
-
-  <footer class="footer pt-2 mt-5">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col">
-          <h5 class="header">Information</h5>
-          <ul class="list-group links">
-            <li class="list-group-item"> <span><a href="{{route('about')}}">About Us</a> </span></li>
-          </ul>
-        </div>
-        <div class="col">
-          <h5 class="header">Services</h5>
-          <ul class="list-group links">
-            <li class="list-group-item"> <span></i> <a href={{route('faq')}}> FAQ </a></span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="col">
-        </div>
-        <div class="col">
-          <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
-        </div>
-        <div class="col text-center">
-        </div>
-      </div>
-    </div>
-  </footer>
+    <footer class="footer pt-3">
+            <div class="container">
+              <div class="row text-center">
+                <div class="col">
+                  <h5 class="header">Information</h5>
+                  <ul class="list-group links">
+                    <li class="list-group-item"> <span><a href="{{route('about')}}">About Us</a> </span></li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <h5 class="header">Services</h5>
+                  <ul class="list-group links">
+                    <li class="list-group-item"> <span></i> <a href="{{route('faq')}}"> FAQ </a></span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col">
+                </div>
+                <div class="col">
+                  <i class="far fa-copyright"></i> <span>copyrigth 2019 aurora. All rigths reserved </span> <br>
+                </div>
+                <div class="col text-center">
+                </div>
+              </div>
+            </div>
+          </footer>
 </body>
 
 </html>
