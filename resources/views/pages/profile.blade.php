@@ -215,18 +215,12 @@
                 <form id="newAddress">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
-                            <div class="dropdown">
-                                <label for="review_title">Name</label>
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Type
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <span class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</span>
-                                    <span class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</span>
-                                    <span class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</span>
-                                </div>
-                            </div>
+                            <label for="review_title">Type</label>
+                            <select class="form-control">
+                                <option selected="selected"><i class="fas fa-home pr-1"></i>Home</option>
+                                <option><i class="fas fa-briefcase pr-1"></i>Work</option>
+                                <option><i class="fab fa-bandcamp pr-1"></i> Other</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Door Number</label>
