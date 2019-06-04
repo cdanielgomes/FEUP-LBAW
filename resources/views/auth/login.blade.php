@@ -1,4 +1,5 @@
 @extends('layouts.app', ['categories' => $categories])
+
 @section('styles')
     
 <link href="{{ asset('css/login.css') }}" rel="stylesheet">

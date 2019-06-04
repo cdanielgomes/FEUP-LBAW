@@ -32,24 +32,24 @@
     <div class="row">
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
@@ -110,24 +110,24 @@
     <div class="row">
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
-          <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
@@ -139,16 +139,14 @@
 </div>
 
 
-
 <!-- Button trigger modal -->
-<p class="text-secondary">
-  <button type="button" class="btn text-right" data-toggle="modal" data-target="#exampleModal">
+<p class="text-secondary mb-0">
+  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
     <div class="container topright text-aling-top">
       <i class="far topright fa-question-circle fa-2x text-top "></i>
     </div>
   </button>
 </p>
-
 
 
 <!-- Modal -->
@@ -171,7 +169,7 @@
       <div class="modal-footer">
         <div class="container">
       <div class="modal-body">
-      <span><a href={{route('faq')}}> More Questions?  </a></span> </div></div>
+      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
       </div>
     </div>

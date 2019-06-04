@@ -56,7 +56,7 @@
             <i class="fas fa-bars"></i>
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav px-5">
+            <ul class="nav navbar-nav menu_nav">
               <li class="nav-item submenu dropdown">
                 <a href={{url('/products/clothing/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
                   role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
