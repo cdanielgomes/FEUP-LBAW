@@ -346,13 +346,15 @@ EXECUTE PROCEDURE update_total();
 CREATE OR REPLACE FUNCTION setStock() RETURNS TRIGGER AS
 $BODY$
 BEGIN 
-IF NOT EXISTS (SELECT * FROM product, line_item WHERE product.id = line_item.id_product AND new.id_line_item = line_item.id AND stock >= line_item.quantity) THEN 
+IF NOT EXISTS (SELECT * FROM product, line_item WHERE product.id = line_item.id_product
+ AND new.id_line_item = line_item.id AND stock >= line_item.quantity) THEN 
     RAISE EXCEPTION 'YOU CAN NOT BUY That number of ITEMS';
 ELSE
-    UPDATE product SET stock = stock - line_item.quantity FROM line_item WHERE product.id = line_item.id_product and  new.id_line_item = line_item.id;
+    UPDATE product SET stock = stock - line_item.quantity FROM line_item 
+    WHERE product.id = line_item.id_product and  new.id_line_item = line_item.id;
 END IF;
 
-RETURN NULL;
+RETURN NEW;
 END
 $BODY$
 LANGUAGE plpgsql;

@@ -9,10 +9,11 @@
 @section('content')
 
 @php
- 
- $user = $data['user'];
- $address = $data['addresses'];
 
+$user = $data['user'];
+$address = $data['addresses'];
+$delivered = $data['delivered'];
+$hold = $data['hold']
 @endphp
 
 <input type="hidden" id="userId" value={{Auth::user()->id}}>
@@ -21,7 +22,8 @@
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
-            <li class="breadcrumb-item active" aria-current="page">My Profile</li> <!-- POSSO POR O NOME DO UTILIZADOR-->
+            <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            <!-- POSSO POR O NOME DO UTILIZADOR-->
         </ol>
     </nav>
 </div>
@@ -86,7 +88,7 @@
                 <div class="information pt-3 form-inline">
                     <label for="profile_name">Name</label>
                     <h5 id="profile_name" class="pt-2"> {{$user['name']}}</h5>
-                        </div>
+                </div>
                 <div class="information pt-2 form-inline">
                     <label for="profile_username">Username</label>
                     <h5 id="profile_username" class="pt-2">{{$user['username']}}</h5>
@@ -99,8 +101,8 @@
         </section>
     </div>
 
-    <div class="modal fade" id="alterInformationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
+    <div class="modal fade" id="alterInformationModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -117,11 +119,13 @@
                         </div>
                         <div class="form-group">
                             <label for="review_title">Username</label>
-                            <input type="text" class="form-control" placeholder="Your Username" value="{{$user['username']}}">
+                            <input type="text" class="form-control" placeholder="Your Username"
+                                value="{{$user['username']}}">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Email</label>
-                            <input type="email" class="form-control" placeholder="Your Email" value="{{$user['email']}}">
+                            <input type="email" class="form-control" placeholder="Your Email"
+                                value="{{$user['email']}}">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Password</label>
@@ -162,40 +166,41 @@
             </div>
 
             <div class="cards row mt-2">
-    
-            @foreach ($address as $item)
-            <div class="mt-2 col-md-6 col-lg-3" id="address-{{$item['id']}}">
-                <div class="box d-flex flex-column">
-                    <i class="fas fa-trash-alt ml-auto addr"  value={{$item['id']}}></i>
-                   
-                <div class="d-flex flex-row address-header">
-                    
-                
-            @switch($item['type_address'])
-                @case('home')
-                <i class="fas fa-home pr-1"></i>
-                    <h6>Home</h6>
-               
-                    @break
-                @case('other')
-                <i class="fab fa-bandcamp pr-1"></i>
-                <h6>Other</h6>
-               
-                    @break
-                @default
-                <i class="fas fa-briefcase pr-1"></i>
-                <h6>Work</h6>
-               
-            @endswitch
 
-        </div>
-     
-           <h6> {{ $item['door_number']. ' ' . $item['street'] . ', ' . $item['zipcode'] . ' ' . $item['city'] . ' - ' . $item['country']}} </h6>
-                    
+                @foreach ($address as $item)
+                <div class="mt-2 col-md-6 col-lg-3" id="address-{{$item['id']}}">
+                    <div class="box d-flex flex-column">
+                        <i class="fas fa-trash-alt ml-auto addr" value={{$item['id']}}></i>
+
+                        <div class="d-flex flex-row address-header">
+
+
+                            @switch($item['type_address'])
+                            @case('home')
+                            <i class="fas fa-home pr-1"></i>
+                            <h6>Home</h6>
+
+                            @break
+                            @case('other')
+                            <i class="fab fa-bandcamp pr-1"></i>
+                            <h6>Other</h6>
+
+                            @break
+                            @default
+                            <i class="fas fa-briefcase pr-1"></i>
+                            <h6>Work</h6>
+
+                            @endswitch
+
+                        </div>
+
+                        <h6> {{ $item['door_number']. ' ' . $item['street'] . ', ' . $item['zipcode'] . ' ' . $item['city'] . ' - ' . $item['country']}}
+                        </h6>
+
                     </div>
-               </div>
-            @endforeach
-            
+                </div>
+                @endforeach
+
 
             </div>
 
@@ -223,8 +228,10 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <span class="dropdown-item" href="#"><i class="fas fa-home pr-1"></i>Home</span>
-                                    <span class="dropdown-item" href="#"><i class="fas fa-briefcase pr-1"></i>Work</span>
-                                    <span class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i> Other</span>
+                                    <span class="dropdown-item" href="#"><i
+                                            class="fas fa-briefcase pr-1"></i>Work</span>
+                                    <span class="dropdown-item" href="#"><i class="fab fa-bandcamp pr-1"></i>
+                                        Other</span>
                                 </div>
                             </div>
                         </div>
@@ -257,7 +264,7 @@
             </div>
         </div>
     </div>
-
+    <!--
     <div class="container">
         <section class="py-5">
 
@@ -362,7 +369,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="container">
         <section class="py-5">
 
@@ -373,33 +380,34 @@
             <div class="cards row" id="favorites">
 
                 @if (empty($data['favorites']))
-                <div class="mt-3 col-md-4"> 
-                    
+                <div class="mt-3 col-md-4">
+
                 </div>
-                <div class="mt-3 col-md-4"> 
-                    <div class="box d-flex flex-column align-items-center"> 
+                <div class="mt-3 col-md-4">
+                    <div class="box d-flex flex-column align-items-center">
                         <h5>No favorites to show</h5>
-                    </div>   
+                    </div>
                 </div>
-                <div class="mt-3 col-md-4"> 
-                    
+                <div class="mt-3 col-md-4">
+
                 </div>
-                   @endif
+                @endif
 
                 @foreach ($data['favorites'] as $item)
                 <div id={{"favorite-" . $item['id']}} class="mt-3 col-md-5 col-lg-4">
                     <div class="box d-flex flex-column align-items-center">
                         <i class="fas fa-heart ml-auto"></i>
-                       <img src="assets/{{$item['name']}}.png" alt="{{$item['name']}}" class="center-block" onclick="window.location='' "
-                        style="cursor:pointer;">
+                        <img src="assets/{{$item['name']}}.png" alt="{{$item['name']}}" class="center-block"
+                            onclick="window.location='' " style="cursor:pointer;">
 
-                    <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='product.html'" style="cursor:pointer;">
-                            {{$item['name']}}    
+                        <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='product.html'"
+                            style="cursor:pointer;">
+                            {{$item['name']}}
                         </h5>
 
-                    <span>Price: {{$item['price']}} €</span>
+                        <span>Price: {{$item['price']}} €</span>
+                    </div>
                 </div>
-            </div>
 
                 @endforeach
 
@@ -415,6 +423,18 @@
                 <h2>On Hold</h2>
             </div>
 
+            @if (empty($hold))
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <h5>No orders on Hold</h5>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+            @else
+
+
             <div class="section-container">
                 <table class="table">
                     <thead>
@@ -425,24 +445,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-toggle="collapse" data-target="#purchase-1" class="clickable unbold" onclick="boldUnboldLine(this)">
+
+
+                        @foreach ($hold as $item)
+
+
+                        <tr data-toggle="collapse" data-target={{"#purchase-" . $item['id']}} class="clickable unbold"
+                            onclick="boldUnboldLine(this)">
                             <td>
                                 <i class="fas fa-circle"></i>
-                                11/03/19</td>
-                            <td>Processing</td>
-                            <td>32,00€</td>
+                                {{$item['date']}}</td>
+                            <td>{{$item['state']}}</td>
+                            <td>{{$item['total']}}</td>
                         </tr>
+
+
                         <tr>
                             <td colspan="3" class="collapse-line">
-                                <div id="purchase-1" class="collapse-div collapse">
+                                <div id={{"purchase-" . $item['id']}} class="collapse-div collapse">
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
+
+                                        @foreach ($item['lines'][0] as $line)
+
                                         <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productPrice']}}</p>
                                         </div>
+                                        @endforeach
+
+
                                     </div>
                                     <p class="accordion_list_title mt-3">Address</p>
                                     <p>2020 South Street Sunshine, CA 90000 </p>
@@ -450,46 +483,7 @@
                             </td>
                         </tr>
 
-                        <tr data-toggle="collapse" data-target="#purchase-2" class="clickable unbold" onclick="boldUnboldLine(this)">
-                            <td>
-                                <i class="fas fa-circle"></i>
-                                28/02/19</td>
-                            <td>Shipped</td>
-                            <td>86,00€</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="collapse-line">
-                                <div id="purchase-2" class="collapse-div collapse">
-                                    <p class="accordion_list_title">Products</p>
-                                    <div class="product_list container">
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
-                                            <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
-                                        </div>
-                                    </div>
-                                    <div class="product_list container">
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
-                                            <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
-                                        </div>
-                                    </div>
-                                    <div class="product_list container">
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
-                                            <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
-                                        </div>
-                                    </div>
-                                    <p class="accordion_list_title mt-3">Address</p>
-                                    <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
 
                 </table>
@@ -498,6 +492,9 @@
 
         </section>
     </div>
+
+    @endif
+
 
     <div class="container">
         <section class="py-5">
@@ -507,6 +504,17 @@
                 <h2>History</h2>
             </div>
 
+
+            @if (empty($delivered))
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <h5> No deliveries</h5>
+                </div>
+                <div class="col-4"></div>
+
+            </div>
+            @else
             <div class="section-container">
                 <table class="table">
                     <thead>
@@ -517,44 +525,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-toggle="collapse" data-target="#purchase-3" class="clickable unbold" onclick="boldUnboldLine(this)">
+                        @foreach ($delivered as $item)
+
+                        <tr data-toggle="collapse" data-target={{"#purchase-" . $item['id']}} class="clickable unbold"
+                            onclick="boldUnboldLine(this)">
                             <td>
                                 <i class="fas fa-circle"></i>
-                                15/02/19</td>
-                            <td>Delivered</td>
-                            <td>64,00€</td>
+                                {{$item['date']}}</td>
+                            <td>{{$item['state']}}</td>
+                            <td>{{$item['total']}}</td>
                         </tr>
+
                         <tr>
                             <td colspan="3" class="collapse-line">
-                                <div id="purchase-3" class="collapse-div collapse">
+                                <div id={{"purchase-" . $item['id']}} class="collapse-div collapse">
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
+
+                                        @foreach ($item['lines'][0] as $lines)
                                         <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productPrice']}}
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="product_list container">
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">Men's Sprag 5-pocket
-                                                Pants</p>
-                                            <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">32,00€</p>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
+
                                     <p class="accordion_list_title mt-3">Address</p>
                                     <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
                                 </div>
                             </td>
                         </tr>
+
+
+                        @endforeach
+
+
                     </tbody>
                 </table>
             </div>
 
         </section>
     </div>
+
+    @endif
+
+
 
     <div class="container p-2">
         <div class="container scroll_nav">

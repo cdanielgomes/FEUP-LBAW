@@ -23,7 +23,7 @@ class ProfileController extends Controller
         // $this->authorize($user);
 
         $address = $user->addresses()->get();
-        $city = array();
+
         $addresses = $address->toArray();
         foreach ($addresses as &$value) {
             $array = City::where('id', $value['id_city'])->get()->toArray()[0];
@@ -41,8 +41,31 @@ class ProfileController extends Controller
             array_push($prodFaves, $product);
         }
 
-        
-        return view('pages.profile')->with('data', ['user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves]);
+        $orders = $user->orders()->get();
+
+        $delivered = array();
+        $hold = array();
+
+        foreach ($orders as &$order) {
+
+            $lines_order = $order->lines()->get();
+            $lines = array();
+            foreach ($lines_order as &$line_order) {
+                $line = $line_order->line()->first();
+                $l = array();
+
+                $product = Product::find($line['id_product'], ['name', 'price']);
+
+                array_push($l, ['productPrice' => $product['price'], 'productName' => $product['name'], 'price' => $line['price'], 'quantity' => $line['quantity']]);
+                array_push($lines, $l);
+            }
+            $order['lines'] = $lines;
+            if ($order['state'] == 'Delivered') array_push($delivered, $order);
+            else array_push($hold, $order);
+        }
+
+       // dd($delivered);
+        return view('pages.profile')->with('data', ['user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
     }
 
     public function deleteFav($idUser, $idProduct)
@@ -51,7 +74,7 @@ class ProfileController extends Controller
 
         $deleted = Favorites::remove($idUser, $idProduct);
 
-        if($deleted == 1) return $idProduct;
+        if ($deleted == 1) return $idProduct;
         else return $deleted;
     }
 }

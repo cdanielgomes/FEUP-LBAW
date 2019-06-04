@@ -3,32 +3,34 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-class Favorites extends Model
+
+class Order extends Model
 {
     public $timestamps = false;
 
-    /**
+
+    protected $table = 'order';
+
+    protected $primaryKey = 'id';
+
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id_user', 'id_product'
+        'id', 'id_user', 'date', 'total', 'state'
     ];
 
 
-    public function users()
+    public function user()
     {
-
         return $this->belongsTo('App\User', 'id_user');
     }
 
 
-    public static function remove($id, $idp)
+    public function lines()
     {
-
-       return DB::table('favorites')->where('id_user',$id)->where('id_product', $idp)->delete();
-
+        return $this->hasMany('App\Line_item_order', 'id_order');
     }
 }
