@@ -21,7 +21,7 @@ Route::get('/faq', 'FaqController@show')->name('faq');
 
 Route::get('/profile/{id}', 'ProfileController@show')->name('profile');
 
-Route::get('/product', 'ProductController@show')->name('product');
+Route::get('/product/{id}', 'ProductController@show');
 Route::get('/cart', 'CartController@show')->name('cart');
 Route::get('/categories', 'CategoriesController@show')->name('categories');
 

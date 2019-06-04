@@ -48,11 +48,11 @@
         </div>
 
         <div class="media-body pl-3">
-            <h3 class="mt-0 product-title">Men's Sprag 5-pocket Pants</h3>
+            <h3 class="mt-0 product-title">{{$product['name']}}</h3>
             <div id="cart">
-                <form method="post" action="" id="AddToCartForm" class="product_form">
+                <form method="post" action="/product" id="AddToCartForm" class="product_form">
                     <p id="product-price">
-                        <span class="price">32,00€</span>
+                        <span class="price">{{$product['price']}}€</span>
                     </p>
                     <p class="favorites" data-toggle="modal" data-target="#alertFavorite"><i class="fas fa-heart pr-1"></i>Add
                         to favorites</p>
@@ -108,10 +108,7 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item pt-4">
                 <h6>Description</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur.</p>
+                <p>{{$product['description']}}</p>
             </li>
             <li class="list-group-item pt-4">
                 <div id="reviews" class="jumptarget">
@@ -208,7 +205,7 @@
                         <div class="row">
                             <div class="mt-3 col-md-5 col-lg-4">
                                 <div class="box d-flex flex-column align-items-center">
-                                    <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                                    <img src="{{asset('imgs/pants.png')}}"alt="Item 1" class="center-block" onclick="window.location='product.html'"
                                         style="cursor:pointer;">
                                     <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                         5-pocket Pants</h5>
@@ -218,7 +215,7 @@
                             </div>
                             <div class="mt-3 col-md-5 col-lg-4">
                                 <div class="box d-flex flex-column align-items-center">
-                                    <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                                    <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'"
                                         style="cursor:pointer;">
                                     <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                         5-pocket Pants</h5>
@@ -228,7 +225,7 @@
                             </div>
                             <div class="mt-3 col-md-5 col-lg-4">
                                 <div class="box d-flex flex-column align-items-center">
-                                    <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                                    <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product.html'"
                                         style="cursor:pointer;">
                                     <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                         5-pocket Pants</h5>
