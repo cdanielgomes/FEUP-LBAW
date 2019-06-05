@@ -14,6 +14,6 @@ class Size extends Model
 
     public function product()
     {
-        return $this->belongsToMany('App\Product', 'role_user_table', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Product', 'product_size', 'id_size', 'id_product');
     }
 }

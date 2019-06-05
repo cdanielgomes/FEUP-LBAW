@@ -63,7 +63,7 @@
                 <ul class="dropdown-menu float-left">
                   <h3 class="dropdown-header">Men</h3>
                   @foreach ($categories as $item)
-                  @if ($item['dad'] == 'Clothing' && $item['sex'] == 'M')
+                  @if ($item['dad'] == 'Clothing' && $item['sex'] == 'm')
                   <li class="nav-item"><a class="nav-link"
                       href={{url('/products/man/' . $item['name'])}}>{{$item['name']}}</a></li>
 
@@ -72,7 +72,7 @@
                   <li class="nav-item"><a class="nav-link" href={{url('/products/man/all')}}>Shop All</a></li>
                   <h3 class="dropdown-header">Women</h3>
                   @foreach ($categories as $item)
-                  @if ($item['dad'] == 'Clothing' && $item['sex'] == 'F')
+                  @if ($item['dad'] == 'Clothing' && $item['sex'] == 'w')
                   <li class="nav-item"><a class="nav-link"
                       href={{url('/products/woman/' . $item['name'])}}>{{$item['name']}}</a></li>
 
@@ -82,32 +82,32 @@
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
-                <a href={{url('/products/house-decor/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
+                <a href={{url('/products/House-Decor/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
                   role="button" aria-haspopup="true" aria-expanded="false">House-Decor</a>
                 <ul class="dropdown-menu">
                   @foreach ($categories as $item)
                   @if ($item['dad'] == 'House-Decor' && $item['sex'] == '?')
                   <li class="nav-item"><a class="nav-link"
-                      href={{url('/products/house-decor/' . $item['name'])}}>{{$item['name']}}</a></li>
+                      href={{url('/products/House-Decor/' . urlencode($item['name']))}}>{{$item['name']}}</a></li>
 
                   @endif
                   @endforeach
-                  <li class="nav-item"><a class="nav-link" href={{url('/products/house-decor/all')}}>Shop All</a></li>
+                  <li class="nav-item"><a class="nav-link" href={{url('/products/House-Decor/all')}}>Shop All</a></li>
                 </ul>
               </li>
               <li class="nav-item submenu dropdown">
-                <a href={{url('/products/activities/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
+                <a href={{url('/products/Activities/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
                   role="button" aria-haspopup="true" aria-expanded="false">Activities</a>
                 <ul class="dropdown-menu">
 
                   @foreach ($categories as $item)
                   @if ($item['dad'] == 'Activities' && $item['sex'] == '?')
                   <li class="nav-item"><a class="nav-link"
-                      href={{url('/products/activities/' . $item['name'])}}>{{$item['name']}}</a></li>
+                      href={{url('/products/Activities/' . $item['name'])}}>{{$item['name']}}</a></li>
 
                   @endif
                   @endforeach
-                  <li class="nav-item"><a class="nav-link" href={{url('/products/activities/all')}}>Shop All</a></li>
+                  <li class="nav-item"><a class="nav-link" href={{url('/products/Activities/all')}}>Shop All</a></li>
                 </ul>
               </li>
             </ul>
