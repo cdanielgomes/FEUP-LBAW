@@ -143,7 +143,7 @@
                                     <img src="assets\star.png" alt="star">
                                 </div>
                                 <p>{{$review->description}}</p>
-                                <h5 class="author">Jane Doe</h5>
+                                <h5 class="author">{{$review->name}}</h5>
                             </div>
                             <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
                                 <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
