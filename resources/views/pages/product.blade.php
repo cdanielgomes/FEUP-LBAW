@@ -29,13 +29,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active d-flex justify-content-center">
-                    <img src="assets/pants.png" class="center-block" alt="...">
+                    <img src="{{asset('imgs/product'.$product['id'].'1.png')}}" class="center-block" alt="...">
                 </div>
                 <div class="carousel-item d-flex justify-content-center">
-                    <img src="assets/pants2.png" class="center-block" alt="...">
+                    <img src="{{asset('imgs/product'.$product['id'].'2.png')}}" class="center-block" alt="...">
                 </div>
                 <div class="carousel-item d-flex justify-content-center">
-                    <img src="assets/pants3.png" class="center-block" alt="...">
+                    <img src="{{asset('imgs/product'.$product['id'].'3.png')}}" class="center-block" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#product-images" role="button" data-slide="prev">
