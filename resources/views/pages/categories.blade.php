@@ -14,7 +14,7 @@
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
-            <li class="breadcrumb-item"><a href="categories.html">Men</a></li>
+            <li class="breadcrumb-item"><a href={{ url('/products/man/all')}}>Man</a></li>
             <li class="breadcrumb-item active" aria-current="page">Pants</a></li>
         </ol>
     </nav>
@@ -28,7 +28,8 @@
             </div>
             <div class="col text-right"><span>100 Products</span></div>
             <div class="dropdown col w-auto text-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort By
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -68,113 +69,58 @@
             </div>
             <div class="row mt-3" id="products">
                 <div class="mt-4 col-md-4 col-lg-3">
-                    <div class="filters d-flex flex-column">
-                        <h5>Filters</h5>
+
+                    <h5>Filters</h5>
+
+                    <div class="filters d-flex flex-column ">
+
                         <h6>Brand</h6>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Caterpillar</p>
-                            </label>
+                        <div class="">
+                            @foreach ($brands as $brand)
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    <p>{{$brand['name']}}</p>
+                                </label>
+                            </div>
+
+                            @endforeach
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Carhartt</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>The North Face</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Columbia</p>
-                            </label>
-                        </div>
+                    </div>
+
+                    <div class="filters d-flex flex-column mh-25">
                         <h6>Size</h6>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>32</p>
-                            </label>
+                        <div>
+                            @foreach ($sizes as $size)
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    <p>{{$size['name']}}</p>
+                                </label>
+                            </div>
+                            @endforeach
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>34</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>36</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>38</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>40</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>42</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>44</p>
-                            </label>
-                        </div>
+                    </div>
+                    <div class="filters d-flex flex-column">
                         <h6>Color</h6>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Dark Brown</p>
-                            </label>
+
+                        <div>
+                            @foreach ($colors as $color)
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input">
+                                    <p>{{$color['name']}}</p>
+                                </label>
+                            </div>
+
+                            @endforeach
                         </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Black</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Navy</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>White</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Red</p>
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                                <p>Green</p>
-                            </label>
-                        </div>
+                        
+                    </div>
+                    <div class="filters d-flex flex-column">
                         <h6>Max Price</h6>
                         <div class="getValue d-flex justify-content-left">
                             <input type="range" class="custom-range" id="formControlRange" min=0 max=500>
@@ -186,7 +132,8 @@
                     <div class="row">
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>
@@ -195,7 +142,8 @@
                         </div>
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>
@@ -204,7 +152,8 @@
                         </div>
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>
@@ -215,7 +164,8 @@
                     <div class="row">
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>
@@ -224,7 +174,8 @@
                         </div>
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>
@@ -233,7 +184,8 @@
                         </div>
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'" style="cursor:pointer;">
+                                <img src="assets/pants.png" alt="Item 1" class="center-block"
+                                    onclick="window.location='product.html'" style="cursor:pointer;">
                                 <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
                                     5-pocket Pants</h5>
                                 <span>32,00 €</span>

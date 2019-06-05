@@ -75,10 +75,15 @@ input.AddToCart:hover {
     color: #40544b;
 }
 
-.filters.d-flex.flex-column h5 {
+.mt-4.col-md-4.col-lg-3 h5 {
     font-size: 28px;
     font-weight: 700;
     color: #40544b;
+}
+
+
+.filters.d-flex.flex-column{
+    overflow-y: scroll;
 }
 
 .filters.d-flex.flex-column h6 {
