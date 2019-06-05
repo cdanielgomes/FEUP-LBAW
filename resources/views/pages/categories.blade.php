@@ -9,7 +9,7 @@
 
 @section('content')
 
-
+@if (isset($name))
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
@@ -20,11 +20,13 @@
     </nav>
 </div>
 
+@endif
+
 <main>
     <div class="container">
         <div class="products row align-items-center">
             <div class="col text-right">
-                <h1>Pants</h1>
+                <h1>{{$subname}}</h1>
             </div>
             <div class="col text-right">
                 <span>{{(count($products) - 1) * 3  + count($products[count($products) -1])  }}
@@ -42,33 +44,7 @@
 
                 </div>
             </div>
-            <!-- <div class="col w-auto text-center">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>-->
+
             <div class="row mt-3" id="products">
                 <div class="mt-4 col-md-4 col-lg-3">
 
@@ -151,10 +127,10 @@
                         </div>
 
                         @endforeach
+
                     </div>
                     @endforeach
                 </div>
-
             </div>
         </div>
         <nav class="mt-4 d-flex justify-content-end" aria-label="Page navigation">

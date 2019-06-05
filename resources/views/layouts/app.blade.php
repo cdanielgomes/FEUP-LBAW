@@ -114,9 +114,9 @@
 
             <ul class="nav-shop navbar-nav menu_nav pl-2">
               <li class="nav-item">
-                <form class="form-inline md-form form-lg">
-                  <input class="form-control form-control-md mr-3 w-75" type="text" placeholder="Search"
-                    aria-label="Search">
+              <form class="form-inline md-form form-lg" action="{{url('/search')}}" method="GET">
+                  <input class="form-control form-control-md mr-3 w-75" type="text" name="search_key"
+                    aria-label="Search" placeholder="Search" required>
                   <i class="fas fa-search" aria-hidden="true"></i>
                 </form>
               </li>
