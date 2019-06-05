@@ -84,7 +84,7 @@ CREATE TABLE categories
 (
   id SERIAL PRIMARY KEY,
   name text NOT NULL,
-  sex CHAR(1) DEFAULT '?' CONSTRAINT sex_ck CHECK(sex IN ('?', 'F', 'M')),
+  sex CHAR(1) DEFAULT '?' CONSTRAINT sex_ck CHECK(sex IN ('?', 'w', 'm')),
   season text NOT NULL, 
   dad text NOT NULL
 
@@ -617,14 +617,14 @@ INSERT INTO product (id, name, price, description, stock, score) VALUES (100, 'A
 -- categories
 -----------------------------------------
 
-INSERT INTO categories (id, name, sex, season, dad) VALUES (1, 'Tops', 'F', 'lacinia', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (2, 'Tops', 'M', 'semper', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (3, 'Bottoms', 'F', 'lobortis','Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (4, 'Shoes', 'F', 'vestibulum', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accesoires', 'F','justo', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (6, 'Bottoms', 'M', 'nulla', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (7, 'Shoes', 'M', 'volutpat', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accesoires', 'M', 'sed', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (1, 'Tops', 'w', 'lacinia', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (2, 'Tops', 'm', 'semper', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (3, 'Bottoms', 'w', 'lobortis','Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (4, 'Shoes', 'w', 'vestibulum', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accesoires', 'w','justo', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (6, 'Bottoms', 'm', 'nulla', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (7, 'Shoes', 'm', 'volutpat', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accesoires', 'm', 'sed', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (9, 'Bedroom', '?', 'ligula', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (10, 'Kitchen', '?', 'justo', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (11, 'Living Room', '?', 'quis', 'House-Decor');
