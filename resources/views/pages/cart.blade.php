@@ -250,25 +250,18 @@
             </tr>
           </thead>
           <tbody>
+            @foreach ($lines as $line)
             <tr>
-              <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="pants"></th>
-              <td class="name">Pants</td>
+              <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="product_image"></th>
+              <td class="name">{{$line['name']}}</td>
 
-              <td class="price">32.00€</td>
-              <td class="quantity">2</td>
-              <td class="subtotal">64.00€</td>
+              <td class="price">{{$line['single_price']}}€</td>
+              <td class="quantity">{{$line['quantity']}}</td>
+              <td class="subtotal">{{$line['price']}}€</td>
             </tr>
-            <tr>
-              <th scope="row"><img class="img-fluid w-25 h-20" src="assets/jacket.jpg" alt="jacket"></th>
-              <td class="name">Jacket</td>
-
-              <td class="price">26.00€</td>
-              <td class="quantity">1</td>
-              <td class="subtotal">26.00€</td>
-            </tr>
-            <tr>
+            @endforeach
               <td colspan="4" class="justify-content-left"> Total</th>
-              <td class="justify-content-right total"> Total2</th>
+              <td class="justify-content-right total"> {{$total}} €</th>
             </tr>
           </tbody>
         </table>

@@ -28,6 +28,8 @@ Route::post('api/product/{id}/review', 'ProductController@submitReview');
 
 Route::get('/products/{category}/{subcategoty}', 'CategoriesController@show');
 Route::get('/categories', 'CategoriesController@show')->name('categories');
+Route::get('/search', 'CategoriesController@search_products')->name('search');
+
 
 Auth::routes();
 
