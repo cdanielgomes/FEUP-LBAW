@@ -17,16 +17,22 @@ class ProductController extends Controller
 
         $reviews = DB::table('review')->where('id_product', $id)->get();
 
-        /*
-        $users = array();
         foreach($reviews as $review){
-           array_push($users, DB::table('user')->where('id', $review['id_user'])->get());
-        }   */
-       // dd($reviews);
-        //dd($product);
-        //return view('pages.product')->with(['product' => $product, 'reviews'=> $reviews]);
+            $id = $review->id_user;
+            $userID = $user = User::find($id);
+            $review->name = $userID['name'];
+        }
+
         return view('pages.product', ['categories' => Categories::all()])->with(['product' => $product, 'reviews'=> $reviews]);
 
 
     }
+
+    public function submitReview($id){
+
+        echo('ola');
+
+    }
+
+    
 }

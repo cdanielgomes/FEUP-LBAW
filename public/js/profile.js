@@ -9,8 +9,6 @@ let submitAddress = document.querySelectorAll('#newAddress');
   form.addEventListener('submit', sendCreateAddress);
 })
 
-
-
 let faves = document.getElementsByClassName("fas fa-heart ml-auto");
 //faves.forEach(element => {element.addEventListener()});
 [].forEach.call(faves, function(elem){
