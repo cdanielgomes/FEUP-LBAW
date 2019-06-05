@@ -21,8 +21,8 @@ Route::get('/faq', 'FaqController@show')->name('faq');
 
 Route::get('/profile/{id}', 'ProfileController@show')->name('profile');
 
-Route::get('/product/{id}', 'ProductController@show');
-Route::get('/cart', 'CartController@show')->name('cart');
+Route::get('/product/{id}', 'ProductController@show')->name('product');
+Route::get('/cart/{id}', 'CartController@show')->name('cart');
 Route::post('api/product/{id}/review', 'ProductController@submitReview');
 
 

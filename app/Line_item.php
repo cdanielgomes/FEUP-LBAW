@@ -31,5 +31,10 @@ class Line_item extends Model
         return $this->hasMany('App\Line_item_order', 'id_line_item');
     }
 
+    public function lineCart()
+    {
+        return $this->hasMany('App\Line_item_cart','id_line_item');
+    }
+
 
 }
