@@ -978,7 +978,7 @@ INSERT INTO product_color (id_product, id_color) VALUES (83, 8);
 INSERT INTO product_color (id_product, id_color) VALUES (84, 9);
 INSERT INTO product_color (id_product, id_color) VALUES (85, 9);
 INSERT INTO product_color (id_product, id_color) VALUES (86, 7);
-INSERT INTO product_color (id_product, id_color) VALUES (87, 10);
+INSERT INTO product_color (id_product, id_color) VALUES (57, 10);
 INSERT INTO product_color (id_product, id_color) VALUES (88, 6);
 INSERT INTO product_color (id_product, id_color) VALUES (89, 2);
 INSERT INTO product_color (id_product, id_color) VALUES (90, 3);

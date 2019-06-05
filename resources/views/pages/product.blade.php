@@ -64,32 +64,25 @@
                         class="fas fa-heart pr-1"></i>Add
                     to favorites</p>
                 <div class="product-add">
-                    <label for="quantity">Quantity</label>
-                    <input min="1" type="number" id="quantity" name="quantity" value="1">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Color
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Dark Brown <span class="px-2 ml-2"
-                                    id="option1"></span></a>
-                            <a class="dropdown-item" href="#">Black <span class="px-2 ml-2" id="option2"></span></a>
-                            <a class="dropdown-item" href="#">Navy <span class="px-2 ml-2" id="option3"></span></a>
-                        </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input min="1" type="number" id="quantity" name="quantity" value="1">
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Size
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">36</a>
-                            <a class="dropdown-item" href="#">38</a>
-                            <a class="dropdown-item" href="#">40</a>
-                            <a class="dropdown-item" href="#">42</a>
-                            <a class="dropdown-item" href="#">44</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="quantity">Color</label>
+                        <select class="form-control w-25">
+                            @foreach ($product->colors as $color)
+                            <option>{{$color[0]->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Size</label>
+                        <select class="form-control w-25">
+                            @foreach ($product->sizes as $size)
+                            <option>{{$size[0]->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="submit" name="button" class="AddtoCart" value="Add to Cart">
                 </div>
@@ -125,8 +118,8 @@
                     <li class="list-group-item pt-4">
                         <form id="makeReview">
                             <h6>Make your review</h6>
-                            <div class="form-group">Title<br />
-                                <input type="text" id="data" name="data" class="form-control" />
+                            <div class="form-group" id="reviewTitle">Title<br />
+                                <input type="text" id="data" name="data" class="form-control" required />
                             </div>
                             <div class="form-group">Rating<br />
                                 <div class="getValue d-flex justify-content-center">
@@ -144,11 +137,11 @@
                     </li>
                     @foreach ($reviews as $review)
                     <li class="list-group-item pt-4">
-                        <div id="review-1" class="jumptarget">
+                        <div id="review-{{$review->id}}" class="jumptarget">
                             <h5>{{$review->title}}</h5>
                             <div class="pontuation">
                                 <label>{{$review->score}}/5</label>
-                                <img src="assets\star.png" alt="star">
+                                <img src="{{asset('imgs/star.png')}}" alt="star">
                             </div>
                             <p>{{$review->description}}</p>
                             <h5 class="author">{{$review->name}}</h5>
@@ -179,7 +172,7 @@
             </div>
         </div>
 
-        <li class="list-group-item">
+        <li class="list-group-item mb-3">
             <div class="featuredproducts">
                 <div class="mt-3 container">
                     <h6>Related Products</h6>
