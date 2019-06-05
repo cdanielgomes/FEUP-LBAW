@@ -14,7 +14,6 @@ class CategoriesController extends Controller
     public function show()
     {
 
-
         
         
         return view('pages.categories', ['categories' => Categories::all(), 'brands'=> Brand::all(), 'colors' => Color::all(), 'sizes' => Size::all()]);

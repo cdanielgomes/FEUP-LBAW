@@ -81,10 +81,10 @@ input.AddToCart:hover {
     color: #40544b;
 }
 
-
+/*
 .filters.d-flex.flex-column{
     overflow-y: scroll;
-}
+}*/
 
 .filters.d-flex.flex-column h6 {
     font-size: 21px;
