@@ -64,32 +64,25 @@
                         class="fas fa-heart pr-1"></i>Add
                     to favorites</p>
                 <div class="product-add">
-                    <label for="quantity">Quantity</label>
-                    <input min="1" type="number" id="quantity" name="quantity" value="1">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Color
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Dark Brown <span class="px-2 ml-2"
-                                    id="option1"></span></a>
-                            <a class="dropdown-item" href="#">Black <span class="px-2 ml-2" id="option2"></span></a>
-                            <a class="dropdown-item" href="#">Navy <span class="px-2 ml-2" id="option3"></span></a>
-                        </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input min="1" type="number" id="quantity" name="quantity" value="1">
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Size
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">36</a>
-                            <a class="dropdown-item" href="#">38</a>
-                            <a class="dropdown-item" href="#">40</a>
-                            <a class="dropdown-item" href="#">42</a>
-                            <a class="dropdown-item" href="#">44</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="quantity">Color</label>
+                        <select class="form-control w-25">
+                            @foreach ($product->colors as $color)
+                            <option>{{$color[0]->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Size</label>
+                        <select class="form-control w-25">
+                            @foreach ($product->sizes as $size)
+                            <option>{{$size[0]->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="submit" name="button" class="AddtoCart" value="Add to Cart">
                 </div>
@@ -125,8 +118,8 @@
                     <li class="list-group-item pt-4">
                         <form id="makeReview">
                             <h6>Make your review</h6>
-                            <div class="form-group">Title<br />
-                                <input type="text" id="data" name="data" class="form-control" />
+                            <div class="form-group" id="reviewTitle">Title<br />
+                                <input type="text" id="data" name="data" class="form-control" required />
                             </div>
                             <div class="form-group">Rating<br />
                                 <div class="getValue d-flex justify-content-center">
@@ -144,11 +137,11 @@
                     </li>
                     @foreach ($reviews as $review)
                     <li class="list-group-item pt-4">
-                        <div id="review-1" class="jumptarget">
+                        <div id="review-{{$review->id}}" class="jumptarget">
                             <h5>{{$review->title}}</h5>
                             <div class="pontuation">
                                 <label>{{$review->score}}/5</label>
-                                <img src="assets\star.png" alt="star">
+                                <img src="{{asset('imgs/star.png')}}" alt="star">
                             </div>
                             <p>{{$review->description}}</p>
                             <h5 class="author">{{$review->name}}</h5>
@@ -179,41 +172,24 @@
             </div>
         </div>
 
-        <li class="list-group-item">
+        <li class="list-group-item mb-3">
             <div class="featuredproducts">
                 <div class="mt-3 container">
                     <h6>Related Products</h6>
                     <div class="row">
+                        @foreach ($product->relatedProducts as $Rproduct)
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block"
-                                    onclick="window.location='product.html'" style="cursor:pointer;">
-                                <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
-                                    5-pocket Pants</h5>
-                                <span>32,00 €</span>
+                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="Item 1"
+                                    class="center-block" onclick="window.location={{$Rproduct['id']}}"
+                                    style="cursor:pointer;">
+                                <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">{{$Rproduct['name']}}
+                                </h5>
+                                <span>{{$Rproduct['price']}} €</span>
                                 <input type="button" class="AddToCart" value="Add to Cart">
                             </div>
                         </div>
-                        <div class="mt-3 col-md-5 col-lg-4">
-                            <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block"
-                                    onclick="window.location='product.html'" style="cursor:pointer;">
-                                <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
-                                    5-pocket Pants</h5>
-                                <span>32,00 €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart">
-                            </div>
-                        </div>
-                        <div class="mt-3 col-md-5 col-lg-4">
-                            <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block"
-                                    onclick="window.location='product.html'" style="cursor:pointer;">
-                                <h5 onclick="window.location='product.html'" style="cursor:pointer;">Men's Sprag
-                                    5-pocket Pants</h5>
-                                <span>32,00 €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart">
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
         </li>
@@ -221,36 +197,40 @@
 </div>
 </main>
 
-  <!-- Modal OnlineHelp -->
-  <p class="text-secondary">
-  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-    <div class="container topright text-aling-top">
-      <i class="far topright fa-question-circle fa-2x text-top "></i>
-    </div>
-  </button>
+<!-- Modal OnlineHelp -->
+<p class="text-secondary">
+    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+        <div class="container topright text-aling-top">
+            <i class="far topright fa-question-circle fa-2x text-top "></i>
+        </div>
+    </button>
 </p>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <p>When in search for a specific product, users are able to <strong>assert their desired color and size</strong>, if available.</p>
-    <p>Whenever in need to speak about a certain product’s quality, a <strong>dedicated area to reviews</strong> is presented. If a user wishes to review some
-    product, a <strong>score submission between 1-5</strong> is mandatory in exception for comments.</p>
-    <p>Related products to the actual product search are shown to maintain versatility in stock</p>
-      </div>
-      <div class="modal-footer">
-        <div class="container">
-      <div class="modal-body">
-      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
-      </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>When in search for a specific product, users are able to <strong>assert their desired color and
+                        size</strong>, if available.</p>
+                <p>Whenever in need to speak about a certain product’s quality, a <strong>dedicated area to
+                        reviews</strong> is presented. If a user wishes to review some
+                    product, a <strong>score submission between 1-5</strong> is mandatory in exception for comments.</p>
+                <p>Related products to the actual product search are shown to maintain versatility in stock</p>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="modal-body">
+                        <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-  @endsection
+@endsection
