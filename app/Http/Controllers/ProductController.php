@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Categories;
+use App\User;
 
 class ProductController extends Controller
 {
@@ -15,11 +16,23 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $reviews = DB::table('review')->where('id_product', $id)->get();
-        //dd($reviews);
 
-        //return view('pages.product')->with(['product' => $product, 'reviews'=> $reviews]);
+        foreach($reviews as $review){
+            $id = $review->id_user;
+            $userID = $user = User::find($id);
+            $review->name = $userID['name'];
+        }
+
         return view('pages.product', ['categories' => Categories::all()])->with(['product' => $product, 'reviews'=> $reviews]);
 
 
     }
+
+    public function submitReview($id){
+
+        dd('lmao');
+
+    }
+
+    
 }

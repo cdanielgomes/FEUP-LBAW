@@ -31,11 +31,11 @@
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
   @yield('styles')
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
 
   {{ csrf_field() }}
 
