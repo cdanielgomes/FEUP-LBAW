@@ -43,7 +43,7 @@
             <div class="modal-footer">
               <div class="container">
                 <div class="modal-body">
-                  <span><a href={{route('faq')}}> More Questions? </a></span> </div>
+                  <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
               </div>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
             </div>

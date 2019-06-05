@@ -13,7 +13,7 @@
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href={{route('homepage')}}>Homepage</a></li>
+            <li class="breadcrumb-item"><a href="{{route('homepage')}}">Homepage</a></li>
             <li class="breadcrumb-item active" aria-current="page">FAQ</li>
         </ol>
     </nav>
@@ -101,10 +101,10 @@
                                     <div class="row">
                                         <p class="p-0 col-lg-auto col-md-auto col-sm-auto">For an estimate of
                                             shipping
-                                            times, please reference the times below:</br></br>
-                                            3-Day: 3-4 business days</br></br>
-                                            2-Day: 2-3 business days</br></br>
-                                            Overnight: 1-2 business days</br></br>
+                                            times, please reference the times below:<br><br>
+                                            3-Day: 3-4 business days<br><br>
+                                            2-Day: 2-3 business days<br><br>
+                                            Overnight: 1-2 business days<br><br>
 
                                             Delivery time includes processing and delivery. Overnight and 2-Day
                                             delivery will ship the same day on orders placed before 3PM.
