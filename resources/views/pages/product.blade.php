@@ -134,20 +134,15 @@
                                 <div><input name="Submit" value="Submit" type="submit" /></div>
                             </form>
                         </li>
+                        @foreach ($reviews as $review)
                         <li class="list-group-item pt-4">
                             <div id="review-1" class="jumptarget">
-                                <h5>Zombie Ipsum</h5>
+                                <h5>{{$review->title}}</h5>
                                 <div class="pontuation">
-                                    <label>4/5</label>
+                                    <label>{{$review->score}}/5</label>
                                     <img src="assets\star.png" alt="star">
                                 </div>
-                                <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne
-                                    lumbering
-                                    animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi
-                                    gorger
-                                    omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo
-                                    evil
-                                    stalking monstra adventus resi dentevil vultus comedat cerebella viventium.</p>
+                                <p>{{$review->description}}</p>
                                 <h5 class="author">Jane Doe</h5>
                             </div>
                             <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
@@ -157,30 +152,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item pt-4">
-                            <div id="review-2" class="jumptarget">
-                                <h5>Hipster Ipsum</h5>
-                                <div class="pontuation">
-                                    <label>5/5</label>
-                                    <img src="assets\star.png" alt="star">
-                                </div>
-                                <p>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics
-                                    artisan
-                                    synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist
-                                    post-ironic
-                                    glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put
-                                    a
-                                    bird
-                                    on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.</p>
-                                <h5 class="author">Jone Doe</h5>
-                            </div>
-                            <div class="report mt-4 pt-5 ml-auto d-flex align-items-end justify-content-end">
-                                <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
-                                    data-target="#alertReview">
-                                    Report Review
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </li>

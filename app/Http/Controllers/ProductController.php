@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -12,9 +13,10 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        //dd($product);
+        $reviews = DB::table('review')->where('id_product', $id)->get();
+        //dd($reviews);
 
-        return view('pages.product')->with(['product' => $product]);
+        return view('pages.product')->with(['product' => $product, 'reviews'=> $reviews]);
 
 
     }
