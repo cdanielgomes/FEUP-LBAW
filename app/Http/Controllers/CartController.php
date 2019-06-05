@@ -10,15 +10,17 @@ use App\Categories;
 
 class CartController extends Controller
 {
-    public function show($id)
+    public function show($cart)
     {
+        $category = urldecode($cart);
 
-        $cart = Cart::find($id);
-        $line_item_cart = DB::table('line_item_cart')->where('id_cart', $id)->get()->toArray();
-        $line_item = DB::table('line_item')->where('id', $line_item_cart->id_line_item)->get()->toArray();
-        dd(line_item);
+        foreach ($cart as $c) {
 
-        return view('pages.cart', ['categories' => Categories::all()])->with(['cart' => $cart]);
+            $cart = $c->product()->get()->toArray();
+       
+        }
+
+        return view('pages.cart', ['categories' => Categories::all()]);
     }
 
     public function addToCart($id)
