@@ -9,7 +9,7 @@
 
 @section('content')
 
-
+@if (isset($name))
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
@@ -19,6 +19,8 @@
         </ol>
     </nav>
 </div>
+
+@endif
 
 <main>
     <div class="container">
@@ -42,7 +44,7 @@
 
                 </div>
             </div>
-       
+
             <div class="row mt-3" id="products">
                 <div class="mt-4 col-md-4 col-lg-3">
 
@@ -128,7 +130,7 @@
 
                     </div>
                     @endforeach
-                </div> 
+                </div>
             </div>
         </div>
         <nav class="mt-4 d-flex justify-content-end" aria-label="Page navigation">
