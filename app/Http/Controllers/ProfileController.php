@@ -66,7 +66,7 @@ class ProfileController extends Controller
         }
 
        // dd($delivered);
-        return view('pages.profile', ['categories' => Categories::all()])->with('data', ['user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
+        return view('pages.profile', ['categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
     }
 
     public function deleteFav($idUser, $idProduct)

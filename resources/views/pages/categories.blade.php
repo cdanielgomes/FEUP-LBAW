@@ -29,7 +29,7 @@
                 <h1>{{$subname}}</h1>
             </div>
             <div class="col text-right">
-                <span>{{(count($products) - 1) * 3  + count($products[count($products) -1])  }}
+                <span>{{(count($products) - 1) * 3  + count($products[count($products) - 1])  }}
                     Products</span></div>
             <div class="dropdown col w-auto text-center">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"

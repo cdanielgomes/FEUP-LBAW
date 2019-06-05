@@ -5,16 +5,8 @@
 <script src="{{url('js/profile.js')}}" defer></script>
 @endsection
 
-
+@if($user['type_user'] == 'user')
 @section('content')
-
-@php
-
-$user = $data['user'];
-$address = $data['addresses'];
-$delivered = $data['delivered'];
-$hold = $data['hold']
-@endphp
 
 <input type="hidden" id="userId" value={{Auth::user()->id}}>
 
@@ -167,7 +159,7 @@ $hold = $data['hold']
 
             <div class="cards row mt-2">
 
-                @foreach ($address as $item)
+                @foreach ($addresses as $item)
                 <div class="mt-2 col-md-6 col-lg-3" id="address-{{$item['id']}}">
                     <div class="box d-flex flex-column">
                         <i class="fas fa-trash-alt ml-auto addr" value={{$item['id']}}></i>
@@ -385,7 +377,7 @@ $hold = $data['hold']
                 </div>
                 @endif
 
-                @foreach ($data['favorites'] as $item)
+                @foreach ($favorites as $item)
                 <div id={{"favorite-" . $item['id']}} class="mt-3 col-md-5 col-lg-4">
                     <div class="box d-flex flex-column align-items-center">
                         <i class="fas fa-heart ml-auto"></i>
@@ -614,3 +606,10 @@ $hold = $data['hold']
 
 
 @endsection
+
+
+@elseif($user['type_user'] == 'store_manager')
+
+
+@endif
+
