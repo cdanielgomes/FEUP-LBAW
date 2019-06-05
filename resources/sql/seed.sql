@@ -52,12 +52,9 @@ CREATE TABLE users
   username text NOT NULL CONSTRAINT username_uk UNIQUE,
   email text NOT NULL CONSTRAINT email_user_uk UNIQUE,
   password text NOT NULL,
-  is_admin BOOLEAN NOT NULL,
-  is_manager BOOLEAN NOT NULL,
-  is_premium BOOLEAN NOT NULL,
-  deleted BOOLEAN NOT NULL,
+  type_user text not null CONSTRAINT type_user_ck CHECK(type_user IN ('premium', 'admin', 'store_manager', 'user')),
+  deleted BOOLEAN DEFAULT FALSE,
   remember_token TEXT
-
 );
 
 CREATE TABLE cart
@@ -399,57 +396,57 @@ EXECUTE PROCEDURE removeProducts();
 -----------------------------------------
 -- users 
 -----------------------------------------
+insert into users (id, name, username, email, password, type_user, deleted) values (1, 'user', 'user', 'ghalhead0@mlb.com', '$2y$12$xqJe1BDygV3tiCKv3kCTyO92Oyd3jnL8RGcmze0xb2XnRL13KmEpu', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (2, 'Kristal', 'ksarver1', 'kblackmoor1@google.com.br', '$2y$12$H/SY6zoFHDr3RWQS3Gqtde97POYTOCZT/JI6YpeknU.7UtKkF6Nd.', 'user', true);
+insert into users (id, name, username, email, password, type_user, deleted) values (3, 'Cathrine', 'cmcroberts2', 'cswannell2@geocities.jp', '$2y$12$I01WpYQxCiUL8f25QrfTTu7HYVWVFqJFCTt7QCxwWrDmy5dPltD1u', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (4, 'Donnell', 'dklossek3', 'dmatusevich3@google.it', '$2y$12$Po/a1Yg2hT9MiX22ebyhauqxbXmtMEOHhD2K7vNrc21JPNYqYpW9a', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (5, 'Caro', 'cshepherdson4', 'ctiler4@goo.ne.jp', '$2y$12$M52ft3z9K9vrlM1KFMqFRueKEpmgxHFU1VSx9YerSR1fsBGtsaDHG', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (6, 'Art', 'ahearnah5', 'apettus5@microsoft.com', '$2y$12$sdrew.jzz8rQBbqjV34QG.eN8z9mbFebIdHv5j/Drf.LPK.1YL.We', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (7, 'Wyn', 'wdonise6', 'wlovel6@nyu.edu', '$2y$12$NhzJx2.7B6lA/LtBzv5ULOsZmy/QN85.M0conkKJcenLx5kEdAcrq', 'store_manager', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (8, 'Lynnette', 'ljoskowitz7', 'lgull7@wunderground.com', '$2y$12$2SuzgixcA7Ib34ujOMRuvuIQoGZC4C.2ZlPDNBA0J2O4w.VlVNxGG', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (9, 'Tristan', 'tmaclennan8', 'tkeunemann8@google.es', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (10, 'Katha', 'kcalf9', 'kpenniell9@rediff.com', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$12$s0VNpdRTDox8BdLM45Sj7.0r6UhPbwyT4Nv0Ol998trU6gq232Pkq', 'admin', false); ----- jOWX2YyMgEeM
+insert into users (id, name, username, email, password, type_user, deleted) values (12, 'Muhammad', 'mspelwoodb', 'mcassyb@fastcompany.com', '5DXN9x', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (13, 'Jenelle', 'jpiddockec', 'jreichartzc@state.tx.us', 'cKEjYqKNrDmb', 'user', true);
+insert into users (id, name, username, email, password, type_user, deleted) values (14, 'Cymbre', 'cprinnettd', 'ctumbeltyd@bloglines.com', 'kHuNPMwnhm', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (15, 'Kimberly', 'kzumbusche', 'kbraime@google.fr', 'JshbwLnTW', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (16, 'Jameson', 'joldridgef', 'jaleninf@nih.gov', 'gSDjrwf5q', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (17, 'Sibel', 'scayfordg', 'spettieg@quantcast.com', 'VpmhcpmngIh', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (18, 'Fowler', 'fharnwellh', 'fhundalh@nyu.edu', 'LNIsoIF3BF', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (19, 'Abdel', 'abigglestonei', 'agenickei@ifeng.com', 'GWO1UeuXN', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (20, 'Hesther', 'hjollimanj', 'hescotj@irs.gov', 't3mIza4nb', 'user', true);
+insert into users (id, name, username, email, password, type_user, deleted) values (21, 'Emlen', 'eomannionk', 'espiveyk@arizona.edu', 'hanqclRayfU', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (22, 'Garner', 'gwarlandl', 'gledsonl@google.com.br', 'HrN2BJouR0uW', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (23, 'Torrey', 'tcumpstym', 'tleerm@dion.ne.jp', '8dQOLM9vt97K', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (24, 'Patrica', 'pimesonn', 'pbatstonen@jalbum.net', 'PuwGUbe', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (25, 'Sena', 'sadamkiewiczo', 'smixhelo@google.co.jp', 'WgKZzAf3', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (26, 'Babara', 'bmewburnp', 'bbloggettp@clickbank.net', 'UNjzJkwB', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (27, 'Blakeley', 'bbohlsenq', 'bjirusq@tiny.cc', 'm2HLvt', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (28, 'Rich', 'rzamorar', 'rbillyardr@xing.com', '4JRLIKlVKRed', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (29, 'Rodger', 'rnorgans', 'rwakers@weather.com', '$2y$12$kmGopE/vOBqQ9Dey75rPNOfT9H4EFXCxTmTJbLRp2Gb8KtYyfExuK', 'store_manager', false);------- p4mSWnS
+insert into users (id, name, username, email, password, type_user, deleted) values (30, 'Madlin', 'medmundsont', 'mbernott@nifty.com', 'lxWLX9dts', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (31, 'Hagen', 'hkillichu', 'hmacandreisu@hp.com', '1s2SSyk8Px', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (32, 'Emmey', 'eburberowv', 'eneatev@seesaa.net', 'rtszAQ89gAV', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (33, 'Rey', 'rgribbinsw', 'rburgessw@youtube.com', 'SXZgky', 'store_manager', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (34, 'Deny', 'dwykex', 'dhamblenx@rakuten.co.jp', 'QJ50uQOgEo2', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (35, 'Alasdair', 'aspaffordy', 'acornelisseny@geocities.jp', 'Eyv58ODl6TKk', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (36, 'Rivalee', 'rtimckez', 'rroblinz@weebly.com', 'pseXRzciw', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (37, 'Karlie', 'kdenne10', 'khanbridge10@webmd.com', 'kJvt4Sy', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (38, 'Katheryn', 'kdymidowicz11', 'kbinns11@mac.com', '4StbRVwWrKyQ', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (39, 'Rip', 'rownsworth12', 'rchesman12@disqus.com', 'XBQkENBLa', 'user', true);
+insert into users (id, name, username, email, password, type_user, deleted) values (40, 'Burtie', 'bgoodbourn13', 'bpagen13@tamu.edu', '2lUp4blZhD', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (41, 'Chevy', 'cgetley14', 'cklimt14@rediff.com', 'ORYt2jU0S', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (42, 'Stanwood', 'sgentsch15', 'spiddletown15@army.mil', 'V8pXQTwer', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (43, 'Sileas', 'sbushell16', 'skaveney16@biblegateway.com', 'YU9Yr66', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (44, 'Doretta', 'dkippax17', 'dmaving17@angelfire.com', 'Wq5vYaZV', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (45, 'Homere', 'hborthwick18', 'hlind18@ocn.ne.jp', 'InBdtHfxG', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (46, 'Robin', 'rescreet19', 'rcadamy19@slashdot.org', 'i3sVh4', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (47, 'Keith', 'kcrennell1a', 'ksmorthit1a@state.gov', 'HCfabMIoNg', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (48, 'Gussie', 'gmoogan1b', 'ggenty1b@stumbleupon.com', 'X9nBQrJcJAMY', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (49, 'Clarinda', 'coglesbee1c', 'cfeifer1c@gmpg.org', 'N8SgWrgvn7I', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (50, 'Emelda', 'ewibberley1d', 'etolerton1d@blogs.com', 'LdYpbJ', 'user', false);
 
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (1, 'user', 'user', 'ghalhead0@mlb.com', '$2y$12$xqJe1BDygV3tiCKv3kCTyO92Oyd3jnL8RGcmze0xb2XnRL13KmEpu', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (2, 'Lacey Jorn', 'ljorn1', 'ljorn1@microsoft.com', '$2y$12$H/SY6zoFHDr3RWQS3Gqtde97POYTOCZT/JI6YpeknU.7UtKkF6Nd.', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (3, 'Hank Matthaus', 'hmatthaus2', 'hmatthaus2@g.co', '$2y$12$I01WpYQxCiUL8f25QrfTTu7HYVWVFqJFCTt7QCxwWrDmy5dPltD1u', false, false, false, true);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (4, 'Tessa Bromet', 'tbromet3', 'tbromet3@twitter.com', '$2y$12$Po/a1Yg2hT9MiX22ebyhauqxbXmtMEOHhD2K7vNrc21JPNYqYpW9a', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (5, 'Sacha Syred', 'ssyred4', 'ssyred4@wp.com', '$2y$12$M52ft3z9K9vrlM1KFMqFRueKEpmgxHFU1VSx9YerSR1fsBGtsaDHG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (6, 'Bert Volke', 'bvolke5', 'bvolke5@posterous.com', '$2y$12$sdrew.jzz8rQBbqjV34QG.eN8z9mbFebIdHv5j/Drf.LPK.1YL.We', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (7, 'Teodora Collens', 'tcollens6', 'tcollens6@google.com', '$2y$12$NhzJx2.7B6lA/LtBzv5ULOsZmy/QN85.M0conkKJcenLx5kEdAcrq', false, false, true, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (8, 'Clarine Roswarn', 'croswarn7', 'croswarn7@economist.com', '$2y$12$2SuzgixcA7Ib34ujOMRuvuIQoGZC4C.2ZlPDNBA0J2O4w.VlVNxGG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (9, 'Judy Stote', 'jstote8', 'jstote8@telegraph.co.uk', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (10, 'Melanie Fillon', 'mfillon9', 'mfillon9@simplemachines.org', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', false, false, true, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (11, 'Darrel Louder', 'dloudera', 'dloudera@paginegialle.it', '$2y$12$CUTu30SnZwsp87mTjOx7hOTHK2bJmCmtKVCH49ADFiWgqjmv1jRF.', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (12, 'Layla Ewell', 'lewellb', 'lewellb@etsy.com', '$2y$12$KUjNI.ge1nGGjRVoE/0.WOGMLuW5uifnNzg3yXvqJNSon9XioMvX.', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (13, 'Ross Grigorescu', 'rgrigorescuc', 'rgrigorescuc@nasa.gov', '$2y$12$5Ii2OMUtuv/J/hI6FoS/jO0rHaAVu4JxtBNn1CDOgBYfZUK/AK5Oq', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (14, 'Beaufort Canter', 'bcanterd', 'bcanterd@dot.gov', '$2y$12$myX5OPHAK3zWxhJDnNWteeH.G7lZbYlVO22bugaVBQqP2p4mDLItW', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (15, 'Sonnie Lemasney', 'slemasneye', 'slemasneye@patch.com', '$2y$12$pNPGlANG65S43CricrSLBOe/vh7HYAwUA.DvnzF0kYql6D9RJjmFe', false, false, true, false); ----storemanager
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (16, 'Ewell Irwin', 'eirwinf', 'eirwinf@hexun.com', '$2y$12$ycQ0rY2t8KwdTB8zxZMTFeHG1RPbXqU7XHnwZ0OV0ggNqmRaRyqj.', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (17, 'Poul Lansberry', 'plansberryg', 'plansberryg@patch.com', '$2y$12$gb.ohhid7730rXdvSPK8PukXu8dlPdjqC8iw90VEi9RTxvlR2ZEJW', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (18, 'Marylinda Licari', 'mlicarih', 'mlicarih@google.ca', '$2y$12$QQX17gtHagllSTbLWUSRM.VFHrzlww9L9DAWlto9lPFNzVTIDnMES', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (19, 'Benita Alwell', 'balwelli', 'balwelli@wix.com', '$2y$12$suFAut6b0tpgooRxEdaE4eGZXU4G1vx541A0mUjWp7sq0AYfMmXZG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (20, 'Tammy Zaczek', 'tzaczekj', 'tzaczekj@amazonaws.com', '$2y$12$.Vz5myPyjh7P9VZxvAQaiu0Yg6k0g0aPbUIo8wwqpgGjrPKUF8FBy',  false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (21, 'Valeria Auton', 'vautonk', 'vautonk@ft.com', '$2y$12$g/FPPKLfyLpGG5jp4VPA.eCpUZph07koI4wYrmqiuizQDP56maOVm', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (22, 'Hildagarde Hargate', 'hhargatel', 'hhargatel@pagesperso-orange.fr', '$2y$12$1h/X7gkf35TiExIYFaw.2.k4Vifig/7OiXfmJGgjWu7LM9dcD4NGS', false, false, true, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (23, 'Brit Polson', 'bpolsonm', 'bpolsonm@shareasale.com', '$2y$12$AK0KJQLsjYH/cUppOLXZBO/BQm41cM.SNk3Ko2ECDmwVk48EzwlVG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (24, 'Maurise Czaja', 'mczajan', 'mczajan@java.com', '$2y$12$6OoEWLt7soxvRZipfJppn.nSn0FIZuI9cIMnnRqiP5dnN7xZa3.HG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (25, 'Daphne Emanuel', 'demanuelo', 'demanuelo@spiegel.de', '$2y$12$1QjDkmYMCwk8erc5g9eEZ.bJ1FCFIGxRbQkypQN9SQWVwnqyZ5WeO', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (26, 'Bill McGeagh', 'bmcgeaghp', 'bmcgeaghp@lulu.com', '$2y$12$zwXXdAX9OEBwz9.dOGp44eE.ALxaruMHKDku7a3U5p6aP9DUPjuo2', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (27, 'Cookie Creigan', 'ccreiganq', 'ccreiganq@webnode.com', '$2y$12$x1Yn5/IkvtEscCJeSEMl4e7gm6ZyzJSp.lJytxULdCuBJ//zYC1GG', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (28, 'Damian Dukelow', 'ddukelowr', 'ddukelowr@altervista.org', '$2y$12$GvU4io/XroHlI/5IGcZD7OezWC4nFUiOIVQwJc.B3wf.J7L6iV6vO', false, false, false, true);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (29, 'Gavan Kinker', 'gkinkers', 'gkinkers@cloudflare.com', '$2y$12$Z.Vl2gWBG0q1Yurf7g28SuPIpZOssrcEvFsvCzfEn/sBzq5OjQSlO', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (30, 'Elset Rudall', 'erudallt', 'erudallt@hc360.com', '$2y$12$MNaFWq.kzsHSyhnL43aoh.h2EL7zpdG0/u3egstkHJuALaCFVYao2', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (31, 'Lynnette Hearnes', 'lhearnesu', 'lhearnesu@angelfire.com', '$2y$12$3FS.oOSZocOn6CehKeI2dOZOSj/jVlMFAK/QjlouQAino3iqK0L3S', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (32, 'Den Elsegood', 'delsegoodv', 'delsegoodv@state.gov', '$2y$12$kmGopE/vOBqQ9Dey75rPNOfT9H4EFXCxTmTJbLRp2Gb8KtYyfExuK', false, false, false, false); ---kUf4RA84GVyi
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (33, 'Annabelle Bentke', 'abentkew', 'abentkew@msu.edu', '$2y$12$B5z9JH0A09dtvi3nYWeq8.AUzhV4KU/sW23GqCqbWSUPiocgr7sc2', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (34, 'Corabelle Ascraft', 'cascraftx', 'cascraftx@delicious.com', '$2y$12$kf1FrVQkw.NSpYNBbydEGOQhEprJs8K5eGRgRWeTi2pUZFBll1lfK', false, true, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (35, 'Garrik Spirritt', 'gspirritty', 'gspirritty@icio.us', '$2y$12$sC60uI3KqndBj25Ete5sVekXVLo2oqZdzqxaqhAIAfQFHzRom/Woi', true, false, false, false); ------- p4mSWnS
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (36, 'Osbourne Fylan', 'ofylanz', 'ofylanz@dedecms.com', '$2y$12$4N1QaMAzIgOj0JvlJh7eUeQDH.A4WS/4AVGxsDPUgpetq0786Xaua', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (37, 'Claretta Blacklawe', 'cblacklawe10', 'cblacklawe10@youtu.be', '$2y$12$sz5V.Z7xaf24EEz6kYv36.IwDItT/zi77zrQ.RFsLRXJaJIB0mk6m', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (38, 'Tommi Fallon', 'tfallon11', 'tfallon11@mysql.com', '$2y$12$mYp8bbK3aGUG4gfs7FZ7/.SMUWH8oW3sIOMVwnRBw7RlDauJIjAF6', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (39, 'Melantha Teague', 'mteague12', 'mteague12@intel.com', '$2y$12$Zde0ICDf7Ibbnq0tyLr1yOa/Bfn3yA5ZiSkOBTitAwO0BMisKAvMi', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (40, 'Lizabeth Isacke', 'lisacke13', 'lisacke13@tripod.com', '$2y$12$A82igeJSparasqEAsTZjPes5SOX.LpU/M3XxFY/IVB.bcX7IXpwmq', false, false, false, true);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (41, 'Sigrid Borthwick', 'sborthwick14', 'sborthwick14@cbc.ca', '$2y$12$B2.KTPjZo1F6NXQOiqqhWuaIiRvQuhP.NuFhX/ff7dC0avjZ0qZRS', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (42, 'Ulberto Scholard', 'uscholard15', 'uscholard15@dagondesign.com', '$2y$12$JPHGCY.5y94ySfNG2qUABeorvqEaBulbEiVdGseGGb5bnSDTfAdPa', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (43, 'Colene Fennelow', 'cfennelow16', 'cfennelow16@dailymail.co.uk', '$2y$12$/2oWoG9V1tp0LqubADwO9eseYL/AClEag0WNz85KVtH4xLuLQtfIu', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (44, 'Revkah Zapatero', 'rzapatero17', 'rzapatero17@bbc.co.uk', '$2y$12$1Sn.VMsTYV4icGuqJkzuEOe20UmxmL6IdDCEnzy4n2fOFTq3XIGYq', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (45, 'Editha Mableson', 'emableson18', 'emableson18@fema.gov', '$2y$12$zdHPJ6eT7kKDQSnWBUvlTOKmKEFC3RGX9pcIe/39QFJy727NtAfR.', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (46, 'Gabriel Ashwin', 'gashwin19', 'gashwin19@flickr.com', '$2y$12$wu2gGBRxDPCa6po/eToFbOyHE0l0YMQeIzTJi0xyYSxBvEmLTRvh2', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (47, 'Joyann Villa', 'jvilla1a', 'jvilla1a@hp.com', '$2y$12$uWwaVpvS19Dr03./s94MQe4X4GkNsC/DtqFbdeJl64NB2bjwG.wB6', false, false, false, false);
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (48, 'Colleen Greenmon', 'cgreenmon1b', 'cgreenmon1b@barnesandnoble.com', '$2y$12$pJlnYi20nsgDjj8JzzIRYOozPDK0.4RculMcBjPEscjHoTozlVRFy', false, false, false, false); ----- zovT3VWH
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (49, 'Aldric Knell', 'aknell1c', 'aknell1c@newyorker.com', '$2y$12$aCWmm1Rxl4WWEuP/15OgiOluHevXFzzv3U.23PzZ9zx862ZwudW4G', false, false, false, false);------zJQF8EWQZ00D
-INSERT INTO users (id, name, username, email, password, is_admin, is_manager, is_premium, deleted) VALUES (50, 'Fernande Cornilleau', 'fcornilleau1d', 'fcornilleau1d@xrea.com', '$2y$12$s0VNpdRTDox8BdLM45Sj7.0r6UhPbwyT4Nv0Ol998trU6gq232Pkq', false, false, false, true); ---jOWX2YyMgEeM
 
 
 -- -----------------------------------------
@@ -1258,7 +1255,7 @@ insert into product_categories (id_product, id_categories) values (95, 11);
 insert into product_categories (id_product, id_categories) values (96, 4);
 insert into product_categories (id_product, id_categories) values (97, 4);
 insert into product_categories (id_product, id_categories) values (98, 2);
-insert into product_categories (id_product, id_categories) values (99, 10);
+insert into product_categories (id_product, id_categories) values (99, 7);
 insert into product_categories (id_product, id_categories) values (100, 4);
 -----------------------------------------
 -- product color
