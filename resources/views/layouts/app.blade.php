@@ -157,6 +157,8 @@
     </div>
   </header>
 
+  @yield('content')
+
     <footer class="footer pt-3">
             <div class="container">
               <div class="row text-center">
