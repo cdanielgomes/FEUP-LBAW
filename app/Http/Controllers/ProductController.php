@@ -27,4 +27,12 @@ class ProductController extends Controller
 
 
     }
+
+    public function submitReview($id){
+
+        echo('ola');
+
+    }
+
+    
 }

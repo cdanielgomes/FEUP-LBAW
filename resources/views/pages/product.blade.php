@@ -116,7 +116,7 @@
                     <h6>Reviews</h6>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item pt-4">
-                            <form method="post" action="" id="makeReview">
+                            <form method="post" action="/product/submitReview" id="makeReview">
                                 <h6>Make your review</h6>
                                 <div>Title<br />
                                     <input type="text" id="data" name="data" class="form-control" />
