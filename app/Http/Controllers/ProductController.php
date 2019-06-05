@@ -21,23 +21,36 @@ class ProductController extends Controller
         $idColors = DB::table('product_color')->where('id_product', $id)->get();
         $idSizes = DB::table('product_size')->where('id_product', $id)->get();
 
+        // Get colors of product
         $colors = array();
         foreach($idColors as $idColor) {
 
             $color = DB::table('color')->where('id', $idColor->id_color)->get();
             array_push($colors, $color);
         }
-
         $product->colors = $colors;
 
+        // Get sizes of product
         $sizes = array();
         foreach($idSizes as $idSize) {
 
             $size = DB::table('size')->where('id', $idSize->id_size)->get();
             array_push($sizes, $size);
         }
-
         $product->sizes = $sizes;
+
+        // Get related prodcuts
+        $relatedProducts = DB::table('product')->where('score', $product->score)->get()->toArray();
+
+        shuffle($relatedProducts);
+        $rand = array_rand($relatedProducts, 3);
+
+        $threeProducts = array();
+        foreach($rand as $id) {
+            array_push($threeProducts, $relatedProducts[$id]);
+        }
+
+        $product->relatedProducts = $threeProducts;
 
         foreach($reviews as $review){
             $id = $review->id_user;
