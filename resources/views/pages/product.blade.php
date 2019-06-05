@@ -177,15 +177,15 @@
                 <div class="mt-3 container">
                     <h6>Related Products</h6>
                     <div class="row">
-                        @foreach ($product->relatedProducts as $product)
+                        @foreach ($product->relatedProducts as $Rproduct)
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/product'.$product->id.'1.png')}}" alt="Item 1"
-                                    class="center-block" onclick="window.location={{$product->id}}"
+                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="Item 1"
+                                    class="center-block" onclick="window.location={{$Rproduct['id']}}"
                                     style="cursor:pointer;">
-                                <h5 onclick="window.location={{$product->id}}" style="cursor:pointer;">{{$product->name}}
+                                <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">{{$Rproduct['name']}}
                                 </h5>
-                                <span>{{$product->price}} €</span>
+                                <span>{{$Rproduct['price']}} €</span>
                                 <input type="button" class="AddToCart" value="Add to Cart">
                             </div>
                         </div>
