@@ -286,4 +286,43 @@
   </section>
 </main>
 
+  <!-- Modal OnlineHelp -->
+  <p class="text-secondary">
+  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+    <div class="container topright text-aling-top">
+      <i class="far topright fa-question-circle fa-2x text-top "></i>
+    </div>
+  </button>
+</p>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p><strong>Shipping Information:</strong></p>
+      <p>Receiving an invoice requires a user to fill his shipping informations. If need be, users can submit different addresses.</p>
+      <p></p>
+      <p><strong>Payment Method:</strong></p>
+      <p>Users can choose between options of payment. If <strong>‘Credit Card’</strong> chosen, user must fill the corresponding informations.</p>
+      <p>Once clicked on <strong>Paypal, user is to be redirected to PayPal authentication service.</p>
+      <p></p>
+      <p><strong>Order Review:</strong></p>
+      <p>Warning: The stock <strong>may</strong> change during this procedure.</p>
+      <p>Users can change the quantity of each product accordingly to their desire, by clicking corresponding buttons.</p>
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+      <div class="modal-body">
+      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection

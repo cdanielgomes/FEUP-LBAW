@@ -579,5 +579,38 @@ $hold = $data['hold']
 </main>
 
 
+  <!-- Modal OnlineHelp -->
+  <p class="text-secondary">
+  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+    <div class="container topright text-aling-top">
+      <i class="far topright fa-question-circle fa-2x text-top "></i>
+    </div>
+  </button>
+</p>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>As a user, on this page, you can <strong>edit your personal details</strong> and <strong>manage your addresses</strong>.</p>
+    <p>You can view all your purchases, those bellow <strong>On Hold</strong> are being processed or have just been shipped, once a package is delivered, you can find it under <strong>History</strong>.</p>
+         <p>If you click on a particular purchase, you can see all its details.</p>
+
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+      <div class="modal-body">
+      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 @endsection

@@ -271,4 +271,39 @@
         </div>
 </main>
 
+  <!-- Modal OnlineHelp -->
+  <div class="button_online">
+    <p class="text-secondary">
+    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+        <div class="container topright text-aling-top">
+        <i class="far topright fa-question-circle fa-2x text-top "></i>
+        </div>
+    </button>
+    </p>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>When <strong>searching</strong> inside a list of possible options, users are given the <strong>ability to filter roles</strong>.</p>
+        <p>Included roles are <strong>Size</strong>, <strong>Brand</strong> or <strong>Color</strong> in order to <strong>give specificity in choice
+    of products</strong> by limiting the original amount in the product list. Sorting items through fields regarding time and name is also a complement to a better
+interaction between the user and store.</p>
+        <p>Adding the products to the cart is an option aswell.</p>
+     </div>
+      <div class="modal-footer">
+        <div class="container">
+      <div class="modal-body">
+      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

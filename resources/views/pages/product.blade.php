@@ -214,4 +214,36 @@
 </div>
 </main>
 
-@endsection
+  <!-- Modal OnlineHelp -->
+  <p class="text-secondary">
+  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+    <div class="container topright text-aling-top">
+      <i class="far topright fa-question-circle fa-2x text-top "></i>
+    </div>
+  </button>
+</p>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>When in search for a specific product, users are able to <strong>assert their desired color and size</strong>, if available.</p>
+    <p>Whenever in need to speak about a certain product’s quality, a <strong>dedicated area to reviews</strong> is presented. If a user wishes to review some
+    product, a <strong>score submission between 1-5</strong> is mandatory in exception for comments.</p>
+    <p>Related products to the actual product search are shown to maintain versatility in stock</p>
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+      <div class="modal-body">
+      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+      </div>
+    </div>
+  </div>
+</div>
+  @endsection
