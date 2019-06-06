@@ -123,9 +123,9 @@
                             <div data-name="{{$product['name']}}" class="box d-flex flex-column align-items-center product_onrow">
                                 <img src={{"assets/product" . $product['id'] . "1.png"}} alt={{$product['name']}}
                                     class="center-block"
-                                    onclick="window.location={{url('/product' . '/' . $product['id']) }}"
+                                    onclick="window.location='../../product/'+{{$product['id']}}"
                                     style="cursor:pointer;">
-                                <h5 onclick="window.location={{url('/product' . '/' . $product['id']) }}" style="cursor:pointer;">
+                                <h5 onclick="window.location='../../product/'+{{$product['id']}}" style="cursor:pointer;">
                                     {{$product['name']}}</h5>
                                 <span>{{$product['price']}} €</span>
                                 <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
