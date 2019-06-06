@@ -3,6 +3,7 @@
 @section('styles')
 
 <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
+<script src="{{url('js/cart.js')}}" defer></script>
 
 @endsection
 
@@ -12,11 +13,11 @@
 <main class="cart">
   <section class="container">
     <div class="row my-3">
-    <h1 class="my-2"> Checkout </h1>
+      <h1 class="my-2"> Checkout </h1>
 
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn overlay text-right" data-toggle="modal" data-target="#exampleModal">
         <div class="container topright text-aling-top">
           <i class="far topright fa-question-circle fa-2x text-top "></i>
         </div>
@@ -24,7 +25,8 @@
 
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -55,15 +57,18 @@
     </div>
     <ul class="nav nav-tabs navbar-expand-md flex-column flex-sm-row" id="cart">
       <li class="nav-item">
-        <a class="nav-link active" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="Address" aria-selected="true">Address</a>
+        <a class="nav-link active" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="Address"
+          aria-selected="true">Address</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="Payment Method" aria-selected="false">Payment Method</a>
+        <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="Payment Method"
+          aria-selected="false">Payment Method</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="Order Review" aria-selected="false">Order Review</a>
+        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="Order Review"
+          aria-selected="false">Order Review</a>
       </li>
     </ul>
 
@@ -72,7 +77,8 @@
       <div class="tab-pane fade show active" id="address" role="tabpanel" aria-labelledby="address-tab">
 
         <div class="progress" style="height: 2px;">
-          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
+            aria-valuemax="100"></div>
         </div>
 
         <div class="my-3">
@@ -127,8 +133,10 @@
             </div>
           </div>
           <div class="form-group mt-3">
-            <input type="checkbox" name="shippingAddress" id="differentSAdd" data-toggle="collapse" data-target="#shippingAddress" aria-controls="shippingAddress">
-            <label for="differentSAdd" name="differentSAdd" data-toggle="collapse" data-target="#shippingAddress" aria-controls="shippingAddress">
+            <input type="checkbox" name="shippingAddress" id="differentSAdd" data-toggle="collapse"
+              data-target="#shippingAddress" aria-controls="shippingAddress">
+            <label for="differentSAdd" name="differentSAdd" data-toggle="collapse" data-target="#shippingAddress"
+              aria-controls="shippingAddress">
               Give a different address for shipping
             </label>
           </div>
@@ -194,36 +202,39 @@
       </div>
       <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
         <div class="progress" style="height: 2px;">
-          <div class="progress-bar" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0"
+            aria-valuemax="100"></div>
         </div>
 
         <form class="row" action="#">
-            <div class="container pt-3">
-              <div class="col-lg-6 col-xs-12">
+          <div class="container pt-3">
+            <div class="col-lg-6 col-xs-12">
 
-                <div class="form-group">
-                  <label class="form-label" for="cardNumber"> Card Number </label>
-                  <input class="form-control" type="text" id="cardNumber">
-                </div>
-                <div class="form-group">
-                  <label for="expDate"> Expiration Date </label>
-                  <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
-                </div>
+              <div class="form-group">
+                <label class="form-label" for="cardNumber"> Card Number </label>
+                <input class="form-control" type="text" id="cardNumber">
+              </div>
+              <div class="form-group">
+                <label for="expDate"> Expiration Date </label>
+                <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
+              </div>
 
-                <div class="form-group">
-                  <label for="ccv"> CCV </label>
-                  <input class="form-control" type="text" id="cardNumber">
-                </div>
+              <div class="form-group">
+                <label for="ccv"> CCV </label>
+                <input class="form-control" type="text" id="cardNumber">
               </div>
             </div>
+          </div>
 
-            <div class="container-btn pl-5 pt-3">
-                <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                <div id="paypal-button-container"></div>
-                <script>paypal.Buttons().render('#paypal-button-container');</script>
-            </div>
+          <div class="container-btn pl-5 pt-3">
+            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+            <div id="paypal-button-container"></div>
+            <script>
+              paypal.Buttons().render('#paypal-button-container');
+            </script>
+          </div>
 
-          </form>
+        </form>
 
         <div class="row">
           <button type="button" id="back-button" class="btn col-lg-2 offset-md-2 back-button col-xs-2">
@@ -237,7 +248,8 @@
 
       <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
         <div class="progress" style="height: 2px;">
-          <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0"
+            aria-valuemax="100"></div>
         </div>
         <table class="table table-responsive-sm">
           <thead>
@@ -247,22 +259,23 @@
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Total</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             @foreach ($lines as $line)
-            <tr>
+            <tr id="line{{$line['id']}}">
               <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="product_image"></th>
               <td class="name">{{$line['name']}}</td>
-
               <td class="price">{{$line['single_price']}}€</td>
               <td class="quantity">{{$line['quantity']}}</td>
               <td class="subtotal">{{$line['price']}}€</td>
+              <td class="trash"><i class="fas fa-trash-alt ml-auto" value="{{$line['id']}}-{{$line['price']}}"></i></td>
             </tr>
             @endforeach
-              <td colspan="4" class="justify-content-left"> Total</th>
-              <td class="justify-content-right total"> {{$total}} €</th>
-            </tr>
+            <td colspan="4" class="justify-content-left"> Total</th>
+            <td class="justify-content-right total">{{$total}} €</th>
+              </tr>
           </tbody>
         </table>
 
@@ -279,15 +292,16 @@
   </section>
 </main>
 
-  <!-- Modal OnlineHelp -->
-  <p class="text-secondary">
+<!-- Modal OnlineHelp -->
+<p class="text-secondary">
   <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
     <div class="container topright text-aling-top">
       <i class="far topright fa-question-circle fa-2x text-top "></i>
     </div>
   </button>
 </p>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -297,21 +311,25 @@
         </button>
       </div>
       <div class="modal-body">
-      <p><strong>Shipping Information:</strong></p>
-      <p>Receiving an invoice requires a user to fill his shipping informations. If need be, users can submit different addresses.</p>
-      <p></p>
-      <p><strong>Payment Method:</strong></p>
-      <p>Users can choose between options of payment. If <strong>‘Credit Card’</strong> chosen, user must fill the corresponding informations.</p>
-      <p>Once clicked on <strong>Paypal, user is to be redirected to PayPal authentication service.</p>
-      <p></p>
-      <p><strong>Order Review:</strong></p>
-      <p>Warning: The stock <strong>may</strong> change during this procedure.</p>
-      <p>Users can change the quantity of each product accordingly to their desire, by clicking corresponding buttons.</p>
+        <p><strong>Shipping Information:</strong></p>
+        <p>Receiving an invoice requires a user to fill his shipping informations. If need be, users can submit
+          different addresses.</p>
+        <p></p>
+        <p><strong>Payment Method:</strong></p>
+        <p>Users can choose between options of payment. If <strong>‘Credit Card’</strong> chosen, user must fill the
+          corresponding informations.</p>
+        <p>Once clicked on <strong>Paypal, user is to be redirected to PayPal authentication service.</p>
+        <p></p>
+        <p><strong>Order Review:</strong></p>
+        <p>Warning: The stock <strong>may</strong> change during this procedure.</p>
+        <p>Users can change the quantity of each product accordingly to their desire, by clicking corresponding buttons.
+        </p>
       </div>
       <div class="modal-footer">
         <div class="container">
-      <div class="modal-body">
-      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+          <div class="modal-body">
+            <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
       </div>
     </div>
