@@ -57,8 +57,8 @@
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
           <img src="{{asset('imgs/product'.$product['id'].'1.png')}}" alt="Item 1" class="center-block"
-            onclick="window.location='product/'.{{$product['id']}}" style="cursor:pointer;">
-          <h5 onclick="window.location='product/'.{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
+            onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
+          <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
           <span>{{$product['price']}} €</span>
           <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
         </div>
