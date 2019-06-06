@@ -32,7 +32,7 @@
 
 <main>
     <div class="container">
-        <div class="products row align-items-center">
+        <div class="products row align-items-center container">
             <div class="col text-right">
                 <h1>{{$subname}}</h1>
             </div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3" id="products">
+            <div class="row mt-3 container" id="products">
                 <div class="mt-4 col-md-4 col-lg-3">
 
                     <h5>Filters</h5>
