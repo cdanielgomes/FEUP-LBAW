@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-       
+    
+    public $timestamps = false;
+
     protected $table = 'product';
     
+    public $primaryKey = 'id';
+
     
     /**
     * The attributes that are mass assignable.
@@ -16,7 +20,7 @@ class Product extends Model
     * @var array
     */
    protected $fillable = [
-    'id', 'name', 'price', 'description', 'stock', 'score'
+     'name', 'price', 'description', 'stock', 'score'
    ];
 
    

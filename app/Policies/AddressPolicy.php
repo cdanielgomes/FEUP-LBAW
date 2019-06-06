@@ -30,7 +30,7 @@ class AddressPolicy
      */
     public function create(User $user)
     {
-       return Auth::check();
+       return Auth::id() == $user->id;
     }
 
     /**

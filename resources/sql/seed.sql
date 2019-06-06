@@ -424,7 +424,7 @@ insert into users (id, name, username, email, password, type_user, deleted) valu
 insert into users (id, name, username, email, password, type_user, deleted) values (26, 'Babara', 'bmewburnp', 'bbloggettp@clickbank.net', 'UNjzJkwB', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (27, 'Blakeley', 'bbohlsenq', 'bjirusq@tiny.cc', 'm2HLvt', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (28, 'Rich', 'rzamorar', 'rbillyardr@xing.com', '4JRLIKlVKRed', 'user', false);
-insert into users (id, name, username, email, password, type_user, deleted) values (29, 'Rodger', 'storemanager', 'rwakers@weather.com', '$2y$12$MTU.edf.1vOH7/cNkzfqmONUzrQ3YvfZFOpALYifmo0kYCOHYVTT6', 'store_manager', false);------- 123456789
+insert into users (id, name, username, email, password, type_user, deleted) values (29, 'Rodger', 'storemanager', 'rwakers@weather.com', '$2y$12$3mSjHn//.DfkqScUW/If7.0haSp2yU1dxH4FrcxU2G7m8vDRlsaVG', 'store_manager', false);------- storemanager
 insert into users (id, name, username, email, password, type_user, deleted) values (30, 'Madlin', 'medmundsont', 'mbernott@nifty.com', 'lxWLX9dts', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (31, 'Hagen', 'hkillichu', 'hmacandreisu@hp.com', '1s2SSyk8Px', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (32, 'Emmey', 'eburberowv', 'eneatev@seesaa.net', 'rtszAQ89gAV', 'user', false);
