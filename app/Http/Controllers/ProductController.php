@@ -111,4 +111,26 @@ class ProductController extends Controller
 
         return array($review);
     }
+
+
+
+    public function store(Request $request)
+    {
+
+        //$this->authorize();
+        
+        $product = new Product;
+
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->store = $request->store;
+
+        $product->save();
+
+        return $product;
+    }
+
+
 }

@@ -2,12 +2,24 @@
 
 @section('styles')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-<script src="{{url('js/profile.js')}}" defer></script>
-@endsection
+
+
+
 
 @if($user['type_user'] == 'user')
+<script src="{{url('js/profile.js')}}" defer></script>
+
+@elseif($user['type_user'] == 'store_manager')
+
+<script src="{{url('js/manager.js')}}" defer></script>
+
+@else <script src="{{url('js/profile.js')}}" defer></script>
+@endif
+@endsection
+
 @section('content')
 
+@if($user['type_user'] == 'user')
 <input type="hidden" id="userId" value={{Auth::user()->id}}>
 
 <div class="mt-1">
@@ -44,7 +56,7 @@
             </a>
             <a href="#onhold_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                On Hold
+                On Holdprofile
             </a>
             <a href="#history_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -363,7 +375,7 @@
 
             <div class="cards row" id="favorites">
 
-                @if (empty($data['favorites']))
+                @if (empty($favorites))
                 <div class="mt-3 col-md-4">
 
                 </div>
@@ -375,8 +387,7 @@
                 <div class="mt-3 col-md-4">
 
                 </div>
-                @endif
-
+                @else
                 @foreach ($favorites as $item)
                 <div id={{"favorite-" . $item['id']}} class="mt-3 col-md-5 col-lg-4">
                     <div class="box d-flex flex-column align-items-center">
@@ -394,6 +405,7 @@
                 </div>
 
                 @endforeach
+                @endif
 
             </div>
         </section>
@@ -571,45 +583,51 @@
 </main>
 
 
-  <!-- Modal OnlineHelp -->
-  <p class="text-secondary">
-  <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-    <div class="container topright text-aling-top">
-      <i class="far topright fa-question-circle fa-2x text-top "></i>
-    </div>
-  </button>
+<!-- Modal OnlineHelp -->
+<p class="text-secondary">
+    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+        <div class="container topright text-aling-top">
+            <i class="far topright fa-question-circle fa-2x text-top "></i>
+        </div>
+    </button>
 </p>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <p>As a user, on this page, you can <strong>edit your personal details</strong> and <strong>manage your addresses</strong>.</p>
-    <p>You can view all your purchases, those bellow <strong>On Hold</strong> are being processed or have just been shipped, once a package is delivered, you can find it under <strong>History</strong>.</p>
-         <p>If you click on a particular purchase, you can see all its details.</p>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">What's the purpose of this page?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>As a user, on this page, you can <strong>edit your personal details</strong> and <strong>manage your
+                        addresses</strong>.</p>
+                <p>You can view all your purchases, those bellow <strong>On Hold</strong> are being processed or have
+                    just been shipped, once a package is delivered, you can find it under <strong>History</strong>.</p>
+                <p>If you click on a particular purchase, you can see all its details.</p>
 
-      </div>
-      <div class="modal-footer">
-        <div class="container">
-      <div class="modal-body">
-      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
-      </div>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <div class="modal-body">
+                        <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
+                </div>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-
-@endsection
-
 
 @elseif($user['type_user'] == 'store_manager')
 
+@include('pages.stmanager', $categories)
+
+@else
+
+@include('pages.admin', $categories)
 
 @endif
 
+@endsection

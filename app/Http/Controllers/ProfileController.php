@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
         $user = User::find($id);
 
-        // $this->authorize($user);
+         //$this->authorize($user);
 
         $address = $user->addresses()->get();
 
