@@ -11,7 +11,6 @@ $(".1").click(function() {
   
     for (let i = 0; i < list.length; i++) {
         list[i].appendChild(list_paramArr[i]);
-        console.log(list[i]);
     }
   
   })
