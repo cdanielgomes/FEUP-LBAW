@@ -21,7 +21,11 @@
 
 </main>
 
+@guest
+<input type="hidden" id="userId" value=-1>
+@else
 <input type="hidden" id="userId" value={{Auth::user()->id}}>
+@endguest
 
 <div class="media pl-5">
     <div id="product-images" class="carousel slide carousel-fade" data-ride="carousel">
@@ -52,11 +56,12 @@
     </div>
 
     <input type="hidden" id="productId" value={{$product['id']}}>
+    <input type="hidden" id="productPrice" value={{$product['price']}}>
 
     <div class="media-body pl-3">
         <h3 class="mt-0 product-title">{{$product['name']}}</h3>
         <div id="cart">
-            <form method="post" action="/product" id="AddToCartForm" class="product_form">
+            <form id="AddToCartForm" class="product_form">
                 <p id="product-price">
                     <span class="price">{{$product['price']}}€</span>
                 </p>
@@ -66,27 +71,42 @@
                 <div class="product-add">
                     <div class="form-group">
                         <label for="quantity">Quantity</label>
-                        <input min="1" type="number" id="quantity" name="quantity" value="1">
+                        <input class="form-control" min="1" type="number" id="quantity" name="quantity" value="1">
                     </div>
+                    <label for="quantity">Color</label>
                     <div class="form-group">
-                        <label for="quantity">Color</label>
                         <select class="form-control w-25">
                             @foreach ($product->colors as $color)
                             <option>{{$color->name}}</option>
                             @endforeach
                         </select>
                     </div>
+                    <label for="quantity">Size</label>
                     <div class="form-group">
-                        <label for="quantity">Size</label>
                         <select class="form-control w-25">
                             @foreach ($product->sizes as $size)
                             <option>{{$size->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <input type="submit" name="button" class="AddtoCart" value="Add to Cart">
                 </div>
+                <input type="submit" name="Submit" class="AddtoCart" value="Add to Cart">
             </form>
+            <div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
+            </div>
+            <div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -183,7 +203,8 @@
                                 <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="Item 1"
                                     class="center-block" onclick="window.location={{$Rproduct['id']}}"
                                     style="cursor:pointer;">
-                                <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">{{$Rproduct['name']}}
+                                <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">
+                                    {{$Rproduct['name']}}
                                 </h5>
                                 <span>{{$Rproduct['price']}} €</span>
                                 <input type="button" class="AddToCart" value="Add to Cart">
