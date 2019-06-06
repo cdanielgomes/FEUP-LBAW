@@ -20,8 +20,8 @@ class CategoriesController extends Controller
 
         if ($subcategory == 'all') {
 
-            if ($category == 'man' || $category == 'woman')
-                $categories = Categories::all()->where('sex', $category[0]);
+            if ($category == 'Man' || $category == 'Woman')
+                $categories = Categories::all()->where('sex', lcfirst($category)[0]);
             else
                 $categories = Categories::all()->where('dad', $category);
         } else {

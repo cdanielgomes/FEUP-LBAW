@@ -21,8 +21,8 @@
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
-            <li class="breadcrumb-item"><a href={{ url('/products' . "/" . strtolower($name). '/all')}}>{{$name}}</a></li>
+            <li class="breadcrumb-item"><a href={{url('/')}}>Homepage</a></li>
+            <li class="breadcrumb-item"><a href={{ url('/products' . "/" . $name. '/all')}}>{{$name}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$subname}}</a></li>
         </ol>
     </nav>
@@ -123,9 +123,9 @@
                             <div data-name="{{$product['name']}}" class="box d-flex flex-column align-items-center product_onrow">
                                 <img src={{"assets/product" . $product['id'] . "1.png"}} alt={{$product['name']}}
                                     class="center-block"
-                                    onclick="window.location='../../product/'+{{$product['id']}}"
+                                    onclick="window.location='{{url('product/' .$product['id'])}}'"
                                     style="cursor:pointer;">
-                                <h5 onclick="window.location='../../product/'+{{$product['id']}}" style="cursor:pointer;">
+                                <h5 onclick="window.location='{{url('product/' . $product['id'])}}'" style="cursor:pointer;">
                                     {{$product['name']}}</h5>
                                 <span>{{$product['price']}} €</span>
                                 <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">

@@ -14,6 +14,9 @@ let faves = document.getElementsByClassName("fas fa-heart ml-auto");
   elem.addEventListener('click', sendRemoveFav);
 });
 
+let infoChange = document.getElementById('alterInfoUser');
+infoChange.addEventListener('submit', sendUpdatePersonalInfo)
+
 
 function encodeForAjax(data) {
   if (data == null) return null;
@@ -141,4 +144,39 @@ function removeCard(id) {
   let i = document.getElementById("favorite-" + id)
   i.remove();
 
+}
+
+
+function sendUpdatePersonalInfo(event) {
+  event.preventDefault();
+
+  let name = event.target[0].value;
+  let username = event.target[1].value;
+  let email = event.target[2].value;
+  let password = event.target[3].value;
+  let newpassword = event.target[4].value;
+
+
+  sendAjaxRequest('put', '/api/profile', { name: name, username: username, email: email, password: password, newpassword: newpassword }, changeInfoHandler)
+}
+
+
+function changeInfoHandler() {
+  if (this.status != 200) {
+    console.log(this.status);
+  }
+
+  let answer = JSON.parse(this.responseText);
+  document.getElementById('alterInfoUser').reset();
+
+  document.getElementById('profile_username').childNodes[0].nodeValue = answer['username'];
+  document.getElementById('profile_name').childNodes[0].nodeValue = answer['name'];
+  document.getElementById('profile_email').childNodes[0].nodeValue = answer['email'];
+
+  let infoChange = document.getElementById('alterInfoUser');
+  console.log(infoChange.childNodes);
+
+  $('#alterInformationModal').modal('hide');
+  $('.modal-backdrop').remove();
+  $('body').removeClass('modal-open');
 }

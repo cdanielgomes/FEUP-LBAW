@@ -102,9 +102,8 @@
         </section>
     </div>
 
-    <div class="modal fade" id="alterInformationModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal fade" id="alterInformationModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Alter Information</h5>
@@ -112,7 +111,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form id="alterInfoUser">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
