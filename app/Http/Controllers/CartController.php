@@ -55,4 +55,16 @@ class CartController extends Controller
 
         return $line_item_cart;
     }
+
+    public function destroyLine(Request $request, $idLine)
+    {
+
+        $line_item_cart = Line_item_cart::find($idLine);
+        $line_item_cart->delete();
+
+        $line_item = Line_item::find($idLine);
+        $line_item->delete();
+
+        return $request;
+    }
 }

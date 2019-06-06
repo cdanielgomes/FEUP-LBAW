@@ -81,3 +81,13 @@ main button.back-button a {
     text-decoration: none;
     color: var(--color5);
 }
+
+.fas.fa-trash-alt.ml-auto {
+    font-weight: 100;
+}
+
+.fas.fa-trash-alt.ml-auto:hover {
+    cursor: pointer;
+    color: #40544b;
+    font-weight: 900;
+}

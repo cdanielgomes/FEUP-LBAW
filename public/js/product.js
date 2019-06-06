@@ -101,8 +101,6 @@ function AddToCartHandler() {
     console.log(this.status);
   }
 
-  console.log(this.responseText);
-
   let modal = document.querySelector("#report")
   modal.click();
 }
