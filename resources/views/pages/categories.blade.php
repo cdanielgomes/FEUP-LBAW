@@ -5,17 +5,24 @@
 
 <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
 <script src="{{asset('js/categories.js')}}" defer></script>
+<script src="{{asset('js/product.js')}}" defer></script>
 
 @endsection
 
 @section('content')
+
+@guest
+<input type="hidden" id="userId" value=-1>
+@else
+<input type="hidden" id="userId" value={{Auth::user()->id}}>
+@endguest
 
 @if (isset($name))
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
-            <li class="breadcrumb-item"><a href={{ url('/products/' . $name. '/all')}}>{{$name}}</a></li>
+            <li class="breadcrumb-item"><a href={{ url('/products' . "/" . strtolower($name). '/all')}}>{{$name}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$subname}}</a></li>
         </ol>
     </nav>
@@ -114,14 +121,14 @@
 
                         <div class="mt-3 col-md-5 col-lg-4 products_onrow">
                             <div data-name="{{$product['name']}}" class="box d-flex flex-column align-items-center product_onrow">
-                                <img src={{"assets/product" . $product['id']}} alt={{$product['name']}}
+                                <img src={{"assets/product" . $product['id'] . "1.png"}} alt={{$product['name']}}
                                     class="center-block"
                                     onclick="window.location={{url('/product' . '/' . $product['id']) }}"
                                     style="cursor:pointer;">
                                 <h5 onclick="window.location={{url('/product' . '/' . $product['id']) }}" style="cursor:pointer;">
                                     {{$product['name']}}</h5>
                                 <span>{{$product['price']}} €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart">
+                                <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
                             </div>
                         </div>
 
@@ -159,6 +166,22 @@
         </nav>
     </div>
 </main>
+
+<div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
+    </div>
+    <div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- Modal OnlineHelp -->
 <div class="button_online">
