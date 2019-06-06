@@ -70,8 +70,9 @@ function sendCreateReview(event)
   }
 
   function clearFormReview(){
-    let form = document.getElementById('makeReview');
+    let form = document.getElementById('makeReview')
     form.reset();
+  
   }
 
 function encodeForAjax(data) {
