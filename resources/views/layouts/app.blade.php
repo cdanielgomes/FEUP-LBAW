@@ -121,9 +121,11 @@
                 </form>
               </li>
               <li class="nav-item">
-                
+                @if(Auth::user() != null)
+                <a class="nav-link" href="{{ route('cart', ['id' => Auth::user()->carts->id ])}}">
                   <h5><i class="fas fa-shopping-cart"></i> </h5>
                 </a>
+                @endif
               </li>
               @guest
               <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
