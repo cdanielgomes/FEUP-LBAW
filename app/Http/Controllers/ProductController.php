@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Review;
+use App\Color;
+use App\Size;
 
 class ProductController extends Controller
 {
@@ -18,15 +20,16 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        $reviews = DB::table('review')->where('id_product', $id)->get();
+        $reviews = Review::all()->where('id_product', $id);
         $idColors = DB::table('product_color')->where('id_product', $id)->get();
         $idSizes = DB::table('product_size')->where('id_product', $id)->get();
+
 
         // Get colors of product
         $colors = array();
         foreach ($idColors as $idColor) {
 
-            $color = DB::table('color')->where('id', $idColor->id_color)->get();
+            $color = Color::find($idColor->id_color);
             array_push($colors, $color);
         }
         $product->colors = $colors;
@@ -35,38 +38,43 @@ class ProductController extends Controller
         $sizes = array();
         foreach ($idSizes as $idSize) {
 
-            $size = DB::table('size')->where('id', $idSize->id_size)->get();
+            $size = Size::find($idSize->id_size);
             array_push($sizes, $size);
         }
         $product->sizes = $sizes;
+
 
         // Get related prodcuts
         $category = DB::table('product_categories')->where('id_product', $id)->get()->toArray();
         $relatedProducts = DB::table('product_categories')->where('id_categories', $category[0]->id_categories)->get()->toArray();
 
         shuffle($relatedProducts);
-        $rand = array_rand($relatedProducts, 3);
 
-        $threeProducts = array();
-        foreach ($rand as $id) {
+        foreach($relatedProducts as $rp) {
 
-            $rProduct = Product::find($id);
-
-            while ($rProduct == null) {
-                $rProduct = Product::find($id);
+            if($rp->id_product == $id){
+                $key = array_search($rp, $relatedProducts);
+                unset($relatedProducts[$key]);
             }
-            array_push($threeProducts, Product::find($id));
+        }
+
+        $bestThree = array_rand($relatedProducts, 3);
+        $threeProducts = array();
+
+        foreach ($bestThree as $relatedID) {
+            $pid = $relatedProducts[$relatedID]->id_product;
+            array_push($threeProducts, Product::find($pid));
         }
 
         $product->relatedProducts = $threeProducts;
 
         foreach ($reviews as $review) {
-            $id = $review->id_user;
-            $userID = $user = User::find($id);
-            $review->name = $userID['name'];
+            $userID = $review->id_user;
+            $user = User::find($userID);
+            $review->name = $user['name'];
         }
 
-        return view('pages.product', ['categories' => Categories::all()])->with(['product' => $product, 'reviews' => $reviews]);
+        return view('pages.product', ['categories' => Categories::all(), 'product' => $product, 'reviews' => $reviews]);
     }
 
     /**
@@ -83,8 +91,8 @@ class ProductController extends Controller
 
         return Validator::make($request, [
             'title' => 'bail|required|string|max:255',
-            'score' => 'required|max:5|min:1',
-            'description' => 'string|max:255',
+            'score' => 'required',
+            'description' => 'nullable|string|max:255',
         ], $customMessages);
     }
 
@@ -120,7 +128,6 @@ class ProductController extends Controller
         //$this->authorize();
 
         $product = new Product;
-
 
         $product->id = Product::max('id') + 1;
         $product->name = $request->name;

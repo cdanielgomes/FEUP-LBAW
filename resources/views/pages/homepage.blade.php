@@ -30,30 +30,17 @@
   <div class="mt-5 container">
     <h2>Featured Products</h2>
     <div class="row">
+      @foreach ($featuredProducts as $product)
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
-          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
-          <span>32,00 €</span>
+          <img src="{{asset('imgs/product'.$product['id'].'1.png')}}" alt="Item 1" class="center-block"
+            onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
+          <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
+          <span>{{$product['price']}} €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
         </div>
       </div>
-      <div class="mt-3 col-md-5 col-lg-4">
-        <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
-          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
-          <span>32,00 €</span>
-          <input type="button" class="AddToCart" value="Add to Cart">
-        </div>
-      </div>
-      <div class="mt-3 col-md-5 col-lg-4">
-        <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
-          <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
-          <span>32,00 €</span>
-          <input type="button" class="AddToCart" value="Add to Cart">
-        </div>
-      </div>
+      @endforeach
     </div>
   </div>
 </div>
@@ -110,7 +97,8 @@
     <div class="row">
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'"
+            style="cursor:pointer;">
           <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
@@ -118,7 +106,8 @@
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'"
+            style="cursor:pointer;">
           <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
@@ -126,7 +115,8 @@
       </div>
       <div class="mt-3 col-md-5 col-lg-4">
         <div class="box d-flex flex-column align-items-center">
-          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'" style="cursor:pointer;">
+          <img src="{{asset('imgs/pants.png')}}" alt="Item 1" class="center-block" onclick="window.location='product'"
+            style="cursor:pointer;">
           <h5 onclick="window.location='product'" style="cursor:pointer;">Men's Sprag 5-pocket Pants</h5>
           <span>32,00 €</span>
           <input type="button" class="AddToCart" value="Add to Cart">
@@ -150,7 +140,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -160,16 +151,23 @@
         </button>
       </div>
       <div class="modal-body">
-      <p>Welcome to <strong>aurora</strong>, where all things Country-Side offer the user <strong>unique experiences </strong> through Clothing, House Accessories or any materials for wildlife Activities.
-  In the midst of the spectre that is “Nature”, it is important to <strong>help any users find their best tangible products</strong> so they can feel a <strong>sense of exploring</strong> and <strong>gain better values</strong> adapted to nature’s landscapes. 
-  Users can find the <strong>latest products inside</strong> the store through the <strong>“Featured Products” section</strong>.</p>
-      <p>Any sales applied to our products based on seasons throughout the <strong>“Products on Sale” section</strong> are also available. </p>
-	    <p> On any occasion, users can look for products in the presented search-bar or pre-assigned categories such as ‘Clothing’, ‘House-Decor’ & ‘Activities’.</p>
+        <p>Welcome to <strong>aurora</strong>, where all things Country-Side offer the user <strong>unique experiences
+          </strong> through Clothing, House Accessories or any materials for wildlife Activities.
+          In the midst of the spectre that is “Nature”, it is important to <strong>help any users find their best
+            tangible products</strong> so they can feel a <strong>sense of exploring</strong> and <strong>gain better
+            values</strong> adapted to nature’s landscapes.
+          Users can find the <strong>latest products inside</strong> the store through the <strong>“Featured Products”
+            section</strong>.</p>
+        <p>Any sales applied to our products based on seasons throughout the <strong>“Products on Sale” section</strong>
+          are also available. </p>
+        <p> On any occasion, users can look for products in the presented search-bar or pre-assigned categories such as
+          ‘Clothing’, ‘House-Decor’ & ‘Activities’.</p>
       </div>
       <div class="modal-footer">
         <div class="container">
-      <div class="modal-body">
-      <span><a href="{{route('faq')}}"> More Questions?  </a></span> </div></div>
+          <div class="modal-body">
+            <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
       </div>
     </div>

@@ -25,6 +25,7 @@ Route::get('/profile', 'ProfileController@show')->name('profile');
 Route::get('/product/{id}', 'ProductController@show')->name('product');
 Route::get('/cart/{id}', 'CartController@show')->name('cart');
 Route::post('api/product/{id}/review', 'ProductController@submitReview');
+Route::post('api/product/{id}/addToCart', 'CartController@addToCart');
 
 
 Route::get('/products/{category}/{subcategoty}', 'CategoriesController@show');
