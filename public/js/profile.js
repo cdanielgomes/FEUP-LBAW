@@ -1,5 +1,4 @@
 let itemCheckers = document.querySelectorAll('i.fas.fa-trash-alt.ml-auto.addr');
-
 [].forEach.call(itemCheckers, function (checker) {
   checker.addEventListener('click', sendDeleteAddress);
 });

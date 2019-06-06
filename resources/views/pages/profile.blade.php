@@ -3,9 +3,6 @@
 @section('styles')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
-
-
-
 @if($user['type_user'] == 'user')
 <script src="{{url('js/profile.js')}}" defer></script>
 
