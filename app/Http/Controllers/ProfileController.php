@@ -13,10 +13,11 @@ use App\Categories;
 use App\Favorites;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Xml\Facade;
+use Validator;
 
 class ProfileController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -32,7 +33,7 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::id());
 
-       // $this->authorize('view', $user);
+        // $this->authorize('view', $user);
 
         $address = $user->addresses()->get();
 
@@ -41,7 +42,6 @@ class ProfileController extends Controller
             $array = City::where('id', $value['id_city'])->get()->toArray()[0];
             $value['city'] = $array['name'];
             $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
-        
         }
 
 
@@ -77,14 +77,12 @@ class ProfileController extends Controller
             else array_push($hold, $order);
         }
 
-        
+
         $employees = array();
 
         if ($user->type_user == 'admin') {
-            
+
             $employees = User::all()->where('type_user', 'admin');
-       
-        
         }
         // dd($delivered);
         return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
@@ -98,5 +96,54 @@ class ProfileController extends Controller
 
         if ($deleted == 1) return $idProduct;
         else return $deleted;
+    }
+
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Address  $address
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+
+        $user = Auth::user();
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
+                'password' => 'required|string',
+            ]
+        );
+
+        
+
+        if ($validator->fails()) {
+            return redirect('profile')
+                ->withErrors($validator)
+                ->withInput();
+        }
+       
+        if ($request->newpassword != "") {
+            if (Hash::check($request->password, $user->id)) {
+                $user->password = bcrypt($request->newpassword);
+            }
+        }
+        
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+
+//        dd($user);
+        $user->save();
+
+        return $user;
     }
 }
