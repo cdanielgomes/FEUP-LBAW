@@ -49,13 +49,23 @@ class ProductController extends Controller
         $relatedProducts = DB::table('product_categories')->where('id_categories', $category[0]->id_categories)->get()->toArray();
 
         shuffle($relatedProducts);
+
+        foreach($relatedProducts as $rp) {
+
+            if($rp->id_product == $id){
+                $key = array_search($rp, $relatedProducts);
+                unset($relatedProducts[$key]);
+            }
+        }
+
         $bestThree = array_rand($relatedProducts, 3);
         $threeProducts = array();
+
         foreach ($bestThree as $relatedID) {
             $pid = $relatedProducts[$relatedID]->id_product;
             array_push($threeProducts, Product::find($pid));
         }
-        
+
         $product->relatedProducts = $threeProducts;
 
         foreach ($reviews as $review) {
@@ -81,8 +91,8 @@ class ProductController extends Controller
 
         return Validator::make($request, [
             'title' => 'bail|required|string|max:255',
-            'score' => 'required|max:5|min:1',
-            'description' => 'string|max:255',
+            'score' => 'required',
+            'description' => 'nullable|string|max:255',
         ], $customMessages);
     }
 
@@ -116,7 +126,7 @@ class ProductController extends Controller
     {
 
         //$this->authorize();
-        
+
         $product = new Product;
 
 
@@ -129,6 +139,4 @@ class ProductController extends Controller
 
         return $product;
     }
-
-
 }

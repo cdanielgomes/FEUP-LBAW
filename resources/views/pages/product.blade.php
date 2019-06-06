@@ -119,7 +119,7 @@
                         <form id="makeReview">
                             <h6>Make your review</h6>
                             <div class="form-group" id="reviewTitle">Title<br />
-                                <input type="text" id="data" name="data" class="form-control" required />
+                                <input type="text" class="form-control" required />
                             </div>
                             <div class="form-group">Rating<br />
                                 <div class="getValue d-flex justify-content-center">
@@ -129,10 +129,10 @@
                                 </div>
                             </div>
                             <div class="form-group">Review<br />
-                                <textarea id="data_8" false name="data_8" rows="5" maxlength="250"
-                                    class="form-control">Maximum 250 characters...</textarea>
+                                <textarea rows="5" maxlength="250" placeholder="Maximum 250 characters..."
+                                    class="form-control"></textarea>
                             </div>
-                            <div><input id="formReview" name="Submit" value="Submit" type="submit" /></div>
+                            <div><input name="Submit" value="Submit" type="submit" /></div>
                         </form>
                     </li>
                     @foreach ($reviews as $review)
