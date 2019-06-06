@@ -2,10 +2,17 @@
 
 @section('styles')
 <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+<script src="{{asset('js/product.js')}}" defer></script>
 
 @endsection
 
 @section('content')
+
+@guest
+<input type="hidden" id="userId" value=-1>
+@else
+<input type="hidden" id="userId" value={{Auth::user()->id}}>
+@endguest
 
 <div>
 
@@ -26,6 +33,22 @@
   </div>
 </div>
 
+<div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
+  </div>
+  <div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
 <div class="featuredproducts">
   <div class="mt-5 container">
     <h2>Featured Products</h2>
@@ -37,7 +60,7 @@
             onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
           <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
           <span>{{$product['price']}} €</span>
-          <input type="button" class="AddToCart" value="Add to Cart">
+          <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
         </div>
       </div>
       @endforeach
@@ -102,7 +125,7 @@
             onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
           <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
           <span>{{$product['price']}} €</span>
-          <input type="button" class="AddToCart" value="Add to Cart">
+          <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
         </div>
       </div>
       @endforeach

@@ -91,7 +91,7 @@ function sendAddToCart(event) {
   let productColor = event.target[1].value;
   let productSize = event.target[2].value;
 
-  sendAjaxRequest('post', "/api/product/" + productId + "/addToCart", { id: id, productID: productID, productPrice: productPrice, productQuantity: productQuantity, productColor: productColor, productSize: productSize }, AddToCartHandler)
+  sendAjaxRequest('post', "/api/product/" + productID + "/addToCart", { id: id, productID: productID, productPrice: productPrice, productQuantity: productQuantity, productColor: productColor, productSize: productSize }, AddToCartHandler)
 
 }
 
@@ -106,6 +106,21 @@ function AddToCartHandler() {
   let modal = document.querySelector("#report")
   modal.click();
 }
+
+
+function sendAddToCartRelated(pid, price) {
+
+  let id = document.querySelector("#userId").value;
+  let productID = pid;
+  let productPrice = price;
+  let productQuantity = 1
+  let productColor = null;
+  let productSize = null;
+
+  sendAjaxRequest('post', "/api/product/" + productID + "/addToCart", { id: id, productID: productID, productPrice: productPrice, productQuantity: productQuantity, productColor: productColor, productSize: productSize }, AddToCartHandler)
+
+}
+
 
 function encodeForAjax(data) {
   if (data == null) return null;
