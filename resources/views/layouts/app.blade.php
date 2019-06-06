@@ -121,7 +121,7 @@
                 </form>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/cart">
+                <a class="nav-link" href="{{ route('cart', ['id' => Auth::user()->carts->id ])}}">
                   <h5><i class="fas fa-shopping-cart"></i> </h5>
                 </a>
               </li>

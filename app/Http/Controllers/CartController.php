@@ -50,7 +50,7 @@ class CartController extends Controller
 
         $line_item_cart = new Line_item_cart();
         $line_item_cart->id_line_item = $line_item->id;
-        $line_item_cart->id_cart = Cart::all()->where('id_user', $request->id)->toArray()[0]['id'];
+        $line_item_cart->id_cart = User::find($request->id)->carts->id;
         $line_item_cart->save();
 
         return $line_item_cart;
