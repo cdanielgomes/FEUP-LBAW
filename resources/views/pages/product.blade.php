@@ -55,7 +55,7 @@
         </a>
     </div>
 
-        
+    <input type="hidden" id="productId" value={{$product['id']}}>
     <input type="hidden" id="productPrice" value={{$product['price']}}>
 
     <div class="media-body pl-3">
@@ -207,7 +207,8 @@
                                     {{$Rproduct['name']}}
                                 </h5>
                                 <span>{{$Rproduct['price']}} €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$Rproduct['id']}}, {{$Rproduct['price']}})">
+                                <input type="button" class="AddToCart" value="Add to Cart"
+                                    onclick="sendAddToCartRelated({{$Rproduct['id']}}, {{$Rproduct['price']}})">
                             </div>
                         </div>
                         @endforeach
