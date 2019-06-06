@@ -72,7 +72,7 @@
                         <label for="quantity">Color</label>
                         <select class="form-control w-25">
                             @foreach ($product->colors as $color)
-                            <option>{{$color[0]->name}}</option>
+                            <option>{{$color->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                         <label for="quantity">Size</label>
                         <select class="form-control w-25">
                             @foreach ($product->sizes as $size)
-                            <option>{{$size[0]->name}}</option>
+                            <option>{{$size->name}}</option>
                             @endforeach
                         </select>
                     </div>
