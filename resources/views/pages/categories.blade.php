@@ -4,6 +4,7 @@
 @section('styles')
 
 <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
+<script src="{{asset('js/categories.js')}}" defer></script>
 
 @endsection
 
@@ -32,16 +33,14 @@
                 <span>{{(count($products) - 1) * 3  + count($products[count($products) - 1])  }}
                     Products</span></div>
             <div class="dropdown col w-auto text-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort By
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Oldest</a>
-                    <a class="dropdown-item" href="#">Newest</a>
-                    <a class="dropdown-item" href="#">Price</a>
-                    <a class="dropdown-item" href="#">Alphabetically</a>
-
+                    <a class="dropdown-item 1" >Alphabetically </a>
+                    <a class="dropdown-item 2" >Reversed</a>
+                    <a class="dropdown-item 3" >Price Ascending</a>
                 </div>
             </div>
 
@@ -113,8 +112,8 @@
                     <div class="row">
                         @foreach ($p3 as $product)
 
-                        <div class="mt-3 col-md-5 col-lg-4">
-                            <div class="box d-flex flex-column align-items-center">
+                        <div class="mt-3 col-md-5 col-lg-4 products_onrow">
+                            <div data-name="{{$product['name']}}" class="box d-flex flex-column align-items-center product_onrow">
                                 <img src={{"assets/product" . $product['id']}} alt={{$product['name']}}
                                     class="center-block"
                                     onclick="window.location={{url('/product' . '/' . $product['id']) }}"

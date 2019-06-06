@@ -31,7 +31,8 @@ Route::post('api/product/{id}/addToCart', 'CartController@addToCart');
 Route::get('/products/{category}/{subcategoty}', 'CategoriesController@show');
 Route::get('/categories', 'CategoriesController@show')->name('categories');
 Route::get('/search', 'CategoriesController@search_products')->name('search');
-
+Route::post('api/products/{category}/{subcategoty}', 'CategoriesController@show');
+Route::post('api/search/{id}/review', 'CategoriesController@search_products');
 
 Auth::routes();
 

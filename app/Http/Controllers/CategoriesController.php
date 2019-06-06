@@ -31,13 +31,12 @@ class CategoriesController extends Controller
             else
                 $categories = Categories::all()->where('dad', $category)->where('name', $subcategory);
         }
-        //dd($categories);
         $temp = array();
 
         foreach ($categories as $cat) {
 
             $products = $cat->product()->get()->toArray();
-            //dd($products);
+
             $temp = array_merge($temp, $products);
         }
 
@@ -93,8 +92,7 @@ class CategoriesController extends Controller
         }
 
         array_push($pall, $on3);
-       // $category[0] = strtoupper($category[0]);
-//dd($pall);
+
         return view('pages.categories', ['categories' => Categories::all(), 'brands' => Brand::all(), 'colors' => Color::all(), 'sizes' => Size::all(),'subname' => $search_key,'search_key' => $search_key, 'products' => $pall]);
     }
 }
