@@ -130,7 +130,7 @@
               <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
               @else
               <li class="nav-item">
-                <a href="{{route('profile', ['id' => Auth::user()->id ])}}" class="nav-link" role="button">
+                <a href="{{route('profile')}}"class="nav-link" role="button">
 
 
                   <i class="fas fa-user pt-1"></i>

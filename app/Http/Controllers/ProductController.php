@@ -49,10 +49,10 @@ class ProductController extends Controller
 
         $threeProducts = array();
         foreach ($rand as $id) {
-            
-            $rProduct =Product::find($id);
 
-            while($rProduct == null) {
+            $rProduct = Product::find($id);
+
+            while ($rProduct == null) {
                 $rProduct = Product::find($id);
             }
             array_push($threeProducts, Product::find($id));
@@ -118,19 +118,20 @@ class ProductController extends Controller
     {
 
         //$this->authorize();
-        
+
         $product = new Product;
 
 
+        $product->id = Product::max('id') + 1;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->store = $request->store;
+        $product->stock = $request->stock;
 
+
+        //dd($product);
         $product->save();
 
         return $product;
     }
-
-
 }

@@ -245,7 +245,7 @@
                     </button>
                     <span aria-hidden="true">&times;</span>
                 </div>
-                <form>
+                <form id="addDiscount">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Value</label>

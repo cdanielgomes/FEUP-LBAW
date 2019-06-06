@@ -16,12 +16,23 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Facade;
 
 class ProfileController extends Controller
 {
-    public function show($id)
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware('auth', ['except' => ['show', 'test']]);
+    }
+
+    public function show()
     {
 
-        $user = User::find($id);
+        $user = User::find(Auth::id());
 
-         //$this->authorize($user);
+       // $this->authorize('view', $user);
 
         $address = $user->addresses()->get();
 
@@ -30,6 +41,7 @@ class ProfileController extends Controller
             $array = City::where('id', $value['id_city'])->get()->toArray()[0];
             $value['city'] = $array['name'];
             $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
+        
         }
 
 
@@ -65,8 +77,17 @@ class ProfileController extends Controller
             else array_push($hold, $order);
         }
 
-       // dd($delivered);
-        return view('pages.profile', ['categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
+        
+        $employees = array();
+
+        if ($user->type_user == 'admin') {
+            
+            $employees = User::all()->where('type_user', 'admin');
+       
+        
+        }
+        // dd($delivered);
+        return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
     }
 
     public function deleteFav($idUser, $idProduct)

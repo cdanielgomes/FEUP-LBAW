@@ -4,7 +4,7 @@
 @section('styles')
 
 <link href="{{ asset('css/categories.css') }}" rel="stylesheet">
-x
+
 @endsection
 
 @section('content')

@@ -8,10 +8,12 @@ use App\City;
 use App\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class AddressController extends Controller
 {
 
-    public function _construct(){
+    public function _construct()
+    {
         $this->middleware('auth');
     }
 
@@ -35,49 +37,48 @@ class AddressController extends Controller
     {
 
         $address = new Address();
-        $address->id = Address::max('id')+1;
+        $address->id = Address::max('id') + 1;
         $address->door_number = $request->door_number;
-       
+        $address->type_address = $request->type_address;
         $address->id_user = $idUser;
 
-       /// $this->authorize('create', $address);
-            //$city = City::where('name', $request->city)->get();
+        /// $this->authorize('create', $address);
+        //$city = City::where('name', $request->city)->get();
         $city = City::where('name', $request->city)->get();
         $country = Country::where('name', $request->country)->get();
-            
 
-        if(isset($city[0])) {
-        
+
+        if (isset($city[0])) {
+
             $address->id_city = $city[0]->id;
-            
-            if(!isset($country[0])){
-               $country = Country::create(['id'=>Country::max('id')+1, 'name'=>$request->country]);
+
+            if (!isset($country[0])) {
+                $country = Country::create(['id' => Country::max('id') + 1, 'name' => $request->country]);
+            }
+        } else {
+            if (isset($country[0])) {
+                $city = City::create(['id' => City::max('id') + 1, 'id_country' => $country[0]->id, 'name' => $request->city]);
+            } else {
+                $country = Country::create(['id' => Country::max('id') + 1, 'name' => $request->country]);
+                $city = City::create(['id' => City::max('id') + 1, 'id_country' => $country->id, 'name' => $request->city]);
             }
 
-        }else {
-            if(isset($country[0])){
-               $city = City::create(['id'=>City::max('id')+1, 'id_country'=>$country[0]->id, 'name'=> $request->city]);
-           
-            }else{
-                $country = Country::create(['id'=>Country::max('id') +1, 'name'=>$request->country]);
-                $city = City::create(['id'=>City::max('id')+1, 'id_country'=>$country->id, 'name'=> $request->city]);            
-            }
-        
-         $address->id_city = $city->id;
+            $address->id_city = $city->id;
         }
 
         $address->street = $request->street;
         $address->zipcode = $request->zipCode;
 
-        $address->type_address = 'home';
-       // dd($address);
+    
+        // dd($address);
 
         //$country = Country::where('name', $request->country);
         $address->save();
-     
-    return array($address, $city->first()->name, $country->first()->name);
-    
-}
+
+        //dd($address, $city, $country);
+
+        return array($address, $city->name, $country->name);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -86,9 +87,7 @@ class AddressController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-    }
+    { }
 
     /**
      * Display the specified resource.
@@ -96,7 +95,7 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show(User $user, Address $address)
     {
         //
     }
@@ -132,13 +131,13 @@ class AddressController extends Controller
      */
     public function destroy(Request $request, Address $idAddr)
     {
-      //dd($idAddr);
-      //$addr = Address::find($idAddr);
-      
-      $this->authorize('delete', $idAddr);
+        //dd($idAddr);
+        //$addr = Address::find($idAddr);
 
-      $idAddr->delete();
+        $this->authorize('delete', $idAddr);
 
-      return $idAddr;
+        $idAddr->delete();
+
+        return $idAddr;
     }
 }

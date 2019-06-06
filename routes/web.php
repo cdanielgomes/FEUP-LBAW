@@ -1,4 +1,5 @@
 <?php
+use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('homepage', 'HomepageController@show')->name('homepage');
 Route::get('/about', 'AboutController@about')->name('about');
 Route::get('/faq', 'FaqController@show')->name('faq');
 
-Route::get('/profile/{id}', 'ProfileController@show')->name('profile');
+Route::get('/profile', 'ProfileController@show')->name('profile');
 
 Route::get('/product/{id}', 'ProductController@show')->name('product');
 Route::get('/cart/{id}', 'CartController@show')->name('cart');
@@ -36,3 +37,4 @@ Auth::routes();
 Route::delete('api/address/{idAddr}','AddressController@destroy');
 Route::post('api/profile/{idUser}/address','AddressController@create');
 Route::delete('api/profile/{idUser}/products/{idProduct}', 'ProfileController@deleteFav');
+Route::post('api/product/add', 'ProductController@store');
