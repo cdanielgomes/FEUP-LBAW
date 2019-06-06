@@ -1,5 +1,4 @@
 <?php
-use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +41,4 @@ Route::post('api/profile/{idUser}/address', 'AddressController@create');
 Route::delete('api/profile/{idUser}/products/{idProduct}', 'ProfileController@deleteFav');
 Route::post('api/product/add', 'ProductController@store');
 Route::put('api/profile', 'ProfileController@update');
+Route::delete('profile/delete', 'ProfileController@delete');

@@ -60,7 +60,7 @@ CREATE TABLE users
 CREATE TABLE cart
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER REFERENCES "users" (id) CONSTRAINT user_id_cart_uk UNIQUE, 
+  id_user INTEGER REFERENCES "users" (id)  ON DELETE CASCADE CONSTRAINT user_id_cart_uk UNIQUE, 
   date DATE DEFAULT current_date
 
 );
@@ -90,7 +90,7 @@ CREATE TABLE categories
 CREATE TABLE review
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
   title text NOT NULL,
   description text,
@@ -101,7 +101,7 @@ CREATE TABLE review
 CREATE TABLE "order"
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   date DATE DEFAULT current_date,
   total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total >= 0),
   state text NOT NULL CONSTRAINT state_ck CHECK (state IN ('Processing', 'Delivered', 'Shipped'))
@@ -148,7 +148,7 @@ CREATE TABLE address
 (
   id SERIAL PRIMARY KEY,
   door_number INTEGER NOT NULL,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   id_city INTEGER NOT NULL REFERENCES "city" (id) ON UPDATE CASCADE,
   street text NOT NULL,
   zipCode text NOT NULL,
@@ -175,61 +175,61 @@ CREATE TABLE brand
 
 CREATE TABLE favorites
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-  id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE  CASCADE,
   PRIMARY KEY (id_user, id_product)
 );
 
 CREATE TABLE report
 (
-  id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_reportee INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_review INTEGER NOT NULL REFERENCES "review" (id) ON DELETE CASCADE,
+  id_user_reportee INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_review, id_user_reportee)
 );
 
 CREATE TABLE reportear
 (
-  id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_reportear INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_review INTEGER NOT NULL REFERENCES "review" (id) ON DELETE CASCADE,
+  id_user_reportear INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_review, id_user_reportear)
 );
 
 CREATE TABLE "analyze"
 (
-  id_review INTEGER NOT NULL REFERENCES "review" (id) ON UPDATE CASCADE,
-  id_user_analyze INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_review INTEGER NOT NULL REFERENCES "review" (id) ON DELETE CASCADE,
+  id_user_analyze INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_review, id_user_analyze)
 );
 
 CREATE TABLE premium
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   discounts FLOAT NOT NULL CONSTRAINT discounts_ck CHECK (discounts > 0),
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE deleted
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   date DATE DEFAULT current_date,
   PRIMARY KEY (id_user)
 );
 /*
 CREATE TABLE standard
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE store_manager
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_user)
 );
 
 CREATE TABLE administrator
 (
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
   PRIMARY KEY (id_user)
 );
 */
