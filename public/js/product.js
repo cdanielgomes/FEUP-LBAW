@@ -17,12 +17,13 @@ function sendCreateReview(event)
 
     sendAjaxRequest('post', "/api/product/" + productId + "/review", {id:id, title:title, score:score, description:description}, reviewAddHandler)
 
+    return false;
   }
 
   function reviewAddHandler(){
 
     if(this.status != 200){
-      return;
+      console.log(this.status);
     }
   
     clearFormReview();
@@ -33,6 +34,7 @@ function sendCreateReview(event)
     innerHTML = createReview(review);
     obj.innerHTML += innerHTML;
 
+    return false;
   }
 
   function createError() {
@@ -54,7 +56,10 @@ function sendCreateReview(event)
     div += '<label>' + review[0]['score'] + '/5</label>';
     div += '<img src="../imgs/star.png" alt="star">';
     div += '</div>';
-    div += '<p>'+ review[0]['description'] + '</p>';
+    div += '<p>';
+    if(review[0]['description'] == null)
+    review[0]['description'] = "";
+    div += review[0]['description'] + '</p>';
     div += '<h5 class="author">'+ review[0]['name'] + '</h5>';
     div += '</div>';
     div += '<div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">';
@@ -65,9 +70,8 @@ function sendCreateReview(event)
   }
 
   function clearFormReview(){
-    let form = document.getElementById('makeReview')
-    form.reset();
-  
+    let form = document.getElementById('makeReview');
+    //form.reset();
   }
 
 function encodeForAjax(data) {
