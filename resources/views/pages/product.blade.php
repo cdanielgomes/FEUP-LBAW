@@ -168,7 +168,7 @@
                         </div>
                         <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
                             <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
-                                data-target="#alertReview">
+                                data-target="#alertReview" onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
                                 Report Review
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                         @foreach ($product->relatedProducts as $Rproduct)
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="Item 1"
+                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="product_image"
                                     class="center-block" onclick="window.location={{$Rproduct['id']}}"
                                     style="cursor:pointer;">
                                 <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">

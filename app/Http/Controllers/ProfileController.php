@@ -14,6 +14,10 @@ use App\Favorites;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Xml\Facade;
 use Validator;
+use App\Analyze;
+use App\Review;
+use App\Report;
+use App\Reportear;
 
 class ProfileController extends Controller
 {
@@ -33,8 +37,6 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::id());
 
-        // $this->authorize('view', $user);
-
         $address = $user->addresses()->get();
 
         $addresses = $address->toArray();
@@ -43,7 +45,6 @@ class ProfileController extends Controller
             $value['city'] = $array['name'];
             $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
         }
-
 
         $favs = $user->myFavs()->get();
         $prodFaves = array();
@@ -58,7 +59,6 @@ class ProfileController extends Controller
 
         $delivered = array();
         $hold = array();
-
         foreach ($orders as &$order) {
 
             $lines_order = $order->lines()->get();
@@ -72,20 +72,31 @@ class ProfileController extends Controller
                 array_push($l, ['productPrice' => $product['price'], 'productName' => $product['name'], 'price' => $line['price'], 'quantity' => $line['quantity']]);
                 array_push($lines, $l);
             }
+            $order->address = Address::find($order->id_address_invoce);
+            $order->city = City::find($order->address->id_city)['name'];
             $order['lines'] = $lines;
             if ($order['state'] == 'Delivered') array_push($delivered, $order);
             else array_push($hold, $order);
         }
-
-
         $employees = array();
+        $users = null;
+        $allReviews = null;
 
         if ($user->type_user == 'admin') {
 
-            $employees = User::all()->where('type_user', 'admin');
+            $employees = User::all()->where('type_user', 'store_manager');
+            $users = User::all()->where('type_user', 'user');
+            $reviews = Analyze::all()->where('id_user_analyze', $user->id);
+
+            $allReviews = array();
+            foreach ($reviews as $r) {
+                $review = Review::find($r->id_review);
+                $reviewUser = User::find($review->id_user);
+                $review->username = $reviewUser->name;
+                array_push($allReviews, $review);
+            }
         }
-        // dd($delivered);
-        return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold]);
+        return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold, 'users' => $users, 'reviews' => $allReviews]);
     }
 
     public function deleteFav($idUser, $idProduct)
@@ -97,9 +108,6 @@ class ProfileController extends Controller
         if ($deleted == 1) return $idProduct;
         else return $deleted;
     }
-
-
-
 
     /**
      * Update the specified resource in storage.
@@ -146,8 +154,14 @@ class ProfileController extends Controller
         return $user;
     }
 
+    public function deleteUser(Request $request, $id)
+    {
 
+        $user = User::find($id);
+        $user->delete();
 
+        return $id;
+    }
 
     public function delete()
     {
@@ -156,11 +170,44 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-
-
         if ($user->delete()) {
             return "true";
         }
         return "false";
     }
+
+    public function deleteReview(Request $request, $reviewID)
+    {
+        $reportee = Report::find($reviewID);
+        $reportear = Reportear::find($reviewID);
+        $analyze = Analyze::find($reviewID);
+
+        if ($reportee !== null)
+            $reportee->delete();
+        if ($reportear !== null)
+            $reportear->delete();
+        if ($analyze !== null)
+            $analyze->delete();
+
+        return $reviewID;
+    }
+
+    public function createEmployee(Request $request)
+    {
+
+        $password = bcrypt($request->userPassword);
+        $user = User::find($request->idUser);
+
+        $newUser = new User();
+        $newUser->id = User::max('id')+1;
+        $str = $newUser->id;
+        $newUser->username = "storeManager" . $str;
+        $newUser->name = $request->employeeName;
+        $newUser->email = $newUser->username . "@aurora.pt";
+        $newUser->password = bcrypt($newUser->username);
+        $newUser->type_user = 'store_manager';
+        $newUser->save();
+
+        return array($newUser->id, $newUser->name);
+     }
 }

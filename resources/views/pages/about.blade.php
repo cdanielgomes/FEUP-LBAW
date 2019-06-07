@@ -152,25 +152,25 @@
       <div class="row" id="team">
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
-            <img src="imgs/2.jpg" alt="Item 1" class="center-block">
+            <img src="imgs/2.jpg" alt="product_image" class="center-block">
             <h5 id="memberName">Daniel Gomes</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
-            <img src="{{asset('imgs/1.jpg')}}" alt="Item 1" class="center-block">
+            <img src="{{asset('imgs/1.jpg')}}" alt="product_image" class="center-block">
             <h5 id="memberName">Carolina Azevedo</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
-            <img src="{{asset('imgs/3.jpg')}}" alt="Item 1" class="center-block">
+            <img src="{{asset('imgs/3.jpg')}}" alt="product_image" class="center-block">
             <h5 id="memberName">Diogo Yaguas</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
-            <img src="{{asset('imgs/4.jpg')}}" alt="Item 1" class="center-block">
+            <img src="{{asset('imgs/4.jpg')}}" alt="product_image" class="center-block">
             <h5 id="memberName">Gonçalo Bernardo</h5>
           </div>
         </div>

@@ -1,6 +1,7 @@
 -----------------------------------------
 -- Drop old schmema
 -----------------------------------------
+DROP TABLE IF EXISTS password_resets CASCADE;
 DROP TABLE IF EXISTS product_categories CASCADE;
 DROP TABLE IF EXISTS product_brand CASCADE;
 DROP TABLE IF EXISTS product_size CASCADE;
@@ -98,38 +99,6 @@ CREATE TABLE review
 
 );
 
-CREATE TABLE "order"
-(
-  id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-  date DATE DEFAULT current_date,
-  total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total >= 0),
-  state text NOT NULL CONSTRAINT state_ck CHECK (state IN ('Processing', 'Delivered', 'Shipped'))
-);
-
-CREATE TABLE line_item
-(
-  id SERIAL PRIMARY KEY,
-  id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
-  quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
-  price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0)
-);
-
-CREATE TABLE line_item_order
-(
-  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
-  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE,
-  PRIMARY KEY (id_line_item)
-
-);
-
-CREATE TABLE line_item_cart
-(
-  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
-  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE,
-  PRIMARY KEY (id_line_item)
-
-);
 
 CREATE TABLE country
 (
@@ -148,11 +117,46 @@ CREATE TABLE address
 (
   id SERIAL PRIMARY KEY,
   door_number INTEGER NOT NULL,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
   id_city INTEGER NOT NULL REFERENCES "city" (id) ON UPDATE CASCADE,
   street text NOT NULL,
   zipCode text NOT NULL,
   type_address text NOT NULL CONSTRAINT type_ck CHECK (type_address IN ('home', 'other', 'work'))
+);
+
+CREATE TABLE "order"
+(
+  id SERIAL PRIMARY KEY,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  id_address_invoce INTEGER NOT NULL REFERENCES "address" (id) ON UPDATE CASCADE,
+  id_address_shipping INTEGER REFERENCES "address" (id) ON UPDATE CASCADE,
+  date DATE DEFAULT current_date,
+  total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total >= 0),
+  state text NOT NULL CONSTRAINT state_ck CHECK (state IN ('Processing', 'Delivered', 'Shipped'))
+);
+
+CREATE TABLE line_item
+(
+  id SERIAL PRIMARY KEY,
+  id_product INTEGER NOT NULL REFERENCES "product" (id) ON UPDATE CASCADE,
+  quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
+  price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0)
+);
+
+CREATE TABLE line_item_order
+(
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  PRIMARY KEY (id_line_item)
+
+);
+
+CREATE TABLE line_item_cart
+(
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  PRIMARY KEY (id_line_item)
+
 );
 
 CREATE TABLE color
@@ -413,7 +417,7 @@ insert into users (id, name, username, email, password, type_user, deleted) valu
 insert into users (id, name, username, email, password, type_user, deleted) values (8, 'Lynnette', 'ljoskowitz7', 'lgull7@wunderground.com', '$2y$12$2SuzgixcA7Ib34ujOMRuvuIQoGZC4C.2ZlPDNBA0J2O4w.VlVNxGG', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (9, 'Tristan', 'tmaclennan8', 'tkeunemann8@google.es', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (10, 'Katha', 'kcalf9', 'kpenniell9@rediff.com', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', 'user', false);
-insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$12$s0VNpdRTDox8BdLM45Sj7.0r6UhPbwyT4Nv0Ol998trU6gq232Pkq', 'admin', false); ----- jOWX2YyMgEeM
+insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$10$T/KnD3y7nFckuajDlQit/OG6/TuQENO5y9pnUmEqf5CqlAXYhc5Lu', 'admin', false); ----- jOWX2YyMgEeM
 insert into users (id, name, username, email, password, type_user, deleted) values (12, 'Muhammad', 'mspelwoodb', 'mcassyb@fastcompany.com', '5DXN9x', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (13, 'Jenelle', 'jpiddockec', 'jreichartzc@state.tx.us', 'cKEjYqKNrDmb', 'user', true);
 insert into users (id, name, username, email, password, type_user, deleted) values (14, 'Cymbre', 'cprinnettd', 'ctumbeltyd@bloglines.com', 'kHuNPMwnhm', 'user', false);
@@ -664,39 +668,144 @@ INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (
 INSERT INTO review (id, id_user, id_product, title, description, score) VALUES (20, 20, 42, 'Donec vitae nisi.', 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 1);
 
 -----------------------------------------
+-- country 
+-----------------------------------------
+
+INSERT INTO country (id, name) VALUES (1, 'Vietnam');
+INSERT INTO country (id, name) VALUES (2, 'Philippines');
+INSERT INTO country (id, name) VALUES (3, 'England');
+INSERT INTO country (id, name) VALUES (4, 'Central African Republic');
+INSERT INTO country (id, name) VALUES (5, 'China');
+INSERT INTO country (id, name) VALUES (6, 'Portugal');
+INSERT INTO country (id, name) VALUES (7, 'Norway');
+INSERT INTO country (id, name) VALUES (8, 'Mexico');
+INSERT INTO country (id, name) VALUES (9, 'Croatia');
+INSERT INTO country (id, name) VALUES (10, 'Colombia');
+INSERT INTO country (id, name) VALUES (11, 'China');
+INSERT INTO country (id, name) VALUES (12, 'Bangladesh');
+INSERT INTO country (id, name) VALUES (13, 'Luxembourg');
+INSERT INTO country (id, name) VALUES (14, 'Peru');
+INSERT INTO country (id, name) VALUES (15, 'China');
+INSERT INTO country (id, name) VALUES (16, 'Spain');
+INSERT INTO country (id, name) VALUES (17, 'Guatemala');
+INSERT INTO country (id, name) VALUES (18, 'Thailand');
+INSERT INTO country (id, name) VALUES (19, 'Russia');
+INSERT INTO country (id, name) VALUES (20, 'United States');
+
+-----------------------------------------
+-- city
+-----------------------------------------
+
+INSERT INTO city (id, id_country, name) VALUES (1, 4, 'Taquara');
+INSERT INTO city (id, id_country, name) VALUES (2, 13, 'Velká Bystřice');
+INSERT INTO city (id, id_country, name) VALUES (3, 18, 'Zhufo');
+INSERT INTO city (id, id_country, name) VALUES (4, 1, 'Mananum');
+INSERT INTO city (id, id_country, name) VALUES (5, 9, 'Salcedo');
+INSERT INTO city (id, id_country, name) VALUES (6, 20, 'Lishu');
+INSERT INTO city (id, id_country, name) VALUES (7, 12, 'Sexmoan');
+INSERT INTO city (id, id_country, name) VALUES (8, 4, 'Benzilan');
+INSERT INTO city (id, id_country, name) VALUES (9, 13, 'Alindao');
+INSERT INTO city (id, id_country, name) VALUES (10, 13, 'Arroyo Naranjo');
+INSERT INTO city (id, id_country, name) VALUES (11, 12, 'Kuala Lumpur');
+INSERT INTO city (id, id_country, name) VALUES (12, 7, 'Warlubie');
+INSERT INTO city (id, id_country, name) VALUES (13, 20, 'Amiens');
+INSERT INTO city (id, id_country, name) VALUES (14, 7, 'Villach');
+INSERT INTO city (id, id_country, name) VALUES (15, 16, 'Sandakan');
+INSERT INTO city (id, id_country, name) VALUES (16, 9, 'Nova Kakhovka');
+INSERT INTO city (id, id_country, name) VALUES (17, 1, 'Rathnew');
+INSERT INTO city (id, id_country, name) VALUES (18, 13, 'Nova Odesa');
+INSERT INTO city (id, id_country, name) VALUES (19, 15, 'Maple Plain');
+INSERT INTO city (id, id_country, name) VALUES (20, 3, 'Malitubog');
+
+-----------------------------------------
+-- address 
+-----------------------------------------
+
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (1, 2332, 1, 12, 'Grim', '446600', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (2, 323132, 2, 4, 'Michigan', '06-121', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (3, 345, 3, 19, 'Pepper Wood', '70061', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (4, 453, 4, 19, 'Lighthouse Bay', '431-10', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (5, 234, 5, 20, 'Arrowood', '7104', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (6, 345, 6, 3, 'Anzinger', '662133', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (7, 34, 7, 12, 'American Ash', '744 88', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (8, 395, 8, 9, 'Nobel', '301649', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (9, 385, 9, 2, 'Artisan', '2350-259', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (10, 378, 10, 5, 'Nancy', 'L1X', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (11, 312, 11, 7, 'Melvin', '675 31', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (12, 324, 12, 2, 'Northview', '4890-223', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (13, 32, 13, 20, 'Westport', '8301', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (14, 34, 14, 15, 'Fordem', '22111', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (15, 98, 15, 4, 'Karstens', '58500-000', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (16, 87, 16, 9, 'Lien', '249070', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (17, 123, 17, 1, 'Commercial', '60078', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (18, 56, 18, 2, 'Anhalt', '7104', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (19, 34, 19, 8, 'Corben', '30902', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (20, 765, 20, 17, 'Nova', '399-8205', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (21, 56, 21, 4, 'Northridge', '82001', 'work');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (22, 456, 22, 17, 'Jenna', '28210', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (23, 456, 23, 11, 'Lunder', '21006', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (24, 42, 24, 18, 'Prairieview', '64800-000', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (25, 56, 25, 11, 'Evergreen', '2327', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (26, 78, 26, 6, 'Mayer', '28210', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (27, 56, 27, 2, 'Kings', '999-3503', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (28, 56, 28, 19, 'Oxford', '21006', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (29, 342, 29, 4, 'Golf Course', '142143', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (30, 53, 30, 15, 'Russell', '83404 CEDEX', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (31, 23, 31, 10, '1st', '1695', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (32, 787, 32, 7, 'Fieldstone', '733517', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (33, 98, 33, 8, 'Reinke', '6406', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (34, 98, 34, 16, 'Center', '10040', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (35, 12, 35, 19, 'Memorial', '19130', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (36, 123, 36, 3, 'Carpenter', '624857', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (37, 23, 37, 15, 'Memorial', '3255', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (38, 132, 38, 11, 'International', '47405', 'other');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (39, 123, 39, 17, 'Lindbergh', '419-0125', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (40, 123, 40, 11, 'Ridge Oak', '05-804', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (41, 45, 41, 1, 'Carey', '9630-311', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (42, 345, 42, 8, 'Sachtjen', '242467', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (43, 123, 43, 5, 'Killdeer', '374 53', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (44, 56, 44, 6, 'Manitowish', '30010', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (45, 34, 45, 9, 'Pleasure', '912 24', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (46, 987, 46, 4, 'Sycamore', '4750-521', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (47, 123, 47, 7, 'Eggendart', '141986', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (48, 123, 48, 3, 'Clemons', '7803', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (49, 321, 49, 8, 'Jenna', '10040', 'home');
+INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (50, 654, 50, 13, 'Donald', '11403', 'home');
+
+-----------------------------------------
 -- "order"
 -----------------------------------------
 
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (1, 46, '2019/01/20', 68.3, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (2, 31, '2019/10/25', 22.23, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (3, 30, '2019/07/25', 41.55, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (4, 28, '2018/06/27', 7.97, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (5, 3, '2019/12/08', 73.53, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (6, 50, '2018/05/19', 28.41, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (7, 19, '2018/07/28', 45.25, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (8, 29, '2019/07/07', 7.33, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (9, 6, '2019/10/10', 55.04, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (10, 17, '2018/06/19', 59.49, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (11, 18, '2020/03/22', 11.59, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (12, 14, '2019/03/21', 66.9, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (13, 6, '2018/04/19', 82.14, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (14, 29, '2020/02/08', 50.15, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (15, 13, '2018/04/27', 98.98, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (16, 32, '2018/11/07', 93.45, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (17, 33, '2019/06/09', 84.31, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (18, 18, '2018/09/04', 61.27, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (19, 35, '2018/07/20', 21.0, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (20, 8, '2018/12/09', 60.87, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (21, 28, '2019/11/30', 18.26, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (22, 37, '2018/10/19', 33.4, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (23, 19, '2018/04/21', 17.19, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (24, 42, '2019/06/16', 94.93, 'Processing');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (25, 46, '2018/06/12', 72.55, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (26, 50, '2019/04/14', 43.76, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (27, 41, '2018/05/26', 26.48, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (28, 14, '2019/11/22', 51.41, 'Shipped');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (29, 26, '2019/09/02', 68.96, 'Delivered');
-INSERT INTO "order" (id, id_user, date, total, state) VALUES (30, 24, '2018/10/06', 11.94, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (1, 46, 46,'2019/01/20', 68.3, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (2, 31, 31,'2019/10/25', 22.23, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (3, 30, 30, '2019/07/25', 41.55, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (4, 28, 28, '2018/06/27', 7.97, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (5, 3, 3, '2019/12/08', 73.53, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (6, 50, 50, '2018/05/19', 28.41, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (7, 19, 19, '2018/07/28', 45.25, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (8, 29, 29, '2019/07/07', 7.33, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (9, 6, 6, '2019/10/10', 55.04, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (10, 17, 17, '2018/06/19', 59.49, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (11, 18, 18, '2020/03/22', 11.59, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (12, 14, 14, '2019/03/21', 66.9, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (13, 6, 6, '2018/04/19', 82.14, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (14, 29, 29, '2020/02/08', 50.15, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (15, 13, 13, '2018/04/27', 98.98, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (16, 32, 32, '2018/11/07', 93.45, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (17, 33, 33, '2019/06/09', 84.31, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (18, 18, 18, '2018/09/04', 61.27, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (19, 35, 35, '2018/07/20', 21.0, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (20, 8, 8, '2018/12/09', 60.87, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (21, 28, 28, '2019/11/30', 18.26, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (22, 37, 37, '2018/10/19', 33.4, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (23, 19, 19, '2018/04/21', 17.19, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (24, 42, 42, '2019/06/16', 94.93, 'Processing');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (25, 46, 46, '2018/06/12', 72.55, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (26, 50, 50, '2019/04/14', 43.76, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (27, 41, 41, '2018/05/26', 26.48, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (28, 14, 14, '2019/11/22', 51.41, 'Shipped');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (29, 26, 26, '2019/09/02', 68.96, 'Delivered');
+INSERT INTO "order" (id, id_user, id_address_invoce, date, total, state) VALUES (30, 24, 24, '2018/10/06', 11.94, 'Shipped');
 
 -----------------------------------------
 -- line item 
@@ -869,111 +978,6 @@ INSERT INTO line_item_order (id_line_item, id_order) VALUES (75, 7);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (76, 5);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (78, 26);
 INSERT INTO line_item_order (id_line_item, id_order) VALUES (79, 5);
-
------------------------------------------
--- country 
------------------------------------------
-
-INSERT INTO country (id, name) VALUES (1, 'Vietnam');
-INSERT INTO country (id, name) VALUES (2, 'Philippines');
-INSERT INTO country (id, name) VALUES (3, 'England');
-INSERT INTO country (id, name) VALUES (4, 'Central African Republic');
-INSERT INTO country (id, name) VALUES (5, 'China');
-INSERT INTO country (id, name) VALUES (6, 'Portugal');
-INSERT INTO country (id, name) VALUES (7, 'Norway');
-INSERT INTO country (id, name) VALUES (8, 'Mexico');
-INSERT INTO country (id, name) VALUES (9, 'Croatia');
-INSERT INTO country (id, name) VALUES (10, 'Colombia');
-INSERT INTO country (id, name) VALUES (11, 'China');
-INSERT INTO country (id, name) VALUES (12, 'Bangladesh');
-INSERT INTO country (id, name) VALUES (13, 'Luxembourg');
-INSERT INTO country (id, name) VALUES (14, 'Peru');
-INSERT INTO country (id, name) VALUES (15, 'China');
-INSERT INTO country (id, name) VALUES (16, 'Spain');
-INSERT INTO country (id, name) VALUES (17, 'Guatemala');
-INSERT INTO country (id, name) VALUES (18, 'Thailand');
-INSERT INTO country (id, name) VALUES (19, 'Russia');
-INSERT INTO country (id, name) VALUES (20, 'United States');
-
------------------------------------------
--- city
------------------------------------------
-
-INSERT INTO city (id, id_country, name) VALUES (1, 4, 'Taquara');
-INSERT INTO city (id, id_country, name) VALUES (2, 13, 'Velká Bystřice');
-INSERT INTO city (id, id_country, name) VALUES (3, 18, 'Zhufo');
-INSERT INTO city (id, id_country, name) VALUES (4, 1, 'Mananum');
-INSERT INTO city (id, id_country, name) VALUES (5, 9, 'Salcedo');
-INSERT INTO city (id, id_country, name) VALUES (6, 20, 'Lishu');
-INSERT INTO city (id, id_country, name) VALUES (7, 12, 'Sexmoan');
-INSERT INTO city (id, id_country, name) VALUES (8, 4, 'Benzilan');
-INSERT INTO city (id, id_country, name) VALUES (9, 13, 'Alindao');
-INSERT INTO city (id, id_country, name) VALUES (10, 13, 'Arroyo Naranjo');
-INSERT INTO city (id, id_country, name) VALUES (11, 12, 'Kuala Lumpur');
-INSERT INTO city (id, id_country, name) VALUES (12, 7, 'Warlubie');
-INSERT INTO city (id, id_country, name) VALUES (13, 20, 'Amiens');
-INSERT INTO city (id, id_country, name) VALUES (14, 7, 'Villach');
-INSERT INTO city (id, id_country, name) VALUES (15, 16, 'Sandakan');
-INSERT INTO city (id, id_country, name) VALUES (16, 9, 'Nova Kakhovka');
-INSERT INTO city (id, id_country, name) VALUES (17, 1, 'Rathnew');
-INSERT INTO city (id, id_country, name) VALUES (18, 13, 'Nova Odesa');
-INSERT INTO city (id, id_country, name) VALUES (19, 15, 'Maple Plain');
-INSERT INTO city (id, id_country, name) VALUES (20, 3, 'Malitubog');
-
------------------------------------------
--- address 
------------------------------------------
-
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (1, 2332, 1, 12, 'Grim', '446600', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (2, 323132, 2, 4, 'Michigan', '06-121', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (3, 345, 3, 19, 'Pepper Wood', '70061', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (4, 453, 4, 19, 'Lighthouse Bay', '431-10', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (5, 234, 5, 20, 'Arrowood', '7104', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (6, 345, 6, 3, 'Anzinger', '662133', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (7, 34, 7, 12, 'American Ash', '744 88', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (8, 395, 8, 9, 'Nobel', '301649', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (9, 385, 9, 2, 'Artisan', '2350-259', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (10, 378, 10, 5, 'Nancy', 'L1X', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (11, 312, 11, 7, 'Melvin', '675 31', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (12, 324, 12, 2, 'Northview', '4890-223', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (13, 32, 13, 20, 'Westport', '8301', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (14, 34, 14, 15, 'Fordem', '22111', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (15, 98, 15, 4, 'Karstens', '58500-000', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (16, 87, 16, 9, 'Lien', '249070', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (17, 123, 17, 1, 'Commercial', '60078', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (18, 56, 18, 2, 'Anhalt', '7104', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (19, 34, 19, 8, 'Corben', '30902', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (20, 765, 20, 17, 'Nova', '399-8205', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (21, 56, 21, 4, 'Northridge', '82001', 'work');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (22, 456, 22, 17, 'Jenna', '28210', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (23, 456, 23, 11, 'Lunder', '21006', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (24, 42, 24, 18, 'Prairieview', '64800-000', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (25, 56, 25, 11, 'Evergreen', '2327', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (26, 78, 26, 6, 'Mayer', '28210', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (27, 56, 27, 2, 'Kings', '999-3503', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (28, 56, 28, 19, 'Oxford', '21006', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (29, 342, 29, 4, 'Golf Course', '142143', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (30, 53, 30, 15, 'Russell', '83404 CEDEX', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (31, 23, 31, 10, '1st', '1695', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (32, 787, 32, 7, 'Fieldstone', '733517', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (33, 98, 33, 8, 'Reinke', '6406', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (34, 98, 34, 16, 'Center', '10040', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (35, 12, 35, 19, 'Memorial', '19130', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (36, 123, 36, 3, 'Carpenter', '624857', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (37, 23, 37, 15, 'Memorial', '3255', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (38, 132, 38, 11, 'International', '47405', 'other');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (39, 123, 39, 17, 'Lindbergh', '419-0125', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (40, 123, 40, 11, 'Ridge Oak', '05-804', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (41, 45, 41, 1, 'Carey', '9630-311', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (42, 345, 42, 8, 'Sachtjen', '242467', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (43, 123, 43, 5, 'Killdeer', '374 53', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (44, 56, 44, 6, 'Manitowish', '30010', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (45, 34, 45, 9, 'Pleasure', '912 24', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (46, 987, 46, 4, 'Sycamore', '4750-521', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (47, 123, 47, 7, 'Eggendart', '141986', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (48, 123, 48, 3, 'Clemons', '7803', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (49, 321, 49, 8, 'Jenna', '10040', 'home');
-INSERT INTO address (id, door_number, id_user, id_city, street, zipCode, type_address) VALUES (50, 654, 50, 13, 'Donald', '11403', 'home');
 
 -----------------------------------------
 -- brand 

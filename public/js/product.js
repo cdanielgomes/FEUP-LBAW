@@ -119,6 +119,18 @@ function sendAddToCartRelated(pid, price) {
 
 }
 
+function reportReview(reviewID, reportedID, reportID) {
+
+  sendAjaxRequest('post', "/api/report/" + reviewID, {reportID: reportID, reportedID: reportedID}, reportHandler)
+}
+
+function reportHandler() {
+  if (this.status != 200) {
+    console.log(this.status);
+  }
+
+}
+
 
 function encodeForAjax(data) {
   if (data == null) return null;

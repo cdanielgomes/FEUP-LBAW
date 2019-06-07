@@ -22,9 +22,8 @@
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+            <li class="breadcrumb-item"><a href="/homepage">Homepage</a></li>
             <li class="breadcrumb-item active" aria-current="page">My Profile</li>
-            <!-- POSSO POR O NOME DO UTILIZADOR-->
         </ol>
     </nav>
 </div>
@@ -254,112 +253,7 @@
             </div>
         </div>
     </div>
-    <!--
-    <div class="container">
-        <section class="py-5">
-
-            <div id="payment_title" class="jumptarget">
-                <div class="cards row">
-                    <div class="col-md-6 col-xl-6 ml-auto d-flex align-items-end justify-content-left">
-                        <div class="box d-flex flex-column last-card">
-                            <h2>Payment</h2>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-6 ml-auto d-flex align-items-center justify-content-end">
-                        <div id="addAlterButton" class="box d-flex flex-column last-card" data-toggle="modal"
-                            data-target="#addCardModal">
-                            &#10010; Add Card
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cards row mt-2">
-                <div class="mt-2 col-md-6 col-lg-3">
-                    <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto card"></i>
-                        <div class="d-flex flex-row address-header">
-                            <i class="fa fa-cc-mastercard pr-1"></i>
-                            <h6>Mastercard</h6>
-                        </div>
-                        <h6>Debit *****1234</h6>
-                    </div>
-                </div>
-                <div class="mt-2 col-md-6 col-lg-3">
-                    <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto card"></i>
-                        <div class="d-flex flex-row address-header">
-                            <i class="fa fa-cc-visa pr-1"></i>
-                            <h6>Visa</h6>
-                        </div>
-                        <h6>Credit *****0000</h6>
-                    </div>
-                </div>
-                <div class="mt-2 col-md-6 col-lg-3">
-                    <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto card"></i>
-                        <div class="d-flex flex-row address-header">
-                            <i class="fa fa-cc-amex pr-1"></i>
-                            <h6>American Express</h6>
-                        </div>
-                        <h6>Credit *****0000</h6>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Card</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form>
-                    <div class="modal-body section-container mt-0">
-                        <div class="form-group">
-                            <input type="text" class="form-control" maxlength="19" placeholder="Number of credit/debit card"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton2"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Type of card
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                    <a class="dropdown-item" href="#"><i class="fa fa-cc-visa"></i> Visa</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-cc-mastercard"></i>
-                                        Mastercard</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-cc-amex"></i> American
-                                        Express</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-cc-discover"></i> Discover</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="date" class="form-control" placeholder="Your expiration date">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" maxlength="3" placeholder="Your security number">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your billing address">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" data-dismiss="modal" value="Close"></input>
-                        <input type="submit" class="black-button" value="Associate Card"></input>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>-->
+  
     <div class="container">
         <section class="py-5">
 
@@ -456,19 +350,19 @@
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
 
-                                        @foreach ($item['lines'][0] as $line)
+                                        @foreach ($item['lines'] as $line)
 
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productName']}}</p>
+                                        <div class="row">
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line[0]['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productPrice']}}</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line[0]['productPrice']}}</p>
                                         </div>
                                         @endforeach
 
 
                                     </div>
                                     <p class="accordion_list_title mt-3">Address</p>
-                                    <p>2020 South Street Sunshine, CA 90000 </p>
+                                    <p>{{$item['address']->street}}, {{$item['address']->door_number}}, {{$item['address']->zipcode}} {{$item['city']}}</p>
                                 </div>
                             </td>
                         </tr>
@@ -532,11 +426,11 @@
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
 
-                                        @foreach ($item['lines'][0] as $lines)
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productName']}}</p>
+                                        @foreach ($item['lines'] as $lines)
+                                        <div class="row">
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines[0]['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productPrice']}}
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines[0]['productPrice']}}
                                             </p>
                                         </div>
                                     </div>
@@ -544,7 +438,7 @@
 
 
                                     <p class="accordion_list_title mt-3">Address</p>
-                                    <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
+                                    <p>{{$item['address']->street}}, {{$item['address']->door_number}}, {{$item['address']->zipcode}} {{$item['city']}}</p>
                                 </div>
                             </td>
                         </tr>

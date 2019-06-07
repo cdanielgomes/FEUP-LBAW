@@ -10,6 +10,8 @@ use App\Categories;
 use App\Line_item_cart;
 use App\User;
 use App\Line_item;
+use App\Order;
+use App\Line_item_order;
 
 class CartController extends Controller
 {
@@ -64,6 +66,36 @@ class CartController extends Controller
 
         $line_item = Line_item::find($idLine);
         $line_item->delete();
+
+        return $request;
+    }
+
+    public function order(Request $request)
+    {
+
+        $order = new Order();
+        $order->id = Order::max('id') + 1;
+        $order->id_user = $request->idUser;
+        $order->id_address_invoce = $request->invoiceAddress;
+        if (!is_null($request->addressId)) {
+            $order->id_address_shipping = $request->addressId;
+        }
+        $order->total = $request->total;
+        $order->state = 'Processing';
+        $order->save();
+
+        $lines = explode(",", $request->lines);
+
+        foreach ($lines as $line) {
+
+            $line_item_order = new Line_item_order();
+            $line_item_order->id_line_item = $line;
+            $line_item_order->id_order = $order->id;
+            $line_item_order->save();
+
+            $line_item_cart = Line_item_cart::find($line);
+            $line_item_cart->delete();
+        }
 
         return $request;
     }
