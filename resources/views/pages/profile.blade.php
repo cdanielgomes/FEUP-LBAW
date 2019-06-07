@@ -7,7 +7,6 @@
 <script src="{{url('js/profile.js')}}" defer></script>
 
 @elseif($user['type_user'] == 'store_manager')
-
 <script src="{{url('js/manager.js')}}" defer></script>
 
 @else <script src="{{url('js/profile.js')}}" defer></script>
