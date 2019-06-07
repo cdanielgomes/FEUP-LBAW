@@ -9,7 +9,6 @@ let submitAddress = document.querySelectorAll('#newAddress');
 })
 
 let faves = document.getElementsByClassName("fas fa-heart ml-auto");
-//faves.forEach(element => {element.addEventListener()});
 [].forEach.call(faves, function (elem) {
   elem.addEventListener('click', sendRemoveFav);
 });
@@ -68,7 +67,6 @@ function addressDeletedHandler() {
 
 function sendCreateAddress(event) {
   event.preventDefault();
-  //return;
   let id = document.querySelector("#userId").value;
 
   let city = event.target[4].value;
@@ -87,11 +85,9 @@ function sendCreateAddress(event) {
 
 function addressCreateHandler() {
   if (this.status != 200) {
-    //window.location = '/';
     console.log(this.status);
   }
 
-  //console.log(this.responseText);
   clearFormAddress();
   let addr = JSON.parse(this.responseText);
 

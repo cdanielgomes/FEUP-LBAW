@@ -61,14 +61,10 @@ function createProductHandler() {
 
   let answer = JSON.parse(this.responseText);
   let form = document.getElementById('addProduct');
-  // form.reset();
-
-
 
   $('#addProductModal').modal('hide');
   $('.modal-backdrop').remove();
   $('body').removeClass('modal-open');
-  //add to the products dropdown??
 
 }
 
@@ -78,9 +74,6 @@ function createDiscount(event) {
 
   let value = event.target[0].value
   let condition = event.target[1].value
-
-  //nao sei o que fazer para aqui
-
   sendAjaxRequest('post', '/api/discount/add', { value: value, condition: condition }, createDiscountHandler)
 }
 

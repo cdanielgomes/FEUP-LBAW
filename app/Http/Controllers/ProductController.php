@@ -122,15 +122,13 @@ class ProductController extends Controller
         $review->score = $request->score;
 
 
-        try{
+        try {
             $review->save();
-        } catch(\Illuminate\Database\QueryException $e){
+        } catch (\Illuminate\Database\QueryException $e) {
             $orderLog = new Logger('db');
             $orderLog->pushHandler(new StreamHandler(storage_path('logs/db.log')), Logger::ERROR);
-            $orderLog->info('db', ['error'=>$e->getMessage()]);
+            $orderLog->info('db', ['error' => $e->getMessage()]);
         }
-        
-
 
         $review->name = User::find($request->id)['name'];
 
@@ -142,19 +140,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        //$this->authorize();
-
-
-
         $product = new Product;
 
-        
         $product->id = Product::max('id') + 1;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->stock = $request->stock;
-
 
         $product->save();
         $counter = 1;
@@ -163,7 +155,6 @@ class ProductController extends Controller
             $lma->move(public_path('imgs'), 'product' . $counter . $product->id . "." . $lma->getClientOriginalExtension());
             $counter++;
         }
-
 
         return redirect('/profile');
     }
