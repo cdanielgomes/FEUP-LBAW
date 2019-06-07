@@ -27,6 +27,17 @@ let invoiceAddress;
 let idUser;
 let newLines = [];
 let total;
+let street;
+let city;
+let zipCode;
+let country;
+let type_address;
+let door_number;
+let streetS;
+let cityS;
+let zipCodeS;
+let countryS;
+let door_numberS;
 
 function completePurchase(lines, t) {
 
@@ -34,16 +45,28 @@ function completePurchase(lines, t) {
         newLines[i] = lines[i].id;
     }
 
+    if (!checkFields()) {
+        return false;
+    }
+
     total = t;
     idUser = document.querySelector('#userId').value;
-    let street = document.querySelector('#iStreet').value;
-    let city = document.querySelector('#iCity').value;
-    let zipCode = document.querySelector('#iZip').value;
-    let country = document.querySelector('#iCountry').value;
-    let type_address = 'other';
-    let door_number = document.querySelector('#iDoor').value;
+    street = document.querySelector('#iStreet').value;
+    city = document.querySelector('#iCity').value;
+    zipCode = document.querySelector('#iZip').value;
+    country = document.querySelector('#iCountry').value;
+    type_address = 'other';
+    door_number = document.querySelector('#iDoor').value;
 
     if (document.querySelector('#shippingAddress').getAttribute('aria-expanded') == 'true') {
+
+        streetS = document.querySelector('#sStreet').value;
+        cityS = document.querySelector('#sCity').value;
+        zipCodeS = document.querySelector('#sZip').value;
+        countryS = document.querySelector('#sCountry').value;
+        door_numberS = document.querySelector('#sDoor').value;
+
+        if(streetS == '' || city == '' || zipCodeS == '' || country == '' || door_numberS == '') return false;
 
         sendAjaxRequest('post', "/api/profile/" + idUser + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, shippingCreateHandler)
 
@@ -63,14 +86,7 @@ function shippingCreateHandler() {
 
     invoiceAddress = addr[0].id;
 
-    street = document.querySelector('#sStreet').value;
-    city = document.querySelector('#sCity').value;
-    zipCode = document.querySelector('#sZip').value;
-    country = document.querySelector('#sCountry').value;
-    type_address = 'other';
-    door_number = document.querySelector('#sDoor').value;
-
-    sendAjaxRequest('post', "/api/profile/" + idUser + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, orderHandler);
+    sendAjaxRequest('post', "/api/profile/" + idUser + "/address", { type_address: type_address, country: countryS, city: cityS, zipCode: zipCodeS, street: streetS, door_number: door_numberS }, orderHandler);
 
 }
 
@@ -99,6 +115,24 @@ function finaldHandler() {
     }
 
     window.location.href = "/profile";
+}
+
+function checkFields() {
+
+    let fn = document.querySelector('#iName').value;
+    let ln = document.querySelector('#iLast').value;
+    let em = document.querySelector('#iEmail').value;
+    let s = document.querySelector('#iStreet').value;
+    let ct = document.querySelector('#iCity').value;
+    let z = document.querySelector('#iZip').value;
+    let c = document.querySelector('#iCountry').value;
+    let d = document.querySelector('#iDoor').value;
+    let card = document.querySelector('#cardNumber').value;
+    let exp = document.querySelector('#expDate').value;
+    let ccv = document.querySelector('#ccv').value;
+
+    if (fn == '' || ln == '' || em == '' || s == '' || ct == '' || z == '' || c == '' || d == '' || card == '' || exp == '' || ccv == '' || newLines.length == 0) return false;
+    else return true;
 }
 
 function encodeForAjax(data) {

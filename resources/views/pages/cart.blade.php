@@ -214,12 +214,12 @@
               </div>
               <div class="form-group">
                 <label for="expDate"> Expiration Date </label>
-                <input id="cardNumber" type="date" class="form-control" placeholder="Your expiration date">
+                <input id="expDate" type="date" class="form-control" placeholder="Your expiration date">
               </div>
 
               <div class="form-group">
                 <label for="ccv"> CCV </label>
-                <input class="form-control" type="number" id="cardNumber">
+                <input class="form-control" type="number" id="ccv">
               </div>
             </div>
           </div>
