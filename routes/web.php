@@ -54,3 +54,4 @@ Route::post('/api/report/{reviewID}', 'ProductController@report');
 Route::put('api/profile', 'ProfileController@update');
 Route::delete('profile/delete', 'ProfileController@delete');
 Route::delete('api/review/{reviewID}', 'ProfileController@deleteReview');
+Route::post('api/storeManager', 'ProfileController@createEmployee');

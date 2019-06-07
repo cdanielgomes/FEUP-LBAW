@@ -31,9 +31,9 @@ function sendDeleteUserReview(userId, reviewId) {
 
 function sendReviewDelete(reviewId) {
 
-    let element = document.querySelectorAll('[name="report-' + reviewId +'"]');
-    
-    element.forEach(function(e) {
+    let element = document.querySelectorAll('[name="report-' + reviewId + '"]');
+
+    element.forEach(function (e) {
         e.remove();
     })
 }
@@ -69,9 +69,51 @@ function reviewHandler() {
         return;
     }
     let id = JSON.parse(this.responseText);
-    let element = document.querySelectorAll('[name="report-' + id +'"]');
-    
-    element.forEach(function(e) {
+    let element = document.querySelectorAll('[name="report-' + id + '"]');
+
+    element.forEach(function (e) {
         e.remove();
     })
+}
+
+let submitAdd = document.querySelectorAll('#addStoreManager');
+[].forEach.call(submitAdd, function (e) {
+    e.addEventListener('submit', sendCreateEmployee);
+})
+
+function sendCreateEmployee(event) {
+
+    event.preventDefault();
+
+    let id = document.querySelector("#userId").value;
+    let employeeName = event.target[0].value;
+    let userPassword = event.target[1].value;
+
+    sendAjaxRequest('post', "/api/storeManager", { employeeName: employeeName, userPassword: userPassword, idUser: id }, createHandler);
+}
+
+function createHandler() {
+
+    if (this.status != 200) {
+        console.log(this.status);
+        return;
+    }
+
+    let cardRow = document.querySelector("#listEmployees");
+    let html = createRow(JSON.parse (this.responseText));
+    cardRow.innerHTML += html;
+}
+
+function createRow(text) {
+
+    console.log(text);
+
+    let div = '<div class="mt-4 col-md-6 col-lg-3" id="' + text[0] + '">';
+    div += '<div class="box d-flex flex-column">';
+    div += '<i class="fas fa-trash-alt ml-auto employees" onclick="sendDeleteUser(' + text[0] + '"></i>';
+    div += '<div class="d-flex flex-row address-header">';
+    div += '<i class="fas fa-user-tie pr-1"></i>';
+    div += '<h6>' + text[1] + '</h6>';
+    div += '</div><h6>Store Manager</h6></div></div>';
+    return div;
 }

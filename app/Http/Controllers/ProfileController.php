@@ -191,4 +191,23 @@ class ProfileController extends Controller
 
         return $reviewID;
     }
+
+    public function createEmployee(Request $request)
+    {
+
+        $password = bcrypt($request->userPassword);
+        $user = User::find($request->idUser);
+
+        $newUser = new User();
+        $newUser->id = User::max('id')+1;
+        $str = $newUser->id;
+        $newUser->username = "storeManager" . $str;
+        $newUser->name = $request->employeeName;
+        $newUser->email = $newUser->username . "@aurora.pt";
+        $newUser->password = bcrypt($newUser->username);
+        $newUser->type_user = 'store_manager';
+        $newUser->save();
+
+        return array($newUser->id, $newUser->name);
+     }
 }

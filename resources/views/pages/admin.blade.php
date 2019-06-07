@@ -1,5 +1,7 @@
 <script src="{{url('js/admin.js')}}" defer></script>
 
+<input type="hidden" id="userId" value={{Auth::user()->id}}>
+
 <div class="mt-1">
     <nav aria-label="breadcrumb" id="breadcrumb">
         <ol class="breadcrumb">
@@ -53,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="cards row">
+            <div class="cards row" id="listEmployees">
                 @foreach ($employees as $employee)
                 <div class="mt-4 col-md-6 col-lg-3" id="user{{$employee['id']}}">
                     <div class="box d-flex flex-column">
@@ -82,15 +84,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form id="addStoreManager">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
                             <input type="text" class="form-control" placeholder="Employee Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="review_title">Role</label>
-                            <input type="text" class="form-control" placeholder="Employee Role">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Password</label>
