@@ -4,6 +4,7 @@
 @section('styles')
 
 <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+<link href="{{ asset('css/print.css') }}" rel="stylesheet">
 <script src="{{asset('js/product.js')}}" defer></script>
 @endsection
 
