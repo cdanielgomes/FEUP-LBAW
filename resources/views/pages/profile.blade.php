@@ -389,7 +389,7 @@
                         <img src="assets/{{$item['name']}}.png" alt="{{$item['name']}}" class="center-block"
                             onclick="window.location='' " style="cursor:pointer;">
 
-                        <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='product.html'"
+                        <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='{{url('/product/' . $item['id'])}}'"
                             style="cursor:pointer;">
                             {{$item['name']}}
                         </h5>

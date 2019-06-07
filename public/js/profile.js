@@ -81,7 +81,7 @@ function sendCreateAddress(event) {
 
 
 
-  sendAjaxRequest('post', "/api/profile/" + id + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, addressCreateHandler)
+  sendAjaxRequest('post', "/api/profile" + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, addressCreateHandler)
 
 }
 
@@ -143,7 +143,7 @@ function sendRemoveFav(event) {
   let helper = event.target.parentElement.parentElement;
   let idProduct = helper.getAttribute('id').split('-')[1];
 
-  sendAjaxRequest('delete', "/api/profile/" + id + "/products/" + idProduct, null, removeFavHandler);
+  sendAjaxRequest('delete', "/api/profile" +"/products/" + idProduct, null, removeFavHandler);
 }
 
 function removeFavHandler() {

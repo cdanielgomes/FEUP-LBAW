@@ -33,14 +33,14 @@ class AddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $idUser)
+    public function create(Request $request)
     {
 
         $address = new Address();
         $address->id = Address::max('id') + 1;
         $address->door_number = $request->door_number;
         $address->type_address = $request->type_address;
-        $address->id_user = $idUser;
+        $address->id_user = Auth::user()->id;
 
         /// $this->authorize('create', $address);
         //$city = City::where('name', $request->city)->get();
@@ -75,9 +75,10 @@ class AddressController extends Controller
         //$country = Country::where('name', $request->country);
         $address->save();
 
+      //  dd(['country' => $country[0]->name, 'city' => $city]);
         //dd($address, $city, $country);
 
-        return array($address, $city->name, $country->name);
+        return array($address, $city->name, $country[0]->name);
     }
 
     /**

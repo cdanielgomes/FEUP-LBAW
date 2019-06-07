@@ -34,20 +34,20 @@
 </div>
 
 <div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
-  </div>
-  <div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-          </div>
+</div>
+<div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+    </div>
   </div>
+</div>
 
 <div class="featuredproducts">
   <div class="mt-5 container">
@@ -60,7 +60,8 @@
             onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
           <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
           <span>{{$product['price']}} €</span>
-          <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
+          <input type="button" class="AddToCart" value="Add to Cart"
+            onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
         </div>
       </div>
       @endforeach
@@ -125,7 +126,8 @@
             onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">
           <h5 onclick="window.location='product/'+{{$product['id']}}" style="cursor:pointer;">{{$product['name']}}</h5>
           <span>{{$product['price']}} €</span>
-          <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
+          <input type="button" class="AddToCart" value="Add to Cart"
+            onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
         </div>
       </div>
       @endforeach
@@ -137,13 +139,13 @@
 
 
 <!-- Button trigger modal -->
-<p class="text-secondary">
+
+<div class="container topright text-aling-top">
   <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-    <div class="container topright text-aling-top">
-      <i class="far topright fa-question-circle fa-2x text-top "></i>
-    </div>
+    <i class="far topright fa-question-circle fa-2x text-top "></i>
   </button>
-</p>
+</div>
+
 
 
 <!-- Modal -->

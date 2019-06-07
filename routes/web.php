@@ -45,8 +45,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Auth'],function(){
 Auth::routes();
 
 Route::delete('api/address/{idAddr}', 'AddressController@destroy');
-Route::post('api/profile/{idUser}/address', 'AddressController@create');
-Route::delete('api/profile/{idUser}/products/{idProduct}', 'ProfileController@deleteFav');
+Route::post('api/profile/address', 'AddressController@create');
+Route::delete('api/profile/products/{idProduct}', 'ProfileController@deleteFav');
 Route::post('api/product/add', 'ProductController@store');
 Route::put('api/profile', 'ProfileController@update');
 Route::delete('profile/delete', 'ProfileController@delete');
