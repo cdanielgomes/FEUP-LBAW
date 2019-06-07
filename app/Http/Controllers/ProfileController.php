@@ -39,13 +39,6 @@ class ProfileController extends Controller
 
         $address = $user->addresses()->get();
 
-        $addresses = $address->toArray();
-        foreach ($addresses as &$value) {
-            $array = City::where('id', $value['id_city'])->get()->toArray()[0];
-            $value['city'] = $array['name'];
-            $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
-        }
-
         $favs = $user->myFavs()->get();
         $prodFaves = array();
 
@@ -59,24 +52,37 @@ class ProfileController extends Controller
 
         $delivered = array();
         $hold = array();
-        foreach ($orders as &$order) {
+        $addresses = $address->toArray();
+        if ($user->type_user == 'user') {
 
-            $lines_order = $order->lines()->get();
-            $lines = array();
-            foreach ($lines_order as &$line_order) {
-                $line = $line_order->line()->first();
-                $l = array();
 
-                $product = Product::find($line['id_product'], ['name', 'price']);
-
-                array_push($l, ['productPrice' => $product['price'], 'productName' => $product['name'], 'price' => $line['price'], 'quantity' => $line['quantity']]);
-                array_push($lines, $l);
+           
+            foreach ($addresses as &$value) {
+                $array = City::where('id', $value['id_city'])->get()->toArray()[0];
+                $value['city'] = $array['name'];
+                $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
             }
-            $order->address = Address::find($order->id_address_invoce);
-            $order->city = City::find($order->address->id_city)['name'];
-            $order['lines'] = $lines;
-            if ($order['state'] == 'Delivered') array_push($delivered, $order);
-            else array_push($hold, $order);
+
+
+            foreach ($orders as &$order) {
+
+                $lines_order = $order->lines()->get();
+                $lines = array();
+                foreach ($lines_order as &$line_order) {
+                    $line = $line_order->line()->first();
+                    $l = array();
+
+                    $product = Product::find($line['id_product'], ['name', 'price']);
+
+                    array_push($l, ['productPrice' => $product['price'], 'productName' => $product['name'], 'price' => $line['price'], 'quantity' => $line['quantity']]);
+                    array_push($lines, $l);
+                }
+                $order->address = Address::find($order->id_address_invoce);
+                $order->city = City::find($order->address->id_city)['name'];
+                $order['lines'] = $lines;
+                if ($order['state'] == 'Delivered') array_push($delivered, $order);
+                else array_push($hold, $order);
+            }
         }
         $employees = array();
         $users = null;
@@ -199,7 +205,7 @@ class ProfileController extends Controller
         $user = User::find($request->idUser);
 
         $newUser = new User();
-        $newUser->id = User::max('id')+1;
+        $newUser->id = User::max('id') + 1;
         $str = $newUser->id;
         $newUser->username = "storeManager" . $str;
         $newUser->name = $request->employeeName;
@@ -209,5 +215,5 @@ class ProfileController extends Controller
         $newUser->save();
 
         return array($newUser->id, $newUser->name);
-     }
+    }
 }

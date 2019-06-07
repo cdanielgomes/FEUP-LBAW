@@ -15,6 +15,7 @@ use App\Reportear;
 use App\Analyze;
 use App\Color;
 use App\Size;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -132,7 +133,7 @@ class ProductController extends Controller
     {
 
         //$this->authorize();
-
+        dd(Input::all()['image']);
         $product = new Product;
 
         $product->id = Product::max('id') + 1;
@@ -140,7 +141,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->stock = $request->stock;
-
+        $request->file('image')->move(public_path('imgs'), rand() . $request->file('image')->getClientOriginalExtension());
 
         //dd($product);
         $product->save();
@@ -148,7 +149,8 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function report(Request $request, $reviewId) {
+    public function report(Request $request, $reviewId)
+    {
 
         $report = new Report();
         $report->id_review = $reviewId;
@@ -166,7 +168,7 @@ class ProductController extends Controller
         $analyze->id_review = $reviewId;
         $analyze->id_user_analyze = $admins[$admin]['id'];
         $analyze->save();
-        
+
         return $request;
     }
 }
