@@ -53,10 +53,8 @@ class ProfileController extends Controller
         $delivered = array();
         $hold = array();
         $addresses = $address->toArray();
-        if ($user->type_user == 'user') {
+        if ($user->type_user == 'user' || $user->type_user == 'premium') {
 
-
-           
             foreach ($addresses as &$value) {
                 $array = City::where('id', $value['id_city'])->get()->toArray()[0];
                 $value['city'] = $array['name'];
@@ -102,6 +100,7 @@ class ProfileController extends Controller
                 array_push($allReviews, $review);
             }
         }
+
         return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold, 'users' => $users, 'reviews' => $allReviews]);
     }
 

@@ -130,7 +130,7 @@ function updateProducts() {
   });
 
   let unique = [...new Set(filters)];
-  if(unique.length == 0) {
+  if (unique.length == 0 && filterBrands.length == 0 && filterColors.length == 0 && filterSizes.length == 0) {
     unique = allProducts;
   }
   drawProducts(unique);
@@ -140,18 +140,22 @@ function drawProducts(products) {
 
   let div = "";
   let count = 0;
-  products.forEach(function (e) {
-    if (count % 3 == 0) {
-      div += '<div class="row">';
-    }
-    count++;
-    div += e.outerHTML;
-    if (count % 3 == 0) {
-      div += '</div>';
-    }
-  });
   let finalProducts = document.querySelector('.col-md-8.col-lg-9');
-  finalProducts.innerHTML = div;
+  if (products.length == 0) {
+    finalProducts.innerHTML = '<div class="col text-center pt-5"><h1>Sorry! No match!</h1></div>';
+  } else {
+    products.forEach(function (e) {
+      if (count % 3 == 0) {
+        div += '<div class="row">';
+      }
+      count++;
+      div += e.outerHTML;
+      if (count % 3 == 0) {
+        div += '</div>';
+      }
+    });
+    finalProducts.innerHTML = div;
+  }
 }
 
 function remove(arr) {

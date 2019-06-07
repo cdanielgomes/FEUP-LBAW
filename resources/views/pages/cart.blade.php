@@ -223,7 +223,8 @@
           <tbody>
             @foreach ($lines as $line)
             <tr id="line{{$line['id']}}">
-              <th scope="row"><img class="img-fluid w-25 h-20" src="{{asset('imgs/product'.$line['id_product'].'1.png')}}" alt="product_image"></th>
+              <th scope="row"><img class="img-fluid w-25 h-20"
+                  src="{{asset('imgs/product'.$line['id_product'].'1.png')}}" alt="product_image"></th>
               <td class="name">{{$line['name']}}</td>
               <td class="price">{{$line['single_price']}}€</td>
               <td class="quantity">{{$line['quantity']}}</td>
@@ -232,7 +233,15 @@
             </tr>
             @endforeach
             <td colspan="4" class="justify-content-left"> Total</th>
-            <td class="justify-content-right total">{{$total}} €</th>
+            <td colspan="2" class="justify-content-right total">{{number_format((float)$total, 2, '.', '')}} €</th>
+              @if(Auth::user()['type_user'] == 'premium' )
+              </tr>
+            <td colspan="4" class="justify-content-left">Premium Discount</th>
+            <td colspan="2" class="justify-content-right total">-30%</th>
+            </tr>
+            <td colspan="4" class="justify-content-left">New Total</th>
+            <td colspan="2" class="justify-content-right newTotal">{{number_format((float)$total*0.7, 2, '.', '')}} €</th>
+              @endif
               </tr>
           </tbody>
         </table>

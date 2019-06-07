@@ -60,11 +60,14 @@
     <input type="hidden" id="productPrice" value={{$product['price']}}>
 
     <div class="media-body pl-3">
-        <h3 class="mt-0 product-title">{{$product['name']}}</h3>
+        <h3 class="mt-0 product-title">{{$product['name']}} </h3>
         <div id="cart">
             <form id="AddToCartForm" class="product_form">
                 <p id="product-price">
                     <span class="price">{{$product['price']}}€</span>
+                    <br>
+                    <label>{{$product->score}}/5</label>
+                    <img src="{{asset('imgs/star.png')}}" alt="star" class="pontuation mt-4">
                 </p>
                 @if(Auth::check())
                 @if(Auth::user()->isFav($product['id']))

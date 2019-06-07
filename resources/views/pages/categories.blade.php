@@ -34,7 +34,7 @@
     <div class="container">
         <div class="products row align-items-center container">
             <div class="col text-right">
-                <h1>{{$subname}}</h1>
+                <h1>{{ucfirst($subname)}}</h1>
             </div>
             <div class="col text-right">
                 <span>{{(count($products) - 1) * 3  + count($products[count($products) - 1])  }}
@@ -51,8 +51,8 @@
                 </div>
             </div>
 
-            <div class="row mt-3 container" id="products">
-                <div class="mt-4 col-md-4 col-lg-3">
+            <div class="row mt-3 container px-0" id="products">
+                <div class="mt-4 col-md-4 col-lg-3 px-0">
 
                     <h5>Filters</h5>
 
@@ -62,10 +62,9 @@
                         <div class="">
                             @foreach ($brands as $brand)
 
-                            <div class="form-check" id="brand{{$brand['id']}}">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="brand" value="{{$brand['id']}}">
-                                    <p>{{$brand['name']}}</p>
+                            <div class="form-check pl-0" id="brand{{$brand['id']}}">
+                                <label class="form-check-label pt-1">
+                                    <input type="checkbox" class="brand" value="{{$brand['id']}}">  {{$brand['name']}}<br>
                                 </label>
                             </div>
 
@@ -73,43 +72,34 @@
                         </div>
                     </div>
 
-                    <div class="filters d-flex flex-column mh-25">
+                    <div class="filters d-flex flex-column mh-25 mt-3">
                         <h6>Size</h6>
                         <div>
                             @foreach ($sizes as $size)
 
-                            <div class="form-check" id="size{{$size['id']}}">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="size" value="{{$size['id']}}">
-                                    <p>{{$size['name']}}</p>
+                            <div class="form-check pl-0" id="size{{$size['id']}}">
+                                <label class="form-check-label pt-1">
+                                    <input type="checkbox" class="size" value="{{$size['id']}}">  {{$size['name']}}<br>
                                 </label>
                             </div>
                             @endforeach
                         </div>
                     </div>
-                    <div class="filters d-flex flex-column">
+                    <div class="filters d-flex flex-column mt-3">
                         <h6>Color</h6>
 
                         <div>
                             @foreach ($colors as $color)
 
-                            <div class="form-check" id="color{{$color['id']}}">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="color" value="{{$color['id']}}">
-                                    <p>{{$color['name']}}</p>
+                            <div class="form-check pl-0" id="color{{$color['id']}}">
+                                <label class="form-check-label pt-1">
+                                    <input type="checkbox" class="color" value="{{$color['id']}}">  {{$color['name']}}<br>
                                 </label>
                             </div>
 
                             @endforeach
                         </div>
 
-                    </div>
-                    <div class="filters d-flex flex-column">
-                        <h6>Max Price</h6>
-                        <div class="getValue d-flex justify-content-left">
-                            <input type="range" class="custom-range" value="0" id="formControlRange" min=0 max=500>
-                            <span class="pl-2">0</span>
-                        </div>
                     </div>
                 </div>
 
