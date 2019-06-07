@@ -112,28 +112,32 @@
                     </button>
                     <span aria-hidden="true">&times;</span>
                 </div>
-                <form id="addProduct">
+                <form id="addProduct" enctype="multipart/form-data">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
-                            <input type="text" class="form-control" placeholder="Product Name">
+                            <input type="text" name="name" class="form-control" placeholder="Product Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for=pic>Product Image</label> <br>
+                            <input type="file"  name="image" accept="image/*" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Price</label>
-                            <input type="text" class="form-control" placeholder="Product Price">
+                            <input type="number" name="price" class="form-control" placeholder="Product Price"  min="0.1" step="0.1" title="the price needs to be higher then 0.1€" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Color</label>
-                            <input type="text" class="form-control" placeholder="Product Stock">
+                            <input type="text" name="color" class="form-control" placeholder="Product Stock" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Description</label>
-                            <textarea rows="4" cols="10" class="form-control" placeInsert product
-                                descriptionholder="Insert product description" style="  resize: none;"></textarea>
+                            <textarea name="description" rows="4" cols="10" class="form-control" placeInsert product
+                                descriptionholder="Insert product description" style="  resize: none;"  pattern=".{20,}"   required title="20 characters minimum"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Size</label>
-                            <select class="form-control">
+                            <select name="size" class="form-control">
                                 <option selected="selected">3XS</option>
                                 <option>XXS</option>
                                 <option>XS</option>
@@ -149,22 +153,22 @@
 
                         <div class="form-group">
                             <label for="review_title">Stock</label>
-                            <input type="number" pattern='\d' class="form-control" placeholder="Product Stock">
+                            <input name="stock" type="number" pattern='\d' class="form-control" placeholder="Product Stock">
                         </div>
 
                         <div id="cat" class="form-group">
                             <label for="review_title">Category</label>
-                            <select class="form-control">
+                            <select  name="category" class="form-control">
                                 <option selected="selected">Clothing</option>
                                 <option>House-Decor</option>
                                 <option>Activities</option>
                             </select>
                         </div>
 
-
                         <div id="sex" class="form-group">
+
                             <label for="review_title">Man</label>
-                            <select class="form-control">
+                            <select name="sex" class="form-control">
                                 <option selected="selected">Man</option>
                                 <option>Woman</option>
                             </select>
@@ -172,7 +176,7 @@
 
                         <div id="subcat" class="form-group">
                             <label for="review_title">Sub-Category</label>
-                            <select class="form-control">
+                            <select name="subcategory" class="form-control">
                                 <option selected="selected">Tops</option>
                                 <option>Bottoms</option>
                                 <option>Shoes</option>
