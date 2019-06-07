@@ -4,6 +4,7 @@
 
 <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
 <script src="{{url('js/cart.js')}}" defer></script>
+<script src="{{url('js/script.js')}}" defer></script>
 
 @endsection
 
@@ -226,7 +227,7 @@
 
         <div class="row">
           <button type="button" id="back-button" class="btn col-lg-2 offset-md-2 back-button col-xs-2">
-            <a href="#">Back</a>
+            <a>Back</a>
           </button>
           <button id="paymentBtn" type="button" class="btn col-lg-2 offset-md-4 col-xs-2 next">
             <span class="text-justify">Order Review <i class="fas fa-chevron-right pl-2"></i> </span>
@@ -269,7 +270,7 @@
 
         <div class="row mt-2">
           <button type="button" id="back-button" class="btn col-lg-2 col-md-3 offset-md-2 back-button">
-            <a href="#">Back</a>
+            <a>Back</a>
           </button>
           <button id="checkoutBtn" type="button" class="btn col-lg-2 col-md-3 offset-md-4 justify-content-center next"
             onclick="completePurchase({{json_encode($lines)}}, {{$total}})">
