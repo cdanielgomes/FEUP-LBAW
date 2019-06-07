@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\User;
 use App\Review;
+use App\Report;
+use App\Reportear;
+use App\Analyze;
 use App\Color;
 use App\Size;
 
@@ -50,15 +53,18 @@ class ProductController extends Controller
 
         shuffle($relatedProducts);
 
-        foreach($relatedProducts as $rp) {
+        foreach ($relatedProducts as $rp) {
 
-            if($rp->id_product == $id){
+            if ($rp->id_product == $id) {
                 $key = array_search($rp, $relatedProducts);
                 unset($relatedProducts[$key]);
             }
         }
 
-        $bestThree = array_rand($relatedProducts, 3);
+        $size = sizeof($relatedProducts);
+        if ($size < 3) {
+            $bestThree = array_rand($relatedProducts, $size);
+        } else $bestThree = array_rand($relatedProducts, 3);
         $threeProducts = array();
 
         foreach ($bestThree as $relatedID) {
@@ -140,5 +146,27 @@ class ProductController extends Controller
         $product->save();
 
         return $product;
+    }
+
+    public function report(Request $request, $reviewId) {
+
+        $report = new Report();
+        $report->id_review = $reviewId;
+        $report->id_user_reportee = $request->reportedID;
+        $report->save();
+
+        $reportear =  new Reportear();
+        $reportear->id_review = $reviewId;
+        $reportear->id_user_reportear = $request->reportID;
+        $reportear->save();
+
+        $admins = User::all()->where('type_user', 'admin')->toArray();
+        $admin = array_rand($admins, 1);
+        $analyze = new Analyze();
+        $analyze->id_review = $reviewId;
+        $analyze->id_user_analyze = $admins[$admin]['id'];
+        $analyze->save();
+        
+        return $request;
     }
 }

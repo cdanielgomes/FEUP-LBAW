@@ -15,7 +15,7 @@ let faves = document.getElementsByClassName("fas fa-heart ml-auto");
 });
 
 let infoChange = document.getElementById('alterInfoUser');
-infoChange.addEventListener('submit', sendUpdatePersonalInfo)
+infoChange.addEventListener('submit', sendUpdatePersonalInfo);
 
 let del = document.querySelector('.col-lg-auto.col-md-auto.col-sm-12.text-sm-right')
 del.addEventListener('click', () => { sendAjaxRequest('delete', '/profile/delete', null, handlerDel) })
@@ -78,7 +78,10 @@ function sendCreateAddress(event) {
   let country = event.target[5].value;
   let door_number = event.target[1].value;
 
-  sendAjaxRequest('post', "/api/profile/" + id + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, addressCreateHandler)
+
+
+
+  sendAjaxRequest('post', "/api/profile" + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, addressCreateHandler)
 
 }
 
@@ -139,7 +142,7 @@ function sendRemoveFav(event) {
   let helper = event.target.parentElement.parentElement;
   let idProduct = helper.getAttribute('id').split('-')[1];
 
-  sendAjaxRequest('delete', "/api/profile/" + id + "/products/" + idProduct, null, removeFavHandler);
+  sendAjaxRequest('delete', "/api/profile" +"/products/" + idProduct, null, removeFavHandler);
 }
 
 function removeFavHandler() {

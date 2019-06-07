@@ -1,3 +1,17 @@
+<script src="{{url('js/admin.js')}}" defer></script>
+
+<input type="hidden" id="userId" value={{Auth::user()->id}}>
+
+<div class="mt-1">
+    <nav aria-label="breadcrumb" id="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/homepage">Homepage</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Administrator</li>
+
+        </ol>
+    </nav>
+</div>
+
 <div class="container">
     <div class="container scroll_nav">
         <div class="row">
@@ -41,11 +55,11 @@
                 </div>
             </div>
 
-            <div class="cards row">
+            <div class="cards row" id="listEmployees">
                 @foreach ($employees as $employee)
-                <div class="mt-4 col-md-6 col-lg-3">
+                <div class="mt-4 col-md-6 col-lg-3" id="user{{$employee['id']}}">
                     <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto employees"></i>
+                        <i class="fas fa-trash-alt ml-auto employees" onclick="sendDeleteUser({{$employee['id']}})"></i>
                         <div class="d-flex flex-row address-header">
                             <i class="fas fa-user-tie pr-1"></i>
                             <h6>{{$employee['name']}}</h6>
@@ -70,15 +84,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form>
+                <form id="addStoreManager">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
                             <input type="text" class="form-control" placeholder="Employee Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="review_title">Role</label>
-                            <input type="text" class="form-control" placeholder="Employee Role">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Password</label>
@@ -86,8 +96,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" data-dismiss="modal" value="Close"></input>
-                        <input type="submit" class="black-button" value="Save"></input>
+                        <input type="button" data-dismiss="modal" value="Close">
+                        <input type="submit" class="black-button" value="Save">
                     </div>
                 </form>
             </div>
@@ -103,26 +113,18 @@
             </div>
 
             <div class="cards row">
-                <div class="mt-4 col-md-6 col-lg-3">
+                @foreach ($users as $user)
+                <div class="mt-4 col-md-6 col-lg-3" id="user{{$user['id']}}">
                     <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto"></i>
+                        <i class="fas fa-trash-alt ml-auto" onclick="sendDeleteUser({{$user['id']}})"></i>
                         <div class="d-flex flex-row address-header">
                             <i class="fas fa-user pr-1"></i>
-                            <h6>Jane Doe</h6>
+                            <h6>{{$user['name']}}</h6>
                         </div>
                         <h6>Regular User</h6>
                     </div>
                 </div>
-                <div class="mt-4 col-md-6 col-lg-3">
-                    <div class="box d-flex flex-column">
-                        <i class="fas fa-trash-alt ml-auto"></i>
-                        <div class="d-flex flex-row address-header">
-                            <i class="fas fa-user pr-1"></i>
-                            <h6>João Carlos Lopes</h6>
-                        </div>
-                        <h6>Premium User</h6>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </section>
@@ -139,69 +141,39 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
                             <th scope="col">Type</th>
                             <th scope="col">Username</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-toggle="collapse" data-target="#report-1" class="clickable unbold"
-                            onclick="boldUnboldLine(this)">
-                            <td> <i class="fas fa-circle mr-2"></i>12/03/19</td>
-                            <td>Review</td>
-                            <td>janedoe</td>
+                        @foreach ($reviews as $review)
+                        <tr data-toggle="collapse" data-target="#report{{$review['id']}}" class="clickable unbold"
+                            onclick="boldUnboldLine(this)" name="report-{{$review['id']}}">
+                            <td><i class="fas fa-circle mr-2"></i>Review</td>
+                            <td>{{$review['username']}}</td>
                             <td>
-                                <i class="fas fa-exclamation-triangle p-1"></i>
-                                <i class="fas fa-check-circle p-1"></i>
-                                <i class="fas fa-user-lock p-1"></i>
+                                <i class="fas fa-check-circle p-1" onclick="sendReviewDelete({{$review['id']}})"></i>
+                                <i class="fas fa-user-lock p-1"
+                                    onclick="sendDeleteUserReview({{$review['id_user']}}, {{$review['id']}})"></i>
                             </td>
                         </tr>
-                        <tr>
+                        <tr name="report-{{$review['id']}}">
                             <td colspan="4" class="collapse-line">
-                                <div id="report-1" class="collapse-div collapse">
+                                <div id="report{{$review['id']}}" class="collapse-div collapse">
                                     <div class="information_list container">
-                                        <div class="row" onclick="window.location='product.html#review-1'"
+                                        <div class="row"
+                                            onclick="window.location='/product/{{$review['id_product']}}/#review-{{$review['id']}}'"
                                             style="cursor:pointer;">
-                                            <h6>Zombie ipsum reversus ab viral inferno, nam rick grimes malum
-                                                cerebro. De carne lumbering animata corpora quaeritis. Summus
-                                                brains sit​​, morbo vel maleficia? De apocalypsi gorger omero
-                                                undead survivor dictum mauris. Hi mindless mortuis soulless
-                                                creaturas, imo evil stalking monstra adventus resi dentevil vultus
-                                                comedat cerebella viventium.</h6>
+                                            <h6>
+                                                {{$review['description']}}
+                                            </h6>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <tr data-toggle="collapse" data-target="#report-2" class="clickable unbold"
-                            onclick="boldUnboldLine(this)">
-                            <td> <i class="fas fa-circle mr-2"></i>25/02/19</td>
-                            <td>Review</td>
-                            <td>jonedoe</td>
-                            <td>
-                                <i class="fas fa-exclamation-triangle p-1"></i>
-                                <i class="fas fa-check-circle p-1"></i>
-                                <i class="fas fa-user-lock p-1"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" class="collapse-line">
-                                <div id="report-2" class="collapse-div collapse">
-                                    <div class="information_list container">
-                                        <div class="row" onclick="window.location='product.html#review-2'"
-                                            style="cursor:pointer;">
-                                            <h6>Lorem ipsum dolor amet mustache knausgaard +1, blue bottle
-                                                waistcoat tbh semiotics artisan synth stumptown gastropub cornhole
-                                                celiac swag. Brunch raclette vexillologist post-ironic glossier
-                                                ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue
-                                                bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle
-                                                ennui tbh succulents.</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

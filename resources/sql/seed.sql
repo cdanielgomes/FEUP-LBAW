@@ -117,7 +117,7 @@ CREATE TABLE address
 (
   id SERIAL PRIMARY KEY,
   door_number INTEGER NOT NULL,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
   id_city INTEGER NOT NULL REFERENCES "city" (id) ON UPDATE CASCADE,
   street text NOT NULL,
   zipCode text NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE address
 CREATE TABLE "order"
 (
   id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
   id_address_invoce INTEGER NOT NULL REFERENCES "address" (id) ON UPDATE CASCADE,
   id_address_shipping INTEGER REFERENCES "address" (id) ON UPDATE CASCADE,
   date DATE DEFAULT current_date,
@@ -145,16 +145,16 @@ CREATE TABLE line_item
 
 CREATE TABLE line_item_order
 (
-  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
-  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE,
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  id_order INTEGER NOT NULL REFERENCES "order" (id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (id_line_item)
 
 );
 
 CREATE TABLE line_item_cart
 (
-  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE,
-  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE,
+  id_line_item INTEGER NOT NULL REFERENCES "line_item" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  id_cart INTEGER NOT NULL REFERENCES "cart" (id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (id_line_item)
 
 );
@@ -417,7 +417,7 @@ insert into users (id, name, username, email, password, type_user, deleted) valu
 insert into users (id, name, username, email, password, type_user, deleted) values (8, 'Lynnette', 'ljoskowitz7', 'lgull7@wunderground.com', '$2y$12$2SuzgixcA7Ib34ujOMRuvuIQoGZC4C.2ZlPDNBA0J2O4w.VlVNxGG', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (9, 'Tristan', 'tmaclennan8', 'tkeunemann8@google.es', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (10, 'Katha', 'kcalf9', 'kpenniell9@rediff.com', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', 'user', false);
-insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$12$s0VNpdRTDox8BdLM45Sj7.0r6UhPbwyT4Nv0Ol998trU6gq232Pkq', 'admin', false); ----- jOWX2YyMgEeM
+insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$10$T/KnD3y7nFckuajDlQit/OG6/TuQENO5y9pnUmEqf5CqlAXYhc5Lu', 'admin', false); ----- jOWX2YyMgEeM
 insert into users (id, name, username, email, password, type_user, deleted) values (12, 'Muhammad', 'mspelwoodb', 'mcassyb@fastcompany.com', '5DXN9x', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (13, 'Jenelle', 'jpiddockec', 'jreichartzc@state.tx.us', 'cKEjYqKNrDmb', 'user', true);
 insert into users (id, name, username, email, password, type_user, deleted) values (14, 'Cymbre', 'cprinnettd', 'ctumbeltyd@bloglines.com', 'kHuNPMwnhm', 'user', false);

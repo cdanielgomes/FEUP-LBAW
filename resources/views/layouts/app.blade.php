@@ -20,7 +20,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -61,7 +62,7 @@
                 <a href={{url('/products/clothing/all')}} class="nav-link dropdown-toggle" data-toggle="dropdown"
                   role="button" aria-haspopup="true" aria-expanded="false">Clothing</a>
                 <ul class="dropdown-menu float-left">
-                  <h3 class="dropdown-header">Men</h3>
+                  <li><h3 class="dropdown-header">Men</h3></li>
                   @foreach ($categories as $item)
                   @if ($item['dad'] == 'Clothing' && $item['sex'] == 'm')
                   <li class="nav-item"><a class="nav-link"
@@ -70,7 +71,7 @@
                   @endif
                   @endforeach
                   <li class="nav-item"><a class="nav-link" href={{url('/products/man/all')}}>Shop All</a></li>
-                  <h3 class="dropdown-header">Women</h3>
+                 <li> <h3 class="dropdown-header">Women</h3></li>
                   @foreach ($categories as $item)
                   @if ($item['dad'] == 'Clothing' && $item['sex'] == 'w')
                   <li class="nav-item"><a class="nav-link"
@@ -123,7 +124,7 @@
               <li class="nav-item">
                 @if(Auth::user() != null)
                 <a class="nav-link" href="{{ route('cart', ['id' => Auth::user()->carts->id ])}}">
-                  <h5><i class="fas fa-shopping-cart"></i> </h5>
+                  <i class="fas fa-shopping-cart"></i>
                 </a>
                 @endif
               </li>
