@@ -69,15 +69,9 @@ class AddressController extends Controller
         $address->street = $request->street;
         $address->zipcode = $request->zipCode;
 
-    
-        // dd($address);
-
-        //$country = Country::where('name', $request->country);
         $address->save();
 
-        //dd($address, $city, $country);
-
-        return array($address, $city->name, $country->name);
+        return array($address, $city->get(0)->name, $country->get(0)->name);
     }
 
     /**

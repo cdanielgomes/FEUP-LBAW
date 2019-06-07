@@ -27,6 +27,7 @@ Route::get('/cart/{id}', 'CartController@show')->name('cart');
 Route::post('api/product/{id}/review', 'ProductController@submitReview');
 Route::post('api/product/{id}/addToCart', 'CartController@addToCart');
 Route::delete('api/line/{idLine}', 'CartController@destroyLine');
+Route::post('api/order', 'CartController@order');
 
 
 Route::get('/products/{category}/{subcategoty}', 'CategoriesController@show');

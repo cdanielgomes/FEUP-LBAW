@@ -62,9 +62,6 @@ function sendCreateAddress(event) {
   let country = event.target[5].value;
   let door_number = event.target[1].value;
 
-
-
-
   sendAjaxRequest('post', "/api/profile/" + id + "/address", { type_address: type_address, country: country, city: city, zipCode: zipCode, street: street, door_number: door_number }, addressCreateHandler)
 
 }
@@ -89,7 +86,6 @@ function addressCreateHandler() {
   [].forEach.call(itemCheckers, function (checker) {
     checker.addEventListener('click', sendDeleteAddress);
   });
-
 
 }
 
