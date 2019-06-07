@@ -16,6 +16,7 @@ use App\Analyze;
 use App\Color;
 use App\Size;
 use Illuminate\Support\Facades\Input;
+use Mockery\Exception;
 
 class ProductController extends Controller
 {
@@ -120,7 +121,16 @@ class ProductController extends Controller
         $review->description = $request->description;
         $review->score = $request->score;
 
-        $review->save();
+
+        try{
+            $review->save();
+        } catch(\Illuminate\Database\QueryException $e){
+            $orderLog = new Logger('db');
+            $orderLog->pushHandler(new StreamHandler(storage_path('logs/db.log')), Logger::ERROR);
+            $orderLog->info('db', ['error'=>$e->getMessage()]);
+        }
+        
+
 
         $review->name = User::find($request->id)['name'];
 
@@ -143,7 +153,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $request->file('image')->move(public_path('imgs'), rand() . $request->file('image')->getClientOriginalExtension());
 
-        //dd($product);
+
         $product->save();
 
         return $product;

@@ -26,6 +26,7 @@ function reviewAddHandler() {
     console.log(this.status);
   }
 
+  
   clearFormReview();
   let review = JSON.parse(this.responseText);
 
