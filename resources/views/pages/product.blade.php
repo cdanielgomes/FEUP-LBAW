@@ -70,13 +70,13 @@
                     <img src="{{asset('imgs/star.png')}}" alt="star" class="pontuation mt-4">
                 </p>
                 @if(Auth::check())
+
                 @if(Auth::user()->isFav($product['id']))
                 <p class="favorites" data-toggle="modal" data-target="#alertFavorite">
                     <i class="fas fa-heart pr-1"></i> Add to favorites</p>
                 @else
                 <p class="favorites" data-toggle="modal" data-target="#alertFavorite">
-                    <i class="fas fa-heart ml-auto"></i> Remove
-                    from favorites</p>
+                    <i class="fas fa-heart ml-auto"></i> Remove from favorites</p>
                 @endif
                 @endif
                 <div class="product-add">

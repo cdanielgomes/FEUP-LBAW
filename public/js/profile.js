@@ -142,7 +142,7 @@ function sendRemoveFav(event) {
   let helper = event.target.parentElement.parentElement;
   let idProduct = helper.getAttribute('id').split('-')[1];
 
-  sendAjaxRequest('delete', "/api/profile" +"/products/" + idProduct, null, removeFavHandler);
+  sendAjaxRequest('delete', "/api/profile/products/" + idProduct, null, removeFavHandler);
 }
 
 function removeFavHandler() {

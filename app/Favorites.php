@@ -8,6 +8,8 @@ class Favorites extends Model
 {
     public $timestamps = false;
     protected $autoincrement = false;
+    protected $primaryKey = 'id_user';
+
     /**
      * The attributes that are mass assignable.
      *

@@ -26,7 +26,7 @@ function reviewAddHandler() {
     console.log(this.status);
   }
 
-  
+
   clearFormReview();
   let review = JSON.parse(this.responseText);
 
@@ -173,7 +173,7 @@ function removeFavorites(event) {
 
   let id = document.getElementById('productId').value;
 
-  console.log(id);
+  
   sendAjaxRequest('delete', '/api/profile/products/' + id, null, removeFavHandler);
 
 }
@@ -184,7 +184,7 @@ function removeFavHandler() {
 
   if (this.status != 200) {
 
-
+    console.log('not removing')
     return;
   }
 
@@ -199,11 +199,11 @@ function removeFavHandler() {
 function addFavHandler() {
 
   if (this.status != 200) {
-
+    console.log('not adding')
     return
   }
 
   let item = document.getElementsByClassName('fas fa-heart pr-1')[0];
-  item.replace(document.createElement('i').className('fas fa-heart ml-auto'))
+  item.replaceWith(document.createElement('i').className('fas fa-heart ml-auto'))
 
 }

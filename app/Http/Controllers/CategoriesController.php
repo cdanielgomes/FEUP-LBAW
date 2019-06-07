@@ -21,6 +21,7 @@ class CategoriesController extends Controller
         $category = urldecode($category);
         $subcategory = urldecode($subcategory);
 
+        
         if ($subcategory == 'all') {
 
             if ($category == 'Man' || $category == 'Woman')
@@ -29,8 +30,8 @@ class CategoriesController extends Controller
                 $categories = Categories::all()->where('dad', $category);
         } else {
 
-            if ($category == 'man' || $category == 'woman')
-                $categories = Categories::all()->where('sex', $category[0])->where('name', $subcategory);
+            if ($category == 'Man' || $category == 'Woman')
+                $categories = Categories::all()->where('sex', lcfirst($category[0]))->where('name', $subcategory);
             else
                 $categories = Categories::all()->where('dad', $category)->where('name', $subcategory);
         }
@@ -44,6 +45,7 @@ class CategoriesController extends Controller
         }
 
 
+        
         $counter = 1;
         $pall = array();
         $on3 = array();
