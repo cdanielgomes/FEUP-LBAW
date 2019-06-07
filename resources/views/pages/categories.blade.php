@@ -119,7 +119,7 @@
                     <div class="row">
                         @foreach ($p3 as $product)
 
-                        <div class="mt-3 col-md-5 col-lg-4 products_onrow" id="product{{$product['id']}}">
+                        <div class="mt-3 col-md-5 col-lg-4 products_onrow " id="product{{$product['id']}}">
                             @foreach ($product['brand'] as $brand)
                             <input type="hidden" class="productBrand" value="{{$brand->id_brand}}">
                             @endforeach
@@ -131,7 +131,7 @@
                             @endforeach
                             <div data-name="{{$product['name']}}"
                                 class="box d-flex flex-column align-items-center product_onrow">
-                                <img src={{"assets/product" . $product['id'] . "1.png"}} alt={{$product['name']}}
+                                <img src="{{asset('imgs/product'.$product['id'].'1.png')}}" alt={{$product['name']}}
                                     class="center-block" onclick="window.location='{{url('product/' .$product['id'])}}'"
                                     style="cursor:pointer;">
                                 <h5 onclick="window.location='{{url('product/' . $product['id'])}}'"
