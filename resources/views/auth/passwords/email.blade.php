@@ -7,19 +7,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Larashop Admin Login</title>
+        <title>Admin Login</title>
 
-        <!-- Bootstrap -->
-        <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="{{asset('admin/css/font-awesome.min.css')}}" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="{{asset('admin/css/nprogress.css')}}" rel="stylesheet">
-        <!-- Animate.css -->
-        <link href="{{asset('admin/css/animate.min.css')}}" rel="stylesheet">
-
-        <!-- Custom Theme Style -->
-        <link href="{{asset('admin/css/custom.min.css')}}" rel="stylesheet">
+        <link href="{{asset('css/passwordreset.css')}}" rel="stylesheet">
     </head>
 
     <body class="login">
@@ -37,7 +27,11 @@
                         @endif
 
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('password.email') }}">
-                            <h1>Password Reset</h1>
+                        <div class="card-header container">
+                            <h2>Password Reset</h2>
+                            <div class="d-flex justify-content-end">
+                            </div>
+				        
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -59,12 +53,9 @@
                                 <div class="clearfix"></div>
                                 <br />
 
-                                <div>
-                                    <h1><i class="fa fa-paw"></i> Larashop Admin Panel</h1>
-                                    <p>©2017 All Rights Reserved.</p>
-                                </div>
                             </div>
                         </form>
+</div>
                     </section>
                 </div>
             </div>
