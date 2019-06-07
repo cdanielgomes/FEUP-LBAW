@@ -532,11 +532,11 @@
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
 
-                                        @foreach ($item['lines'][0] as $lines)
+                                        @foreach ($item['lines'] as $lines)
                                         <div class="row">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productName']}}</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines[0]['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productPrice']}}
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines[0]['productPrice']}}
                                             </p>
                                         </div>
                                     </div>
