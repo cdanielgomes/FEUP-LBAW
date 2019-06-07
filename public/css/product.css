@@ -40,7 +40,8 @@ p {
 }
 
 #product-images {
-    width: 40%
+    width: 40%;
+    height: 100%
 }
 
 .carousel-control-prev-icon {

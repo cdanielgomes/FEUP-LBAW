@@ -40,14 +40,14 @@
                 <span>{{(count($products) - 1) * 3  + count($products[count($products) - 1])  }}
                     Products</span></div>
             <div class="dropdown col w-auto text-center">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Sort By
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item 1" >Alphabetically </a>
-                    <a class="dropdown-item 2" >Reversed</a>
-                    <a class="dropdown-item 3" >Price Ascending</a>
+                    <a class="dropdown-item 1">Alphabetically </a>
+                    <a class="dropdown-item 2">Reversed</a>
+                    <a class="dropdown-item 3">Price Ascending</a>
                 </div>
             </div>
 
@@ -62,9 +62,9 @@
                         <div class="">
                             @foreach ($brands as $brand)
 
-                            <div class="form-check">
+                            <div class="form-check" id="brand{{$brand['id']}}">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" class="brand" value="{{$brand['id']}}">
                                     <p>{{$brand['name']}}</p>
                                 </label>
                             </div>
@@ -78,9 +78,9 @@
                         <div>
                             @foreach ($sizes as $size)
 
-                            <div class="form-check">
+                            <div class="form-check" id="size{{$size['id']}}">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" class="size" value="{{$size['id']}}">
                                     <p>{{$size['name']}}</p>
                                 </label>
                             </div>
@@ -93,9 +93,9 @@
                         <div>
                             @foreach ($colors as $color)
 
-                            <div class="form-check">
+                            <div class="form-check" id="color{{$color['id']}}">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" class="color" value="{{$color['id']}}">
                                     <p>{{$color['name']}}</p>
                                 </label>
                             </div>
@@ -119,16 +119,27 @@
                     <div class="row">
                         @foreach ($p3 as $product)
 
-                        <div class="mt-3 col-md-5 col-lg-4 products_onrow">
-                            <div data-name="{{$product['name']}}" class="box d-flex flex-column align-items-center product_onrow">
-                                <img src={{"assets/product" . $product['id'] . "1.png"}} alt={{$product['name']}}
-                                    class="center-block"
-                                    onclick="window.location='{{url('product/' .$product['id'])}}'"
+                        <div class="mt-3 col-md-5 col-lg-4 products_onrow " id="product{{$product['id']}}">
+                            @foreach ($product['brand'] as $brand)
+                            <input type="hidden" class="productBrand" value="{{$brand->id_brand}}">
+                            @endforeach
+                            @foreach ($product['color'] as $color)
+                            <input type="hidden" class="productColor" value="{{$color->id_color}}">
+                            @endforeach
+                            @foreach ($product['size'] as $size)
+                            <input type="hidden" class="productSize" value="{{$size->id_size}}">
+                            @endforeach
+                            <div data-name="{{$product['name']}}"
+                                class="box d-flex flex-column align-items-center product_onrow">
+                                <img src="{{asset('imgs/product'.$product['id'].'1.png')}}" alt={{$product['name']}}
+                                    class="center-block" onclick="window.location='{{url('product/' .$product['id'])}}'"
                                     style="cursor:pointer;">
-                                <h5 onclick="window.location='{{url('product/' . $product['id'])}}'" style="cursor:pointer;">
+                                <h5 onclick="window.location='{{url('product/' . $product['id'])}}'"
+                                    style="cursor:pointer;">
                                     {{$product['name']}}</h5>
                                 <span>{{$product['price']}} €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart" onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
+                                <input type="button" class="AddToCart" value="Add to Cart"
+                                    onclick="sendAddToCartRelated({{$product['id']}}, {{$product['price']}})">
                             </div>
                         </div>
 
@@ -139,49 +150,24 @@
                 </div>
             </div>
         </div>
-        <nav class="mt-4 d-flex justify-content-end" aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </main>
 
 <div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
-    </div>
-    <div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+</div>
+<div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Successfully added!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 
 <!-- Modal OnlineHelp -->
 <div class="button_online">

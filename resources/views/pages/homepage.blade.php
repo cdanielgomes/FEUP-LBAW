@@ -15,28 +15,23 @@
 @endguest
 
 <div>
-
   <div class="video1">
     <div class="overlay"></div>
     <div class="video-block block">
       <video src="{{asset('imgs/promovidANIMALS.mp4')}}" autoplay muted loop></video>
     </div>
-
     <div class="container h-100">
       <div class="d-flex h-100 text-center align-items-center">
         <div class="w-100 text-white">
           <h1 class="display-3">WILDLIFE FANATIC ?</h1>
-          <a class="btn btn-outline-light">SHOP NOW</a>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
 </div>
-<div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog"
-  aria-hidden="true">
+<div class="modal fade" id="alertAddToCart" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <div class="featuredproducts">
   <div class="mt-5 container">
     <h2>Featured Products</h2>
@@ -68,11 +62,10 @@
     </div>
   </div>
 </div>
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" role="listbox">
     <!-- Slide One - Set the background image for this slide in the line below -->
-    <div class="carousel-item active w-100" style="background-image: url({{asset('imgs/slide1.jpg')}}">
+    <div class="carousel-item active w-100" style="background-image:url({{asset('imgs/slide1.jpg')}}">
       <div class="carousel-caption d-md-block">
       </div>
     </div>
@@ -97,19 +90,15 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
 <div class="video2">
-  <div class="overlay"></div>
+  <div class="overlay h-100"></div>
   <div class="video-block block">
     <video src="{{url('imgs/promovidOUTDOORS.mp4')}}" autoplay muted loop></video>
   </div>
-
   <div class="container h-100">
     <div class="d-flex h-100 text-center align-items-center">
       <div class="w-100 text-white">
         <h1 class="display-3">OUTDOORS EXPERTISE</h1>
-
-        <a class="btn btn-outline-light">LEARN MORE</a>
       </div>
     </div>
   </div>
@@ -137,17 +126,12 @@
 </div>
 </div>
 
-
 <!-- Button trigger modal -->
-
-<div class="container topright text-aling-top">
+<div class="container topright text-aling-top ml-0">
   <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
     <i class="far topright fa-question-circle fa-2x text-top "></i>
   </button>
 </div>
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -182,6 +166,4 @@
     </div>
   </div>
 </div>
-
-
 @endsection

@@ -102,6 +102,14 @@ div.row#products {
     border-top: 1px solid #151e1a;
 }
 
+img.center-block {
+    min-width: 200px; 
+    min-height: 200px; 
+    max-width: 200px;
+    max-height: 200px;
+    padding: 10px;
+}
+
 @media only screen and (max-width: 600px) {
 
     main {

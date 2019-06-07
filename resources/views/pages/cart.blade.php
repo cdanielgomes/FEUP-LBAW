@@ -21,37 +21,6 @@
   <section class="container">
     <div class="row my-3">
       <h1 class="my-2"> Checkout </h1>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">What is Checkout?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Egestas integer eget aliquet nibh praesent tristique. Libero justo laoreet sit amet cursus sit amet
-              dictum.
-              Sed ullamcorper morbi tincidunt ornare massa. Nisi vitae suscipit tellus mauris a diam maecenas. Justo
-              donec enim diam vulputate ut pharetra sit amet aliquam. Nunc sed id semper risus in hendrerit gravida
-              rutrum.
-            </div>
-            <div class="modal-footer">
-              <div class="container">
-                <div class="modal-body">
-                  <span><a href="{{route('faq')}}"> More Questions? </a></span> </div>
-              </div>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Got it, thanks!</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
     <ul class="nav nav-tabs navbar-expand-md flex-column flex-sm-row" id="cart">
       <li class="nav-item">
@@ -254,7 +223,7 @@
           <tbody>
             @foreach ($lines as $line)
             <tr id="line{{$line['id']}}">
-              <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="product_image"></th>
+              <th scope="row"><img class="img-fluid w-25 h-20" src="{{asset('imgs/product'.$line['id_product'].'1.png')}}" alt="product_image"></th>
               <td class="name">{{$line['name']}}</td>
               <td class="price">{{$line['single_price']}}€</td>
               <td class="quantity">{{$line['quantity']}}</td>
@@ -308,7 +277,7 @@
         <p><strong>Payment Method:</strong></p>
         <p>Users can choose between options of payment. If <strong>‘Credit Card’</strong> chosen, user must fill the
           corresponding informations.</p>
-        <p>Once clicked on <strong>Paypal, user is to be redirected to PayPal authentication service.</p>
+        <p>Once clicked on <strong>Paypal, user is to be redirected to PayPal authentication service</strong>.</p>
         <p></p>
         <p><strong>Order Review:</strong></p>
         <p>Warning: The stock <strong>may</strong> change during this procedure.</p>

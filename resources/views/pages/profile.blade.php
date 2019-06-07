@@ -15,7 +15,7 @@
 
 @section('content')
 
-@if($user['type_user'] == 'user')
+@if($user['type_user'] == 'user' ||$user['type_user'] == 'premium'  )
 <input type="hidden" id="userId" value={{Auth::user()->id}}>
 
 <div class="mt-1">
@@ -30,9 +30,15 @@
 <div class="container">
     <div class="container scroll_nav">
         <div class="row">
+            @if($user['type_user'] == 'user')
             <h1 class="col-lg col-md col-sm-6">
                 My Area
             </h1>
+            @elseif($user['type_user'] == 'premium')
+            <h1 class="col-lg col-md col-sm-6">
+                My Area <span class="badge badge-secondary">Premium</span>
+            </h1>
+            @endif
             <a href="#profile_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                 Profile
@@ -279,7 +285,7 @@
                 <div id={{"favorite-" . $item['id']}} class="mt-3 col-md-5 col-lg-4">
                     <div class="box d-flex flex-column align-items-center">
                         <i class="fas fa-heart ml-auto"></i>
-                        <img src="assets/{{$item['name']}}.png" alt="{{$item['name']}}" class="center-block"
+                        <img src="{{asset('imgs/product'.$item['id'].'1.png')}}"  alt="{{$item['name']}}" class="center-block"
                             onclick="window.location='' " style="cursor:pointer;">
 
                         <h5 id="{{"fav-" . $item['id']}}" class="productName" onclick="window.location='{{url('/product/' . $item['id'])}}'"

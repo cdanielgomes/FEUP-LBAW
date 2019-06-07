@@ -34,6 +34,7 @@ Route::get('/categories', 'CategoriesController@show')->name('categories');
 Route::get('/search', 'CategoriesController@search_products')->name('search');
 Route::post('api/products/{category}/{subcategoty}', 'CategoriesController@show');
 Route::post('api/search/{id}/review', 'CategoriesController@search_products');
+Route::post('api/filter', 'CategoriesController@filterProducts');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function () {
     // Password Reset Routes...
@@ -45,9 +46,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Auth'], function () {
 
 Auth::routes();
 
-Route::delete('api/admin/{id}', 'ProfileController@deleteUser');
 Route::delete('api/address/{idAddr}', 'AddressController@destroy');
 Route::post('api/profile/address', 'AddressController@create');
+
+Route::delete('api/admin/{id}', 'ProfileController@deleteUser');
 Route::delete('api/profile/products/{idProduct}', 'ProfileController@deleteFav');
 Route::post('product/add', 'ProductController@store');
 Route::post('/api/report/{reviewID}', 'ProductController@report');
