@@ -168,7 +168,7 @@
                         </div>
                         <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
                             <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
-                                data-target="#alertReview">
+                                data-target="#alertReview" onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
                                 Report Review
                             </div>
                         </div>
