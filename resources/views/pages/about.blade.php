@@ -153,28 +153,29 @@
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
             <img src="imgs/2.jpg" alt="product_image" class="center-block">
-            <h5 id="memberName">Daniel Gomes</h5>
+            <h5 id="memberName1">Daniel Gomes</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
             <img src="{{asset('imgs/1.jpg')}}" alt="product_image" class="center-block">
-            <h5 id="memberName">Carolina Azevedo</h5>
+            <h5 id="memberName2">Carolina Azevedo</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
             <img src="{{asset('imgs/3.jpg')}}" alt="product_image" class="center-block">
-            <h5 id="memberName">Diogo Yaguas</h5>
+            <h5 id="memberName3">Diogo Yaguas</h5>
           </div>
         </div>
         <div class="mt-3 col-md-5 col-lg-3">
           <div class="box d-flex flex-column align-items-center">
             <img src="{{asset('imgs/4.jpg')}}" alt="product_image" class="center-block">
-            <h5 id="memberName">Gonçalo Bernardo</h5>
+            <h5 id="memberName4">Gonçalo Bernardo</h5>
           </div>
         </div>
       </div>
+    </section>
   </div>
 </main>
 

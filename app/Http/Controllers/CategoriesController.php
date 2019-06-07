@@ -9,6 +9,9 @@ use App\Size;
 use App\Color;
 use App\Product;
 use Illuminate\Support\Facades\Input;
+use App\ProductBrand;
+use App\ProductColor;
+use App\ProductSize;
 
 class CategoriesController extends Controller
 {
@@ -46,6 +49,14 @@ class CategoriesController extends Controller
         $on3 = array();
         foreach ($temp as $elem) {
 
+            $brand = ProductBrand::all()->where('id_product', $elem['id']);
+            $color = ProductColor::all()->where('id_product', $elem['id']);
+            $size = ProductSize::all()->where('id_product', $elem['id']);
+
+            $elem['brand'] = $brand;
+            $elem['color'] = $color;
+            $elem['size'] = $size;
+
             if ($counter % 4 == 0) {
                 array_push($pall, $on3);
                 $on3 = array();
@@ -57,8 +68,9 @@ class CategoriesController extends Controller
         }
 
         array_push($pall, $on3);
+
         $category[0] = strtoupper($category[0]);
-        //  dd($pall);
+
         return view('pages.categories', ['categories' => Categories::all(), 'brands' => Brand::all(), 'colors' => Color::all(), 'sizes' => Size::all(), 'products' => $pall, 'name' => $category, 'subname' => $subcategory]);
     }
 
@@ -74,7 +86,6 @@ class CategoriesController extends Controller
         }catch(\Exception $e){
             return response(json_encode($e->getMessage()), 400);
         }
-
 
         $counter = 1;
         $pall = array();

@@ -128,7 +128,6 @@ function reportHandler() {
   if (this.status != 200) {
     console.log(this.status);
   }
-
 }
 
 

@@ -133,7 +133,7 @@
               <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
               @else
               <li class="nav-item">
-                <a href="{{route('profile')}}"class="nav-link" role="button">
+                <a href="{{route('profile')}}" class="nav-link" role="button">
 
 
                   <i class="fas fa-user pt-1"></i>
@@ -174,7 +174,7 @@
                 <div class="col">
                   <h5 class="header">Services</h5>
                   <ul class="list-group links">
-                    <li class="list-group-item"> <span></i> <a href="{{route('faq')}}"> FAQ </a></span></li>
+                    <li class="list-group-item"> <span><a href="{{route('faq')}}"> FAQ </a></span></li>
                   </ul>
                 </div>
               </div>

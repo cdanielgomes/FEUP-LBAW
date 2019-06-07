@@ -90,7 +90,7 @@ class ProductController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(Resquest $request)
+    protected function validator(Request $request)
     {
         $customMessages = [
             'required' => 'The :attribute field is required.'

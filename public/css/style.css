@@ -1,9 +1,4 @@
 body {
-    --color1: #f6fffb;
-    --color2: #9effd5;
-    --color3: #a8c1b6;
-    --color4: #40544b;
-    --color5: #151e1a;
     font-family: 'Quicksand', 'Open Sans', sans-serif;
     padding-right: 0px !important;
 }
@@ -24,7 +19,7 @@ footer {
 }
 
 .footer {
-    background-color: var(--color1);
+    background-color:#f6fffb;
 }
 
 .footer .row li {
@@ -35,7 +30,7 @@ footer {
 
 
 .footer a {
-    color: var(--color4);
+    color: #40544b;
     text-decoration: none;
 }
 
@@ -76,7 +71,7 @@ img.center-block {
     padding: 10px;
 }
 .navbar-toggler{
-    border-color: var(--color2)
+    border-color:#40544b;
 
 }
 .navbar-toggler-icon {
