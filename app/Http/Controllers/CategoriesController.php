@@ -83,8 +83,10 @@ class CategoriesController extends Controller
 
             $search_products = Product::whereRaw("name @@ plainto_tsquery('" . $search_key . "')")->get()->toArray();
 
-        }catch(\Exception $e){
-            return response(json_encode($e->getMessage()), 400);
+        }catch(\Illuminate\Database\QueryException $e){
+            $orderLog = new Logger('db');
+            $orderLog->pushHandler(new StreamHandler(storage_path('logs/db.log')), Logger::ERROR);
+            $orderLog->info('db', ['error'=>$e->getMessage()]);
         }
 
         $counter = 1;

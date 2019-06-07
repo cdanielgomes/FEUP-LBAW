@@ -121,7 +121,16 @@ class ProductController extends Controller
         $review->description = $request->description;
         $review->score = $request->score;
 
-        $review->save();
+
+        try{
+            $review->save();
+        } catch(\Illuminate\Database\QueryException $e){
+            $orderLog = new Logger('db');
+            $orderLog->pushHandler(new StreamHandler(storage_path('logs/db.log')), Logger::ERROR);
+            $orderLog->info('db', ['error'=>$e->getMessage()]);
+        }
+        
+
 
         $review->name = User::find($request->id)['name'];
 
