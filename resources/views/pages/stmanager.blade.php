@@ -112,19 +112,23 @@
                     </button>
                     <span aria-hidden="true">&times;</span>
                 </div>
-                <form id="addProduct" enctype="multipart/form-data">
+                <form id="addProduct" method="POST" action="{{url('/product/add')}}" enctype="multipart/form-data">
+
+                    {{ csrf_field() }}
+
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
                             <input type="text" name="name" class="form-control" placeholder="Product Name" required>
                         </div>
                         <div class="form-group">
-                            <label for=pic>Product Image</label> <br>
-                            <input type="file"  name="image" accept="image/*" required>
+                            <label for=image>Product Images</label> <br>
+                            <input type="file" name="image[]" id="img" accept="image/*" multiple required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Price</label>
-                            <input type="number" name="price" class="form-control" placeholder="Product Price"  min="0.1" step="0.1" title="the price needs to be higher then 0.1€" required>
+                            <input type="number" name="price" class="form-control" placeholder="Product Price" min="0.1"
+                                step="0.1" title="the price needs to be higher then 0.1€" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Color</label>
@@ -133,7 +137,8 @@
                         <div class="form-group">
                             <label for="review_title">Description</label>
                             <textarea name="description" rows="4" cols="10" class="form-control" placeInsert product
-                                descriptionholder="Insert product description" style="  resize: none;"  pattern=".{20,}"   required title="20 characters minimum"></textarea>
+                                descriptionholder="Insert product description" style="  resize: none;" pattern=".{20,}"
+                                required title="20 characters minimum"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Size</label>
@@ -153,12 +158,13 @@
 
                         <div class="form-group">
                             <label for="review_title">Stock</label>
-                            <input name="stock" type="number" pattern='\d' class="form-control" placeholder="Product Stock">
+                            <input name="stock" type="number" pattern='\d' class="form-control"
+                                placeholder="Product Stock" required>
                         </div>
 
                         <div id="cat" class="form-group">
                             <label for="review_title">Category</label>
-                            <select  name="category" class="form-control">
+                            <select name="category" class="form-control">
                                 <option selected="selected">Clothing</option>
                                 <option>House-Decor</option>
                                 <option>Activities</option>

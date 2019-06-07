@@ -422,6 +422,7 @@ insert into users (id, name, username, email, password, type_user, deleted) valu
 insert into users (id, name, username, email, password, type_user, deleted) values (13, 'Jenelle', 'jpiddockec', 'jreichartzc@state.tx.us', 'cKEjYqKNrDmb', 'user', true);
 insert into users (id, name, username, email, password, type_user, deleted) values (14, 'Cymbre', 'cprinnettd', 'ctumbeltyd@bloglines.com', 'kHuNPMwnhm', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (15, 'Kimberly', 'kzumbusche', 'kbraime@google.fr', 'JshbwLnTW', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (16, 'Dani', 'kdsse', 'klmaoe@google.fr', 'olafofo', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (17, 'Sibel', 'scayfordg', 'spettieg@quantcast.com', 'VpmhcpmngIh', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (18, 'Fowler', 'fharnwellh', 'fhundalh@nyu.edu', 'LNIsoIF3BF', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (19, 'Abdel', 'abigglestonei', 'agenickei@ifeng.com', 'GWO1UeuXN', 'user', false);
