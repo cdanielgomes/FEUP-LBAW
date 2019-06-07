@@ -19,7 +19,10 @@ function lineDeletedHandler() {
     let element = document.querySelector("#line" + line['idLine']);
     let total = document.querySelector(".justify-content-right.total").innerHTML.split(" ");
     total[0] -= line['price'];
-    document.querySelector(".justify-content-right.total").innerHTML = total[0] + " €";
+    let finalTotal = total[0];
+    document.querySelector(".justify-content-right.total").innerHTML = finalTotal.toFixed(2) + " €";
+    let discount = total[0]*0.7;
+    document.querySelector(".justify-content-right.newTotal").innerHTML = discount.toFixed(2) + " €";
     element.remove();
 }
 
