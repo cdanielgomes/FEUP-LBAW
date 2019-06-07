@@ -1,5 +1,4 @@
 <?php
-use App\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +35,14 @@ Route::get('/search', 'CategoriesController@search_products')->name('search');
 Route::post('api/products/{category}/{subcategoty}', 'CategoriesController@show');
 Route::post('api/search/{id}/review', 'CategoriesController@search_products');
 
+Route::group(['prefix' => 'admin','namespace' => 'Auth'],function(){
+    // Password Reset Routes...
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+});
+
 Auth::routes();
 
 Route::delete('api/address/{idAddr}', 'AddressController@destroy');
@@ -43,3 +50,5 @@ Route::post('api/profile/{idUser}/address', 'AddressController@create');
 Route::delete('api/profile/{idUser}/products/{idProduct}', 'ProfileController@deleteFav');
 Route::post('api/product/add', 'ProductController@store');
 Route::put('api/profile', 'ProfileController@update');
+Route::delete('profile/delete', 'ProfileController@delete');
+

@@ -17,6 +17,22 @@ let faves = document.getElementsByClassName("fas fa-heart ml-auto");
 let infoChange = document.getElementById('alterInfoUser');
 infoChange.addEventListener('submit', sendUpdatePersonalInfo)
 
+let del = document.querySelector('.col-lg-auto.col-md-auto.col-sm-12.text-sm-right')
+del.addEventListener('click', () => { sendAjaxRequest('delete', '/profile/delete', null, handlerDel) })
+
+function handlerDel() {
+
+  if (this.status != 200) {
+    console.log('merdou')
+    return;
+  }
+
+  let ans = JSON.parse(this.responseText)
+  window.location.replace('homepage');
+
+}
+
+
 
 function encodeForAjax(data) {
   if (data == null) return null;
@@ -146,6 +162,11 @@ function removeCard(id) {
 function sendUpdatePersonalInfo(event) {
   event.preventDefault();
 
+
+  Array.from(event.target.firstElementChild.children).forEach(element => {
+    if (element.children[2] != undefined) element.children[2].remove();
+  });
+
   let name = event.target[0].value;
   let username = event.target[1].value;
   let email = event.target[2].value;
@@ -153,24 +174,56 @@ function sendUpdatePersonalInfo(event) {
   let newpassword = event.target[4].value;
 
 
+  if (!checkParams({ name: name, username: username, email: email, password: password })) return;
+
   sendAjaxRequest('put', '/api/profile', { name: name, username: username, email: email, password: password, newpassword: newpassword }, changeInfoHandler)
+}
+
+
+function checkParams(obj) {
+
+  let trueable = {}
+
+  for (let item in obj) {
+
+    if (obj[item] == "") {
+      let span = document.createElement('span')
+      span.innerHTML = item + " can't be empty";
+      document.getElementById('edit-' + item).after(span)
+      trueable.item = item;
+    }
+  }
+
+
+  return Object.entries(trueable).length === 0 && trueable.constructor === Object
 }
 
 
 function changeInfoHandler() {
   if (this.status != 200) {
-    console.log(this.status);
+    console.log(this);
+    let answer = JSON.parse(this.responseText);
+    console.log(answer)
+    return;
   }
 
   let answer = JSON.parse(this.responseText);
+
+  if (answer['errors'] != undefined) {
+
+    for (let a in answer['errors']) {
+      document.getElementById('edit-' + a).after(document.createElement('span').appendChild(document.createTextNode(answer['errors'][a][0])))
+
+    }
+
+    return
+  }
+
   document.getElementById('alterInfoUser').reset();
 
   document.getElementById('profile_username').childNodes[0].nodeValue = answer['username'];
   document.getElementById('profile_name').childNodes[0].nodeValue = answer['name'];
   document.getElementById('profile_email').childNodes[0].nodeValue = answer['email'];
-
-  let infoChange = document.getElementById('alterInfoUser');
-  console.log(infoChange.childNodes);
 
   $('#alterInformationModal').modal('hide');
   $('.modal-backdrop').remove();

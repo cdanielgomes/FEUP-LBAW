@@ -43,17 +43,13 @@
                 <i class="fas fa-arrow-alt-circle-right"></i>
                 Addresses
             </a>
-            <a href="#payment_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
-                <i class="fas fa-arrow-alt-circle-right"></i>
-                Payment
-            </a>
             <a href="#favorite_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
                 Favorites
             </a>
             <a href="#onhold_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
-                On Holdprofile
+                On Hold
             </a>
             <a href="#history_title" class="col-lg-auto col-md-auto col-sm-6 text-sm-center">
                 <i class="fas fa-arrow-alt-circle-right"></i>
@@ -115,25 +111,27 @@
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
-                            <input type="text" class="form-control" placeholder="Your Name" value="{{$user['name']}}">
+                            <input type="text" id="edit-name" class="form-control" placeholder="Your Name"
+                                value="{{$user['name']}}">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Username</label>
-                            <input type="text" class="form-control" placeholder="Your Username"
+                            <input type="text" id="edit-username" class="form-control" placeholder="Your Username"
                                 value="{{$user['username']}}">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Email</label>
-                            <input type="email" class="form-control" placeholder="Your Email"
+                            <input type="email" id="edit-email" class="form-control" placeholder="Your Email"
                                 value="{{$user['email']}}">
                         </div>
                         <div class="form-group">
                             <label for="review_title">Password</label>
-                            <input type="password" class="form-control" placeholder="Your password">
+                            <input id="edit-password" type="password" class="form-control" placeholder="Your password">
                         </div>
                         <div class="form-group">
                             <label for="review_title">New Password</label>
-                            <input type="password" class="form-control" placeholder="Your new password">
+                            <input type="password" id="edit-newpassword" class="form-control"
+                                placeholder="Your new password">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -565,11 +563,10 @@
         </section>
     </div>
 
-
     <div class="container p-2">
         <div class="container scroll_nav">
             <div class="row float-right">
-                <a href="index.html" class="col-lg-auto col-md-auto col-sm-12 text-sm-right">
+                <a class="col-lg-auto col-md-auto col-sm-12 text-sm-right">
                     <i class="fas fa-user-times"></i> Delete Account
                 </a>
             </div>

@@ -123,27 +123,44 @@ class ProfileController extends Controller
             ]
         );
 
-        
+
 
         if ($validator->fails()) {
-            return redirect('profile')
-                ->withErrors($validator)
-                ->withInput();
+
+            return response()->json(['errors' => $validator->errors()]);
         }
-       
+
         if ($request->newpassword != "") {
             if (Hash::check($request->password, $user->id)) {
                 $user->password = bcrypt($request->newpassword);
             }
         }
-        
+
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
 
-//        dd($user);
+        //        dd($user);
         $user->save();
 
         return $user;
+    }
+
+
+
+
+    public function delete()
+    {
+
+        $user = Auth::user();
+
+        Auth::logout();
+
+
+
+        if ($user->delete()) {
+            return "true";
+        }
+        return "false";
     }
 }
