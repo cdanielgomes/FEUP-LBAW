@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
 
   <meta charset="utf-8">
@@ -20,7 +20,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -33,7 +34,7 @@
 <body>
 <img class="logo col-md3" src="{{asset('imgs/logo.png')}}" alt="img">
 <div class='fullscreenDiv'>
-    <div class="center_"> <h2>ERROR 404</h2> </div>
+    <div class="center2"> <h2>ERROR 404</h2> </div>
     <div class="center">The page you're looking for is not available</div>
 </div>​
 
