@@ -16,6 +16,7 @@ use App\Analyze;
 use App\Color;
 use App\Size;
 use Illuminate\Support\Facades\Input;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ProductController extends Controller
 {
@@ -133,20 +134,29 @@ class ProductController extends Controller
     {
 
         //$this->authorize();
-        dd(Input::all()['image']);
+
+
+
         $product = new Product;
 
+        
         $product->id = Product::max('id') + 1;
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
         $product->stock = $request->stock;
-        $request->file('image')->move(public_path('imgs'), rand() . $request->file('image')->getClientOriginalExtension());
 
-        //dd($product);
+
         $product->save();
+        $counter = 1;
 
-        return $product;
+        foreach (request()->file('image') as $lma) {
+            $lma->move(public_path('imgs'), 'product' . $counter . $product->id . "." . $lma->getClientOriginalExtension());
+            $counter++;
+        }
+
+
+        return redirect('/profile');
     }
 
     public function report(Request $request, $reviewId)
