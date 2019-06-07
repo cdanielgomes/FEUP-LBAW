@@ -629,10 +629,10 @@ INSERT INTO categories (id, name, sex, season, dad) VALUES (1, 'Tops', 'w', 'lac
 INSERT INTO categories (id, name, sex, season, dad) VALUES (2, 'Tops', 'm', 'semper', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (3, 'Bottoms', 'w', 'lobortis','Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (4, 'Shoes', 'w', 'vestibulum', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accesoires', 'w','justo', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accessories', 'w','justo', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (6, 'Bottoms', 'm', 'nulla', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (7, 'Shoes', 'm', 'volutpat', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accesoires', 'm', 'sed', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accessories', 'm', 'sed', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (9, 'Bedroom', '?', 'ligula', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (10, 'Kitchen', '?', 'justo', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (11, 'Living Room', '?', 'quis', 'House-Decor');
