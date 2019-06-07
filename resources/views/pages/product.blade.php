@@ -60,11 +60,14 @@
     <input type="hidden" id="productPrice" value={{$product['price']}}>
 
     <div class="media-body pl-3">
-        <h3 class="mt-0 product-title">{{$product['name']}}</h3>
+        <h3 class="mt-0 product-title">{{$product['name']}} </h3>
         <div id="cart">
             <form id="AddToCartForm" class="product_form">
                 <p id="product-price">
                     <span class="price">{{$product['price']}}€</span>
+                    <br>
+                    <label>{{$product->score}}/5</label>
+                    <img src="{{asset('imgs/star.png')}}" alt="star" class="pontuation mt-4">
                 </p>
                 <p class="favorites" data-toggle="modal" data-target="#alertFavorite"><i
                         class="fas fa-heart pr-1"></i>Add
@@ -169,7 +172,8 @@
                         </div>
                         <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
                             <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
-                                data-target="#alertReview" onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
+                                data-target="#alertReview"
+                                onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
                                 Report Review
                             </div>
                         </div>

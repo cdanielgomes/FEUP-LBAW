@@ -303,7 +303,7 @@ li.list-group-item p {
     height: 100%;
 }
 
-.list-group-item .pontuation img {
+ .pontuation, .pontuation img {
     width: 2.5vh;
     height: auto;
     vertical-align: unset;
