@@ -418,11 +418,10 @@ insert into users (id, name, username, email, password, type_user, deleted) valu
 insert into users (id, name, username, email, password, type_user, deleted) values (9, 'Tristan', 'tmaclennan8', 'tkeunemann8@google.es', '$2y$12$EZzMYHr0fiFtAWcsk9tMZOr/Xp4zMFVFiUrhCOsCNS4D3KVRpfnja', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (10, 'Katha', 'kcalf9', 'kpenniell9@rediff.com', '$2y$12$BDtTx8nrdrVJCweewJWGzecqX0aGiex7/nxa.nmvILB9z3EVVt6Nq', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (11, 'Shirleen', 'sdaffornea', 'saslina@archive.org', '$2y$10$T/KnD3y7nFckuajDlQit/OG6/TuQENO5y9pnUmEqf5CqlAXYhc5Lu', 'admin', false); ----- jOWX2YyMgEeM
-insert into users (id, name, username, email, password, type_user, deleted) values (12, 'Muhammad', 'mspelwoodb', 'mcassyb@fastcompany.com', '5DXN9x', 'user', false);
+insert into users (id, name, username, email, password, type_user, deleted) values (12, 'Muhammad', 'mspelwoodb', 'mcassyb@fastcompany.com', '$2y$12$StBzfZ0yI7bd8qrNDjK.gOt9FRArlWuYb9YsnoyBh1yJONya0t86K', 'premium', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (13, 'Jenelle', 'jpiddockec', 'jreichartzc@state.tx.us', 'cKEjYqKNrDmb', 'user', true);
 insert into users (id, name, username, email, password, type_user, deleted) values (14, 'Cymbre', 'cprinnettd', 'ctumbeltyd@bloglines.com', 'kHuNPMwnhm', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (15, 'Kimberly', 'kzumbusche', 'kbraime@google.fr', 'JshbwLnTW', 'user', false);
-insert into users (id, name, username, email, password, type_user, deleted) values (16, 'Jameson', 'joldridgef', 'jaleninf@nih.gov', 'gSDjrwf5q', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (17, 'Sibel', 'scayfordg', 'spettieg@quantcast.com', 'VpmhcpmngIh', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (18, 'Fowler', 'fharnwellh', 'fhundalh@nyu.edu', 'LNIsoIF3BF', 'user', false);
 insert into users (id, name, username, email, password, type_user, deleted) values (19, 'Abdel', 'abigglestonei', 'agenickei@ifeng.com', 'GWO1UeuXN', 'user', false);
@@ -629,10 +628,10 @@ INSERT INTO categories (id, name, sex, season, dad) VALUES (1, 'Tops', 'w', 'lac
 INSERT INTO categories (id, name, sex, season, dad) VALUES (2, 'Tops', 'm', 'semper', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (3, 'Bottoms', 'w', 'lobortis','Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (4, 'Shoes', 'w', 'vestibulum', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accesoires', 'w','justo', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (5, 'Accessories', 'w','justo', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (6, 'Bottoms', 'm', 'nulla', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (7, 'Shoes', 'm', 'volutpat', 'Clothing');
-INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accesoires', 'm', 'sed', 'Clothing');
+INSERT INTO categories (id, name, sex, season, dad) VALUES (8, 'Accessories', 'm', 'sed', 'Clothing');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (9, 'Bedroom', '?', 'ligula', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (10, 'Kitchen', '?', 'justo', 'House-Decor');
 INSERT INTO categories (id, name, sex, season, dad) VALUES (11, 'Living Room', '?', 'quis', 'House-Decor');

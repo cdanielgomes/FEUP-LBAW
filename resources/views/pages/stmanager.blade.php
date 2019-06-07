@@ -50,8 +50,8 @@
     <div class="row">
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/pants.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
-                    style="cursor:pointer;">
+                <img src="assets/pants.png" alt="product_image" class="center-block"
+                    onclick="window.location='product.html'" style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Sprag
                     5-pocket Pants</h5>
@@ -67,8 +67,8 @@
         </div>
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/jacket2.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
-                    style="cursor:pointer;">
+                <img src="assets/jacket2.png" alt="product_image" class="center-block"
+                    onclick="window.location='product.html'" style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Gotham Jacket
                     III</h5>
@@ -84,8 +84,8 @@
         </div>
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/boots.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
-                    style="cursor:pointer;">
+                <img src="assets/boots.png" alt="product_image" class="center-block"
+                    onclick="window.location='product.html'" style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Tsumoru Boot</h5>
                 <div class="details">
@@ -112,70 +112,78 @@
                     </button>
                     <span aria-hidden="true">&times;</span>
                 </div>
-                <form id="addProduct">
+                <form id="addProduct" enctype="multipart/form-data">
                     <div class="modal-body section-container mt-0">
                         <div class="form-group">
                             <label for="review_title">Name</label>
-                            <input type="text" class="form-control" placeholder="Product Name">
+                            <input type="text" name="name" class="form-control" placeholder="Product Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for=pic>Product Image</label> <br>
+                            <input type="file"  name="image" accept="image/*" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Price</label>
-                            <input type="text" class="form-control" placeholder="Product Price">
+                            <input type="number" name="price" class="form-control" placeholder="Product Price"  min="0.1" step="0.1" title="the price needs to be higher then 0.1€" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Color</label>
-                            <input type="text" class="form-control" placeholder="Product Stock">
+                            <input type="text" name="color" class="form-control" placeholder="Product Stock" required>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Description</label>
-                            <textarea rows="4" cols="10" class="form-control" placeInsert product
-                                descriptionholder="Insert product description"></textarea>
+                            <textarea name="description" rows="4" cols="10" class="form-control" placeInsert product
+                                descriptionholder="Insert product description" style="  resize: none;"  pattern=".{20,}"   required title="20 characters minimum"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="review_title">Size</label>
-                            <input type="text" class="form-control" placeholder="Product Size">
+                            <select name="size" class="form-control">
+                                <option selected="selected">3XS</option>
+                                <option>XXS</option>
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                                <option>3XL</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="review_title">Category</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Categories
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item"><i class="fas fa-tshirt pr-1"></i>Clothing</a>
-                                    <a class="dropdown-item"><i class="fas fa-home pr-1"></i>House-Decor</a>
-                                    <a class="dropdown-item"><i class="fas fa-hiking pr-2"></i>Activities</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="review_title">Sub-Category</label>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Sub-Categories
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item">Shoes</a>
-                                    <a class="dropdown-item">Pants</a>
-                                    <a class="dropdown-item">Jackets</a>
-                                    <a class="dropdown-item">T-Shirts</a>
-                                    <a class="dropdown-item">Sofas</a>
-                                    <a class="dropdown-item">Tables</a>
-                                    <a class="dropdown-item">Chairs</a>
-                                    <a class="dropdown-item">Carpets</a>
-                                    <a class="dropdown-item">Curtains</a>
-                                    <a class="dropdown-item">Fishing</a>
-                                    <a class="dropdown-item">Hicking</a>
-                                    <a class="dropdown-item">Hunting</a>
-                                </div>
-                            </div>
-                        </div>
+
+
                         <div class="form-group">
                             <label for="review_title">Stock</label>
-                            <input type="text" class="form-control" placeholder="Product Stock">
+                            <input name="stock" type="number" pattern='\d' class="form-control" placeholder="Product Stock">
                         </div>
+
+                        <div id="cat" class="form-group">
+                            <label for="review_title">Category</label>
+                            <select  name="category" class="form-control">
+                                <option selected="selected">Clothing</option>
+                                <option>House-Decor</option>
+                                <option>Activities</option>
+                            </select>
+                        </div>
+
+                        <div id="sex" class="form-group">
+
+                            <label for="review_title">Man</label>
+                            <select name="sex" class="form-control">
+                                <option selected="selected">Man</option>
+                                <option>Woman</option>
+                            </select>
+                        </div>
+
+                        <div id="subcat" class="form-group">
+                            <label for="review_title">Sub-Category</label>
+                            <select name="subcategory" class="form-control">
+                                <option selected="selected">Tops</option>
+                                <option>Bottoms</option>
+                                <option>Shoes</option>
+                                <option>Acessoires</option>
+                            </select>
+                        </div>
+
 
 
                     </div>
