@@ -223,7 +223,7 @@
           <tbody>
             @foreach ($lines as $line)
             <tr id="line{{$line['id']}}">
-              <th scope="row"><img class="img-fluid w-25 h-20" src="assets/pants.png" alt="product_image"></th>
+              <th scope="row"><img class="img-fluid w-25 h-20" src="{{asset('imgs/product'.$line['id_product'].'1.png')}}" alt="product_image"></th>
               <td class="name">{{$line['name']}}</td>
               <td class="price">{{$line['single_price']}}€</td>
               <td class="quantity">{{$line['quantity']}}</td>
