@@ -33,8 +33,6 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::id());
 
-        // $this->authorize('view', $user);
-
         $address = $user->addresses()->get();
 
         $addresses = $address->toArray();
@@ -43,7 +41,6 @@ class ProfileController extends Controller
             $value['city'] = $array['name'];
             $value['country'] = Country::where('id', $array['id_country'])->get()->toArray()[0]['name'];
         }
-
 
         $favs = $user->myFavs()->get();
         $prodFaves = array();
@@ -58,7 +55,6 @@ class ProfileController extends Controller
 
         $delivered = array();
         $hold = array();
-
         foreach ($orders as &$order) {
 
             $lines_order = $order->lines()->get();
@@ -72,12 +68,12 @@ class ProfileController extends Controller
                 array_push($l, ['productPrice' => $product['price'], 'productName' => $product['name'], 'price' => $line['price'], 'quantity' => $line['quantity']]);
                 array_push($lines, $l);
             }
+            $order->address = Address::find($order->id_address_invoce);
+            $order->city = City::find($order->address->id_city)['name'];
             $order['lines'] = $lines;
             if ($order['state'] == 'Delivered') array_push($delivered, $order);
             else array_push($hold, $order);
         }
-
-
         $employees = array();
 
         if ($user->type_user == 'admin') {
