@@ -10,7 +10,7 @@ body {
     display: block;
     width: auto;
     height: 50px;
-    top: 67%;
+    top: 64%;
     left: 50%;
     text-align: center;
     margin-left: -150px; /* margin is -0.5 * dimension */
@@ -36,6 +36,8 @@ img.logo{
     position:relative;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: auto;
+    width: auto;
+    height: 90vh;
 }
