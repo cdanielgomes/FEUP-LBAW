@@ -456,19 +456,19 @@
                                     <p class="accordion_list_title">Products</p>
                                     <div class="product_list container">
 
-                                        @foreach ($item['lines'][0] as $line)
+                                        @foreach ($item['lines'] as $line)
 
-                                        <div class="row" onclick="window.location='product.html'">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productName']}}</p>
+                                        <div class="row">
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line[0]['productName']}}</p>
                                             <hr class="col">
-                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line['productPrice']}}</p>
+                                            <p class="col-lg-auto col-md-auto col-sm-auto">{{$line[0]['productPrice']}}</p>
                                         </div>
                                         @endforeach
 
 
                                     </div>
                                     <p class="accordion_list_title mt-3">Address</p>
-                                    <p>2020 South Street Sunshine, CA 90000 </p>
+                                    <p>{{$item['address']->street}}, {{$item['address']->door_number}}, {{$item['address']->zipcode}} {{$item['city']}}</p>
                                 </div>
                             </td>
                         </tr>
@@ -533,7 +533,7 @@
                                     <div class="product_list container">
 
                                         @foreach ($item['lines'][0] as $lines)
-                                        <div class="row" onclick="window.location='product.html'">
+                                        <div class="row">
                                             <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productName']}}</p>
                                             <hr class="col">
                                             <p class="col-lg-auto col-md-auto col-sm-auto">{{$lines['productPrice']}}
@@ -544,7 +544,7 @@
 
 
                                     <p class="accordion_list_title mt-3">Address</p>
-                                    <p> R. Dr. Roberto Frias, 4200-465 Porto, Portugal </p>
+                                    <p>{{$item['address']->street}}, {{$item['address']->door_number}}, {{$item['address']->zipcode}} {{$item['city']}}</p>
                                 </div>
                             </td>
                         </tr>

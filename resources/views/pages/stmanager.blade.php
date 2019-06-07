@@ -50,7 +50,7 @@
     <div class="row">
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/pants.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                <img src="assets/pants.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
                     style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Sprag
@@ -67,7 +67,7 @@
         </div>
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/jacket2.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                <img src="assets/jacket2.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
                     style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Gotham Jacket
@@ -84,7 +84,7 @@
         </div>
         <div class="mt-3 col-md-5 col-lg-4">
             <div class="box d-flex flex-column align-items-center">
-                <img src="assets/boots.png" alt="Item 1" class="center-block" onclick="window.location='product.html'"
+                <img src="assets/boots.png" alt="product_image" class="center-block" onclick="window.location='product.html'"
                     style="cursor:pointer;">
                 <h5 id="productName" onclick="window.location='product.html'" style="cursor:pointer;">Men's
                     Tsumoru Boot</h5>

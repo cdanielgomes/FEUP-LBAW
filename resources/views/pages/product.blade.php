@@ -200,7 +200,7 @@
                         @foreach ($product->relatedProducts as $Rproduct)
                         <div class="mt-3 col-md-5 col-lg-4">
                             <div class="box d-flex flex-column align-items-center">
-                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="Item 1"
+                                <img src="{{asset('imgs/product'.$Rproduct['id'].'1.png')}}" alt="product_image"
                                     class="center-block" onclick="window.location={{$Rproduct['id']}}"
                                     style="cursor:pointer;">
                                 <h5 onclick="window.location={{$Rproduct['id']}}" style="cursor:pointer;">
