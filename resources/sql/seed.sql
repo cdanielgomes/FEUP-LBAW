@@ -261,6 +261,13 @@ CREATE TABLE product_categories
   id_categories INTEGER NOT NULL REFERENCES "categories" (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_product, id_categories)
 );
+
+CREATE TABLE password_resets(
+
+  email TEXT PRIMARY KEY,
+  token TEXT,
+  created_at TIMESTAMP WITH TIME zone
+);
  
 -----------------------------------------
 -- INDEXES
