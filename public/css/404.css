@@ -1,0 +1,41 @@
+body {
+    background: #e8fff5;
+    font-family: 'QuickSand', sans-serif;
+    color:white;
+}
+
+
+.fullscreenDiv {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: 50px;
+    top: 67%;
+    left: 50%;
+    text-align: center;
+    margin-left: -150px; /* margin is -0.5 * dimension */
+    margin-top: -25px; 
+    
+    background-color: #f6fffb;
+    opacity: 0.7;
+    font-weight: 60;
+    border-radius: 5px;
+
+}
+
+.fullscreenDiv > div.center_ > h2{
+    color: #5d776b;
+}
+​
+.fullscreenDiv > div.center{
+    color:white;
+}
+
+img.logo{
+    display: block;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: auto;
+}
