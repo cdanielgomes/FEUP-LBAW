@@ -105,14 +105,26 @@ class ProfileController extends Controller
         return view('pages.profile', ['employees' => $employees, 'categories' => Categories::all(), 'user' => $user, 'addresses' => $addresses, 'favorites' => $prodFaves, 'delivered' => $delivered, 'hold' => $hold, 'users' => $users, 'reviews' => $allReviews]);
     }
 
-    public function deleteFav($idUser, $idProduct)
+    public function deleteFav($idProduct)
     {
         //this->authorize();
-
+        $idUser = Auth::user()->id;
         $deleted = Favorites::remove($idUser, $idProduct);
 
         if ($deleted == 1) return $idProduct;
         else return $deleted;
+    }
+
+    public function addFav($idProduct){
+
+        $idUser = Auth::user()->id;
+       
+        $add = new Favorites;
+
+        $add->id_product = $idProduct;
+        $add->id_user = $idUser;
+
+        return $add->save();
     }
 
     /**

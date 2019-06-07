@@ -51,6 +51,8 @@ Route::post('api/profile/address', 'AddressController@create');
 
 Route::delete('api/admin/{id}', 'ProfileController@deleteUser');
 Route::delete('api/profile/products/{idProduct}', 'ProfileController@deleteFav');
+Route::post('api/profile/products/{idProduct}', 'ProfileController@addFav');
+
 Route::post('product/add', 'ProductController@store');
 Route::post('/api/report/{reviewID}', 'ProductController@report');
 Route::put('api/profile', 'ProfileController@update');

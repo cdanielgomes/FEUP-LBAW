@@ -121,7 +121,7 @@ function sendAddToCartRelated(pid, price) {
 
 function reportReview(reviewID, reportedID, reportID) {
 
-  sendAjaxRequest('post', "/api/report/" + reviewID, {reportID: reportID, reportedID: reportedID}, reportHandler)
+  sendAjaxRequest('post', "/api/report/" + reviewID, { reportID: reportID, reportedID: reportedID }, reportHandler)
 }
 
 function reportHandler() {
@@ -146,4 +146,63 @@ function sendAjaxRequest(method, url, data, handler) {
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   request.addEventListener('load', handler);
   request.send(encodeForAjax(data));
+}
+
+
+
+let addFav = document.getElementsByClassName('fas fa-heart pr-1');
+addFav[0].addEventListener('click', addFavorites);
+
+
+let removeFav = document.getElementsByClassName('fas fa-heart ml-auto');
+removeFav[0].addEventListener('click', removeFavorites);
+
+function addFavorites(event) {
+
+  let id = document.getElementById('productId').value;
+
+  console.log(id);
+  sendAjaxRequest('post', '/api/profile/products/' + id, null, addFavHandler);
+
+}
+
+
+
+function removeFavorites(event) {
+
+  let id = document.getElementById('productId').value;
+
+  console.log(id);
+  sendAjaxRequest('delete', '/api/profile/products/' + id, null, removeFavHandler);
+
+}
+
+
+
+function removeFavHandler() {
+
+  if (this.status != 200) {
+
+
+    return;
+  }
+
+  let item = document.getElementsByClassName('fas fa-heart ml-auto')[0];
+
+  item.replace(document.createElement('i').className('fas fa-heart pr-1'))
+
+}
+
+
+
+function addFavHandler() {
+
+  if (this.status != 200) {
+
+    return
+  }
+
+  let item = document.getElementsByClassName('fas fa-heart pr-1')[0];
+  item.replace(document.createElement('i').className('fas fa-heart ml-auto'))
+
 }

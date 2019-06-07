@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 class Favorites extends Model
 {
     public $timestamps = false;
-
+    protected $autoincrement = false;
     /**
      * The attributes that are mass assignable.
      *

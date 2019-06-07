@@ -61,7 +61,7 @@ function createProductHandler() {
 
   let answer = JSON.parse(this.responseText);
   let form = document.getElementById('addProduct');
-  // form.reset();
+  form.reset();
 
 
 

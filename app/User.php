@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Favorites', 'id_user');
     }
 
+    public function isFav($id){
+        
+        return empty($this->myFavs()->where('id_product', $id)->first()); 
+    }
 
     public function orders()
     {

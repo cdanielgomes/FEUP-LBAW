@@ -66,9 +66,16 @@
                 <p id="product-price">
                     <span class="price">{{$product['price']}}€</span>
                 </p>
-                <p class="favorites" data-toggle="modal" data-target="#alertFavorite"><i
-                        class="fas fa-heart pr-1"></i>Add
-                    to favorites</p>
+                @if(Auth::check())
+                @if(Auth::user()->isFav($product['id']))
+                <p class="favorites" data-toggle="modal" data-target="#alertFavorite">
+                    <i class="fas fa-heart pr-1"></i> Add to favorites</p>
+                @else
+                <p class="favorites" data-toggle="modal" data-target="#alertFavorite">
+                    <i class="fas fa-heart ml-auto"></i> Remove
+                    from favorites</p>
+                @endif
+                @endif
                 <div class="product-add">
                     <div class="form-group">
                         <label for="quantity">Quantity</label>
@@ -91,7 +98,11 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" name="Submit" class="AddtoCart" value="Add to Cart">
+
+                @if(Auth::check())<input type="submit" name="Submit" class="AddtoCart" value="Add to Cart">
+
+                @else <span>login to buy</span>
+                @endif
             </form>
             <div id="report" class="box d-flex flex-column last-card" data-toggle="modal" data-target="#alertAddToCart">
             </div>
@@ -107,20 +118,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="alertFavorite" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Added to favorites!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
         </div>
     </div>
@@ -153,7 +150,12 @@
                                 <textarea rows="5" maxlength="250" placeholder="Maximum 250 characters..."
                                     class="form-control"></textarea>
                             </div>
-                            <div><input name="Submit" value="Submit" type="submit" /></div>
+                            <div>
+                                @if(Auth::check())
+                                <input name="Submit" value="Submit" type="submit" />
+                                @else <span> Login to be able to make a review </span>
+                                @endif
+                            </div>
                         </form>
                     </li>
                     @foreach ($reviews as $review)
@@ -169,7 +171,8 @@
                         </div>
                         <div class="report mt-1 pt-5 ml-auto d-flex align-items-end justify-content-end">
                             <div id="report" class="box d-flex flex-column last-card" data-toggle="modal"
-                                data-target="#alertReview" onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
+                                data-target="#alertReview"
+                                onclick="reportReview({{$review->id}}, {{$review->id_user}}, {{Auth::user()->id}})">
                                 Report Review
                             </div>
                         </div>
@@ -208,8 +211,11 @@
                                     {{$Rproduct['name']}}
                                 </h5>
                                 <span>{{$Rproduct['price']}} €</span>
-                                <input type="button" class="AddToCart" value="Add to Cart"
+                                @if(Auth::check())<input type="button" class="AddToCart" value="Add to Cart"
                                     onclick="sendAddToCartRelated({{$Rproduct['id']}}, {{$Rproduct['price']}})">
+                                @else<input type="button" class="AddToCart" value="Add to Cart"
+                                    onclick="{{route('login')}}">
+                                @endif
                             </div>
                         </div>
                         @endforeach
