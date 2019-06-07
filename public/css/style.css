@@ -69,8 +69,10 @@ footer {
 }
 
 img.center-block {
-    max-width: 300px;
-    max-height: 350px;
+    min-width: 400px;
+    min-height: 400px;
+    max-width: 400px;
+    max-height: 400px;
     padding: 10px;
 }
 .navbar-toggler{
