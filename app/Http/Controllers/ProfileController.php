@@ -29,7 +29,6 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // $this->middleware('auth', ['except' => ['show', 'test']]);
     }
 
     public function show()
@@ -165,7 +164,6 @@ class ProfileController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
 
-        //        dd($user);
         $user->save();
 
         return $user;
