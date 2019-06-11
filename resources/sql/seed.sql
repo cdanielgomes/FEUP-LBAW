@@ -508,6 +508,7 @@ INSERT INTO users (id, name, username, email, PASSWORD, type_user, deleted)
 INSERT INTO users (id, name, username, email, PASSWORD, type_user, deleted)
     VALUES (29, 'Rodger', 'storemanager', 'rwakers@weather.com', '$2y$12$3mSjHn//.DfkqScUW/If7.0haSp2yU1dxH4FrcxU2G7m8vDRlsaVG', 'store_manager', FALSE);
 ------- storemanager
+
 INSERT INTO users (id, name, username, email, PASSWORD, type_user, deleted)
     VALUES (30, 'Madlin', 'medmundsont', 'mbernott@nifty.com', 'lxWLX9dts', 'user', FALSE);
 INSERT INTO users (id, name, username, email, PASSWORD, type_user, deleted)
@@ -1843,81 +1844,213 @@ INSERT INTO product_categories (id_product, id_categories)
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (16, 17);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (17, 10);
+    VALUES (17, 2);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (18, 8);
+    VALUES (17, 13);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (17, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (17, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (17, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (18, 7);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (18, 13);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (18, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (18, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (18, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (19, 6);
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (19, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (20, 14);
+    VALUES (19, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (21, 15);
+    VALUES (19, 15);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (22, 4);
+    VALUES (19, 17);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (23, 4);
+    VALUES (20, 6);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (24, 10);
+    VALUES (21, 6);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (25, 11);
+    VALUES (22, 6);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (26, 15);
+    VALUES (23, 6);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (27, 10);
+    VALUES (24, 9);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (28, 4);
+    VALUES (24, 12);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (29, 2);
+    VALUES (24, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (30, 11);
+    VALUES (24, 17);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (31, 10);
+    VALUES (25, 9);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (32, 2);
+    VALUES (25, 12);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (33, 11);
+    VALUES (25, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (25, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (26, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (26, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (26, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (26, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (27, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (27, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (27, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (27, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (28, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (28, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (28, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (28, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (29, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (29, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (29, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (29, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (30, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (30, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (30, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (30, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (31, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (31, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (31, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (31, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (32, 9);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (32, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (32, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (32, 17);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 10);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 12);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 16);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (33, 17);
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (34, 13);
 INSERT INTO product_categories (id_product, id_categories)
+    VALUES (34, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (34, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (35, 13);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (35, 14);
+INSERT INTO product_categories (id_product, id_categories)
     VALUES (35, 15);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (36, 11);
+    VALUES (36, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (37, 16);
+    VALUES (36, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (36, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (37, 13);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (37, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (37, 15);
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (38, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (39, 5);
+    VALUES (38, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (40, 16);
+    VALUES (38, 15);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (41, 1);
+    VALUES (39, 4);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (42, 3);
+    VALUES (39, 7);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (43, 9);
+    VALUES (39, 16);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (44, 2);
+    VALUES (40, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (45, 10);
+    VALUES (40, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (46, 12);
+    VALUES (40, 15);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (47, 15);
+    VALUES (41, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (48, 4);
+    VALUES (41, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (49, 12);
+    VALUES (41, 15);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (50, 17);
+    VALUES (42, 13);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (51, 16);
+    VALUES (42, 14);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (42, 15);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (43, 4);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (43, 7);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (44, 1);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (45, 1);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (46, 2);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (47, 6);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (48, 2);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (49, 7);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (50, 5);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (50, 8);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (51, 9);
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (52, 5);
 INSERT INTO product_categories (id_product, id_categories)
+    VALUES (52, 8);
+INSERT INTO product_categories (id_product, id_categories)
+    VALUES (53, 17);
+INSERT INTO product_categories (id_product, id_categories)
     VALUES (53, 14);
 INSERT INTO product_categories (id_product, id_categories)
-    VALUES (54, 6);
+    VALUES (54, 14);
 INSERT INTO product_categories (id_product, id_categories)
     VALUES (55, 13);
 INSERT INTO product_categories (id_product, id_categories)
@@ -2093,81 +2226,105 @@ INSERT INTO product_color (id_product, id_color)
 INSERT INTO product_color (id_product, id_color)
     VALUES (17, 2);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (18, 6);
+    VALUES (17, 3);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (17, 4);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (17, 6);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (18, 2);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (18, 3);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (18, 4);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (18, 10);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (18, 9);
 INSERT INTO product_color (id_product, id_color)
     VALUES (19, 4);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (20, 8);
+    VALUES (19, 7);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (21, 3);
+    VALUES (19, 10);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (19, 5);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (20, 9);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (21, 4);
 INSERT INTO product_color (id_product, id_color)
     VALUES (22, 7);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (23, 5);
+    VALUES (23, 10);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (24, 3);
+    VALUES (24, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (25, 4);
+    VALUES (25, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (26, 2);
+    VALUES (26, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (27, 1);
+    VALUES (27, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (28, 3);
+    VALUES (28, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (29, 6);
+    VALUES (29, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (30, 2);
+    VALUES (30, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (31, 3);
+    VALUES (31, 9);
 INSERT INTO product_color (id_product, id_color)
     VALUES (32, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (33, 2);
+    VALUES (33, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (34, 6);
+    VALUES (34, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (35, 5);
+    VALUES (35, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (36, 10);
+    VALUES (36, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (37, 10);
+    VALUES (37, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (38, 8);
+    VALUES (38, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (39, 8);
+    VALUES (39, 2);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (40, 3);
+    VALUES (39, 3);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (41, 5);
+    VALUES (39, 5);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (42, 6);
+    VALUES (40, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (43, 4);
+    VALUES (41, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (44, 3);
+    VALUES (42, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (45, 1);
+    VALUES (43, 6);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (46, 2);
+    VALUES (44, 2);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (47, 10);
+    VALUES (45, 6);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (48, 1);
+    VALUES (46, 3);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (49, 5);
+    VALUES (47, 2);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (50, 4);
+    VALUES (48, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (51, 7);
+    VALUES (49, 2);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (52, 7);
+    VALUES (50, 9);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (53, 7);
+    VALUES (51, 6);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (52, 2);
+INSERT INTO product_color (id_product, id_color)
+    VALUES (53, 9);
 INSERT INTO product_color (id_product, id_color)
     VALUES (54, 4);
 INSERT INTO product_color (id_product, id_color)
-    VALUES (55, 4);
+    VALUES (55, 2);
 INSERT INTO product_color (id_product, id_color)
     VALUES (56, 1);
 INSERT INTO product_color (id_product, id_color)
@@ -2477,8 +2634,6 @@ INSERT INTO product_size (id_product, id_size)
 INSERT INTO product_size (id_product, id_size)
     VALUES (37, 4);
 INSERT INTO product_size (id_product, id_size)
-    VALUES (38, 5);
-INSERT INTO product_size (id_product, id_size)
     VALUES (38, 3);
 INSERT INTO product_size (id_product, id_size)
     VALUES (38, 4);
@@ -2511,23 +2666,59 @@ INSERT INTO product_size (id_product, id_size)
 INSERT INTO product_size (id_product, id_size)
     VALUES (45, 3);
 INSERT INTO product_size (id_product, id_size)
+    VALUES (45, 4);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (45, 5);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (45, 6);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (46, 3);
+INSERT INTO product_size (id_product, id_size)
     VALUES (46, 4);
 INSERT INTO product_size (id_product, id_size)
-    VALUES (47, 2);
+    VALUES (46, 5);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (46, 6);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (47, 3);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (47, 4);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (47, 5);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (47, 6);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (48, 3);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (48, 4);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (48, 5);
 INSERT INTO product_size (id_product, id_size)
     VALUES (48, 6);
 INSERT INTO product_size (id_product, id_size)
-    VALUES (49, 1);
+    VALUES (49, 3);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (49, 4);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (49, 5);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (49, 6);
 INSERT INTO product_size (id_product, id_size)
     VALUES (50, 4);
 INSERT INTO product_size (id_product, id_size)
     VALUES (51, 5);
 INSERT INTO product_size (id_product, id_size)
+    VALUES (52, 3);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (52, 4);
+INSERT INTO product_size (id_product, id_size)
+    VALUES (52, 5);
+INSERT INTO product_size (id_product, id_size)
     VALUES (52, 6);
 INSERT INTO product_size (id_product, id_size)
     VALUES (53, 4);
 INSERT INTO product_size (id_product, id_size)
-    VALUES (54, 5);
+    VALUES (54, 4);
 INSERT INTO product_size (id_product, id_size)
     VALUES (55, 5);
 INSERT INTO product_size (id_product, id_size)
@@ -2657,9 +2848,9 @@ INSERT INTO product_brand (id_product, id_brand)
 INSERT INTO product_brand (id_product, id_brand)
     VALUES (16, 15);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (17, 9);
+    VALUES (17, 8);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (18, 19);
+    VALUES (18, 8);
 INSERT INTO product_brand (id_product, id_brand)
     VALUES (19, 16);
 INSERT INTO product_brand (id_product, id_brand)
@@ -2671,47 +2862,47 @@ INSERT INTO product_brand (id_product, id_brand)
 INSERT INTO product_brand (id_product, id_brand)
     VALUES (23, 19);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (24, 18);
+    VALUES (24, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (25, 10);
+    VALUES (25, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (26, 9);
+    VALUES (26, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (27, 2);
+    VALUES (27, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (28, 17);
+    VALUES (28, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (29, 9);
+    VALUES (29, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (30, 20);
+    VALUES (30, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (31, 19);
+    VALUES (31, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (32, 13);
+    VALUES (32, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (33, 14);
+    VALUES (33, 11);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (34, 18);
+    VALUES (34, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (35, 3);
+    VALUES (35, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (36, 15);
+    VALUES (36, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (37, 20);
+    VALUES (37, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (38, 2);
+    VALUES (38, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (39, 5);
+    VALUES (39, 13);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (40, 7);
+    VALUES (40, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (41, 16);
+    VALUES (41, 12);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (42, 20);
+    VALUES (42, 12);
 INSERT INTO product_brand (id_product, id_brand)
     VALUES (43, 17);
 INSERT INTO product_brand (id_product, id_brand)
-    VALUES (44, 11);
+    VALUES (44, 1);
 INSERT INTO product_brand (id_product, id_brand)
     VALUES (45, 1);
 INSERT INTO product_brand (id_product, id_brand)
